@@ -40,7 +40,9 @@ jobs:
               workflow_id: 'iarchitecture-validation.yml',
               ref: 'main',
               inputs: {
-                pr_number: prNumber.toString()
+                pr_number: prNumber.toString(),
+                pr_head_ref: prHeadRef,
+                pr_base_ref: prBaseRef
               }
             });
 
