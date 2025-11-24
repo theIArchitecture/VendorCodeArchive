@@ -93,13 +93,13 @@ jobs:
 
             // Exit with appropriate status based on validation result
             if (workflowRun.conclusion === 'success') {
-              console.log('✅ Validation passed - no architectural violations found');
+              console.log('Validation passed - no architectural violations found');
             } else if (workflowRun.conclusion === 'failure') {
-              core.setFailed('❌ Validation failed - architectural violations found. Check DemoRepo validation results.');
+              core.setFailed('Validation failed - architectural violations found. Check DemoRepo validation results.');
             } else if (workflowRun.conclusion === 'cancelled') {
-              core.setFailed('⚠️ Validation was cancelled');
+              core.setFailed('Validation was cancelled');
             } else {
-              core.setFailed(`⚠️ Validation completed with unexpected status: ${workflowRun.conclusion}`);
+              core.setFailed(`Validation completed with unexpected status: ${workflowRun.conclusion}`);
             }
 
   trigger-full-scan:
