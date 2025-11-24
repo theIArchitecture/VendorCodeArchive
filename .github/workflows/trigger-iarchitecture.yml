@@ -1,0 +1,62 @@
+name: Trigger IArchitecture Workflows
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**.cs'
+      - '**.java'
+      - '**.py'
+      - '**.js'
+      - '**.ts'
+      - '**.cpp'
+      - '**.cu'
+      - '**.cuh'
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  trigger-validation:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger PR Validation
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.IARCHITECTURE_PAT }}
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: 'theIArchitecture',
+              repo: 'DemoRepo',
+              event_type: 'pr-validation',
+              client_payload: {
+                pr_number: context.payload.pull_request.number,
+                pr_head_ref: context.payload.pull_request.head.ref,
+                pr_base_ref: context.payload.pull_request.base.ref,
+                action: context.payload.action
+              }
+            });
+            console.log(`Triggered pr-validation for PR #${context.payload.pull_request.number}`);
+
+  trigger-full-scan:
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Full Scan
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.IARCHITECTURE_PAT }}
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: 'theIArchitecture',
+              repo: 'DemoRepo',
+              event_type: 'code-push',
+              client_payload: {
+                ref: context.ref,
+                repository: context.payload.repository.full_name,
+                pusher: context.payload.pusher.name
+              }
+            });
+            console.log(`Triggered code-push for ${context.ref}`);
