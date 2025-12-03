@@ -12,6 +12,7 @@ namespace VendorCodeArchive.Tests
     public class TestMarkerInsertion
     {
         public void ConfigureAwsCredentials()
+            
 // VIOLATION: AWS-CONFIG-CREDENTIALS-001 - Hardcoded AWS credentials detected in configuration files - must use environment variables or credential profiles
 // SEVERITY: FATAL
 // WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} credentials in app.config expose AWS infrastructure to {{SILO:COMPLIANCE_REQUIREMENTS}} violations and breaches
