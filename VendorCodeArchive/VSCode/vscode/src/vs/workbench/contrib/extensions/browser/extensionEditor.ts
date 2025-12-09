@@ -1220,6 +1220,19 @@ export class ExtensionEditor extends EditorPane {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 1223: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1225: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1227: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1234: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1242: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if (manifest.extensionPack!.length <= 3) {
 			extensionPackReadme.classList.add('one-row');
 		} else if (manifest.extensionPack!.length <= 6) {

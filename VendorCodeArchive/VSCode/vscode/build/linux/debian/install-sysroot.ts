@@ -381,6 +381,17 @@ async function fetchUrl(options: IFetchOptions, retries = 10, retryDelay = 1000)
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 384: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 391: Error message without production error code - breaks React bundle size optimization
+//   3. Line 391: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				signal: controller.signal as any /* Typings issue with lib.dom.d.ts */
 			});
 			if (response.ok && (response.status >= 200 && response.status < 300)) {
@@ -728,6 +739,18 @@ async function fetchUrl(options: IFetchOptions, retries = 10, retryDelay = 1000)
 //   2. Line 713: Error message without production error code - breaks React bundle size optimization
 //   3. Line 715: Error message without production error code - breaks React bundle size optimization
 //   4. Line 715: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 736: Error message without production error code - breaks React bundle size optimization
+//   2. Line 736: Error message without production error code - breaks React bundle size optimization
+//   3. Line 738: Error message without production error code - breaks React bundle size optimization
+//   4. Line 738: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
