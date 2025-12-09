@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -42,6 +44,18 @@ suite('VoiceChat', () => {
 		publisherDisplayName?: string | undefined;
 		isDefault?: boolean | undefined;
 		isDynamic?: boolean | undefined;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 47: Error message without production error code - breaks React bundle size optimization
+//   2. Line 47: Error message without production error code - breaks React bundle size optimization
+//   3. Line 51: Error message without production error code - breaks React bundle size optimization
+//   4. Line 51: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		disambiguation: { category: string; description: string; examples: string[] }[] = [];
 		provideFollowups?(request: IChatAgentRequest, result: IChatAgentResult, history: IChatAgentHistoryEntry[], token: CancellationToken): Promise<IChatFollowup[]> {
 			throw new Error('Method not implemented.');
@@ -60,6 +74,48 @@ suite('VoiceChat', () => {
 		new TestChatAgent('vscode', [
 			new TestChatAgentCommand('search', 'search')
 		]),
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (34):
+//   1. Line 65: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 69: Error message without production error code - breaks React bundle size optimization
+//   3. Line 69: Error message without production error code - breaks React bundle size optimization
+//   4. Line 72: Error message without production error code - breaks React bundle size optimization
+//   5. Line 72: Error message without production error code - breaks React bundle size optimization
+//   6. Line 78: Error message without production error code - breaks React bundle size optimization
+//   7. Line 78: Error message without production error code - breaks React bundle size optimization
+//   8. Line 79: Error message without production error code - breaks React bundle size optimization
+//   9. Line 79: Error message without production error code - breaks React bundle size optimization
+//   10. Line 80: Error message without production error code - breaks React bundle size optimization
+//   11. Line 80: Error message without production error code - breaks React bundle size optimization
+//   12. Line 81: Error message without production error code - breaks React bundle size optimization
+//   13. Line 81: Error message without production error code - breaks React bundle size optimization
+//   14. Line 82: Error message without production error code - breaks React bundle size optimization
+//   15. Line 82: Error message without production error code - breaks React bundle size optimization
+//   16. Line 83: Error message without production error code - breaks React bundle size optimization
+//   17. Line 83: Error message without production error code - breaks React bundle size optimization
+//   18. Line 84: Error message without production error code - breaks React bundle size optimization
+//   19. Line 84: Error message without production error code - breaks React bundle size optimization
+//   20. Line 85: Error message without production error code - breaks React bundle size optimization
+//   21. Line 85: Error message without production error code - breaks React bundle size optimization
+//   22. Line 86: Error message without production error code - breaks React bundle size optimization
+//   23. Line 86: Error message without production error code - breaks React bundle size optimization
+//   24. Line 87: Error message without production error code - breaks React bundle size optimization
+//   25. Line 87: Error message without production error code - breaks React bundle size optimization
+//   26. Line 90: Error message without production error code - breaks React bundle size optimization
+//   27. Line 90: Error message without production error code - breaks React bundle size optimization
+//   28. Line 93: Error message without production error code - breaks React bundle size optimization
+//   29. Line 93: Error message without production error code - breaks React bundle size optimization
+//   30. Line 96: Error message without production error code - breaks React bundle size optimization
+//   31. Line 96: Error message without production error code - breaks React bundle size optimization
+//   32. Line 100: Missing service brand declaration - breaks VSCode's DI system type safety
+//   33. Line 110: Error message without production error code - breaks React bundle size optimization
+//   34. Line 110: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 	];
 
 	class TestChatAgentService implements IChatAgentService {
@@ -126,6 +182,16 @@ suite('VoiceChat', () => {
 				synthesize: async () => { }
 			};
 		}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 132: Error message without production error code - breaks React bundle size optimization
+//   2. Line 132: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 		onDidStartKeywordRecognition = Event.None;
 		onDidEndKeywordRecognition = Event.None;

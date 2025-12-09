@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -106,6 +108,16 @@ export class TestMcpMessageTransport extends Disposable implements IMcpMessageTr
 	/**
 	 * Simulates a reply to an 'initialized' request.
 	 */
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 111: Error message without production error code - breaks React bundle size optimization
+//   2. Line 111: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	public simulateInitialized() {
 		if (!this._sentMessages.length) {
 			throw new Error('initialize was not called yet');
@@ -197,6 +209,30 @@ export class TestMcpRegistry implements IMcpRegistry {
 			const server = collection?.serverDefinitions.read(reader).find(s => s.id === definitionRef.id);
 			return { collection, server };
 		});
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (16):
+//   1. Line 202: Error message without production error code - breaks React bundle size optimization
+//   2. Line 202: Error message without production error code - breaks React bundle size optimization
+//   3. Line 205: Error message without production error code - breaks React bundle size optimization
+//   4. Line 205: Error message without production error code - breaks React bundle size optimization
+//   5. Line 208: Error message without production error code - breaks React bundle size optimization
+//   6. Line 208: Error message without production error code - breaks React bundle size optimization
+//   7. Line 211: Error message without production error code - breaks React bundle size optimization
+//   8. Line 211: Error message without production error code - breaks React bundle size optimization
+//   9. Line 214: Error message without production error code - breaks React bundle size optimization
+//   10. Line 214: Error message without production error code - breaks React bundle size optimization
+//   11. Line 217: Error message without production error code - breaks React bundle size optimization
+//   12. Line 217: Error message without production error code - breaks React bundle size optimization
+//   13. Line 220: Error message without production error code - breaks React bundle size optimization
+//   14. Line 220: Error message without production error code - breaks React bundle size optimization
+//   15. Line 223: Error message without production error code - breaks React bundle size optimization
+//   16. Line 223: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	}
 	discoverCollections(): Promise<McpCollectionDefinition[]> {
 		throw new Error('Method not implemented.');

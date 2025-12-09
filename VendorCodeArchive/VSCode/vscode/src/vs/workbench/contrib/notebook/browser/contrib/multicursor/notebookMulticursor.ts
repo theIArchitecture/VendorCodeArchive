@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -149,6 +151,16 @@ export class NotebookMultiCursorController extends Disposable implements INotebo
 
 	private syncAnchorListeners() {
 		this.anchorDisposables.clear();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 154: Error message without production error code - breaks React bundle size optimization
+//   2. Line 154: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 		if (!this.anchorCell) {
 			throw new Error('Anchor cell is undefined');
@@ -524,6 +536,18 @@ export class NotebookMultiCursorController extends Disposable implements INotebo
 			);
 			focusedCell.setSelections([newSelection]);
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 529: Error message without production error code - breaks React bundle size optimization
+//   2. Line 529: Error message without production error code - breaks React bundle size optimization
+//   3. Line 532: Error message without production error code - breaks React bundle size optimization
+//   4. Line 532: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			this.anchorCell = this.notebookEditor.activeCellAndCodeEditor;
 			if (!this.anchorCell || this.anchorCell[0].handle !== focusedCell.handle) {
 				throw new Error('Active cell is not the same as the cell passed as context');
@@ -592,6 +616,16 @@ export class NotebookMultiCursorController extends Disposable implements INotebo
 
 				const trackedCell = await this.updateTrackedCell(findResultCellViewModel, [Selection.fromRange(findResult.match.range, SelectionDirection.LTR)]);
 				findResultCellViewModel.setSelections(trackedCell.matchSelections);
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 598: Error message without production error code - breaks React bundle size optimization
+//   2. Line 598: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 				this.anchorCell = this.notebookEditor.activeCellAndCodeEditor;
 				if (!this.anchorCell || !(this.anchorCell[1] instanceof CodeEditorWidget)) {
@@ -674,6 +708,18 @@ export class NotebookMultiCursorController extends Disposable implements INotebo
 				cellIndex: index,
 				position: new Position(inputSelection.startLineNumber, word.startColumn),
 			};
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 680: Error message without production error code - breaks React bundle size optimization
+//   2. Line 680: Error message without production error code - breaks React bundle size optimization
+//   3. Line 683: Error message without production error code - breaks React bundle size optimization
+//   4. Line 683: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 			this.anchorCell = this.notebookEditor.activeCellAndCodeEditor;
 			if (!this.anchorCell || this.anchorCell[0].handle !== focusedCell.handle) {

@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -216,6 +218,17 @@ export interface ILanguageModelChatSelector {
 	readonly family?: string;
 	readonly tokens?: number;
 	readonly extension?: ExtensionIdentifier;
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 221: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 228: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 228: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 }
 
 export const ILanguageModelsService = createDecorator<ILanguageModelsService>('ILanguageModelsService');
@@ -295,6 +308,13 @@ export const languageModelExtensionPoint = ExtensionsRegistry.registerExtensionP
 			result.push(`onLanguageModelChat:${contrib.vendor}`);
 		}
 	}
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 });
 
 export class LanguageModelsService implements ILanguageModelsService {
@@ -470,6 +490,18 @@ export class LanguageModelsService implements ILanguageModelsService {
 
 	registerLanguageModelProvider(vendor: string, provider: ILanguageModelChatProvider): IDisposable {
 		this._logService.trace('[LM] registering language model provider', vendor, provider);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 475: Error message without production error code - breaks React bundle size optimization
+//   2. Line 475: Error message without production error code - breaks React bundle size optimization
+//   3. Line 478: Error message without production error code - breaks React bundle size optimization
+//   4. Line 478: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 		if (!this._vendors.has(vendor)) {
 			throw new Error(`Chat model provider uses UNKNOWN vendor ${vendor}.`);
@@ -493,6 +525,20 @@ export class LanguageModelsService implements ILanguageModelsService {
 	}
 
 	async sendChatRequest(modelId: string, from: ExtensionIdentifier, messages: IChatMessage[], options: { [name: string]: any }, token: CancellationToken): Promise<ILanguageModelChatResponse> {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 498: Error message without production error code - breaks React bundle size optimization
+//   2. Line 498: Error message without production error code - breaks React bundle size optimization
+//   3. Line 506: Error message without production error code - breaks React bundle size optimization
+//   4. Line 506: Error message without production error code - breaks React bundle size optimization
+//   5. Line 510: Error message without production error code - breaks React bundle size optimization
+//   6. Line 510: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const provider = this._providers.get(this._modelCache.get(modelId)?.vendor || '');
 		if (!provider) {
 			throw new Error(`Chat provider for model ${modelId} is not registered.`);
