@@ -459,6 +459,18 @@ export class ExtHostTimeline implements IExtHostTimeline {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 462: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 464: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 466: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 468: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				else if (MarkdownStringType.isMarkdownString((props as any).detail)) {
 					console.warn('Using deprecated TimelineItem.detail, migrate to TimelineItem.tooltip');
 					tooltip = MarkdownString.from((props as any).detail);

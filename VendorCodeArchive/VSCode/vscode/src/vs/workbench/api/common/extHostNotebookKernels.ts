@@ -630,6 +630,22 @@ export class ExtHostNotebookKernels implements ExtHostNotebookKernelsShape {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (8):
+//   1. Line 633: Error message without production error code - breaks React bundle size optimization
+//   2. Line 633: Error message without production error code - breaks React bundle size optimization
+//   3. Line 637: Error message without production error code - breaks React bundle size optimization
+//   4. Line 637: Error message without production error code - breaks React bundle size optimization
+//   5. Line 644: Error message without production error code - breaks React bundle size optimization
+//   6. Line 644: Error message without production error code - breaks React bundle size optimization
+//   7. Line 648: Error message without production error code - breaks React bundle size optimization
+//   8. Line 648: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error('notebook controller is DISPOSED');
 				}
 				if (!associatedNotebooks.has(cell.notebook.uri)) {
@@ -1187,6 +1203,18 @@ export class ExtHostNotebookKernels implements ExtHostNotebookKernelsShape {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1190: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1190: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1198: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1198: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('CANNOT execute cell that has been REMOVED from notebook');
 		}
 		const notebook = this._extHostNotebook.getNotebookDocument(cell.notebook.uri);
@@ -1501,6 +1529,18 @@ export class ExtHostNotebookKernels implements ExtHostNotebookKernelsShape {
 //   2. Line 1469: Error message without production error code - breaks React bundle size optimization
 //   3. Line 1472: Error message without production error code - breaks React bundle size optimization
 //   4. Line 1472: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1509: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1509: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1512: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1512: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
@@ -1858,6 +1898,18 @@ class NotebookCellExecutionTask extends Disposable {
 //   2. Line 1814: Error message without production error code - breaks React bundle size optimization
 //   3. Line 1818: Error message without production error code - breaks React bundle size optimization
 //   4. Line 1818: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1866: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1866: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1870: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1870: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
