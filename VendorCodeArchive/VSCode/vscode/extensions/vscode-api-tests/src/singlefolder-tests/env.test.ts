@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -19,6 +21,20 @@ suite('vscode API - env', () => {
 		assert.strictEqual(typeof env.sessionId, 'string');
 		assert.strictEqual(typeof env.shell, 'string');
 	});
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 24: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 25: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 26: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 27: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 28: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 29: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	test('env is readonly', function () {
 		assert.throws(() => (env as any).language = '234');
@@ -35,6 +51,16 @@ suite('vscode API - env', () => {
 		const knownUiAndWorkspaceExtension = extensions.getExtension('vscode.media-preview');
 		if (typeof remoteName === 'undefined') {
 			// not running in remote, so we expect both extensions
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 40: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 49: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.ok(knownWorkspaceExtension);
 			assert.ok(knownUiAndWorkspaceExtension);
 			assert.strictEqual(ExtensionKind.UI, knownUiAndWorkspaceExtension!.extensionKind);

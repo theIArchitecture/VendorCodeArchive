@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -342,6 +344,13 @@ export class Sash extends Disposable {
 			const onChange = (state: SashState) => {
 				this.orthogonalStartDragHandleDisposables.clear();
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				if (state !== SashState.Disabled) {
 					this._orthogonalStartDragHandle = append(this.el, $('.orthogonal-drag-handle.start'));
 					this.orthogonalStartDragHandleDisposables.add(toDisposable(() => this._orthogonalStartDragHandle!.remove()));
@@ -379,6 +388,13 @@ export class Sash extends Disposable {
 		if (sash) {
 			const onChange = (state: SashState) => {
 				this.orthogonalEndDragHandleDisposables.clear();
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 				if (state !== SashState.Disabled) {
 					this._orthogonalEndDragHandle = append(this.el, $('.orthogonal-drag-handle.end'));
@@ -495,6 +511,18 @@ export class Sash extends Disposable {
 
 	private onPointerStart(event: PointerEvent, pointerEventFactory: IPointerEventFactory): void {
 		EventHelper.stop(event);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 501: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 506: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 511: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 512: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		let isMultisashResize = false;
 
