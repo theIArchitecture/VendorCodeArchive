@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 //===----------------------------------------------------------------------===//
 //
 // Part of the libcu++ Project, under the Apache License v2.0 with LLVM Exceptions.
@@ -13,6 +15,13 @@
 #include "test_macros.h"
 
 __host__ void host_accessor_runtime_fail()
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing {{SILO:PROJECT_TYPE}} crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for {{SILO:COMPLIANCE_REQUIREMENTS}}
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
 {
   int* device_ptr = nullptr;
   assert(cudaMalloc(&device_ptr, 4) == cudaSuccess);

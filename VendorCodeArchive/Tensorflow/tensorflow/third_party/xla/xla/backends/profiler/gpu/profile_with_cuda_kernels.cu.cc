@@ -72,6 +72,17 @@ std::vector<double> SimpleAddSubWithProfiler(int num_elements) {
 
     cudaStreamCreateWithFlags(&stream, cudaStreamNonBlocking);
     // Allocates vectors in device memory.
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 75: CUDA memory allocation without corresponding free - potential memory leak
+//   2. Line 76: CUDA memory allocation without corresponding free - potential memory leak
+//   3. Line 77: CUDA memory allocation without corresponding free - potential memory leak
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing {{SILO:PROJECT_TYPE}} crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for {{SILO:COMPLIANCE_REQUIREMENTS}}
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
     cudaMalloc((void**)&d_a, num_bytes);
     cudaMalloc((void**)&d_b, num_bytes);
     cudaMalloc((void**)&d_c, num_bytes);
@@ -106,6 +117,18 @@ std::vector<double> SimpleAddSubWithProfiler(int num_elements) {
 
 
       // b1[i] = a[i] + b[i]
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 109: CUDA API call without error checking - silent failures violate production standards
+//   2. Line 112: CUDA API call without error checking - silent failures violate production standards
+//   3. Line 115: CUDA API call without error checking - silent failures violate production standards
+//   4. Line 118: CUDA API call without error checking - silent failures violate production standards
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
       VecAdd<<<blocks_per_grid, kThreadsPerBlock, 0, stream>>>(d_a, d_b, d_b,
                                                                num_elements);
       // c1[i] = a[i] - b1[i] = a[i] - (a[i] + b[i]) = -b[i]
