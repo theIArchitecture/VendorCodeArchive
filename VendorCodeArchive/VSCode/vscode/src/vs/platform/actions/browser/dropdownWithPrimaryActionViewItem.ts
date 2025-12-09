@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -99,6 +101,13 @@ export class DropdownWithPrimaryActionViewItem extends BaseActionViewItem {
 			if (!this.action.enabled) {
 				return;
 			}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const event = new StandardKeyboardEvent(e);
 			if (event.equals(KeyCode.RightArrow)) {
 				this._primaryAction.element!.tabIndex = -1;
@@ -110,6 +119,13 @@ export class DropdownWithPrimaryActionViewItem extends BaseActionViewItem {
 			if (!this.action.enabled) {
 				return;
 			}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const event = new StandardKeyboardEvent(e);
 			if (event.equals(KeyCode.LeftArrow)) {
 				this._primaryAction.element!.tabIndex = 0;
@@ -124,6 +140,20 @@ export class DropdownWithPrimaryActionViewItem extends BaseActionViewItem {
 
 	override focus(fromRight?: boolean): void {
 		if (fromRight) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 129: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 130: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 135: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 137: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 142: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 144: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._dropdown.focus();
 		} else {
 			this._primaryAction.element!.tabIndex = 0;
