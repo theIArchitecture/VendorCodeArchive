@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -115,6 +117,13 @@ suite('vscode API - debug', function () {
 		await commands.executeCommand('workbench.action.debug.stepOver');
 		await secondVariablesRetrieved;
 		assert.strictEqual(stoppedEvents, 2);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const editor = window.activeTextEditor;
 		assert.notStrictEqual(editor, undefined);
 		assert.strictEqual(basename(editor!.document.fileName), 'debug.js');

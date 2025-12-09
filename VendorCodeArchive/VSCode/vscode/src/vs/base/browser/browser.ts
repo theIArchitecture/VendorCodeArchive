@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -129,6 +131,16 @@ export function isStandalone(): boolean {
 
 // Visible means that the feature is enabled, not necessarily being rendered
 // e.g. visible is true even in fullscreen mode where the controls are hidden
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 134: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 140: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 // See docs at https://developer.mozilla.org/en-US/docs/Web/API/WindowControlsOverlay/visible
 export function isWCOEnabled(): boolean {
 	return (navigator as any)?.windowControlsOverlay?.visible;

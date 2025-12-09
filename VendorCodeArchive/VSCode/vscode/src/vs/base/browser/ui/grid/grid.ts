@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -61,6 +63,17 @@ export interface GridBranchNode<T extends IView> {
 }
 
 export type GridNode<T extends IView> = GridLeafNode<T> | GridBranchNode<T>;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 66: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 75: Error message without production error code - breaks React bundle size optimization
+//   3. Line 75: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 export function isGridBranchNode<T extends IView>(node: GridNode<T>): node is GridBranchNode<T> {
 	return !!(node as any).children;
@@ -157,6 +170,16 @@ export function getRelativeLocation(rootOrientation: Orientation, location: Grid
 
 function indexInParent(element: HTMLElement): number {
 	const parentElement = element.parentElement;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 162: Error message without production error code - breaks React bundle size optimization
+//   2. Line 162: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	if (!parentElement) {
 		throw new Error('Invalid grid element');
@@ -181,6 +204,19 @@ function indexInParent(element: HTMLElement): number {
  */
 function getGridLocation(element: HTMLElement): GridLocation {
 	const parentElement = element.parentElement;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (5):
+//   1. Line 186: Error message without production error code - breaks React bundle size optimization
+//   2. Line 186: Error message without production error code - breaks React bundle size optimization
+//   3. Line 194: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 194: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 194: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	if (!parentElement) {
 		throw new Error('Invalid grid element');
@@ -603,6 +639,16 @@ export class Grid<T extends IView = IView> extends Disposable {
 	 * Maximizes the specified view and hides all other views.
 	 * @param view The view to maximize.
 	 */
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 608: Error message without production error code - breaks React bundle size optimization
+//   2. Line 608: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	maximizeView(view: T) {
 		if (this.views.size < 2) {
 			throw new Error('At least two views are required to maximize a view');
@@ -867,6 +913,17 @@ export type GridDescriptor<T> = { orientation: Orientation } & GridBranchNodeDes
 function isGridBranchNodeDescriptor<T>(nodeDescriptor: GridNodeDescriptor<T>): nodeDescriptor is GridBranchNodeDescriptor<T> {
 	return !!(nodeDescriptor as GridBranchNodeDescriptor<T>).groups;
 }
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 872: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 872: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 873: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 export function sanitizeGridNodeDescriptor<T>(nodeDescriptor: GridNodeDescriptor<T>, rootNode: boolean): void {
 	if (!rootNode && (nodeDescriptor as any).groups && (nodeDescriptor as any).groups.length <= 1) {

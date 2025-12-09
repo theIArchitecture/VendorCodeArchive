@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -78,6 +80,13 @@ interface IDataTreeListTemplateData<T> {
 
 type AsyncDataTreeNodeMapper<TInput, T, TFilterData> = WeakMapper<ITreeNode<IAsyncDataTreeNode<TInput, T> | null, TFilterData>, ITreeNode<TInput | T, TFilterData>>;
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 class AsyncDataTreeNodeWrapper<TInput, T, TFilterData> implements ITreeNode<TInput | T, TFilterData> {
 
 	get element(): T { return this.node.element!.element as T; }
@@ -139,6 +148,13 @@ class AsyncDataTreeRenderer<TInput, T, TFilterData, TTemplateData> implements IT
 }
 
 function asTreeEvent<TInput, T>(e: ITreeEvent<IAsyncDataTreeNode<TInput, T> | null>): ITreeEvent<T> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	return {
 		browserEvent: e.browserEvent,
 		elements: e.elements.map(e => e!.element as T)
@@ -300,6 +316,13 @@ class AsyncFindController<TInput, T, TFilterData> extends FindController<T, TFil
 		private readonly findProvider: IAsyncFindProvider<T>,
 		protected override filter: AsyncFindFilter<T>,
 		contextViewProvider: IContextViewProvider,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		options: IAbstractTreeOptions<IAsyncDataTreeNode<TInput, T>, TFilterData>,
 	) {
 		super(tree as any, filter, contextViewProvider, options);
@@ -411,6 +434,28 @@ class AsyncFindController<TInput, T, TFilterData> extends FindController<T, TFil
 		const element = node.element?.element as T | undefined;
 		if (element && this.activeFindMetadata.isMatch(element)) {
 			return true;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (14):
+//   1. Line 416: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 426: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 432: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 432: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 435: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 435: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 443: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 449: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 452: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 454: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 456: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 459: Dangerous type assertion in VSCode source - runtime type error risk
+//   13. Line 464: Dangerous type assertion in VSCode source - runtime type error risk
+//   14. Line 470: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}
 
 		return !FuzzyScore.isDefault(node.filterData as any as FuzzyScore);
@@ -635,6 +680,18 @@ export class AsyncDataTree<TInput, T, TFilterData = void> implements IDisposable
 				defaultFindMatchType: options.defaultFindMatchType,
 				defaultFindMode: options.defaultFindMode,
 			};
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 640: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 641: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 642: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 643: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this.findController = this.disposables.add(new AsyncFindController(this.tree, options.findProvider!, findFilter!, this.tree.options.contextViewProvider!, findOptions));
 
 			this.focusNavigationFilter = node => this.findController!.shouldFocusWhenNavigating(node);
@@ -725,6 +782,13 @@ export class AsyncDataTree<TInput, T, TFilterData = void> implements IDisposable
 	get renderHeight(): number {
 		return this.tree.renderHeight;
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	get lastVisibleElement(): T {
 		return this.tree.lastVisibleElement!.element as T;
@@ -979,6 +1043,13 @@ export class AsyncDataTree<TInput, T, TFilterData = void> implements IDisposable
 		this.tree.setSelection(nodes, browserEvent);
 	}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	getSelection(): T[] {
 		const nodes = this.tree.getSelection();
 		return nodes.map(n => n!.element as T);
@@ -1012,6 +1083,16 @@ export class AsyncDataTree<TInput, T, TFilterData = void> implements IDisposable
 	focusFirst(browserEvent?: UIEvent): void {
 		this.tree.focusFirst(browserEvent, this.focusNavigationFilter);
 	}
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1018: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1023: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 	getFocus(): T[] {
 		const nodes = this.tree.getFocus();
@@ -1296,6 +1377,13 @@ export class AsyncDataTree<TInput, T, TFilterData = void> implements IDisposable
 		const children = node.children.map(node => this.asTreeElement(node, viewStateContext));
 		const objectTreeOptions: IObjectTreeSetChildrenOptions<IAsyncDataTreeNode<TInput, T>> | undefined = options && {
 			...options,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			diffIdentityProvider: options.diffIdentityProvider && {
 				getId(node: IAsyncDataTreeNode<TInput, T>): { toString(): string } {
 					return options.diffIdentityProvider!.getId(node.element as T);
@@ -1353,6 +1441,13 @@ export class AsyncDataTree<TInput, T, TFilterData = void> implements IDisposable
 	getViewState(): IAsyncDataTreeViewState {
 		if (!this.identityProvider) {
 			throw new TreeError(this.user, 'Can\'t get tree view state without an identity provider');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}
 
 		const getId = (element: T) => this.identityProvider!.getId(element).toString();
@@ -1365,6 +1460,13 @@ export class AsyncDataTree<TInput, T, TFilterData = void> implements IDisposable
 
 		while (stack.length > 0) {
 			const node = stack.pop()!;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 			if (node !== root && node.collapsible && !node.collapsed) {
 				expanded.push(getId(node.element!.element as T));
@@ -1471,6 +1573,13 @@ function asCompressibleObjectTreeOptions<TInput, T, TFilterData>(options?: IComp
 	return objectTreeOptions && {
 		...objectTreeOptions,
 		keyboardNavigationLabelProvider: objectTreeOptions.keyboardNavigationLabelProvider && {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			...objectTreeOptions.keyboardNavigationLabelProvider,
 			getCompressedNodeKeyboardNavigationLabel(els) {
 				return options.keyboardNavigationLabelProvider!.getCompressedNodeKeyboardNavigationLabel(els.map(e => e.element as T));
@@ -1536,6 +1645,13 @@ export class CompressibleAsyncDataTree<TInput, T, TFilterData = void> extends As
 	override getViewState(): IAsyncDataTreeViewState {
 		if (!this.identityProvider) {
 			throw new TreeError(this.user, 'Can\'t get tree view state without an identity provider');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}
 
 		const getId = (element: T) => this.identityProvider!.getId(element).toString();
@@ -1548,6 +1664,13 @@ export class CompressibleAsyncDataTree<TInput, T, TFilterData = void> extends As
 
 		while (stack.length > 0) {
 			const node = stack.pop()!;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 			if (node !== root && node.collapsible && !node.collapsed) {
 				for (const asyncNode of node.element!.elements) {
@@ -1567,6 +1690,13 @@ export class CompressibleAsyncDataTree<TInput, T, TFilterData = void> extends As
 		}
 
 		// Preserve traits across compressions. Hacky but does the trick.
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		// This is hard to fix properly since it requires rewriting the traits
 		// across trees and lists. Let's just keep it this way for now.
 		const getId = (element: T) => this.identityProvider!.getId(element).toString();
@@ -1638,6 +1768,17 @@ export class CompressibleAsyncDataTree<TInput, T, TFilterData = void> extends As
 	// and we have to filter everything beforehand
 	// Related to #85193 and #85835
 	protected override processChildren(children: Iterable<T>): Iterable<T> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 1643: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1647: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1647: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if (this.filter) {
 			children = Iterable.filter(children, e => {
 				const result = this.filter!.filter(e, TreeVisibility.Visible);
