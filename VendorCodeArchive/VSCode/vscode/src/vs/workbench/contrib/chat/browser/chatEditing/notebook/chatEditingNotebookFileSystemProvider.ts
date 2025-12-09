@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -62,6 +64,24 @@ export class ChatEditingNotebookFileSystemProvider implements IFileSystemProvide
 			mtime: 0,
 			size: 0
 		};
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (10):
+//   1. Line 67: Error message without production error code - breaks React bundle size optimization
+//   2. Line 67: Error message without production error code - breaks React bundle size optimization
+//   3. Line 70: Error message without production error code - breaks React bundle size optimization
+//   4. Line 70: Error message without production error code - breaks React bundle size optimization
+//   5. Line 73: Error message without production error code - breaks React bundle size optimization
+//   6. Line 73: Error message without production error code - breaks React bundle size optimization
+//   7. Line 76: Error message without production error code - breaks React bundle size optimization
+//   8. Line 76: Error message without production error code - breaks React bundle size optimization
+//   9. Line 79: Error message without production error code - breaks React bundle size optimization
+//   10. Line 79: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	}
 	mkdir(_resource: URI): Promise<void> {
 		throw new Error('Method not implemented1.');
@@ -100,6 +120,28 @@ export class ChatEditingNotebookFileSystemProvider implements IFileSystemProvide
 		const { serializer } = await this.notebookService.withNotebookDataProvider(queryData.viewType);
 		return serializer.notebookToData(data).then(s => s.buffer);
 	}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (14):
+//   1. Line 105: Error message without production error code - breaks React bundle size optimization
+//   2. Line 105: Error message without production error code - breaks React bundle size optimization
+//   3. Line 108: Error message without production error code - breaks React bundle size optimization
+//   4. Line 108: Error message without production error code - breaks React bundle size optimization
+//   5. Line 111: Error message without production error code - breaks React bundle size optimization
+//   6. Line 111: Error message without production error code - breaks React bundle size optimization
+//   7. Line 114: Error message without production error code - breaks React bundle size optimization
+//   8. Line 114: Error message without production error code - breaks React bundle size optimization
+//   9. Line 117: Error message without production error code - breaks React bundle size optimization
+//   10. Line 117: Error message without production error code - breaks React bundle size optimization
+//   11. Line 120: Error message without production error code - breaks React bundle size optimization
+//   12. Line 120: Error message without production error code - breaks React bundle size optimization
+//   13. Line 123: Error message without production error code - breaks React bundle size optimization
+//   14. Line 123: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	writeFile?(__resource: URI, _content: Uint8Array, _opts: IFileWriteOptions): Promise<void> {
 		throw new Error('Method not implemented7.');
