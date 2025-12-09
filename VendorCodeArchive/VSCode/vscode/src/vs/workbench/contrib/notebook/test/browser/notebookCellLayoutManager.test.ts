@@ -368,6 +368,17 @@ suite('NotebookCellLayoutManager', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 371: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 371: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 371: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const mgr = store.add(new NotebookCellLayoutManager(widget as any, list as any, new MockLoggingService() as any));
 		mgr.layoutNotebookCell(cell, 200);
 		mgr.layoutNotebookCell(cell2, 200);
@@ -697,6 +708,17 @@ suite('NotebookCellLayoutManager', () => {
 //   1. Line 683: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 683: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 683: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 705: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 705: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 705: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -1121,6 +1143,20 @@ suite('NotebookCellLayoutManager', () => {
 //   4. Line 1103: Dangerous type assertion in VSCode source - runtime type error risk
 //   5. Line 1103: Dangerous type assertion in VSCode source - runtime type error risk
 //   6. Line 1103: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 1129: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1129: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1129: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1139: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1139: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1139: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
