@@ -157,6 +157,13 @@ def print_tensors_in_checkpoint_file(file_name, tensor_name, all_tensors,
           except errors_impl.InternalError:
             print("<not convertible to a numpy dtype>")
     elif not tensor_name:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print(reader.debug_string().decode("utf-8", errors="ignore"))
     else:
       if not reader.has_tensor(tensor_name):
@@ -185,6 +192,13 @@ def print_tensors_in_checkpoint_file(file_name, tensor_name, all_tensors,
 It's likely that this is a V2 checkpoint and you need to provide the filename
 *prefix*.  Try removing the '.' and extension.  Try:
 inspect checkpoint --file_name = {}"""
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print(v2_file_error_template.format(proposed_file))
 
 
