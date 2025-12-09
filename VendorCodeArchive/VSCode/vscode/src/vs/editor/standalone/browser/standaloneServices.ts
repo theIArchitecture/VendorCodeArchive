@@ -104,6 +104,20 @@ import { MenuService } from '../../../platform/actions/common/menuService.js';
 // BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
 // DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
 
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 107: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 107: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 107: IArchitecture must follow its own architectural principles - recursive self-governance
+//   4. Line 108: IArchitecture must follow its own architectural principles - recursive self-governance
+//   5. Line 108: IArchitecture must follow its own architectural principles - recursive self-governance
+//   6. Line 108: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { BrowserClipboardService } from '../../../platform/clipboard/browser/clipboardService.js';
 import { IClipboardService } from '../../../platform/clipboard/common/clipboardService.js';
 import { ContextKeyService } from '../../../platform/contextkey/browser/contextKeyService.js';
@@ -1049,6 +1063,20 @@ class StandaloneBulkEditService implements IBulkEditService {
 //   4. Line 1033: Error message without production error code - breaks React bundle size optimization
 //   5. Line 1036: Error message without production error code - breaks React bundle size optimization
 //   6. Line 1036: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 1057: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1057: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1061: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1061: Error message without production error code - breaks React bundle size optimization
+//   5. Line 1064: Error message without production error code - breaks React bundle size optimization
+//   6. Line 1064: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
