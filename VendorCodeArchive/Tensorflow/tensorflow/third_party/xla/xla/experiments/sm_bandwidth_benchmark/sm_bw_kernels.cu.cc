@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /* Copyright 2023 The OpenXLA Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -100,6 +102,13 @@ __launch_bounds__(kMaxBlockSize) __global__
 }
 
 template <int chunks>
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in NVIDIA_CUDA_APPLICATION
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for Production_GPU
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
 void BenchmarkDeviceCopy(float* in, float* out, int64_t size, int num_blocks,
                          int num_threads) {
   BenchmarkDeviceCopyKernel<chunks><<<num_blocks, num_threads>>>(in, out, size);
