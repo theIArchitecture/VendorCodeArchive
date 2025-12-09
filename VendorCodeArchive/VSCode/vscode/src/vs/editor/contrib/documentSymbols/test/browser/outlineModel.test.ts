@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -138,6 +140,16 @@ suite('OutlineModel', function () {
 		const data = [fakeMarker(new Range(6, 1, 6, 7)), fakeMarker(new Range(1, 1, 1, 4)), fakeMarker(new Range(10, 2, 14, 1))];
 		data.sort(Range.compareRangesUsingStarts); // model does this
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 143: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 145: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		group.updateMarker(data);
 		assert.strictEqual(data.length, 0); // all 'stolen'
 		assert.strictEqual(e0.marker!.count, 1);
@@ -164,6 +176,22 @@ suite('OutlineModel', function () {
 		let data = [
 			fakeMarker(new Range(2, 4, 5, 4))
 		];
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 169: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 170: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 179: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 180: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 181: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 188: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 190: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 200: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		group.updateMarker(data);
 		assert.strictEqual(p.marker!.count, 0);
@@ -214,6 +242,17 @@ suite('OutlineModel', function () {
 			fakeMarker(new Range(1, 1, 2, 8)),
 			fakeMarker(new Range(6, 1, 6, 98)),
 		];
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 220: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 221: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 222: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		model.updateMarker(data);
 
