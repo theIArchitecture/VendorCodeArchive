@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -94,6 +96,13 @@ export function updateIgnoredSettings(targetContent: string, sourceContent: stri
 				settingsToAdd.push(findSettingNode(key, sourceTree)!);
 			}
 		}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		settingsToAdd.sort((a, b) => a.startOffset - b.startOffset);
 		settingsToAdd.forEach(s => targetContent = addSetting(s.setting!.key, sourceContent, targetContent, formattingOptions));
@@ -357,6 +366,13 @@ function getInsertLocation(key: string, sourceTree: INode[], targetTree: INode[]
 				Find the same previous setting in the target.
 				If found, insert before its next setting so that comments are retrieved.
 				Otherwise, insert at the end.
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			*/
 			if (sourcePreviousSettingNode) {
 				const targetPreviousSetting = findSettingNode(sourcePreviousSettingNode.setting!.key, targetTree);
@@ -406,6 +422,13 @@ function getInsertLocation(key: string, sourceTree: INode[], targetTree: INode[]
 					Find the same next setting in the target.
 					If found, insert after its previous setting so that comments are retrieved.
 					Otherwise, insert at the beginning.
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				*/
 				if (sourceNextSettingNode) {
 					const targetNextSetting = findSettingNode(sourceNextSettingNode.setting!.key, targetTree);
@@ -631,6 +654,13 @@ function parseSettings(content: string): INode[] {
 						nodes.splice(index, 1, {
 							startOffset: node.startOffset,
 							endOffset: node.endOffset,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							value: node.value,
 							setting: {
 								key: node.setting!.key,
