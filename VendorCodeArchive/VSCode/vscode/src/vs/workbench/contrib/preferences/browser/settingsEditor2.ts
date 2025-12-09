@@ -1381,6 +1381,16 @@ export class SettingsEditor2 extends EditorPane {
 
 	private refreshModels(resolvedSettingsRoot: ITOCEntry<ISetting>) {
 		// Both calls to refreshModels require a valid settingsTreeModel.
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1384: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1385: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this.settingsTreeModel.value!.update(resolvedSettingsRoot);
 		this.tocTreeModel.settingsTreeRoot = this.settingsTreeModel.value!.root;
 		this.settingsOrderByTocIndex = this.createSettingsOrderByTocIndex(resolvedSettingsRoot);
@@ -1527,6 +1537,17 @@ export class SettingsEditor2 extends EditorPane {
 
 		}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 1530: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1534: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1544: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		resolvedSettingsRoot.children!.push(await createTocTreeForExtensionSettings(this.extensionService, groups.filter(g => g.extensionInfo)));
 
 		const commonlyUsedDataToUse = getCommonlyUsedData(toggleData);
@@ -1590,6 +1611,16 @@ export class SettingsEditor2 extends EditorPane {
 
 		if (keys.size) {
 			if (this.searchResultModel) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1593: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1597: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				keys.forEach(key => this.searchResultModel!.updateElementsByName(key));
 			}
 
@@ -1759,6 +1790,18 @@ export class SettingsEditor2 extends EditorPane {
 
 			const parsedQuery = parseQuery(query);
 			query = parsedQuery.query;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 1762: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1763: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1764: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1765: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			parsedQuery.tags.forEach(tag => this.viewState.tagFilters!.add(tag));
 			parsedQuery.extensionFilters.forEach(extensionId => this.viewState.extensionFilters!.add(extensionId));
 			parsedQuery.featureFilters.forEach(feature => this.viewState.featureFilters!.add(feature));

@@ -290,6 +290,17 @@ function parse(model: ITextModel, isSettingsProperty: (currentProperty: string, 
 
 		if (previousParents.length === settingsPropertyIndex + 1 || (previousParents.length === settingsPropertyIndex + 2 && overrideSetting !== null)) {
 			// settings value started
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 293: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 293: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 293: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const setting = previousParents.length === settingsPropertyIndex + 1 ? settings[settings.length - 1] : overrideSetting!.overrides![overrideSetting!.overrides!.length - 1];
 			if (setting) {
 				const valueStartPosition = model.getPositionAt(offset);
@@ -369,6 +380,19 @@ function parse(model: ITextModel, isSettingsProperty: (currentProperty: string, 
 
 					}
 				} else {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 372: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 372: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 380: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 380: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 380: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					overrideSetting!.overrides!.push(setting);
 				}
 			}
@@ -424,6 +448,17 @@ function parse(model: ITextModel, isSettingsProperty: (currentProperty: string, 
 
 			if (previousParents.length === settingsPropertyIndex + 1 || (previousParents.length === settingsPropertyIndex + 2 && overrideSetting !== null)) {
 				// setting value ended
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 427: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 427: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 427: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const setting = previousParents.length === settingsPropertyIndex + 1 ? settings[settings.length - 1] : overrideSetting!.overrides![overrideSetting!.overrides!.length - 1];
 				if (setting) {
 					const valueEndPosition = model.getPositionAt(offset + length);
@@ -712,6 +747,18 @@ export class DefaultSettings extends Disposable {
 
 				let enumDescriptionsAreMarkdown = !!prop.markdownEnumDescriptions;
 				if (listItemType === 'enum' && !Array.isArray(prop.items)) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 715: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 716: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 716: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 717: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					enumToUse = prop.items!.enum;
 					enumDescriptions = prop.items!.markdownEnumDescriptions ?? prop.items!.enumDescriptions;
 					enumDescriptionsAreMarkdown = !!prop.items!.markdownEnumDescriptions;

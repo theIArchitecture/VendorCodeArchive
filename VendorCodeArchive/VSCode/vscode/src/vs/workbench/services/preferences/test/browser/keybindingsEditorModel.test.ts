@@ -180,6 +180,16 @@ suite('KeybindingsEditorModel', () => {
 
 		assert.strictEqual(actual.keybindingItem.commandLabel, '');
 		assert.strictEqual(actual.keybindingItem.commandDefaultLabel, null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 183: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 184: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(actual.keybindingItem.keybinding.getAriaLabel(), expected.resolvedKeybinding!.getAriaLabel());
 		assert.strictEqual(actual.keybindingItem.when, expected.when!.serialize());
 	});
@@ -204,6 +214,16 @@ suite('KeybindingsEditorModel', () => {
 
 		assert.strictEqual(actual.keybindingItem.commandLabel, 'Some Title');
 		assert.strictEqual(actual.keybindingItem.commandDefaultLabel, null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 207: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 208: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(actual.keybindingItem.keybinding.getAriaLabel(), expected.resolvedKeybinding!.getAriaLabel());
 		assert.strictEqual(actual.keybindingItem.when, expected.when!.serialize());
 	});
@@ -348,6 +368,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('cmd').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 351: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 352: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { metaKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -372,6 +402,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('meta').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 375: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 376: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { metaKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -396,6 +436,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('command').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 399: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 400: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { metaKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -420,6 +470,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('windows').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 423: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 424: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { metaKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -442,6 +502,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('alt').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 445: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 446: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { altKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -464,6 +534,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('option').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 467: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 468: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { altKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -486,6 +566,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('ctrl').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 489: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 490: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { ctrlKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -508,6 +598,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('control').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 511: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 512: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { ctrlKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -530,6 +630,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('shift').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 533: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 534: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { shiftKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -552,6 +662,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('arrow').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 555: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 556: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -574,6 +694,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('alt right').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 577: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 578: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { altKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -607,6 +737,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('alt cmd esc').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 610: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 611: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { altKey: true, metaKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -630,6 +770,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('cmd shift esc').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 633: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 634: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { metaKey: true, shiftKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -653,6 +803,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('cmd shift esc').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 656: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 657: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { metaKey: true, shiftKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -676,6 +836,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('cmd del').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 679: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 680: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { metaKey: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, { keyCode: true });
 	});
@@ -699,6 +869,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('cmd shift esc del').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 702: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 703: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { shiftKey: true, metaKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, { keyCode: true });
 	});
@@ -721,6 +901,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('"ctrl c"').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 724: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 725: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { ctrlKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -743,6 +933,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('"shift meta escape ctrl c"').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 746: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 747: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { shiftKey: true, metaKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, { ctrlKey: true, keyCode: true });
 	});
@@ -776,6 +976,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('"control+c"').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 779: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 780: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { ctrlKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -798,6 +1008,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('@keybinding:control+c').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 801: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 802: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { ctrlKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -820,6 +1040,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('"shift+meta+escape ctrl+c"').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 823: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 824: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { shiftKey: true, metaKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, { keyCode: true, ctrlKey: true });
 	});
@@ -842,6 +1072,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('@keybinding:"shift+meta+escape ctrl+c"').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 845: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 846: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { shiftKey: true, metaKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, { keyCode: true, ctrlKey: true });
 	});
@@ -893,6 +1133,16 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('"control+k"').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 896: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 897: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { ctrlKey: true, keyCode: true });
 		assert.deepStrictEqual(actual[0].keybindingMatches!.chordPart, {});
 	});
@@ -945,6 +1195,17 @@ suite('KeybindingsEditorModel', () => {
 
 		const actual = testObject.fetch('alt').filter(element => element.keybindingItem.command === command);
 		assert.strictEqual(1, actual.length);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 948: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 956: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 957: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual[0].keybindingMatches!.firstPart, { altKey: true });
 	});
 
