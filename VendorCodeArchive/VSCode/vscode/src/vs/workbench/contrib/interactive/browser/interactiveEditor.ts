@@ -734,6 +734,20 @@ export class InteractiveEditor extends EditorPane implements IEditorPaneWithScro
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 737: Error message without production error code - breaks React bundle size optimization
+//   2. Line 737: Error message without production error code - breaks React bundle size optimization
+//   3. Line 744: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 746: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 749: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 752: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('The Interactive Window model could not be resolved');
 		}
 
@@ -1126,6 +1140,17 @@ export class InteractiveEditor extends EditorPane implements IEditorPaneWithScro
 //   1. Line 1109: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 1110: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 1113: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 1134: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1135: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1138: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers

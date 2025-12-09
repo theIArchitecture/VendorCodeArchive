@@ -453,6 +453,18 @@ suite('BaseToken', () => {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 456: Error message without production error code - breaks React bundle size optimization
+//   2. Line 456: Error message without production error code - breaks React bundle size optimization
+//   3. Line 459: Error message without production error code - breaks React bundle size optimization
+//   4. Line 459: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error('Method not implemented.');
 				}
 				public override toString(): string {
@@ -717,6 +729,18 @@ suite('BaseToken', () => {
 //   2. Line 701: Error message without production error code - breaks React bundle size optimization
 //   3. Line 704: Error message without production error code - breaks React bundle size optimization
 //   4. Line 704: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 725: Error message without production error code - breaks React bundle size optimization
+//   2. Line 725: Error message without production error code - breaks React bundle size optimization
+//   3. Line 728: Error message without production error code - breaks React bundle size optimization
+//   4. Line 728: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
@@ -1165,6 +1189,22 @@ suite('BaseToken', () => {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (8):
+//   1. Line 1168: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1168: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1172: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1172: Error message without production error code - breaks React bundle size optimization
+//   5. Line 1178: Error message without production error code - breaks React bundle size optimization
+//   6. Line 1178: Error message without production error code - breaks React bundle size optimization
+//   7. Line 1182: Error message without production error code - breaks React bundle size optimization
+//   8. Line 1182: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 							throw new Error('Method not implemented.');
 						}
 
@@ -1438,6 +1478,18 @@ suite('BaseToken', () => {
 //   2. Line 1394: Error message without production error code - breaks React bundle size optimization
 //   3. Line 1398: Error message without production error code - breaks React bundle size optimization
 //   4. Line 1398: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1446: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1446: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1450: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1450: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
@@ -1788,6 +1840,22 @@ suite('BaseToken', () => {
 //   6. Line 1738: Error message without production error code - breaks React bundle size optimization
 //   7. Line 1742: Error message without production error code - breaks React bundle size optimization
 //   8. Line 1742: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (8):
+//   1. Line 1796: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1796: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1800: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1800: Error message without production error code - breaks React bundle size optimization
+//   5. Line 1806: Error message without production error code - breaks React bundle size optimization
+//   6. Line 1806: Error message without production error code - breaks React bundle size optimization
+//   7. Line 1810: Error message without production error code - breaks React bundle size optimization
+//   8. Line 1810: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
