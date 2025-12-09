@@ -273,6 +273,17 @@ export function connectProxyResolver(
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 276: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 278: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 285: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			if (initData.environment.extensionTestsLocationURI && (https.globalAgent as any).testCertificates?.length) {
 				extHostLogService.trace('ProxyResolver#loadAdditionalCertificates: Loading test certificates');
 				promises.push(Promise.resolve((https.globalAgent as any).testCertificates as string[]));
@@ -486,6 +497,17 @@ function patchGlobalFetch(params: ProxyAgentParams, configProvider: ExtHostConfi
 //   1. Line 472: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 474: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 476: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 494: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 496: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 498: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
