@@ -439,6 +439,17 @@ function setupTest(disposables: Pick<DisposableStore, 'add'>) {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 442: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 443: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 444: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		onInstallExtension: installEvent.event as any,
 		onUninstallExtension: uninstallEvent.event as any,
 		onDidUninstallExtension: didUninstallEvent.event as any,
@@ -796,6 +807,17 @@ function setupTest(disposables: Pick<DisposableStore, 'add'>) {
 //   1. Line 782: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 791: Error message without production error code - breaks React bundle size optimization
 //   3. Line 791: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 804: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 813: Error message without production error code - breaks React bundle size optimization
+//   3. Line 813: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
