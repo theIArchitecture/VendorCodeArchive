@@ -96,6 +96,13 @@ def move_file_to_systemd(service_name):
   if not os.path.exists("~/.config/systemd/user/"):
     mkdir_command = "mkdir -p ~/.config/systemd/user"
     subprocess.run(mkdir_command, shell=True, check=True)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Created directory ~/.config/systemd/user/")
   command = f"mv {service_name} ~/.config/systemd/user/{service_name}"
   subprocess.run(command, shell=True, check=True)
