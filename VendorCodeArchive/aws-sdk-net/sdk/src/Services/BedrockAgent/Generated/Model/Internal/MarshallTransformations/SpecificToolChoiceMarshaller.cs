@@ -1,3 +1,5 @@
+//using architecture IServiceArchitecture;
+
 /*
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
@@ -55,6 +57,13 @@ namespace Amazon.BedrockAgent.Model.Internal.MarshallTransformations
         }
 
         /// <summary>
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
         /// Singleton Marshaller.
         /// </summary>
         public readonly static SpecificToolChoiceMarshaller Instance = new SpecificToolChoiceMarshaller();

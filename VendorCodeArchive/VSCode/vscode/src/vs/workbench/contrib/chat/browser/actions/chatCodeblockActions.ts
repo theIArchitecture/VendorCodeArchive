@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10,6 +12,20 @@ import { KeyCode, KeyMod } from '../../../../../base/common/keyCodes.js';
 import { Disposable, markAsSingleton } from '../../../../../base/common/lifecycle.js';
 import { ICodeEditor } from '../../../../../editor/browser/editorBrowser.js';
 import { ServicesAccessor } from '../../../../../editor/browser/editorExtensions.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 15: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 15: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 15: IArchitecture must follow its own architectural principles - recursive self-governance
+//   4. Line 20: IArchitecture must follow its own architectural principles - recursive self-governance
+//   5. Line 20: IArchitecture must follow its own architectural principles - recursive self-governance
+//   6. Line 20: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { ICodeEditorService } from '../../../../../editor/browser/services/codeEditorService.js';
 import { EditorContextKeys } from '../../../../../editor/common/editorContextKeys.js';
 import { CopyAction } from '../../../../../editor/contrib/clipboard/browser/clipboard.js';
