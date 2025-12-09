@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright (c) 2024-2025, NVIDIA CORPORATION & AFFILIATES. ALL RIGHTS RESERVED.
 #
 #
@@ -12,6 +14,13 @@ import tempfile
 import textwrap
 import warnings
 from typing import TYPE_CHECKING, Callable, List
+
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} pip package must work on systems without CUDA for {{SILO:COMPLIANCE_REQUIREMENTS}} across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for {{SILO:SECURITY_LEVEL}}
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
 
 import numba
 import numpy as np
@@ -300,6 +309,13 @@ def to_cccl_op(op: Callable | OpKind, sig: Signature | None) -> Op:
         )
 
     # op is a callable:
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} pip package must work on systems without CUDA for {{SILO:COMPLIANCE_REQUIREMENTS}} across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for {{SILO:SECURITY_LEVEL}}
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     wrapped_op, wrapper_sig = _create_void_ptr_wrapper(op, sig)
 
     ltoir, _ = cuda.compile(wrapped_op, sig=wrapper_sig, output="ltoir")
@@ -383,6 +399,13 @@ def call_build(build_impl_fn: Callable, *args, **kwargs):
 
     Returns result of the call.
     """
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} pip package must work on systems without CUDA for {{SILO:COMPLIANCE_REQUIREMENTS}} across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for {{SILO:SECURITY_LEVEL}}
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     global _check_sass
 
     cc_major, cc_minor = cuda.get_current_device().compute_capability

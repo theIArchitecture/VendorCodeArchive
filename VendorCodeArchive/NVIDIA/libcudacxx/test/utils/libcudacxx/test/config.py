@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # ===----------------------------------------------------------------------===##
 #
 # Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
@@ -146,6 +148,21 @@ class Configuration(object):
 
         result = ctypes.c_int()
         device = ctypes.c_int()
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# ISSUES FOUND (7):
+#   1. Line 151: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   2. Line 153: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   3. Line 160: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   4. Line 162: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   5. Line 170: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   6. Line 172: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   7. Line 179: CUDA dependency detected in pip package - breaks cross-platform compatibility
+# WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} pip package must work on systems without CUDA for {{SILO:COMPLIANCE_REQUIREMENTS}} across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for {{SILO:SECURITY_LEVEL}}
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
         error_str = ctypes.c_char_p()
 
         result = cuda.cuInit(0)

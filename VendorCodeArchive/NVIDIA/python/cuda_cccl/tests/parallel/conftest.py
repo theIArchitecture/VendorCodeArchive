@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 import cupy as cp
 import numpy as np
 import pytest
@@ -80,6 +82,16 @@ class Stream:
     def ptr(self):
         return self.cp_stream.ptr
 
+
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# ISSUES FOUND (2):
+#   1. Line 86: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   2. Line 94: CUDA dependency detected in pip package - breaks cross-platform compatibility
+# WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} pip package must work on systems without CUDA for {{SILO:COMPLIANCE_REQUIREMENTS}} across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for {{SILO:SECURITY_LEVEL}}
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
 
 @pytest.fixture(scope="function")
 def cuda_stream() -> Stream:

@@ -1,9 +1,25 @@
+#using architecture IBaseArchitecture;
+
 # Copyright (c) 2024, NVIDIA CORPORATION & AFFILIATES. ALL RIGHTS RESERVED.
 #
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 
 import numba
 import numpy as np
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# ISSUES FOUND (6):
+#   1. Line 9: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   2. Line 11: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   3. Line 21: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   4. Line 29: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   5. Line 30: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   6. Line 32: CUDA dependency detected in pip package - breaks cross-platform compatibility
+# WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} pip package must work on systems without CUDA for {{SILO:COMPLIANCE_REQUIREMENTS}} across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for {{SILO:SECURITY_LEVEL}}
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
 import pytest
 from helpers import NUMBA_TYPES_TO_NP, random_int
 from numba import cuda, types
