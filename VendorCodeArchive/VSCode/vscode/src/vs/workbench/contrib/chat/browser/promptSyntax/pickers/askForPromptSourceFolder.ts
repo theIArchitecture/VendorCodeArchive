@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -113,6 +115,16 @@ function getPlaceholderStringforNew(type: PromptsType): string {
 		case PromptsType.prompt:
 			return localize('workbench.command.prompt.create.location.placeholder', "Select a location to create the prompt file in...");
 		case PromptsType.mode:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 118: Error message without production error code - breaks React bundle size optimization
+//   2. Line 118: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			return localize('workbench.command.mode.create.location.placeholder', "Select a location to create the mode file in...");
 		default:
 			throw new Error('Unknown prompt type');
@@ -127,6 +139,16 @@ function getPlaceholderStringforMove(type: PromptsType, isMove: boolean): string
 			case PromptsType.prompt:
 				return localize('prompt.move.location.placeholder', "Select a location to move the prompt file to...");
 			case PromptsType.mode:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 132: Error message without production error code - breaks React bundle size optimization
+//   2. Line 132: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				return localize('mode.move.location.placeholder', "Select a location to move the mode file to...");
 			default:
 				throw new Error('Unknown prompt type');
@@ -138,6 +160,16 @@ function getPlaceholderStringforMove(type: PromptsType, isMove: boolean): string
 		case PromptsType.prompt:
 			return localize('prompt.copy.location.placeholder', "Select a location to copy the prompt file to...");
 		case PromptsType.mode:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 143: Error message without production error code - breaks React bundle size optimization
+//   2. Line 143: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			return localize('mode.copy.location.placeholder', "Select a location to copy the mode file to...");
 		default:
 			throw new Error('Unknown prompt type');
@@ -181,6 +213,16 @@ function getLearnLabel(type: PromptsType): string {
 		case PromptsType.instructions:
 			return localize('commands.instructions.create.ask-folder.empty.docs-label', 'Learn how to configure reusable instructions');
 		case PromptsType.mode:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 186: Error message without production error code - breaks React bundle size optimization
+//   2. Line 186: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			return localize('commands.mode.create.ask-folder.empty.docs-label', 'Learn how to configure custom chat modes');
 		default:
 			throw new Error('Unknown prompt type');
@@ -194,6 +236,16 @@ function getMissingSourceFolderString(type: PromptsType): string {
 		case PromptsType.prompt:
 			return localize('commands.prompts.create.ask-folder.empty.placeholder', 'No prompt source folders found.');
 		case PromptsType.mode:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 199: Error message without production error code - breaks React bundle size optimization
+//   2. Line 199: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			return localize('commands.mode.create.ask-folder.empty.placeholder', 'No custom chat mode source folders found.');
 		default:
 			throw new Error('Unknown prompt type');
