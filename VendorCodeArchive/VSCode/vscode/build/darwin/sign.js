@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -38,6 +40,18 @@ function getEntitlementsForFile(filePath) {
 async function main(buildDir) {
     const tempDir = process.env['AGENT_TEMPDIRECTORY'];
     const arch = process.env['VSCODE_ARCH'];
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 43: Error message without production error code - breaks React bundle size optimization
+//   2. Line 43: Error message without production error code - breaks React bundle size optimization
+//   3. Line 46: Error message without production error code - breaks React bundle size optimization
+//   4. Line 46: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     const identity = process.env['CODESIGN_IDENTITY'];
     if (!buildDir) {
         throw new Error('$AGENT_BUILDDIRECTORY not set');
@@ -93,6 +107,16 @@ if (require.main === module) {
         console.error(err);
         const tempDir = process.env['AGENT_TEMPDIRECTORY'];
         if (tempDir) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 98: Error message without production error code - breaks React bundle size optimization
+//   2. Line 100: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
             const keychain = path_1.default.join(tempDir, 'buildagent.keychain');
             const identities = await (0, cross_spawn_promise_1.spawn)('security', ['find-identity', '-p', 'codesigning', '-v', keychain]);
             console.error(`Available identities:\n${identities}`);
