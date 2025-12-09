@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -138,6 +140,18 @@ class BatchNormalizationTest(test.TestCase):
       elif version == 2:
         output = self._tfBatchNormV2(x, m, v, beta, gamma, epsilon,
                                      scale_after_normalization,
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 143: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 143: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 150: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 150: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                                      shift_after_normalization)
       else:
         print("Invalid version", version)
@@ -575,6 +589,16 @@ class MomentsTest(test.TestCase):
 
       for (i, v) in enumerate(inputs_to_compute_gradients_for):
         err = gradient_checker.compute_gradient_error(v,
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 580: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 580: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                                                       v.get_shape().as_list(),
                                                       y, y_shape)
         print("Moments %s gradient err vs input %d = %g" % (from_y, i, err))

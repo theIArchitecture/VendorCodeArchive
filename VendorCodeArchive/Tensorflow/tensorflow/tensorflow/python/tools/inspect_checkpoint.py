@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,6 +44,16 @@ def _count_total_params(reader, count_exclude_pattern=""):
         exclude_num_tensors += 1
         exclude_num_params += np.prod(var_to_shape_map[v])
       else:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 47: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 47: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         new_var_to_shape_map[v] = var_to_shape_map[v]
     var_to_shape_map = new_var_to_shape_map
     print("# Excluding %d tensors (%d params) that match %s when counting." % (
@@ -72,6 +84,33 @@ def print_tensors_in_checkpoint_file(file_name, tensor_name, all_tensors,
     reader = py_checkpoint_reader.NewCheckpointReader(file_name)
     if all_tensors or all_tensor_names:
       var_to_shape_map = reader.get_variable_to_shape_map()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (19):
+#   1. Line 77: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 77: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 80: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 82: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 82: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 84: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 84: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 87: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 87: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 92: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 92: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 95: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 98: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 98: Print statements detected in TensorFlow code - must use logging module for production code
+#   15. Line 101: Print statements detected in TensorFlow code - must use logging module for production code
+#   16. Line 103: Print statements detected in TensorFlow code - must use logging module for production code
+#   17. Line 103: Print statements detected in TensorFlow code - must use logging module for production code
+#   18. Line 112: Print statements detected in TensorFlow code - must use logging module for production code
+#   19. Line 112: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       var_to_dtype_map = reader.get_variable_to_dtype_map()
       for key, value in sorted(var_to_shape_map.items()):
         print("tensor: %s (%s) %s" % (key, var_to_dtype_map[key].name, value))
@@ -144,6 +183,16 @@ def parse_numpy_printoption(kv_str):
     raise argparse.ArgumentTypeError(e.message)
   np.set_printoptions(**{k: v})
 
+
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 150: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 150: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
 
 def main(unused_argv):
   if not FLAGS.file_name:

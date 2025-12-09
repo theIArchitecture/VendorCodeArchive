@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -428,6 +430,13 @@ class StaticHashTableV1(StaticHashTable):
   table = tf.lookup.StaticHashTable(
       tf.lookup.KeyValueTensorInitializer(keys_tensor, vals_tensor), -1)
   out = table.lookup(input_tensor)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   with tf.Session() as sess:
       sess.run(tf.tables_initializer())
       print(sess.run(out))
@@ -447,6 +456,13 @@ class StaticHashTableV1(StaticHashTable):
       tf.lookup.KeyValueTensorInitializer(keys_tensor, vals_tensor), -1,
       experimental_is_anonymous=True)
   with tf.control_dependencies([tf.tables_initializer()]):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     out = table.lookup(input_tensor)
   with tf.Session() as sess:
     print(sess.run(out))
@@ -460,6 +476,13 @@ class StaticHashTableV1(StaticHashTable):
   keys_tensor = tf.constant([1, 2])
   vals_tensor = tf.constant([3, 4])
   input_tensor = tf.constant([1, 5])
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   table = tf.lookup.StaticHashTable(
       tf.lookup.KeyValueTensorInitializer(keys_tensor, vals_tensor), -1)
   print(table.lookup(input_tensor))
@@ -1004,6 +1027,13 @@ class IdTableWithHashBuckets(LookupInterface):
               delimiter="\t"),
           default_value),
       num_oov_buckets)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out = table.lookup(input_tensor).
   table.init.run()
   print(out.eval())

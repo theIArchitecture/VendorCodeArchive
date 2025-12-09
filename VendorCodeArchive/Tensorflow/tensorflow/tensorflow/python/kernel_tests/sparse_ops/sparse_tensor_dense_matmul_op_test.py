@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -381,6 +383,28 @@ def sparse_tensor_dense_vs_dense_matmul_benchmark(thresh,
         x_shape = constant_op.constant(np.array(x.shape).astype(np.int64))
         y_t = constant_op.constant(y)
         ops_fn = _sparse_tensor_dense_vs_dense_matmul_benchmark_sparse(
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (14):
+#   1. Line 386: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 386: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 393: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 393: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 394: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 394: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 395: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 395: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 396: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 396: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 397: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 397: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 398: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 398: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             x_ind, x_val, x_shape, y_t, adjoint_a, adjoint_b)
     delta_sparse = _timer(sess, ops_fn, 200)
 

@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -46,6 +48,16 @@ def global_step(sess, global_step_tensor):
   # Create a session.
   sess = tf.compat.v1.Session()
   # Initialize the variable
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 51: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 51: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   sess.run(global_step_tensor.initializer)
   # Get the variable value.
   print('global_step: %s' % tf.compat.v1.train.global_step(sess,
