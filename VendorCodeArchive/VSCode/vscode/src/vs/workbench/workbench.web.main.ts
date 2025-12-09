@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -53,6 +55,20 @@
 		asModule(moduleId: string, contents: string): void;
 	}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 58: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 59: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 62: Error message without production error code - breaks React bundle size optimization
+//   4. Line 62: Error message without production error code - breaks React bundle size optimization
+//   5. Line 67: Error message without production error code - breaks React bundle size optimization
+//   6. Line 67: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	//#endregion
 
 	const define: IGlobalDefine = (globalThis as any).define;
@@ -75,6 +91,13 @@
 	if (trustedTypesPolicy) {
 		globalThis._VSCODE_WEB_PACKAGE_TTP = trustedTypesPolicy;
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	const promise = new Promise(resolve => {
 		(globalThis as any).__VSCODE_WEB_ESM_PROMISE = resolve;

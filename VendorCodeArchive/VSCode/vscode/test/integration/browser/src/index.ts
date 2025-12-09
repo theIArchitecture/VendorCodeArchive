@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -68,6 +70,20 @@ async function runTestsInBrowser(browserType: BrowserType, browserChannel: Brows
 	const context = await browser.newContext();
 
 	const page = await context.newPage();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 73: Error message without production error code - breaks React bundle size optimization
+//   2. Line 73: Error message without production error code - breaks React bundle size optimization
+//   3. Line 74: Error message without production error code - breaks React bundle size optimization
+//   4. Line 74: Error message without production error code - breaks React bundle size optimization
+//   5. Line 77: Error message without production error code - breaks React bundle size optimization
+//   6. Line 77: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	await page.setViewportSize({ width, height });
 
 	page.on('pageerror', async error => console.error(`Playwright ERROR: page error: ${error}`));
@@ -101,6 +117,20 @@ async function runTestsInBrowser(browserType: BrowserType, browserChannel: Brows
 
 				await promises.mkdir(path.dirname(absoluteLogsPath), { recursive: true });
 				await promises.writeFile(absoluteLogsPath, log.contents);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 106: Error message without production error code - breaks React bundle size optimization
+//   2. Line 106: Error message without production error code - breaks React bundle size optimization
+//   3. Line 116: Error message without production error code - breaks React bundle size optimization
+//   4. Line 116: Error message without production error code - breaks React bundle size optimization
+//   5. Line 122: Error message without production error code - breaks React bundle size optimization
+//   6. Line 122: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			}
 		} catch (error) {
 			console.error(`Error saving web client logs (${error})`);
@@ -199,6 +229,16 @@ async function launchServer(browserType: BrowserType, browserChannel: BrowserCha
 		serverArgs,
 		{ env, stdio, shell }
 	);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 204: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 205: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	if (args.debug) {
 		serverProcess.stderr!.on('data', error => console.log(`Server stderr: ${error}`));
@@ -214,6 +254,13 @@ async function launchServer(browserType: BrowserType, browserChannel: BrowserCha
 		serverProcess.kill();
 		process.exit(128 + 15); // https://nodejs.org/docs/v14.16.0/api/process.html#process_signal_events
 	});
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	return new Promise(c => {
 		serverProcess.stdout!.on('data', data => {

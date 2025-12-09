@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -257,6 +259,20 @@ export function updateColorThemeConfigurationSchemas(themes: IWorkbenchColorThem
 
 	configurationRegistry.notifyConfigurationSchemaUpdated(themeSettingsConfiguration, tokenColorCustomizationConfiguration);
 }
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 262: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 263: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 264: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 270: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 271: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 272: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 export function updateFileIconThemeConfigurationSchemas(themes: IWorkbenchFileIconTheme[]) {
 	fileIconThemeSettingSchema.enum!.splice(1, Number.MAX_VALUE, ...themes.map(t => t.settingsId));
