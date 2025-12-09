@@ -63,6 +63,16 @@ export class MergeMarkersController extends Disposable {
 
 			for (const b of blocks.blocks) {
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 66: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 67: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const startLine = model!.getLineContent(b.lineRange.startLineNumber).substring(0, 20);
 				const endLine = model!.getLineContent(b.lineRange.endLineNumberExclusive - 1).substring(0, 20);
 

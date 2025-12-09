@@ -35,6 +35,16 @@ export function lengthDiff(startLineCount: number, startColumnCount: number, end
 
 export type Length = { _brand: 'Length' };
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 38: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 41: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 export const lengthZero = 0 as any as Length;
 
 export function lengthIsZero(length: Length): boolean {
@@ -69,6 +79,18 @@ export function toLength(lineCount: number, columnCount: number): Length {
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 	// we have `toLength(lns1, cols1) + toLength(lns2, cols2) = toLength(lns1 + lns2, cols1 + cols2)`.
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 73: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 77: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 84: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 91: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 	return (lineCount * factor + columnCount) as any as Length;
 }
@@ -123,6 +145,16 @@ export function lengthEquals(length1: Length, length2: Length): boolean {
 
  */
 export function lengthDiffNonNegative(length1: Length, length2: Length): Length {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 126: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 127: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	const l1 = length1 as any as number;
 	const l2 = length2 as any as number;
 
@@ -163,6 +195,21 @@ export function lengthDiffNonNegative(length1: Length, length2: Length): Length 
 
 export function lengthLessThan(length1: Length, length2: Length): boolean {
 	// First, compare line counts, then column counts.
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (7):
+//   1. Line 166: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 166: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 170: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 170: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 174: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 174: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 178: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	return (length1 as any as number) < (length2 as any as number);
 }
 
@@ -196,6 +243,16 @@ export function positionToLength(position: Position): Length {
 
 
 export function lengthsToRange(lengthStart: Length, lengthEnd: Length): Range {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 199: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 203: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	const l = lengthStart as any as number;
 	const lineCount = Math.floor(l / factor);
 	const colCount = l - lineCount * factor;
@@ -226,6 +283,16 @@ export function lengthOfRange(range: Range): TextLength {
 
 
 export function lengthCompare(length1: Length, length2: Length): number {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 229: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 230: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	const l1 = length1 as any as number;
 	const l2 = length2 as any as number;
 	return l1 - l2;

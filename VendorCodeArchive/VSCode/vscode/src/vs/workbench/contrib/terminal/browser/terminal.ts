@@ -50,6 +50,19 @@ import type { IEditorOptions } from '../../../../platform/editor/common/editor.j
 
 import type { TerminalEditorInput } from './terminalEditorInput.js';
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 53: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 54: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 55: Missing service brand declaration - breaks VSCode's DI system type safety
+//   4. Line 56: Missing service brand declaration - breaks VSCode's DI system type safety
+//   5. Line 57: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const ITerminalService = createDecorator<ITerminalService>('terminalService');
 export const ITerminalConfigurationService = createDecorator<ITerminalConfigurationService>('terminalConfigurationService');
 export const ITerminalEditorService = createDecorator<ITerminalEditorService>('terminalEditorService');
@@ -85,6 +98,16 @@ export interface ITerminalContribution extends IDisposable {
 
  * **This service is intended to only be used within the terminal contrib.**
  */
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 88: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 88: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export interface ITerminalInstanceService {
 	readonly _serviceBrand: undefined;
 
@@ -405,6 +428,16 @@ export interface ITerminalService extends ITerminalInstanceHost {
 
  * A service that provides convenient access to the terminal configuration and derived values.
  */
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 408: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 408: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export interface ITerminalConfigurationService {
 	readonly _serviceBrand: undefined;
 

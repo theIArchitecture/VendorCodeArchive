@@ -54,6 +54,18 @@ async function main(buildDir) {
 
     const identity = process.env['CODESIGN_IDENTITY'];
     if (!buildDir) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 57: Error message without production error code - breaks React bundle size optimization
+//   2. Line 57: Error message without production error code - breaks React bundle size optimization
+//   3. Line 60: Error message without production error code - breaks React bundle size optimization
+//   4. Line 60: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         throw new Error('$AGENT_BUILDDIRECTORY not set');
     }
     if (!tempDir) {
@@ -119,6 +131,16 @@ if (require.main === module) {
 
             const keychain = path_1.default.join(tempDir, 'buildagent.keychain');
             const identities = await (0, cross_spawn_promise_1.spawn)('security', ['find-identity', '-p', 'codesigning', '-v', keychain]);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 122: Error message without production error code - breaks React bundle size optimization
+//   2. Line 124: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
             console.error(`Available identities:\n${identities}`);
             const dump = await (0, cross_spawn_promise_1.spawn)('security', ['dump-keychain', keychain]);
             console.error(`Keychain dump:\n${dump}`);
