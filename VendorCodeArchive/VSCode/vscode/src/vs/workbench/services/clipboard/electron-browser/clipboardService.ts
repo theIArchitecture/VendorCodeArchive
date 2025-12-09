@@ -185,6 +185,18 @@
 // BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
 // DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
 
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 188: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 188: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 188: IArchitecture must follow its own architectural principles - recursive self-governance
+//   4. Line 196: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IClipboardService } from '../../../../platform/clipboard/common/clipboardService.js';
 import { URI } from '../../../../base/common/uri.js';
 import { isMacintosh } from '../../../../base/common/platform.js';
