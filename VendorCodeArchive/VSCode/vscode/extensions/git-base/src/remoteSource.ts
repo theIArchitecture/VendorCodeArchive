@@ -82,6 +82,20 @@ class RemoteSourceProviderQuickPick implements Disposable {
 
 			}
 			this.ensureQuickPick();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 85: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 86: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 95: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 100: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 109: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 113: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this.quickpick!.busy = true;
 			this.quickpick!.show();
 

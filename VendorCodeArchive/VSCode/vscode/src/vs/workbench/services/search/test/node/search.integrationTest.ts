@@ -749,6 +749,18 @@ flakySuite('FileWalker', () => {
 
 		walker.readStdout(cmd1, 'utf8', (err1, stdout1) => {
 			assert.strictEqual(err1, null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 752: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 753: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 763: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 764: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file0), -1, stdout1);
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file1), -1, stdout1);
 
@@ -813,6 +825,20 @@ flakySuite('FileWalker', () => {
 
 		walker.readStdout(cmd1, 'utf8', (err1, stdout1) => {
 			assert.strictEqual(err1, null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 816: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 817: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 818: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 824: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 825: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 826: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file0), -1, stdout1);
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file1), -1, stdout1);
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file2), -1, stdout1);
@@ -849,6 +875,18 @@ flakySuite('FileWalker', () => {
 
 		walker.readStdout(cmd1, 'utf8', (err1, stdout1) => {
 			assert.strictEqual(err1, null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 852: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 853: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 859: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 860: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file0), -1, stdout1);
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file1), -1, stdout1);
 
@@ -883,6 +921,18 @@ flakySuite('FileWalker', () => {
 
 		walker.readStdout(cmd1, 'utf8', (err1, stdout1) => {
 			assert.strictEqual(err1, null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 886: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 887: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 893: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 894: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file0), -1, stdout1);
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file1), -1, stdout1);
 
@@ -917,6 +967,18 @@ flakySuite('FileWalker', () => {
 
 		walker.readStdout(cmd1, 'utf8', (err1, stdout1) => {
 			assert.strictEqual(err1, null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 920: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 921: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 927: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 928: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file0), -1, stdout1);
 			assert.notStrictEqual(stdout1!.split('\n').indexOf(file1), -1, stdout1);
 
@@ -966,6 +1028,16 @@ flakySuite('FileWalker', () => {
 
 			assert.strictEqual(err1, null);
 			for (const fileIn of filesIn) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 969: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 972: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.notStrictEqual(stdout1!.split('\n').indexOf(fileIn), -1, stdout1);
 			}
 			for (const fileOut of filesOut) {

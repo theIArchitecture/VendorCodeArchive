@@ -200,6 +200,16 @@ export interface IChatAgentCompletionItem {
 
 }
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 203: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 203: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export interface IChatAgentService {
 	_serviceBrand: undefined;
 	/**
@@ -287,6 +297,16 @@ export class ChatAgentService extends Disposable implements IChatAgentService {
 
 		const existingAgent = this.getAgent(id);
 		if (existingAgent) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 290: Error message without production error code - breaks React bundle size optimization
+//   2. Line 290: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Agent already registered: ${JSON.stringify(id)}`);
 		}
 
@@ -365,6 +385,18 @@ export class ChatAgentService extends Disposable implements IChatAgentService {
 
 		const entry = this._agents.get(id);
 		if (!entry) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 368: Error message without production error code - breaks React bundle size optimization
+//   2. Line 368: Error message without production error code - breaks React bundle size optimization
+//   3. Line 372: Error message without production error code - breaks React bundle size optimization
+//   4. Line 372: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Unknown agent: ${JSON.stringify(id)}`);
 		}
 
@@ -427,6 +459,16 @@ export class ChatAgentService extends Disposable implements IChatAgentService {
 
 		const agent = this._agents.get(id);
 		if (!agent?.impl) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 430: Error message without production error code - breaks React bundle size optimization
+//   2. Line 430: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`No activated agent with id ${JSON.stringify(id)} registered`);
 		}
 		agent.data.metadata = { ...agent.data.metadata, ...updateMetadata };
@@ -690,6 +732,18 @@ export class MergedChatAgent implements IChatAgent {
 
 }
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 693: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 702: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 702: Missing service brand declaration - breaks VSCode's DI system type safety
+//   4. Line 707: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IChatAgentNameService = createDecorator<IChatAgentNameService>('chatAgentNameService');
 
 type IChatParticipantRegistry = { [name: string]: string[] };
@@ -764,6 +818,18 @@ export class ChatAgentNameService implements IChatAgentNameService {
 
 
 		if (context.res.statusCode !== 200) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 767: Error message without production error code - breaks React bundle size optimization
+//   2. Line 767: Error message without production error code - breaks React bundle size optimization
+//   3. Line 773: Error message without production error code - breaks React bundle size optimization
+//   4. Line 773: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Could not get extensions report.');
 		}
 
@@ -828,6 +894,16 @@ export function reviveSerializedAgent(raw: ISerializableChatAgentData): IChatAge
 
 		raw :
 		{
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 831: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 832: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			...(raw as any),
 			name: (raw as any).id,
 		};
