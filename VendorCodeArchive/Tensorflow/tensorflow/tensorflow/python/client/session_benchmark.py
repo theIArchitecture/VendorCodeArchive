@@ -69,6 +69,16 @@ class SessionBenchmark(test.Benchmark):
 
           end_time = time.time()
           times.append(end_time - start_time)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 72: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 72: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("%s %d %f" % (name, size, np.median(times)))
     self.report_benchmark(iters=1, wall_time=np.median(times), name=name)
 
@@ -107,6 +117,16 @@ class SessionBenchmark(test.Benchmark):
 
           end_time = time.time()
           times.append(end_time - start_time)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 110: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 110: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("%s %d %f" % (name, size, np.median(times)))
     self.report_benchmark(iters=1, wall_time=np.median(times), name=name)
 
@@ -146,6 +166,16 @@ class SessionBenchmark(test.Benchmark):
 
           end_time = time.time()
           times.append(end_time - start_time)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 149: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 149: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("%s %d %f" % (name, size, np.median(times)))
     self.report_benchmark(iters=1, wall_time=np.median(times), name=name)
 
@@ -182,6 +212,16 @@ class SessionBenchmark(test.Benchmark):
 
           end_time = time.time()
           times.append(end_time - start_time)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 185: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 185: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("%s %f" % (name, np.median(times)))
     self.report_benchmark(iters=1, wall_time=np.median(times), name=name)
 
@@ -219,6 +259,16 @@ class SessionBenchmark(test.Benchmark):
 
           end_time = time.time()
           times.append(end_time - start_time)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 222: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 222: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("%s %f" % (name, np.median(times)))
     self.report_benchmark(iters=1, wall_time=np.median(times), name=name)
 

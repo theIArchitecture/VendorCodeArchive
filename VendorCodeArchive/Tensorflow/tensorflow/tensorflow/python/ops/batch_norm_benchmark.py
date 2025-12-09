@@ -125,6 +125,16 @@ def print_difference(mode, t1, t2):
 
   """Print the difference in timing between two runs."""
   difference = (t2 - t1) / t1 * 100.0
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 128: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 128: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("=== %s: %.1f%% ===" % (mode, difference))
 
 
@@ -169,6 +179,16 @@ class BatchNormBenchmark(test.Benchmark):
 
         _ = session.run([out.op for out in outputs])
       duration = time.time() - start_time
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 172: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 172: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("%s shape:%d/%d #layers:%d mode:%s scale:%r train:%r - %f secs" %
           (device, len(input_shape), len(axes), num_layers, mode, scale, train,
            duration / num_iters))
@@ -203,6 +223,16 @@ class BatchNormBenchmark(test.Benchmark):
 
 
   def benchmark_batch_norm(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 206: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 206: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Forward convolution (lower layers).")
     shape = [8, 128, 128, 32]
     axes = [0, 1, 2]
@@ -227,6 +257,16 @@ class BatchNormBenchmark(test.Benchmark):
 
       print_difference("op vs py", t1, t2)
       print_difference("py vs slow", t2, t3)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 230: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 230: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Forward/backward convolution (lower layers).")
     t1 = self._run_graph("cpu", shape, axes, 10, "op", True, True, 5)
     t2 = self._run_graph("cpu", shape, axes, 10, "py", True, True, 5)
@@ -249,6 +289,16 @@ class BatchNormBenchmark(test.Benchmark):
 
       print_difference("op vs py", t1, t2)
       print_difference("py vs slow", t2, t3)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 252: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 252: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Forward convolution (higher layers).")
     shape = [256, 17, 17, 32]
     axes = [0, 1, 2]
@@ -273,6 +323,16 @@ class BatchNormBenchmark(test.Benchmark):
 
       print_difference("op vs py", t1, t2)
       print_difference("py vs slow", t2, t3)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 276: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 276: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Forward/backward convolution (higher layers).")
     t1 = self._run_graph("cpu", shape, axes, 10, "op", True, True, 5)
     t2 = self._run_graph("cpu", shape, axes, 10, "py", True, True, 5)
@@ -297,6 +357,18 @@ class BatchNormBenchmark(test.Benchmark):
 
       print_difference("op vs py", t1, t2)
       print_difference("py vs slow", t2, t3)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 300: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 300: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 310: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 310: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Forward fully-connected.")
     shape = [1024, 32]
     axes = [0]

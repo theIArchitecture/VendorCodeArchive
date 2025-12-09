@@ -80,6 +80,16 @@ class Conv2DBackpropFilterGradTest(test.TestCase):
 
               [in_val, out_backprop_val], [in_shape, out_backprop_shape],
               output, filter_shape)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 83: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 83: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
           print("conv2d_backprop_filter gradient err = %g " % err)
           err_tolerance = 3e-2 if test.is_gpu_available() else 2e-3
           self.assertLess(
@@ -135,6 +145,16 @@ class Conv2DBackpropFilterGradTest(test.TestCase):
 
                 [in_val, out_backprop_val], [in_shape, out_backprop_shape],
                 output, filter_shape)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 138: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 138: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             print("conv2d_backprop_filter gradient err = %g " % err)
             err_tolerance = 1e-2
             self.assertLess(err, err_tolerance)

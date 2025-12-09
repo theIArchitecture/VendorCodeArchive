@@ -320,6 +320,16 @@ class BatchOpsTest(test.TestCase):
 
       main_results = sess.run([result], feed_dict={inp: [20.]})
       worker_thread.join()
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# ISSUES FOUND (2):
+#   1. Line 323: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   2. Line 324: CUDA dependency detected in pip package - breaks cross-platform compatibility
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
       self.assertEqual(thread_results[0], [10 + test_util.is_gpu_available()])
       self.assertEqual(main_results[0], [20 + test_util.is_gpu_available()])
 

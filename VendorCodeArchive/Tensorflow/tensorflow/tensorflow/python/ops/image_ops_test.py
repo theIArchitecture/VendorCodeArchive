@@ -604,6 +604,16 @@ class FlipImageBenchmark(test.Benchmark):
 
     step_time = (end - start) / benchmark_rounds
     tag = device + "_%s" % (cpu_count if cpu_count is not None else "_all")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 607: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 607: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("benchmarkFlipLeftRight_299_299_3_%s step_time: %.2f us" %
           (tag, step_time * 1e6))
     self.report_benchmark(
@@ -644,6 +654,16 @@ class FlipImageBenchmark(test.Benchmark):
 
     step_time = (end - start) / benchmark_rounds
     tag = device + "_%s" % (cpu_count if cpu_count is not None else "_all")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 647: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 647: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("benchmarkRandomFlipLeftRight_299_299_3_%s step_time: %.2f us" %
           (tag, step_time * 1e6))
     self.report_benchmark(
@@ -684,6 +704,16 @@ class FlipImageBenchmark(test.Benchmark):
 
     step_time = (end - start) / benchmark_rounds
     tag = device + "_%s" % (cpu_count if cpu_count is not None else "_all")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 687: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 687: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("benchmarkBatchedRandomFlipLeftRight_16_299_299_3_%s step_time: "
           "%.2f us" %
           (tag, step_time * 1e6))
@@ -756,6 +786,16 @@ class AdjustHueBenchmark(test.Benchmark):
 
     step_time = (end - start) / benchmark_rounds
     tag = device + "_%s" % (cpu_count if cpu_count is not None else "_all")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 759: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 759: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("benchmarkAdjustHue_299_299_3_%s step_time: %.2f us" %
           (tag, step_time * 1e6))
     self.report_benchmark(
@@ -810,6 +850,16 @@ class AdjustSaturationBenchmark(test.Benchmark):
 
     step_time = (end - start) / benchmark_rounds
     tag = device + "_%s" % (cpu_count if cpu_count is not None else "_all")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 813: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 813: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("benchmarkAdjustSaturation_299_299_3_%s step_time: %.2f us" %
           (tag, step_time * 1e6))
     self.report_benchmark(
@@ -862,6 +912,16 @@ class ResizeBilinearBenchmark(test.Benchmark):
 
           name=("resize_bilinear_%s_%s_%s" % (image_size[0], image_size[1],
                                               num_channels)))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 865: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 865: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("%s   : %.2f ms/img" %
             (results["name"],
              1000 * results["wall_time"] / (batch_size * num_ops)))
@@ -921,6 +981,16 @@ class ResizeBicubicBenchmark(test.Benchmark):
 
           name=("resize_bicubic_%s_%s_%s" % (image_size[0], image_size[1],
                                              num_channels)))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 924: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 924: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("%s   : %.2f ms/img" %
             (results["name"],
              1000 * results["wall_time"] / (batch_size * num_ops)))
@@ -987,6 +1057,16 @@ class ResizeAreaBenchmark(test.Benchmark):
 
           name=("resize_area_%s_%s_%s" % (image_size[0], image_size[1],
                                           num_channels)))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 990: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 990: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("%s   : %.2f ms/img" %
             (results["name"],
              1000 * results["wall_time"] / (batch_size * num_ops)))
@@ -2687,6 +2767,16 @@ class SelectDistortedCropBoxTest(test_util.TensorFlowTestCase):
 
     # For reference, here is what the distribution of area ratios look like.
     area_ratio_hist, _ = np.histogram(area_ratios, bins=10, range=area_range)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 2690: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 2690: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("area_ratio_hist ", area_ratio_hist)
 
     # Ensure that fraction_object_covered is satisfied.
@@ -5367,6 +5457,16 @@ class FormatTest(test_util.TensorFlowTestCase):
 
           self.assertEqual(image.ndim, 3)
           for prev_name, prev in images.items():
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 5370: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 5370: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             print("path %s, names %s %s, shapes %s %s" %
                   (path, name, prev_name, image.shape, prev.shape))
             self.assertAllEqual(image, prev)

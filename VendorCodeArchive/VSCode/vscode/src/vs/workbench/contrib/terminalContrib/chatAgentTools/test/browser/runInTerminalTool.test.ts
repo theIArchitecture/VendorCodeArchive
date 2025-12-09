@@ -305,6 +305,18 @@ suite('RunInTerminalTool', () => {
 
 
 			assertConfirmationRequired(result, 'Run command in terminal');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 308: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 308: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 310: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 310: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			ok(result!.confirmationMessages!.terminalCustomActions, 'Expected custom actions to be defined');
 
 			const customActions = result!.confirmationMessages!.terminalCustomActions!;
@@ -341,6 +353,18 @@ suite('RunInTerminalTool', () => {
 
 
 			assertConfirmationRequired(result);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 344: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 344: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 346: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 346: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			ok(result!.confirmationMessages!.terminalCustomActions, 'Expected custom actions to be defined');
 
 			const customActions = result!.confirmationMessages!.terminalCustomActions!;
@@ -391,6 +415,18 @@ suite('RunInTerminalTool', () => {
 
 
 			assertConfirmationRequired(result, 'Run command in terminal');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 394: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 394: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 396: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 396: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			ok(result!.confirmationMessages!.terminalCustomActions, 'Expected custom actions to be defined');
 
 			const customActions = result!.confirmationMessages!.terminalCustomActions!;
@@ -419,6 +455,18 @@ suite('RunInTerminalTool', () => {
 
 
 			assertConfirmationRequired(result, 'Run command in terminal');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 422: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 422: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 424: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 424: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			ok(result!.confirmationMessages!.terminalCustomActions, 'Expected custom actions to be defined');
 
 			const customActions = result!.confirmationMessages!.terminalCustomActions!;
@@ -686,6 +734,16 @@ suite('RunInTerminalTool', () => {
 
 					workspaceService.setWorkspace({
 						folders: [{ uri: { fsPath: workspaceDir } }]
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 689: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 690: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					} as any);
 					const instance = createInstanceWithCwd({ fsPath: instanceDir } as any);
 
@@ -712,6 +770,16 @@ suite('RunInTerminalTool', () => {
 
 					workspaceService.setWorkspace({
 						folders: [{ uri: { fsPath: workspaceDir } }]
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 715: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 716: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					} as any);
 					const instance = createInstanceWithCwd({ fsPath: instanceDir } as any);
 
@@ -739,6 +807,16 @@ suite('RunInTerminalTool', () => {
 
 					workspaceService.setWorkspace({
 						folders: [{ uri: { fsPath: workspaceDir } }]
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 742: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 743: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					} as any);
 					const instance = createInstanceWithCwd({ fsPath: instanceDir } as any);
 
@@ -787,6 +865,16 @@ suite('RunInTerminalTool', () => {
 
 					workspaceService.setWorkspace({
 						folders: [{ uri: { fsPath: sharedDir } }]
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 790: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 791: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					} as any);
 					const instance = createInstanceWithCwd({ fsPath: sharedDir } as any);
 
@@ -832,6 +920,16 @@ suite('RunInTerminalTool', () => {
 
 					workspaceService.setWorkspace({
 						folders: [{ uri: { fsPath: 'C:\\different\\workspace' } }]
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 835: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 836: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					} as any);
 					const instance = createInstanceWithCwd({ fsPath: instanceDir } as any);
 
@@ -936,6 +1034,16 @@ suite('RunInTerminalTool', () => {
 
 					workspaceService.setWorkspace({
 						folders: [{ uri: { fsPath: workspaceDir } }]
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 939: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 940: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					} as any);
 					const instance = createInstanceWithCwd({ fsPath: instanceDir } as any);
 
@@ -1012,6 +1120,16 @@ suite('RunInTerminalTool', () => {
 
 				dispose: () => { /* Mock dispose */ },
 				processId: 12345
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1015: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1019: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			} as any;
 			const mockTerminal2: ITerminalInstance = {
 				dispose: () => { /* Mock dispose */ },
