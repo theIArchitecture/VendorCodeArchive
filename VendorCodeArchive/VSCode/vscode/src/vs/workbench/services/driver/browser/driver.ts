@@ -308,6 +308,18 @@ export class BrowserWindowDriver implements IWindowDriver {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 311: Error message without production error code - breaks React bundle size optimization
+//   2. Line 311: Error message without production error code - breaks React bundle size optimization
+//   3. Line 317: Error message without production error code - breaks React bundle size optimization
+//   4. Line 317: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Editor not found: ${selector}`);
 		}
 		if (isHTMLDivElement(element)) {
@@ -611,6 +623,25 @@ export class BrowserWindowDriver implements IWindowDriver {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (11):
+//   1. Line 614: Error message without production error code - breaks React bundle size optimization
+//   2. Line 614: Error message without production error code - breaks React bundle size optimization
+//   3. Line 619: Error message without production error code - breaks React bundle size optimization
+//   4. Line 619: Error message without production error code - breaks React bundle size optimization
+//   5. Line 625: Error message without production error code - breaks React bundle size optimization
+//   6. Line 625: Error message without production error code - breaks React bundle size optimization
+//   7. Line 633: Error message without production error code - breaks React bundle size optimization
+//   8. Line 633: Error message without production error code - breaks React bundle size optimization
+//   9. Line 636: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 639: Error message without production error code - breaks React bundle size optimization
+//   11. Line 639: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Editor not found: ${selector}`);
 		}
 		if (isHTMLDivElement(element)) {
@@ -828,6 +859,19 @@ export class BrowserWindowDriver implements IWindowDriver {
 //   3. Line 795: Dangerous type assertion in VSCode source - runtime type error risk
 //   4. Line 798: Error message without production error code - breaks React bundle size optimization
 //   5. Line 798: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (5):
+//   1. Line 836: Error message without production error code - breaks React bundle size optimization
+//   2. Line 836: Error message without production error code - breaks React bundle size optimization
+//   3. Line 839: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 842: Error message without production error code - breaks React bundle size optimization
+//   5. Line 842: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug

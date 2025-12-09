@@ -1683,6 +1683,22 @@ export class TypeAheadAddon extends Disposable implements ITerminalAddon {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 1686: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1686: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1687: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1688: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1691: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1691: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 1692: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 1693: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._timeline!.tentativeCursor(buffer).x <= this._lastRow!.startingX
 				? this._timeline!.addBoundary(buffer, p)
 				: this._timeline!.addPrediction(buffer, p);

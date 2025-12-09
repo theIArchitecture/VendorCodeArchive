@@ -513,6 +513,40 @@ flakySuite('WorkspacesManagementMainService', () => {
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (26):
+//   1. Line 516: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 520: Error message without production error code - breaks React bundle size optimization
+//   3. Line 520: Error message without production error code - breaks React bundle size optimization
+//   4. Line 521: Error message without production error code - breaks React bundle size optimization
+//   5. Line 521: Error message without production error code - breaks React bundle size optimization
+//   6. Line 522: Error message without production error code - breaks React bundle size optimization
+//   7. Line 522: Error message without production error code - breaks React bundle size optimization
+//   8. Line 523: Error message without production error code - breaks React bundle size optimization
+//   9. Line 523: Error message without production error code - breaks React bundle size optimization
+//   10. Line 524: Error message without production error code - breaks React bundle size optimization
+//   11. Line 524: Error message without production error code - breaks React bundle size optimization
+//   12. Line 525: Error message without production error code - breaks React bundle size optimization
+//   13. Line 525: Error message without production error code - breaks React bundle size optimization
+//   14. Line 526: Error message without production error code - breaks React bundle size optimization
+//   15. Line 526: Error message without production error code - breaks React bundle size optimization
+//   16. Line 529: Missing service brand declaration - breaks VSCode's DI system type safety
+//   17. Line 533: Error message without production error code - breaks React bundle size optimization
+//   18. Line 533: Error message without production error code - breaks React bundle size optimization
+//   19. Line 534: Error message without production error code - breaks React bundle size optimization
+//   20. Line 534: Error message without production error code - breaks React bundle size optimization
+//   21. Line 537: Error message without production error code - breaks React bundle size optimization
+//   22. Line 537: Error message without production error code - breaks React bundle size optimization
+//   23. Line 538: Error message without production error code - breaks React bundle size optimization
+//   24. Line 538: Error message without production error code - breaks React bundle size optimization
+//   25. Line 539: Error message without production error code - breaks React bundle size optimization
+//   26. Line 539: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 	class TestDialogMainService implements IDialogMainService {
 
 		declare readonly _serviceBrand: undefined;
@@ -825,6 +859,17 @@ flakySuite('WorkspacesManagementMainService', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 828: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 829: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 830: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(2, resolved!.folders.length);
 		assertEqualURI(resolved!.configPath, workspace.configPath);
 		assert.ok(resolved!.id);
@@ -1006,6 +1051,18 @@ flakySuite('WorkspacesManagementMainService', () => {
 //   2. Line 965: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 973: Dangerous type assertion in VSCode source - runtime type error risk
 //   4. Line 981: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 1014: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1022: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1030: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1038: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
