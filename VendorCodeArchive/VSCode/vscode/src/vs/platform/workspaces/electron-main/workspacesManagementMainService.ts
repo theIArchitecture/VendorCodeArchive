@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -24,6 +26,17 @@ import { ICodeWindow } from '../../window/electron-main/window.js';
 import { findWindowOnWorkspaceOrFolder } from '../../windows/electron-main/windowsFinder.js';
 import { isWorkspaceIdentifier, IWorkspaceIdentifier, IResolvedWorkspace, hasWorkspaceFileExtension, UNTITLED_WORKSPACE_NAME, isUntitledWorkspace } from '../../workspace/common/workspace.js';
 import { getStoredWorkspaceFolder, IEnterWorkspaceResult, isStoredWorkspaceFolder, IStoredWorkspace, IStoredWorkspaceFolder, IUntitledWorkspaceInfo, IWorkspaceFolderCreationData, toWorkspaceFolders } from '../common/workspaces.js';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 29: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 36: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 36: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 import { getWorkspaceIdentifier } from '../node/workspaces.js';
 
 export const IWorkspacesManagementMainService = createDecorator<IWorkspacesManagementMainService>('workspacesManagementMainService');
@@ -160,6 +173,16 @@ export class WorkspacesManagementMainService extends Disposable implements IWork
 
 		// Filter out folders which do not have a path or uri set
 		if (storedWorkspace && Array.isArray(storedWorkspace.folders)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 165: Error message without production error code - breaks React bundle size optimization
+//   2. Line 165: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			storedWorkspace.folders = storedWorkspace.folders.filter(folder => isStoredWorkspaceFolder(folder));
 		} else {
 			throw new Error(`${path.toString(true)} looks like an invalid workspace file.`);

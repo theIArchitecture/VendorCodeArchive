@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -42,6 +44,16 @@ export class MainThreadWebviews extends Disposable implements extHostProtocol.Ma
 
 		this._proxy = context.getProxy(extHostProtocol.ExtHostContext.ExtHostWebviews);
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 48: Error message without production error code - breaks React bundle size optimization
+//   2. Line 48: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	public addWebview(handle: extHostProtocol.WebviewHandle, webview: IWebview, options: { serializeBuffersForPostMessage: boolean }): void {
 		if (this._webviews.has(handle)) {
@@ -122,6 +134,16 @@ export class MainThreadWebviews extends Disposable implements extHostProtocol.Ma
 	}
 
 	private getWebview(handle: extHostProtocol.WebviewHandle): IWebview {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 127: Error message without production error code - breaks React bundle size optimization
+//   2. Line 127: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const webview = this.tryGetWebview(handle);
 		if (!webview) {
 			throw new Error(`Unknown webview handle:${handle}`);

@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -99,6 +101,17 @@ export interface IUserDataProfileOptions {
 export interface IUserDataProfileUpdateOptions extends Omit<IUserDataProfileOptions, 'icon'> {
 	readonly name?: string;
 	readonly icon?: string | null;
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 104: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 105: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 105: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 }
 
 export const IUserDataProfilesService = createDecorator<IUserDataProfilesService>('IUserDataProfilesService');
@@ -319,6 +332,16 @@ export class UserDataProfilesService extends Disposable implements IUserDataProf
 		if (!profileCreationPromise) {
 			profileCreationPromise = (async () => {
 				try {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 324: Error message without production error code - breaks React bundle size optimization
+//   2. Line 324: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					const existing = this.profiles.find(p => p.id === id || (!p.isTransient && !options?.transient && p.name === name));
 					if (existing) {
 						throw new Error(`Profile with ${name} name already exists`);
@@ -386,6 +409,16 @@ export class UserDataProfilesService extends Disposable implements IUserDataProf
 			}
 		}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 391: Error message without production error code - breaks React bundle size optimization
+//   2. Line 391: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		if (!profilesToUpdate.length) {
 			if (profile.isDefault) {
 				throw new Error('Cannot update default profile');
@@ -402,6 +435,16 @@ export class UserDataProfilesService extends Disposable implements IUserDataProf
 
 		return updatedProfile;
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 408: Error message without production error code - breaks React bundle size optimization
+//   2. Line 408: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	async removeProfile(profileToRemove: IUserDataProfile): Promise<void> {
 		if (profileToRemove.isDefault) {
@@ -626,6 +669,18 @@ export class UserDataProfilesService extends Disposable implements IUserDataProf
 		this.saveStoredProfiles(storedProfiles);
 		this._profilesObject = undefined;
 	}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 631: Error message without production error code - breaks React bundle size optimization
+//   2. Line 631: Error message without production error code - breaks React bundle size optimization
+//   3. Line 634: Error message without production error code - breaks React bundle size optimization
+//   4. Line 634: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	protected getStoredProfiles(): StoredUserDataProfile[] { return []; }
 	protected saveStoredProfiles(storedProfiles: StoredUserDataProfile[]): void { throw new Error('not implemented'); }

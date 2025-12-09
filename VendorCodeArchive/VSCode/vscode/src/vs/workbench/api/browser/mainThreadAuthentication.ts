@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -24,6 +26,17 @@ import { ILogService } from '../../../platform/log/common/log.js';
 import { ExtensionHostKind } from '../../services/extensions/common/extensionHostKind.js';
 import { IURLService } from '../../../platform/url/common/url.js';
 import { DeferredPromise, raceTimeout } from '../../../base/common/async.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 29: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 29: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 29: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IAuthorizationTokenResponse } from '../../../base/common/oauth.js';
 import { IDynamicAuthenticationProviderStorageService } from '../../services/authentication/common/dynamicAuthenticationProviderStorage.js';
 import { IClipboardService } from '../../../platform/clipboard/common/clipboardService.js';
@@ -200,6 +213,16 @@ export class MainThreadAuthentication extends Disposable implements MainThreadAu
 				return true;
 			}
 		});
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 205: Error message without production error code - breaks React bundle size optimization
+//   2. Line 205: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const result = await raceTimeout(deferredPromise.p, 5 * 60 * 1000); // 5 minutes
 		if (!result) {
 			throw new Error('Timed out waiting for URI handler');
@@ -240,6 +263,16 @@ export class MainThreadAuthentication extends Disposable implements MainThreadAu
 
 	async $sendDidChangeDynamicProviderInfo({ providerId, clientId, authorizationServer, label, clientSecret }: Partial<{ providerId: string; clientId: string; authorizationServer: UriComponents; label: string; clientSecret: string }>): Promise<void> {
 		this.logService.info(`Client ID for authentication provider ${providerId} changed to ${clientId}`);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 245: Error message without production error code - breaks React bundle size optimization
+//   2. Line 245: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const existing = this.dynamicAuthProviderStorageService.getInteractedProviders().find(p => p.providerId === providerId);
 		if (!existing) {
 			throw new Error(`Dynamic authentication provider ${providerId} not found. Has it been registered?`);
@@ -376,6 +409,16 @@ export class MainThreadAuthentication extends Disposable implements MainThreadAu
 			// We only want to show the "recreating session" prompt if we are using forceNewSession & there are sessions
 			// that we will be "forcing through".
 			const recreatingSession = !!(options.forceNewSession && sessions.length);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 381: Error message without production error code - breaks React bundle size optimization
+//   2. Line 381: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			const isAllowed = await this.loginPrompt(provider, extensionName, recreatingSession, uiOptions);
 			if (!isAllowed) {
 				throw new Error('User did not consent to login.');

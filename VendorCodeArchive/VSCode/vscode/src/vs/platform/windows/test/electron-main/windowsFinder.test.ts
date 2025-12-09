@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -54,6 +56,54 @@ suite('WindowsFinder', () => {
 			isExtensionTestHost = false;
 			lastFocusTime = options.lastFocusTime;
 			isFullScreen = false;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (40):
+//   1. Line 59: Error message without production error code - breaks React bundle size optimization
+//   2. Line 59: Error message without production error code - breaks React bundle size optimization
+//   3. Line 60: Error message without production error code - breaks React bundle size optimization
+//   4. Line 60: Error message without production error code - breaks React bundle size optimization
+//   5. Line 61: Error message without production error code - breaks React bundle size optimization
+//   6. Line 61: Error message without production error code - breaks React bundle size optimization
+//   7. Line 62: Error message without production error code - breaks React bundle size optimization
+//   8. Line 62: Error message without production error code - breaks React bundle size optimization
+//   9. Line 63: Error message without production error code - breaks React bundle size optimization
+//   10. Line 63: Error message without production error code - breaks React bundle size optimization
+//   11. Line 64: Error message without production error code - breaks React bundle size optimization
+//   12. Line 64: Error message without production error code - breaks React bundle size optimization
+//   13. Line 65: Error message without production error code - breaks React bundle size optimization
+//   14. Line 65: Error message without production error code - breaks React bundle size optimization
+//   15. Line 66: Error message without production error code - breaks React bundle size optimization
+//   16. Line 66: Error message without production error code - breaks React bundle size optimization
+//   17. Line 67: Error message without production error code - breaks React bundle size optimization
+//   18. Line 67: Error message without production error code - breaks React bundle size optimization
+//   19. Line 68: Error message without production error code - breaks React bundle size optimization
+//   20. Line 68: Error message without production error code - breaks React bundle size optimization
+//   21. Line 69: Error message without production error code - breaks React bundle size optimization
+//   22. Line 69: Error message without production error code - breaks React bundle size optimization
+//   23. Line 70: Error message without production error code - breaks React bundle size optimization
+//   24. Line 70: Error message without production error code - breaks React bundle size optimization
+//   25. Line 71: Error message without production error code - breaks React bundle size optimization
+//   26. Line 71: Error message without production error code - breaks React bundle size optimization
+//   27. Line 72: Error message without production error code - breaks React bundle size optimization
+//   28. Line 72: Error message without production error code - breaks React bundle size optimization
+//   29. Line 73: Error message without production error code - breaks React bundle size optimization
+//   30. Line 73: Error message without production error code - breaks React bundle size optimization
+//   31. Line 74: Error message without production error code - breaks React bundle size optimization
+//   32. Line 74: Error message without production error code - breaks React bundle size optimization
+//   33. Line 75: Error message without production error code - breaks React bundle size optimization
+//   34. Line 75: Error message without production error code - breaks React bundle size optimization
+//   35. Line 76: Error message without production error code - breaks React bundle size optimization
+//   36. Line 76: Error message without production error code - breaks React bundle size optimization
+//   37. Line 77: Error message without production error code - breaks React bundle size optimization
+//   38. Line 77: Error message without production error code - breaks React bundle size optimization
+//   39. Line 78: Error message without production error code - breaks React bundle size optimization
+//   40. Line 78: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			isReady = true;
 
 			ready(): Promise<ICodeWindow> { throw new Error('Method not implemented.'); }
