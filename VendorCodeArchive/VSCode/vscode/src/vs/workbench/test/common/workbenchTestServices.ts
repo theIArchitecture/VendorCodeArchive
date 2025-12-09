@@ -344,6 +344,23 @@ export class TestWorkingCopyFileService implements IWorkingCopyFileService {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (9):
+//   1. Line 347: Error message without production error code - breaks React bundle size optimization
+//   2. Line 347: Error message without production error code - breaks React bundle size optimization
+//   3. Line 348: Error message without production error code - breaks React bundle size optimization
+//   4. Line 348: Error message without production error code - breaks React bundle size optimization
+//   5. Line 350: Error message without production error code - breaks React bundle size optimization
+//   6. Line 350: Error message without production error code - breaks React bundle size optimization
+//   7. Line 352: Error message without production error code - breaks React bundle size optimization
+//   8. Line 352: Error message without production error code - breaks React bundle size optimization
+//   9. Line 356: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	create(operations: ICreateFileOperation[], token: CancellationToken, undoInfo?: IFileOperationUndoRedoInfo): Promise<IFileStatWithMetadata[]> { throw new Error('Method not implemented.'); }
 	createFolder(operations: ICreateOperation[], token: CancellationToken, undoInfo?: IFileOperationUndoRedoInfo): Promise<IFileStatWithMetadata[]> { throw new Error('Method not implemented.'); }
 
@@ -477,6 +494,29 @@ export const NullFilesConfigurationService = new class implements IFilesConfigur
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (15):
+//   1. Line 480: Error message without production error code - breaks React bundle size optimization
+//   2. Line 480: Error message without production error code - breaks React bundle size optimization
+//   3. Line 481: Error message without production error code - breaks React bundle size optimization
+//   4. Line 481: Error message without production error code - breaks React bundle size optimization
+//   5. Line 482: Error message without production error code - breaks React bundle size optimization
+//   6. Line 482: Error message without production error code - breaks React bundle size optimization
+//   7. Line 483: Error message without production error code - breaks React bundle size optimization
+//   8. Line 483: Error message without production error code - breaks React bundle size optimization
+//   9. Line 484: Error message without production error code - breaks React bundle size optimization
+//   10. Line 484: Error message without production error code - breaks React bundle size optimization
+//   11. Line 485: Error message without production error code - breaks React bundle size optimization
+//   12. Line 485: Error message without production error code - breaks React bundle size optimization
+//   13. Line 488: Error message without production error code - breaks React bundle size optimization
+//   14. Line 488: Error message without production error code - breaks React bundle size optimization
+//   15. Line 491: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	getAutoSaveConfiguration(): IAutoSaveConfiguration { throw new Error('Method not implemented.'); }
 	getAutoSaveMode(): IAutoSaveMode { throw new Error('Method not implemented.'); }
 	hasShortAutoSaveDelay(): boolean { throw new Error('Method not implemented.'); }
@@ -597,6 +637,34 @@ export class TestWorkspaceTrustManagementService extends Disposable implements I
 //   18. Line 569: Error message without production error code - breaks React bundle size optimization
 //   19. Line 573: Error message without production error code - breaks React bundle size optimization
 //   20. Line 573: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (20):
+//   1. Line 605: Error message without production error code - breaks React bundle size optimization
+//   2. Line 605: Error message without production error code - breaks React bundle size optimization
+//   3. Line 609: Error message without production error code - breaks React bundle size optimization
+//   4. Line 609: Error message without production error code - breaks React bundle size optimization
+//   5. Line 613: Error message without production error code - breaks React bundle size optimization
+//   6. Line 613: Error message without production error code - breaks React bundle size optimization
+//   7. Line 617: Error message without production error code - breaks React bundle size optimization
+//   8. Line 617: Error message without production error code - breaks React bundle size optimization
+//   9. Line 621: Error message without production error code - breaks React bundle size optimization
+//   10. Line 621: Error message without production error code - breaks React bundle size optimization
+//   11. Line 625: Error message without production error code - breaks React bundle size optimization
+//   12. Line 625: Error message without production error code - breaks React bundle size optimization
+//   13. Line 629: Error message without production error code - breaks React bundle size optimization
+//   14. Line 629: Error message without production error code - breaks React bundle size optimization
+//   15. Line 633: Error message without production error code - breaks React bundle size optimization
+//   16. Line 633: Error message without production error code - breaks React bundle size optimization
+//   17. Line 637: Error message without production error code - breaks React bundle size optimization
+//   18. Line 637: Error message without production error code - breaks React bundle size optimization
+//   19. Line 641: Error message without production error code - breaks React bundle size optimization
+//   20. Line 641: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
@@ -742,6 +810,25 @@ export class TestWorkspaceTrustRequestService extends Disposable implements IWor
 //   9. Line 683: Missing service brand declaration - breaks VSCode's DI system type safety
 //   10. Line 689: Error message without production error code - breaks React bundle size optimization
 //   11. Line 689: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (11):
+//   1. Line 750: Error message without production error code - breaks React bundle size optimization
+//   2. Line 750: Error message without production error code - breaks React bundle size optimization
+//   3. Line 754: Error message without production error code - breaks React bundle size optimization
+//   4. Line 754: Error message without production error code - breaks React bundle size optimization
+//   5. Line 758: Error message without production error code - breaks React bundle size optimization
+//   6. Line 758: Error message without production error code - breaks React bundle size optimization
+//   7. Line 766: Error message without production error code - breaks React bundle size optimization
+//   8. Line 766: Error message without production error code - breaks React bundle size optimization
+//   9. Line 770: Missing service brand declaration - breaks VSCode's DI system type safety
+//   10. Line 776: Error message without production error code - breaks React bundle size optimization
+//   11. Line 776: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
