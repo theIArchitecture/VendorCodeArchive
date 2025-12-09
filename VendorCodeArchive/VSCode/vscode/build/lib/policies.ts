@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -979,6 +981,16 @@ async function getSpecificNLS(resourceUrlTemplate: string, languageId: string, v
 
 	const url = resourceUrlTemplate.replace(/\{([^}]+)\}/g, (_, key) => resource[key as keyof typeof resource]);
 	const res = await fetch(url);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 984: Error message without production error code - breaks React bundle size optimization
+//   2. Line 984: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	if (res.status !== 200) {
 		throw new Error(`[${res.status}] Error downloading language pack ${languageId}@${version}`);
@@ -1012,6 +1024,16 @@ async function queryVersions(serviceUrl: string, languageId: string): Promise<Ve
 			flags: 0x1
 		})
 	});
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1017: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1017: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	if (res.status !== 200) {
 		throw new Error(`[${res.status}] Error querying for extension: ${languageId}`);
@@ -1026,6 +1048,16 @@ async function getNLS(extensionGalleryServiceUrl: string, resourceUrlTemplate: s
 	const nextMinor: Version = [version[0], version[1] + 1, 0];
 	const compatibleVersions = versions.filter(v => compareVersions(v, nextMinor) < 0);
 	const latestCompatibleVersion = compatibleVersions.at(-1)!; // order is newest to oldest
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1031: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1031: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	if (!latestCompatibleVersion) {
 		throw new Error(`No compatible language pack found for ${languageId} for version ${version}`);
@@ -1093,6 +1125,16 @@ async function windowsMain(policies: Policy[], translations: Translations) {
 }
 
 async function darwinMain(policies: Policy[], translations: Translations) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1098: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1098: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	const bundleIdentifier = product.darwinBundleIdentifier;
 	if (!bundleIdentifier || !product.darwinProfilePayloadUUID || !product.darwinProfileUUID) {
 		throw new Error(`Missing required product information.`);
@@ -1118,6 +1160,16 @@ async function main() {
 	if (platform === 'darwin') {
 		await darwinMain(policies, translations);
 	} else if (platform === 'win32') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1123: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1123: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		await windowsMain(policies, translations);
 	} else {
 		console.error(`Usage: node build/lib/policies <darwin|win32>`);

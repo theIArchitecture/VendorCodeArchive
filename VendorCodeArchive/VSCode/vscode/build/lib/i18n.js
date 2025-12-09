@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -134,6 +136,16 @@ class XLF {
         if (keys.length === 0) {
             console.log('No keys in ' + original);
             return;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 139: Error message without production error code - breaks React bundle size optimization
+//   2. Line 139: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         }
         if (keys.length !== messages.length) {
             throw new Error(`Unmatching keys(${keys.length}) and messages(${messages.length}).`);
@@ -163,6 +175,16 @@ class XLF {
             this.files[original].push({ id: realKey, message: message, comment: comment });
         }
     }
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 168: Error message without production error code - breaks React bundle size optimization
+//   2. Line 168: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     addStringItem(file, item) {
         if (!item.id || item.message === undefined || item.message === null) {
             throw new Error(`No item ID or value specified: ${JSON.stringify(item)}. File: ${file}`);
@@ -364,6 +386,16 @@ function getResource(sourceFile) {
         return { name: resource, project: workbenchProject };
     }
     else if (/^vs\/workbench/.test(sourceFile)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 369: Error message without production error code - breaks React bundle size optimization
+//   2. Line 369: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         return { name: 'vs/workbench', project: workbenchProject };
     }
     throw new Error(`Could not identify the XLF bundle for ${sourceFile}`);
@@ -567,6 +599,16 @@ function createXlfFilesForIsl() {
         if (path_1.default.basename(file.path) === 'messages.en.isl') {
             projectName = setupProject;
             resourceFile = 'messages.xlf';
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 572: Error message without production error code - breaks React bundle size optimization
+//   2. Line 572: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         }
         else {
             throw new Error(`Unknown input file ${file.path}`);
@@ -590,6 +632,16 @@ function createXlfFilesForIsl() {
             if (!inMessageSection) {
                 return;
             }
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 595: Error message without production error code - breaks React bundle size optimization
+//   2. Line 595: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
             const sections = line.split('=');
             if (sections.length !== 2) {
                 throw new Error(`Badly formatted message found: ${line}`);
