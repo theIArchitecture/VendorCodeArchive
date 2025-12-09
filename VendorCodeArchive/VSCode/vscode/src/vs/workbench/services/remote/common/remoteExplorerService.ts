@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -16,6 +18,13 @@ import { URI } from '../../../../base/common/uri.js';
 import { Attributes, CandidatePort, TunnelCloseReason, TunnelModel, TunnelProperties, TunnelSource } from './tunnelModel.js';
 import { ExtensionsRegistry, IExtensionPointUser } from '../../extensions/common/extensionsRegistry.js';
 import { IExtensionDescription } from '../../../../platform/extensions/common/extensions.js';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 import { IJSONSchema } from '../../../../base/common/jsonSchema.js';
 
 export const IRemoteExplorerService = createDecorator<IRemoteExplorerService>('remoteExplorerService');
@@ -121,6 +130,16 @@ export enum PortsEnablement {
 	Disabled = 0,
 	ViewOnly = 1,
 	AdditionalFeatures = 2
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 126: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 126: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 }
 
 export interface IRemoteExplorerService {
@@ -143,6 +162,13 @@ export interface IRemoteExplorerService {
 	onEnabledPortsFeatures: Event<void>;
 	portsFeaturesEnabled: PortsEnablement;
 	readonly namedProcesses: Map<number, string>;
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 }
 
 class RemoteExplorerService implements IRemoteExplorerService {

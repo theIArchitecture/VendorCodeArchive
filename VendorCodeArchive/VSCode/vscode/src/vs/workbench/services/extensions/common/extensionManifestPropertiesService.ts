@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -18,6 +20,17 @@ import { WORKSPACE_TRUST_EXTENSION_SUPPORT } from '../../workspaces/common/works
 import { isBoolean } from '../../../../base/common/types.js';
 import { IWorkspaceTrustEnablementService } from '../../../../platform/workspace/common/workspaceTrust.js';
 import { ILogService } from '../../../../platform/log/common/log.js';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 23: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 25: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 25: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 import { isWeb } from '../../../../base/common/platform.js';
 
 export const IExtensionManifestPropertiesService = createDecorator<IExtensionManifestPropertiesService>('extensionManifestPropertiesService');
