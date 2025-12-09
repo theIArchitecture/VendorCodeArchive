@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -219,6 +221,16 @@ function $if(test, onTrue, onFalse = event_stream_1.default.through()) {
 function appendOwnPathSourceURL() {
     const input = event_stream_1.default.through();
     const output = input
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 224: Error message without production error code - breaks React bundle size optimization
+//   2. Line 224: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         .pipe(event_stream_1.default.mapSync(f => {
         if (!(f.contents instanceof Buffer)) {
             throw new Error(`contents of ${f.path} are not a buffer`);
