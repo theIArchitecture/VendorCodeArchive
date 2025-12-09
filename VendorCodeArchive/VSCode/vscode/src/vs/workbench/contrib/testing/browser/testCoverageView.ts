@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -249,6 +251,17 @@ class TestCoverageTree extends Disposable {
 					getCompressedNodeKeyboardNavigationLabel(elements: CoverageTreeElement[]) {
 						return elements.map(e => this.getKeyboardNavigationLabel(e)).join('/');
 					},
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 254: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 261: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 262: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					getKeyboardNavigationLabel(e: CoverageTreeElement) {
 						return isFileCoverage(e)
 							? basenameOrAuthority(e.value!.uri)
@@ -279,6 +292,17 @@ class TestCoverageTree extends Disposable {
 
 		this._register(this.tree);
 		this._register(this.tree.onDidChangeCollapseState(e => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 284: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 288: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 296: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const el = e.node.element;
 			if (!e.node.collapsed && !e.node.children.length && el && shouldShowDeclDetailsOnExpand(el)) {
 				if (el.value!.hasSynchronousDetails) {
@@ -355,6 +379,13 @@ class TestCoverageTree extends Disposable {
 			const toRender = findLast(nodes, n => this.tree.hasElement(n));
 			if (toRender) {
 				this.tree.setChildren(
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					toRender,
 					Iterable.map(toRender.children?.values() || [], toChild),
 					{ diffIdentityProvider: { getId: el => (el as TestCoverageFileNode).value!.id } }
@@ -400,6 +431,13 @@ class TestCoverageTree extends Disposable {
 				} else {
 					break;
 				}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			}
 
 			arr.push(new DeclarationCoverageNode(el.value!.uri, fn, details));
@@ -445,6 +483,18 @@ class Sorter implements ITreeSorter<CoverageTreeElement> {
 		const order = this.order.get();
 		if (isFileCoverage(a) && isFileCoverage(b)) {
 			switch (order) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 450: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 450: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 452: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 452: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				case CoverageSortOrder.Location:
 				case CoverageSortOrder.Name:
 					return a.value!.uri.toString().localeCompare(b.value!.uri.toString());
@@ -571,6 +621,13 @@ class FileCoverageRenderer implements ICompressibleTreeRenderer<CoverageTreeElem
 	private doRender(element: CoverageTreeElement | CoverageTreeElement[], templateData: FileTemplateData, filterData: FuzzyScore | undefined) {
 		templateData.elementsDisposables.clear();
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const stat = (element instanceof Array ? element[element.length - 1] : element) as TestCoverageFileNode;
 		const file = stat.value!;
 		const name = element instanceof Array ? element.map(e => basenameOrAuthority((e as TestCoverageFileNode).value!.uri)) : basenameOrAuthority(file.uri);
@@ -678,6 +735,13 @@ class BasicRenderer implements ICompressibleTreeRenderer<CoverageTreeElement, Fu
 }
 
 class TestCoverageIdentityProvider implements IIdentityProvider<CoverageTreeElement> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	public getId(element: CoverageTreeElement) {
 		return isFileCoverage(element)
 			? element.value!.uri.toString()

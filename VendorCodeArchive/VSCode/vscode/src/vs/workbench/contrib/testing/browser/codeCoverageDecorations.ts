@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -210,6 +212,16 @@ export class CodeCoverageDecorations extends Disposable implements IEditorContri
 		});
 
 		this.hoveredStore.add(toDisposable(() => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 215: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 215: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this.hoveredSubject = undefined;
 			model.changeDecorations(e => {
 				e.changeDecorationOptions(decoration!.id, decoration!.deco.options);
@@ -266,6 +278,13 @@ export class CodeCoverageDecorations extends Disposable implements IEditorContri
 				const { metadata: { detail, description }, range, primary } = detailRange;
 				if (detail.type === DetailType.Branch) {
 					const hits = detail.detail.branches![detail.branch].count;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					const cls = hits ? CLASS_HIT : CLASS_MISS;
 					// don't bother showing the miss indicator if the condition wasn't executed at all:
 					const showMissIndicator = !hits && range.isEmpty() && detail.detail.branches!.some(b => b.count);

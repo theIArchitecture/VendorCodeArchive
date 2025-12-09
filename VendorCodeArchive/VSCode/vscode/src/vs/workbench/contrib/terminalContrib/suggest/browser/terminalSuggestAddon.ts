@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -666,6 +668,13 @@ export class SuggestAddon extends Disposable implements ITerminalAddon, ISuggest
 			this._model?.forceRefilterAll();
 		}
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	private _getTerminalDimensions(): { width: number; height: number } {
 		const cssCellDims = (this._terminal as any as { _core: IXtermCore })._core._renderService.dimensions.css.cell;
@@ -678,6 +687,13 @@ export class SuggestAddon extends Disposable implements ITerminalAddon, ISuggest
 	private _getCursorPosition(terminal: Terminal): { top: number; left: number; height: number } | undefined {
 		const dimensions = this._getTerminalDimensions();
 		if (!dimensions.width || !dimensions.height) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return undefined;
 		}
 		const xtermBox = this._screen!.getBoundingClientRect();
@@ -691,6 +707,13 @@ export class SuggestAddon extends Disposable implements ITerminalAddon, ISuggest
 	private _getFontInfo(): ISimpleSuggestWidgetFontInfo {
 		if (this._cachedFontInfo) {
 			return this._cachedFontInfo;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}
 
 		const core = (this._terminal as any)._core as IXtermCore;
@@ -777,6 +800,13 @@ export class SuggestAddon extends Disposable implements ITerminalAddon, ISuggest
 					selectionModeSettingId: TerminalSuggestSettingId.SelectionMode,
 				},
 				this._getFontInfo.bind(this),
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				this._onDidFontConfigurationChange.event.bind(this),
 				this._getAdvancedExplainModeDetails.bind(this)
 			)) as any as SimpleSuggestWidget<TerminalCompletionModel, TerminalCompletionItem>;
