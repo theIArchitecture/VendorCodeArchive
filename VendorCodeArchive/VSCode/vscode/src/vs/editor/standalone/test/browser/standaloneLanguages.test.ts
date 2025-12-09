@@ -536,6 +536,21 @@ suite('TokenizationSupport2Adapter', () => {
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (7):
+//   1. Line 539: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 542: Error message without production error code - breaks React bundle size optimization
+//   3. Line 542: Error message without production error code - breaks React bundle size optimization
+//   4. Line 545: Error message without production error code - breaks React bundle size optimization
+//   5. Line 545: Error message without production error code - breaks React bundle size optimization
+//   6. Line 548: Error message without production error code - breaks React bundle size optimization
+//   7. Line 548: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 	class MockThemeService implements IStandaloneThemeService {
 		declare readonly _serviceBrand: undefined;
 		public setTheme(themeName: string): string {
@@ -949,6 +964,18 @@ suite('TokenizationSupport2Adapter', () => {
 //   2. Line 930: Error message without production error code - breaks React bundle size optimization
 //   3. Line 934: Error message without production error code - breaks React bundle size optimization
 //   4. Line 934: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 957: Error message without production error code - breaks React bundle size optimization
+//   2. Line 957: Error message without production error code - breaks React bundle size optimization
+//   3. Line 961: Error message without production error code - breaks React bundle size optimization
+//   4. Line 961: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug

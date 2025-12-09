@@ -402,6 +402,17 @@ suite('McpSync', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 405: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 406: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 407: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.deepStrictEqual(lastSyncUserData!.ref, remoteUserData.ref);
 			assert.deepStrictEqual(lastSyncUserData!.syncData, remoteUserData.syncData);
 			assert.strictEqual(lastSyncUserData!.syncData, null);
@@ -794,6 +805,17 @@ suite('McpSync', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 797: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 797: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 798: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getMcpContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getMcpContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(mcpResource)).value.toString(), content);
@@ -1166,6 +1188,17 @@ suite('McpSync', () => {
 //   1. Line 1141: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 1141: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 1142: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 1174: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1174: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1175: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -1553,6 +1586,17 @@ suite('McpSync', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 1556: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1556: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1557: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getMcpContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getMcpContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(mcpResource)).value.toString(), content);
@@ -1931,6 +1975,17 @@ suite('McpSync', () => {
 //   1. Line 1884: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 1884: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 1885: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 1939: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1939: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1940: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -2325,6 +2380,17 @@ suite('McpSync', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 2328: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2328: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 2329: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getMcpContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getMcpContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(mcpResource)).value.toString(), content);
@@ -2711,6 +2777,17 @@ suite('McpSync', () => {
 //   1. Line 2642: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 2642: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 2643: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 2719: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2719: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 2720: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -3118,6 +3195,17 @@ suite('McpSync', () => {
 //   1. Line 3038: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 3038: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 3039: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 3126: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 3126: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 3127: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -3534,6 +3622,17 @@ suite('McpSync', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 3537: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 3537: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 3538: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getMcpContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getMcpContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(mcpResource)).value.toString(), content);
@@ -3930,6 +4029,17 @@ suite('McpSync', () => {
 //   1. Line 3828: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 3828: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 3829: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 3938: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 3938: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 3939: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -4336,6 +4446,17 @@ suite('McpSync', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 4339: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 4339: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 4340: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getMcpContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getMcpContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(mcpResource)).value.toString(), content);
@@ -4712,6 +4833,17 @@ suite('McpSync', () => {
 //   1. Line 4588: Dangerous type assertion in VSCode source - runtime type error risk
 //   2. Line 4588: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 4589: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 4720: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 4720: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 4721: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -5129,6 +5261,18 @@ suite('McpSync', () => {
 //   2. Line 4994: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 4995: Dangerous type assertion in VSCode source - runtime type error risk
 //   4. Line 4995: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 5137: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 5138: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 5139: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 5139: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
