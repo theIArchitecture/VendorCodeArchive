@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -32,6 +34,40 @@ import { UserDataProfilesMainService } from '../../../userDataProfile/electron-m
 import { IRawFileWorkspaceFolder, IRawUriWorkspaceFolder, WORKSPACE_EXTENSION } from '../../../workspace/common/workspace.js';
 import { IStoredWorkspace, IStoredWorkspaceFolder, IWorkspaceFolderCreationData, rewriteWorkspaceFileForNewLocation } from '../../common/workspaces.js';
 import { WorkspacesManagementMainService } from '../../electron-main/workspacesManagementMainService.js';
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (26):
+//   1. Line 38: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 42: Error message without production error code - breaks React bundle size optimization
+//   3. Line 42: Error message without production error code - breaks React bundle size optimization
+//   4. Line 43: Error message without production error code - breaks React bundle size optimization
+//   5. Line 43: Error message without production error code - breaks React bundle size optimization
+//   6. Line 44: Error message without production error code - breaks React bundle size optimization
+//   7. Line 44: Error message without production error code - breaks React bundle size optimization
+//   8. Line 45: Error message without production error code - breaks React bundle size optimization
+//   9. Line 45: Error message without production error code - breaks React bundle size optimization
+//   10. Line 46: Error message without production error code - breaks React bundle size optimization
+//   11. Line 46: Error message without production error code - breaks React bundle size optimization
+//   12. Line 47: Error message without production error code - breaks React bundle size optimization
+//   13. Line 47: Error message without production error code - breaks React bundle size optimization
+//   14. Line 48: Error message without production error code - breaks React bundle size optimization
+//   15. Line 48: Error message without production error code - breaks React bundle size optimization
+//   16. Line 51: Missing service brand declaration - breaks VSCode's DI system type safety
+//   17. Line 55: Error message without production error code - breaks React bundle size optimization
+//   18. Line 55: Error message without production error code - breaks React bundle size optimization
+//   19. Line 56: Error message without production error code - breaks React bundle size optimization
+//   20. Line 56: Error message without production error code - breaks React bundle size optimization
+//   21. Line 59: Error message without production error code - breaks React bundle size optimization
+//   22. Line 59: Error message without production error code - breaks React bundle size optimization
+//   23. Line 60: Error message without production error code - breaks React bundle size optimization
+//   24. Line 60: Error message without production error code - breaks React bundle size optimization
+//   25. Line 61: Error message without production error code - breaks React bundle size optimization
+//   26. Line 61: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 flakySuite('WorkspacesManagementMainService', () => {
 
@@ -191,6 +227,17 @@ flakySuite('WorkspacesManagementMainService', () => {
 		const newPath = path.join(path.dirname(workspace.configPath.fsPath), `workspace.${WORKSPACE_EXTENSION}`);
 		fs.renameSync(workspace.configPath.fsPath, newPath);
 		workspace.configPath = URI.file(newPath);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 196: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 197: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 198: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const resolved = await service.resolveLocalWorkspace(workspace.configPath);
 		assert.strictEqual(2, resolved!.folders.length);
@@ -209,6 +256,18 @@ flakySuite('WorkspacesManagementMainService', () => {
 	test('resolveWorkspace (support relative paths)', async () => {
 		const workspace = await createUntitledWorkspace([cwd, tmpDir]);
 		fs.writeFileSync(workspace.configPath.fsPath, JSON.stringify({ folders: [{ path: './ticino-playground/lib' }] }));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 214: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 222: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 230: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 238: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const resolved = await service.resolveLocalWorkspace(workspace.configPath);
 		assertEqualURI(resolved!.folders[0].uri, URI.file(path.join(path.dirname(workspace.configPath.fsPath), 'ticino-playground', 'lib')));
