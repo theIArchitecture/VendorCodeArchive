@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -23,6 +25,13 @@ export const ShellExecutionSupportedContext = new RawContextKey<boolean>('shellE
 export const TaskCommandsRegistered = new RawContextKey<boolean>('taskCommandsRegistered', false, nls.localize('tasks.taskCommandsRegistered', "Whether the task commands have been registered yet"));
 export const ProcessExecutionSupportedContext = new RawContextKey<boolean>('processExecutionSupported', false, nls.localize('tasks.processExecutionSupported', "Whether ProcessExecution tasks are supported. Consider using in the when clause of a \'taskDefinition\' contribution."));
 export const ServerlessWebContext = new RawContextKey<boolean>('serverlessWebContext', false, nls.localize('tasks.serverlessWebContext', "True when in the web with no remote authority."));
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const TaskExecutionSupportedContext = ContextKeyExpr.or(ContextKeyExpr.and(ShellExecutionSupportedContext, ProcessExecutionSupportedContext), CustomExecutionSupportedContext);
 
 export const ITaskService = createDecorator<ITaskService>('taskService');
@@ -60,6 +69,16 @@ interface IWorkspaceTaskResult {
 
 export interface IWorkspaceFolderTaskResult extends IWorkspaceTaskResult {
 	workspaceFolder: IWorkspaceFolder;
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 65: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 65: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 }
 
 export interface ITaskService {

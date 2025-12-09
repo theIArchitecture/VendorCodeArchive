@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -28,6 +30,13 @@ import { IConfigurationService } from '../../../../platform/configuration/common
 import { IProgressService, ProgressLocation } from '../../../../platform/progress/common/progress.js';
 import { IChatEditingService, ModifiedFileEntryState } from '../../chat/common/chatEditingService.js';
 import { Emitter, Event } from '../../../../base/common/event.js';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 import { autorun, autorunWithStore } from '../../../../base/common/observable.js';
 
 export const IQuickDiffModelService = createDecorator<IQuickDiffModelService>('IQuickDiffModelService');
@@ -40,6 +49,16 @@ export interface QuickDiffModelOptions {
 const decoratorQuickDiffModelOptions: QuickDiffModelOptions = {
 	algorithm: 'advanced',
 	maxComputationTimeMs: 1000
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 45: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 45: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 };
 
 export interface IQuickDiffModelService {
@@ -66,6 +85,13 @@ class QuickDiffModelReferenceCollection extends ReferenceCollection<QuickDiffMod
 	protected override destroyReferencedObject(_key: string, object: QuickDiffModel): void {
 		object.dispose();
 	}
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 }
 
 export class QuickDiffModelService implements IQuickDiffModelService {
