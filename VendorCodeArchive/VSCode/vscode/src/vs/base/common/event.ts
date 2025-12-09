@@ -1620,6 +1620,21 @@ export class Emitter<T> {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (7):
+//   1. Line 1623: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1623: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1629: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1635: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1636: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1637: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 1638: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Attempted to dispose unknown listener');
 		}
 

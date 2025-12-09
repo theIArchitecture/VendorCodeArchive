@@ -516,6 +516,23 @@ class TestEncryptionService implements IEncryptionService {
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (9):
+//   1. Line 519: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 522: Error message without production error code - breaks React bundle size optimization
+//   3. Line 522: Error message without production error code - breaks React bundle size optimization
+//   4. Line 525: Error message without production error code - breaks React bundle size optimization
+//   5. Line 525: Error message without production error code - breaks React bundle size optimization
+//   6. Line 528: Error message without production error code - breaks React bundle size optimization
+//   7. Line 528: Error message without production error code - breaks React bundle size optimization
+//   8. Line 531: Error message without production error code - breaks React bundle size optimization
+//   9. Line 531: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 class TestNoEncryptionService implements IEncryptionService {
 	_serviceBrand: undefined;
 	setUsePlainTextEncryption(): Promise<void> {
