@@ -39,6 +39,17 @@ import { ILocalizedString } from '../../../../platform/action/common/action.js';
 
 import { createActionViewItem, getFlatActionBarActions } from '../../../../platform/actions/browser/menuEntryActionViewItem.js';
 import { IRemoteExplorerService, TunnelType, ITunnelItem, TUNNEL_VIEW_ID, TunnelEditId } from '../../../services/remote/common/remoteExplorerService.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 42: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 42: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 42: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IClipboardService } from '../../../../platform/clipboard/common/clipboardService.js';
 import { INotificationService, Severity } from '../../../../platform/notification/common/notification.js';
 import { InputBox, MessageType } from '../../../../base/browser/ui/inputbox/inputBox.js';
@@ -1234,6 +1245,16 @@ export namespace ForwardPortAction {
 
 							remote: { host: parsed.host, port: parsed.port },
 							elevateIfNeeded: true
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1237: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1237: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						}).then(tunnelOrError => error(notificationService, tunnelOrError, parsed!.host, parsed!.port));
 					}
 				},
@@ -1270,6 +1291,16 @@ export namespace ForwardPortAction {
 
 					remote: { host: parsed.host, port: parsed.port },
 					elevateIfNeeded: true
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1273: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1273: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				}).then(tunnel => error(notificationService, tunnel, parsed!.host, parsed!.port));
 			}
 		};
