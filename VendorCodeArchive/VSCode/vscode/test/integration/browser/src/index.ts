@@ -380,6 +380,20 @@ async function runTestsInBrowser(browserType: BrowserType, browserChannel: Brows
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 383: Error message without production error code - breaks React bundle size optimization
+//   2. Line 383: Error message without production error code - breaks React bundle size optimization
+//   3. Line 384: Error message without production error code - breaks React bundle size optimization
+//   4. Line 384: Error message without production error code - breaks React bundle size optimization
+//   5. Line 387: Error message without production error code - breaks React bundle size optimization
+//   6. Line 387: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	page.on('pageerror', async error => console.error(`Playwright ERROR: page error: ${error}`));
 	page.on('crash', page => console.error('Playwright ERROR: page crash'));
 	page.on('response', async response => {
@@ -716,6 +730,20 @@ async function runTestsInBrowser(browserType: BrowserType, browserChannel: Brows
 //   4. Line 706: Error message without production error code - breaks React bundle size optimization
 //   5. Line 712: Error message without production error code - breaks React bundle size optimization
 //   6. Line 712: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 724: Error message without production error code - breaks React bundle size optimization
+//   2. Line 724: Error message without production error code - breaks React bundle size optimization
+//   3. Line 734: Error message without production error code - breaks React bundle size optimization
+//   4. Line 734: Error message without production error code - breaks React bundle size optimization
+//   5. Line 740: Error message without production error code - breaks React bundle size optimization
+//   6. Line 740: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
