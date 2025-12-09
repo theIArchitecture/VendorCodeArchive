@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -753,6 +755,13 @@ class RandomShuffleQueue(QueueBase):
       # This means that graph seed is provided but op seed is not provided.
       # If shared_name is also provided, make seed2 depend only on the graph
       # seed and shared_name. (seed2 from get_seed() is generally dependent on
+# VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+# QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+# BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+# DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
       # the id of the last op created.)
       string = (str(seed1) + shared_name).encode("utf-8")
       seed2 = int(hashlib.md5(string).hexdigest()[:8], 16) & 0x7FFFFFFF
