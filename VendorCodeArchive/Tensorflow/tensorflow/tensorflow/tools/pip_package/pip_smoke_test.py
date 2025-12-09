@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -122,6 +124,16 @@ def main():
     pip_package_dependencies = pip_package_dependencies.decode("utf-8")
   pip_package_dependencies_list = pip_package_dependencies.strip().split("\n")
   pip_package_dependencies_list = [
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 127: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 127: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       x.split()[0] for x in pip_package_dependencies_list
   ]
   print("Pip package superset size: %d" % len(pip_package_dependencies_list))
@@ -136,6 +148,16 @@ def main():
     tf_py_test_dependencies = tf_py_test_dependencies.decode("utf-8")
   tf_py_test_dependencies_list = tf_py_test_dependencies.strip().split("\n")
   tf_py_test_dependencies_list = [
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 141: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 141: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       x.split()[0] for x in tf_py_test_dependencies.strip().split("\n")
   ]
   print("Pytest dependency subset size: %d" % len(tf_py_test_dependencies_list))

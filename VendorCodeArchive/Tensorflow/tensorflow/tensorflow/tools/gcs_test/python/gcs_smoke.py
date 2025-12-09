@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -51,6 +53,28 @@ def create_dir_test():
   """Verifies file_io directory handling methods."""
 
   # Test directory creation.
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (14):
+#   1. Line 56: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 56: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 59: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 59: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 64: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 64: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 74: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 74: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 79: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 79: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 86: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 86: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   starttime_ms = int(round(time.time() * 1000))
   dir_name = "%s/tf_gcs_test_%s" % (FLAGS.gcs_bucket_url, starttime_ms)
   print("Creating dir %s" % dir_name)
