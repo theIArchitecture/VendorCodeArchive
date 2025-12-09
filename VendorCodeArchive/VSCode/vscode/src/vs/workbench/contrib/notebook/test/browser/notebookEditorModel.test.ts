@@ -194,6 +194,16 @@ suite('NotebookFileWorkingCopyModel', function () {
 
 						override async notebookToData(notebook: NotebookData) {
 							callCount += 1;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 197: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 198: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							assert.strictEqual(notebook.cells[0].metadata!.foo, 123);
 							assert.strictEqual(notebook.cells[0].metadata!.bar, undefined);
 							return VSBuffer.fromString('');
@@ -228,6 +238,16 @@ suite('NotebookFileWorkingCopyModel', function () {
 
 						override async notebookToData(notebook: NotebookData) {
 							callCount += 1;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 231: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 232: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							assert.strictEqual(notebook.cells[0].metadata!.foo, 123);
 							assert.strictEqual(notebook.cells[0].metadata!.bar, 456);
 							return VSBuffer.fromString('');
@@ -274,6 +294,16 @@ suite('NotebookFileWorkingCopyModel', function () {
 
 					override async notebookToData(notebook: NotebookData) {
 						callCount += 1;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 277: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 278: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						assert.strictEqual(notebook.cells[0].metadata!.foo, 123);
 						assert.strictEqual(notebook.cells[0].metadata!.bar, undefined);
 						return VSBuffer.fromString('');
@@ -354,6 +384,17 @@ suite('NotebookFileWorkingCopyModel', function () {
 
 		resolveSerializer(serializer);
 		await model.getNotebookSerializer();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 357: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 357: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 359: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const result = await model.save?.({} as any, {} as any);
 
 		assert.strictEqual(result!.name, 'savedFile');

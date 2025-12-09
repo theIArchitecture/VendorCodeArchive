@@ -108,6 +108,16 @@ class Target:
 
         epsilon = 0.000002
         if self.weighted_duration > self.Duration() + epsilon:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 111: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 111: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             print("%s > %s?" % (self.weighted_duration, self.Duration()))
         assert self.weighted_duration <= self.Duration() + epsilon
         return self.weighted_duration
@@ -297,6 +307,20 @@ def SummarizeEntries(entries, extra_step_types, elapsed_time_sorting):
 
     # Warn if the sum of weighted times is off by more than half a second.
     if abs(length - weighted_total) > 500:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 300: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 300: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 307: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 307: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 313: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 313: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print(
             "Warning: Possible corrupt ninja log, results may be "
             "untrustworthy. Length = %.3f, weighted total = %.3f"

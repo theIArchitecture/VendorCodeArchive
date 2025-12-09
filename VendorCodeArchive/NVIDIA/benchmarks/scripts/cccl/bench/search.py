@@ -28,6 +28,22 @@ from .storage import Storage
 
 
 def list_benches(algnames):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (8):
+#   1. Line 31: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 31: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 37: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 37: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 37: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 42: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 42: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 42: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("### Benchmarks")
 
     config = Config()
@@ -140,6 +156,16 @@ def run_benches(algnames, sub_space, seeker, args):
 
             seeker(algname, ct_space, rt_values)
         except Exception as e:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 143: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 143: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             print(
                 "#### ERROR exception occurred while running {}: '{}'".format(
                     algname, e
@@ -189,6 +215,18 @@ def search(seeker):
 
 
     config = Config()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 192: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 192: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 193: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 193: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(" ctk: ", config.ctk)
     print("cccl: ", config.cccl)
 

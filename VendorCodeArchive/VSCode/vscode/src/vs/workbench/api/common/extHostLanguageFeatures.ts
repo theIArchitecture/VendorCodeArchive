@@ -293,6 +293,16 @@ class HoverAdapter {
 
 			const previousHover = this._hoverMap.get(previousHoverId);
 			if (!previousHover) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 296: Error message without production error code - breaks React bundle size optimization
+//   2. Line 296: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error(`Hover with id ${previousHoverId} not found`);
 			}
 			const hoverContext: vscode.HoverContext = { verbosityDelta: context.verbosityRequest.verbosityDelta, previousHover };
@@ -1921,6 +1931,16 @@ class CallHierarchyAdapter {
 
 		const item = this._itemFromCache(sessionId, itemId);
 		if (!item) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1924: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1924: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('missing call hierarchy item');
 		}
 		const calls = await this._provider.provideCallHierarchyIncomingCalls(item, token);
@@ -1948,6 +1968,16 @@ class CallHierarchyAdapter {
 
 		const item = this._itemFromCache(sessionId, itemId);
 		if (!item) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1951: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1951: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('missing call hierarchy item');
 		}
 		const calls = await this._provider.provideCallHierarchyOutgoingCalls(item, token);
@@ -2021,6 +2051,16 @@ class TypeHierarchyAdapter {
 
 		const item = this._itemFromCache(sessionId, itemId);
 		if (!item) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2024: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2024: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('missing type hierarchy item');
 		}
 		const supertypes = await this._provider.provideTypeHierarchySupertypes(item, token);
@@ -2045,6 +2085,16 @@ class TypeHierarchyAdapter {
 
 		const item = this._itemFromCache(sessionId, itemId);
 		if (!item) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2048: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2048: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('missing type hierarchy item');
 		}
 		const subtypes = await this._provider.provideTypeHierarchySubtypes(item, token);

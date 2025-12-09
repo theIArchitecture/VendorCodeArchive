@@ -116,6 +116,16 @@ class ConcatBenchmark(test.Benchmark):
 
         _ = session.run(outputs)
       duration = time.time() - start_time
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 119: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 119: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("%s shape:%d/%d var: %r #inputs:%d axis:%d grad:%r - %f secs - %f "
             "GB/sec" % (device, input_shape[0], input_shape[1], variable,
                         num_inputs, axis, grad, duration / num_iters,
@@ -148,6 +158,16 @@ class ConcatBenchmark(test.Benchmark):
 
 
   def benchmark_concat(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 151: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 151: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Forward vs backward concat")
     shapes = [[2000, 8], [8, 2000], [100, 18], [1000, 18], [100, 97],
               [1000, 97], [10000, 1], [1, 10000]]

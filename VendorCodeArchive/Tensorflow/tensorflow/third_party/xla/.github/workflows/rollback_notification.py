@@ -43,6 +43,18 @@ def get_reverted_commit_hashes(message: str) -> list[str]:
 
     A list of SHAs as strings.
   """
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 46: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 46: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 49: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 49: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("Head commit message:", message, sep="\n")
   regex = re.compile(r"reverts ([0-9a-f]{5,40})", flags=re.IGNORECASE)
   commit_hashes = regex.findall(message)
@@ -81,6 +93,18 @@ def get_associated_prs(
 
     if maybe_match := regex.match(message):
       pr_number = maybe_match.group(1)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 84: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 84: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 86: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 86: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print(f"Found PR #{pr_number} associated with commit hash {commit_hash}")
       yield int(pr_number)
   print(f"Didn't find any PRs associated with commit hashes: {commit_hashes}")

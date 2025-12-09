@@ -3000,6 +3000,16 @@ def placeholder(dtype, shape=None, name=None):
 
 
   with tf.compat.v1.Session() as sess:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 3003: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 3006: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(sess.run(y))  # ERROR: will fail because x was not fed.
 
     rand_array = np.random.rand(1024, 1024)
@@ -3120,6 +3130,18 @@ def sparse_placeholder(dtype, shape=None, name=None):
 
 
   with tf.compat.v1.Session() as sess:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 3123: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 3128: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 3131: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 3137: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(sess.run(y))  # ERROR: will fail because x was not fed.
 
     indices = np.array([[3, 2, 0], [4, 5, 1]], dtype=np.int64)
@@ -4362,6 +4384,20 @@ def squeeze_v2(input, axis=None, name=None):
 
   @tf.function
   def func(x):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 4365: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 4365: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 4368: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 4368: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 4370: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 4370: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print('x.shape:', x.shape)
     known_axes = [i for i, size in enumerate(x.shape) if size == 1]
     y = tf.squeeze(x, axis=known_axes)

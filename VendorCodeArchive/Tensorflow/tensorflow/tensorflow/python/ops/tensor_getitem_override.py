@@ -97,6 +97,24 @@ def _slice_helper(tensor, slice_spec, var=None):
 
   # Strip leading and trailing 2 elements
   foo = tf.constant([1,2,3,4,5,6])
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (10):
+#   1. Line 100: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 104: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 107: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 111: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 112: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 113: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 118: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 119: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 120: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 124: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print(foo[2:-2])  # => [3,4]
 
   # Skip every other row and reverse the order of the columns
@@ -313,6 +331,16 @@ def _slice_helper_var(var, slice_spec):
 
   import tensorflow as tf
   A = tf.Variable([[1,2,3], [4,5,6], [7,8,9]], dtype=tf.float32)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 316: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 319: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print(A[:2, :2])  # => [[1,2], [4,5]]
 
   A[:2,:2].assign(22. * tf.ones((2, 2))))
