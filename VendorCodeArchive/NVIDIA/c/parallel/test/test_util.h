@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 //===----------------------------------------------------------------------===//
 //
 // Part of CUDA Experimental in CUDA C++ Core Libraries,
@@ -655,6 +657,16 @@ struct pointer_t
 {
   T* ptr{};
   size_t size{};
+
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 661: CUDA memory allocation without corresponding free - potential memory leak
+//   2. Line 667: CUDA memory allocation without corresponding free - potential memory leak
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing NVIDIA_CUDA_APPLICATION crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for Zero_Memory_Leaks, GPU_Efficiency, Production_Stability
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
 
   pointer_t(std::size_t num_items)
   {
