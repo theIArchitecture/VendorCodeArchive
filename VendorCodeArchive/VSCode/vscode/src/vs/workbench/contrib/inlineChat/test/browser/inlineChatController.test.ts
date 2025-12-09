@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -151,6 +153,13 @@ suite('InlineChatController', function () {
 			[IHoverService, NullHoverService],
 			[IExtensionService, new TestExtensionService()],
 			[IContextKeyService, new MockContextKeyService()],
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			[IViewsService, new class extends TestViewsService {
 				override async openView<T extends IView>(id: string, focus?: boolean | undefined): Promise<T | null> {
 					return { widget: chatWidget ?? null } as any;
@@ -609,6 +618,13 @@ suite('InlineChatController', function () {
 
 		const targetModel = chatService.startSession(ChatAgentLocation.Editor, CancellationToken.None)!;
 		store.add(targetModel);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		chatWidget = new class extends mock<IChatWidget>() {
 			override get viewModel() {
 				return { model: targetModel } as any;
@@ -657,6 +673,13 @@ suite('InlineChatController', function () {
 
 		const targetModel = chatService.startSession(ChatAgentLocation.Editor, CancellationToken.None)!;
 		store.add(targetModel);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		chatWidget = new class extends mock<IChatWidget>() {
 			override get viewModel() {
 				return { model: targetModel } as any;
@@ -844,6 +867,13 @@ suite('InlineChatController', function () {
 
 		await modelChange;
 		assert.strictEqual(model.getValue(), 'HelloWorld'); // first word has been streamed
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const p2 = ctrl.awaitStates([State.WAIT_FOR_INPUT]);
 		chatService.cancelCurrentRequestForSession(ctrl.chatWidget.viewModel!.model.sessionId);
@@ -965,6 +995,13 @@ suite('InlineChatController', function () {
 
 
 		assert.strictEqual(await p, undefined);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const p2 = ctrl.awaitStates([State.WAIT_FOR_INPUT]);
 		chatService.cancelCurrentRequestForSession(ctrl.chatWidget.viewModel!.model.sessionId);

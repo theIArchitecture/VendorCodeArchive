@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -215,6 +217,13 @@ export class CommentNode<T extends IRange | ICellRange> extends Disposable {
 	}
 
 	private updateCommentUserIcon(userIconPath: UriComponents | undefined) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this._avatar.textContent = '';
 		if (userIconPath) {
 			const img = dom.append(this._avatar, dom.$('img.avatar')) as HTMLImageElement;
@@ -323,6 +332,16 @@ export class CommentNode<T extends IRange | ICellRange> extends Disposable {
 		this._register(menu.onDidChange(e => {
 			const { primary, secondary } = this.getToolbarActions(menu);
 			if (!this.toolbar && (primary.length || secondary.length)) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 328: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 336: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				this.createToolbar();
 			}
 			this.toolbar.value!.setActions(primary, secondary);
@@ -490,6 +509,16 @@ export class CommentNode<T extends IRange | ICellRange> extends Disposable {
 		this.pendingEdit = undefined;
 		this._commentEditor.layout({ width: container.clientWidth - 14, height: this._editorHeight });
 		this._commentEditor.focus();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 495: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 496: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		dom.scheduleAtNextAnimationFrame(dom.getWindow(editContainer), () => {
 			this._commentEditor!.layout({ width: container.clientWidth - 14, height: this._editorHeight });
@@ -503,6 +532,13 @@ export class CommentNode<T extends IRange | ICellRange> extends Disposable {
 		};
 		this.commentService.setActiveEditingCommentThread(commentThread);
 		this.commentService.setActiveCommentAndThread(this.owner, { thread: commentThread, comment: this.comment });
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		this._editModeDisposables.add(this._commentEditor.onDidFocusEditorWidget(() => {
 			commentThread.input = {
@@ -562,6 +598,13 @@ export class CommentNode<T extends IRange | ICellRange> extends Disposable {
 			this._editAction.enabled = true;
 		}
 		this._body.classList.remove('hidden');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this._editModeDisposables.clear();
 		this._commentEditor = null;
 		this._commentEditContainer!.remove();
@@ -603,6 +646,13 @@ export class CommentNode<T extends IRange | ICellRange> extends Disposable {
 		this._editModeDisposables.add(menu.onDidChange(() => {
 			this._commentFormActions?.setActions(menu);
 		}));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		this._commentFormActions = new CommentFormActions(this.keybindingService, this._contextKeyService, this.contextMenuService, container, (action: IAction): void => {
 			const text = this._commentEditor!.getValue();
@@ -629,6 +679,13 @@ export class CommentNode<T extends IRange | ICellRange> extends Disposable {
 		this._editModeDisposables.add(menu.onDidChange(() => {
 			this._commentEditorActions?.setActions(menu, true);
 		}));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		this._commentEditorActions = new CommentFormActions(this.keybindingService, this._contextKeyService, this.contextMenuService, container, (action: IAction): void => {
 			const text = this._commentEditor!.getValue();
