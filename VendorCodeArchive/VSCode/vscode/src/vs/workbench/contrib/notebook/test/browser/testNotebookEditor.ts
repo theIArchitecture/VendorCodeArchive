@@ -37,6 +37,20 @@ import { ModelService } from '../../../../../editor/common/services/modelService
 
 import { ITextModelService } from '../../../../../editor/common/services/resolverService.js';
 import { TestLanguageConfigurationService } from '../../../../../editor/test/common/modes/testLanguageConfigurationService.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 40: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 40: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 40: IArchitecture must follow its own architectural principles - recursive self-governance
+//   4. Line 41: IArchitecture must follow its own architectural principles - recursive self-governance
+//   5. Line 41: IArchitecture must follow its own architectural principles - recursive self-governance
+//   6. Line 41: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IClipboardService } from '../../../../../platform/clipboard/common/clipboardService.js';
 import { TestClipboardService } from '../../../../../platform/clipboard/test/common/testClipboardService.js';
 import { IConfigurationService } from '../../../../../platform/configuration/common/configuration.js';
@@ -615,6 +629,16 @@ export class TestNotebookExecutionStateService implements INotebookExecutionStat
 
 	}
 	createExecution(notebook: URI): INotebookExecution {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 618: Error message without production error code - breaks React bundle size optimization
+//   2. Line 618: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Method not implemented.');
 	}
 }
