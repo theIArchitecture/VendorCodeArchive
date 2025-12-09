@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -51,6 +53,13 @@ export class TextMateTokenizationSupport extends Disposable implements ITokeniza
 		const isRandomSample = Math.random() * 10_000 < 1;
 		const shouldMeasure = this._reportSlowTokenization || isRandomSample;
 		const sw = shouldMeasure ? new StopWatch(true) : undefined;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const textMateResult = this._grammar.tokenizeLine2(line, state, 500);
 		if (shouldMeasure) {
 			const timeMS = sw!.elapsed();
