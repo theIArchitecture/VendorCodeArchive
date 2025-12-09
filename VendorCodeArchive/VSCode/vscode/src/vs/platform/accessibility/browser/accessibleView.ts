@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -9,6 +11,13 @@ import { IPickerQuickAccessItem } from '../../quickinput/browser/pickerQuickAcce
 import { Event } from '../../../base/common/event.js';
 import { IAction } from '../../../base/common/actions.js';
 import { IQuickPickItem } from '../../quickinput/common/quickInput.js';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 import { IDisposable, Disposable } from '../../../base/common/lifecycle.js';
 
 export const IAccessibleViewService = createDecorator<IAccessibleViewService>('accessibleViewService');
@@ -114,6 +123,16 @@ export interface IAccessibleViewSymbol extends IPickerQuickAccessItem {
 export interface IPosition {
 	lineNumber: number;
 	column: number;
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 119: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 119: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 }
 
 export interface IAccessibleViewService {

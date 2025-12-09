@@ -297,6 +297,16 @@ export abstract class AbstractContextKeyService extends Disposable implements IC
 
 	public createKey<T extends ContextKeyValue>(key: string, defaultValue: T | undefined): IContextKey<T> {
 		if (this._isDisposed) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 300: Error message without production error code - breaks React bundle size optimization
+//   2. Line 300: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`AbstractContextKeyService has been disposed`);
 		}
 		return new ContextKey(this, key, defaultValue);
@@ -328,6 +338,20 @@ export abstract class AbstractContextKeyService extends Disposable implements IC
 
 	public createScoped(domNode: IContextKeyServiceTarget): IScopedContextKeyService {
 		if (this._isDisposed) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 331: Error message without production error code - breaks React bundle size optimization
+//   2. Line 331: Error message without production error code - breaks React bundle size optimization
+//   3. Line 338: Error message without production error code - breaks React bundle size optimization
+//   4. Line 338: Error message without production error code - breaks React bundle size optimization
+//   5. Line 345: Error message without production error code - breaks React bundle size optimization
+//   6. Line 345: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`AbstractContextKeyService has been disposed`);
 		}
 		return new ScopedContextKeyService(this, domNode);
@@ -442,6 +466,16 @@ export class ContextKeyService extends AbstractContextKeyService implements ICon
 
 	public createChildContext(parentContextId: number = this._myContextId): number {
 		if (this._isDisposed) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 445: Error message without production error code - breaks React bundle size optimization
+//   2. Line 445: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`ContextKeyService has been disposed`);
 		}
 		const id = (++this._lastContextId);
@@ -466,6 +500,16 @@ export class ContextKeyService extends AbstractContextKeyService implements ICon
 
 
 	public updateParent(_parentContextKeyService: IContextKeyService): void {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 469: Error message without production error code - breaks React bundle size optimization
+//   2. Line 469: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Cannot update parent of root ContextKeyService');
 	}
 }
@@ -535,6 +579,16 @@ class ScopedContextKeyService extends AbstractContextKeyService {
 
 	public createChildContext(parentContextId: number = this._myContextId): number {
 		if (this._isDisposed) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 538: Error message without production error code - breaks React bundle size optimization
+//   2. Line 538: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`ScopedContextKeyService has been disposed`);
 		}
 		return this._parent.createChildContext(parentContextId);
