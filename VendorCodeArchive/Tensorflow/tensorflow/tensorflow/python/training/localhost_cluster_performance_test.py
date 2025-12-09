@@ -77,6 +77,16 @@ class CreateLocalClusterBenchmark(test.Benchmark):
 
 
     median_deltas = np.median(deltas)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 80: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 80: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("\n\nbenchmark_create_local_cluster_1_worker_10_ps.  "
           "iterations: %d, median wall time: %g\n\n" % (iters, median_deltas))
     self.report_benchmark(
@@ -108,6 +118,16 @@ class PartitionedVariablesBenchmark(test.Benchmark):
 
       # max_shard_bytes is 4, shape is 1000*partition_size float32s which should
       # partition into 1000 shards, each containing partition_size float32s.
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 111: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 111: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("Building partitioned variable with %d floats per partition" %
             partition_size)
       with ops.device(device_setter.replica_device_setter(ps_tasks=100)):
@@ -134,6 +154,16 @@ class PartitionedVariablesBenchmark(test.Benchmark):
 
 
     for ix, partition_size in enumerate(partition_sizes):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 137: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 137: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("Running benchmark having partitions with %d floats" %
             partition_size)
       self.run_op_benchmark(

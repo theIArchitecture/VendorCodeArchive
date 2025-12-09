@@ -320,6 +320,19 @@ def check_for_lingering_string(lingering_string):
 
 
   if linger_strs:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (5):
+#   1. Line 323: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 323: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 328: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 330: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 330: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("WARNING: Below are potentially instances of lingering old version "
           "string \"%s\" in source directory \"%s/\" that are not "
           "updated by this script. Please check them manually!"
@@ -400,6 +413,20 @@ def main():
 
 
   # Print transition details.
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 403: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 403: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 404: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 404: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 405: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 405: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("Major: %s -> %s" % (old_version.major, new_version.major))
   print("Minor: %s -> %s" % (old_version.minor, new_version.minor))
   print("Patch: %s -> %s\n" % (old_version.patch, new_version.patch))

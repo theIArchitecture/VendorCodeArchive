@@ -106,6 +106,18 @@ def strip_unused_from_files(input_graph, input_binary, output_graph,
 
 
   if not gfile.Exists(input_graph):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 109: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 109: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 113: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 113: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Input graph file '" + input_graph + "' does not exist!")
     return -1
 
@@ -142,4 +154,14 @@ def strip_unused_from_files(input_graph, input_binary, output_graph,
 
     with gfile.GFile(output_graph, "w") as f:
       f.write(text_format.MessageToString(output_graph_def))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 145: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 145: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("%d ops in the final graph." % len(output_graph_def.node))

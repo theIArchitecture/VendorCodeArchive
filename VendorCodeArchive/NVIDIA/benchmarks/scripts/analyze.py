@@ -304,6 +304,17 @@ def iterate_case_dfs(args, callable):
 
 
 def case_top(alpha, N, algname, ct_point_name, case_dfs):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 307: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 307: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 307: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("{}[{}]:".format(algname, ct_point_name))
 
     if alpha < 1.0:
@@ -347,6 +358,16 @@ def case_coverage(algname, ct_point_name, case_dfs):
 
         min_coverage = min(min_coverage, coverage)
     case_str = "{}[{}]".format(algname, ct_point_name)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 350: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 350: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(
         "{} coverage: {} / {} ({:.4f}%)".format(
             case_str, num_covered_variants, num_variants, min_coverage

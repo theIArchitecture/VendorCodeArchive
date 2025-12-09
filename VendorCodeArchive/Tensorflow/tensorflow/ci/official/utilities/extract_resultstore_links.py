@@ -132,6 +132,16 @@ def parse_log(file_path: str,
 
                            else InvokeStatus.tests_failed)
         if verbose:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 135: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 135: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
           print(f'Found failed invocation: {url.rsplit("/")[-1]}\n'
                 f'Log fragment:\n'
                 f'```\n{log_fragment}\n```\n'
@@ -202,6 +212,16 @@ def create_xml_file(result_store_dict: ResultDictType,
 
     invocation_id = url.rsplit('/')[-1]
     if verbose:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 205: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 205: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print(f'Creating testcase for invocation {invocation_id}')
     status = invocation_results['status']
     command = invocation_results.get('command')
@@ -285,6 +305,21 @@ def create_xml_file(result_store_dict: ResultDictType,
 
     tree.write(f)
     if verbose:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (7):
+#   1. Line 288: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 288: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 293: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 295: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 295: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 297: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 297: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print(f'\nWrote XML with Bazel invocation results to {file_path}')
 
 

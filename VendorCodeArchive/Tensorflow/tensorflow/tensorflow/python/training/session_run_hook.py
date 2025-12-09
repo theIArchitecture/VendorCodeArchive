@@ -59,6 +59,24 @@ For more specific needs, you can create custom hooks:
 
     def begin(self):
       # You can add ops to the graph here.
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (10):
+#   1. Line 62: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 62: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 68: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 68: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 75: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 75: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 81: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 81: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print('Starting the session.')
       self.your_tensor = ...
 

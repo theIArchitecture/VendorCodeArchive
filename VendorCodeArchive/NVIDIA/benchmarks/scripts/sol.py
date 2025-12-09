@@ -148,6 +148,18 @@ def print_speedup(medians):
 
     m = medians.groupby(["alg", "hue"], sort=False).mean()
     m["speedup"] = m["bw"] / m.groupby(["alg"])["bw"].transform("first")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 151: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 151: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 152: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("# Speedups:")
     print()
     print(m.drop(columns="bw").sort_values(by="speedup", ascending=False).to_markdown())

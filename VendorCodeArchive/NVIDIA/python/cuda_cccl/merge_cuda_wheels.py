@@ -56,6 +56,32 @@ def run_command(
 
 ) -> subprocess.CompletedProcess:
     """Run a command with error handling."""
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (18):
+#   1. Line 59: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 59: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 61: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 61: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 66: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 66: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 67: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 67: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 68: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 68: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 76: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 76: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 77: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 77: Print statements detected in TensorFlow code - must use logging module for production code
+#   15. Line 86: Print statements detected in TensorFlow code - must use logging module for production code
+#   16. Line 86: Print statements detected in TensorFlow code - must use logging module for production code
+#   17. Line 95: Print statements detected in TensorFlow code - must use logging module for production code
+#   18. Line 95: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(f"Running: {' '.join(cmd)}")
     if cwd:
         print(f"  Working directory: {cwd}")
@@ -154,6 +180,16 @@ def merge_wheels(wheels: List[Path], output_dir: Path) -> Path:
 
                 )
                 # Copy from other wheels
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 157: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 157: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 print(f"  Copying {version_dir} to {base_wheel}")
                 shutil.copytree(wheel_dir / version_dir, base_wheel / version_dir)
 

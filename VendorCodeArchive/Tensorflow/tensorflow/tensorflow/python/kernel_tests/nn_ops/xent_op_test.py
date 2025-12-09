@@ -109,6 +109,16 @@ class XentBenchmark(test.Benchmark):
 
           gb_processed_input = m * n / 1.0e9
           throughput = gb_processed_input / r["wall_time"]
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 112: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 112: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
           print("Benchmark: %s \t wall_time: %0.03g s \t "
                 "Throughput: %0.03g GB/s" % (name, r["wall_time"], throughput))
           sys.stdout.flush()
@@ -146,6 +156,16 @@ class XentBenchmark(test.Benchmark):
 
           gb_processed_input = m * n / 1.0e9
           throughput = gb_processed_input / r["wall_time"]
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 149: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 149: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
           print("Benchmark: %s \t wall_time: %0.03g s \t "
                 "Throughput: %0.03g GB/s" % (name, r["wall_time"], throughput))
           sys.stdout.flush()

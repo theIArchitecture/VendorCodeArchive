@@ -102,6 +102,18 @@ def load_devcontainer_meta(tag):
 
     # Always pull the latest copy of the image
     if os.environ.get("GITHUB_ACTIONS", None) is not None:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 105: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 105: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 110: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 110: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print(f"::group::Pulling Docker image {tag}", file=sys.stderr)
 
     subprocess.run(["docker", "pull", tag], stdout=sys.stderr).check_returncode()

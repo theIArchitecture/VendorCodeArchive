@@ -281,6 +281,16 @@ class DualStorageWrapper:
 
                 self.secondary.store_df(algname, df)
             except Exception as e:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 284: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 284: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 print(f"Warning: Failed to write to secondary storage: {e}")
 
 
@@ -363,6 +373,18 @@ class DualConnectionWrapper:
 
                 self.secondary_conn.commit()
             except Exception as e:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 366: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 366: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 374: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 374: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 print(f"Warning: Failed to commit to secondary storage: {e}")
 
     def rollback(self):
@@ -405,6 +427,20 @@ class Storage:
 
                 try:
                     pg_storage = PostgreSQLStorage(pg_config)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 408: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 408: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 412: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 412: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 413: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 413: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                     print(
                         "Using dual storage: SQLite (primary) + PostgreSQL (secondary)"
                     )

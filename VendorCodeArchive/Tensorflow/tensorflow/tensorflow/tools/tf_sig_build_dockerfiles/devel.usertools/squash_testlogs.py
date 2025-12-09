@@ -51,6 +51,16 @@ try:
 
       ["grep", "-rlE", '(failures|errors)="[1-9]', sys.argv[1]])
 except subprocess.CalledProcessError as e:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 54: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 54: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("No failures found to log!")
   exit(0)
 
@@ -75,6 +85,17 @@ for f in files.strip().splitlines():
 
     r = JUnitXml.fromfile(f)
   except Exception as e:  # pylint: disable=broad-except
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 78: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 78: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 78: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Ignoring this XML parse failure in {}: ".format(f), str(e))
 
   source_file = re.search(r"/(bazel_pip|tensorflow)/.*",

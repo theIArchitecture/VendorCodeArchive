@@ -40,6 +40,20 @@ flags.DEFINE_boolean('myflag', False, '')
 
 def main(argv):
   if (len(argv) != 3):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 43: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 43: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 47: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 47: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 51: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 51: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Length of argv was not 3: ", argv)
     sys.exit(-1)
 

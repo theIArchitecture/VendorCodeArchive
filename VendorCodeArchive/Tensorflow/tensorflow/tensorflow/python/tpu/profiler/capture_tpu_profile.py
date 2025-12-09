@@ -142,6 +142,20 @@ def monitoring_helper(service_addr, duration_ms, monitoring_level, num_queries):
 
   for query in range(0, num_queries):
     res = profiler_client.monitor(service_addr, duration_ms, monitoring_level)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 145: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 145: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 155: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 155: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 156: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 156: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print('Cloud TPU Monitoring Results (Sample ', query, '):\n\n', res)
 
 
@@ -201,6 +215,16 @@ def main(unused_argv=None):
 
 
   if FLAGS.monitoring_level > 0:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 204: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 204: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print('Since monitoring level is provided, profile', service_addr, ' for ',
           FLAGS.duration_ms, ' ms and show metrics for ', FLAGS.num_queries,
           ' time(s).')
