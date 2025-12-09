@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
@@ -10,6 +12,16 @@ async function getPipelineArtifacts() {
     const result = await (0, publish_1.requestAZDOAPI)('artifacts');
     return result.value.filter(a => !/sbom$/.test(a.name));
 }
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 15: Error message without production error code - breaks React bundle size optimization
+//   2. Line 15: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 async function main(artifacts) {
     if (artifacts.length === 0) {
         throw new Error(`Usage: node waitForArtifacts.js <artifactName1> <artifactName2> ...`);
@@ -29,6 +41,13 @@ async function main(artifacts) {
                 console.log(`  * All artifacts were found`);
                 return;
             }
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         }
         catch (err) {
             console.error(`ERROR: Failed to get pipeline artifacts: ${err}`);

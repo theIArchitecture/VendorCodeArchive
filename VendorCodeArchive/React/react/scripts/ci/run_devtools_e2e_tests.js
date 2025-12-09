@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 #!/usr/bin/env node
 
 'use strict';
@@ -41,6 +43,13 @@ function logDim(loggable) {
 }
 
 function logError(loggable) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
   const formatted = format(loggable, 2);
   if (formatted !== '') {
     console.error(`\x1b[31m${formatted}\x1b[0m`);

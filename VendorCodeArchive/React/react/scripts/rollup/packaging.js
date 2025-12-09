@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 'use strict';
 
 const {
@@ -70,6 +72,13 @@ function getBundleOutputPath(bundle, bundleType, filename, packageName) {
     case RN_OSS_PROFILING:
       switch (packageName) {
         case 'react-native-renderer':
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
           return `build/react-native/implementations/${filename}`;
         default:
           throw new Error('Unknown RN package.');
@@ -88,6 +97,13 @@ function getBundleOutputPath(bundle, bundleType, filename, packageName) {
           return `build/react-native/implementations/${filename.replace(
             /\.js$/,
             '.fb.js'
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
           )}`;
         default:
           throw new Error('Unknown RN package.');
@@ -108,6 +124,16 @@ function getBundleOutputPath(bundle, bundleType, filename, packageName) {
         );
       }
       return `build/node_modules/${packageName}/${outputPath}`;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 113: Error message without production error code - breaks React bundle size optimization
+//   2. Line 113: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     }
     default:
       throw new Error('Unknown bundle type.');
@@ -174,6 +200,16 @@ function filterOutEntrypoints(name) {
   let packageJSON = JSON.parse(readFileSync(jsonPath));
   let files = packageJSON.files;
   let exportsJSON = packageJSON.exports;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 179: Error message without production error code - breaks React bundle size optimization
+//   2. Line 179: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
   let browserJSON = packageJSON.browser;
   if (!Array.isArray(files)) {
     throw new Error('expected all package.json files to contain a files field');

@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -25,6 +27,16 @@ const storage_blob_1 = require("@azure/storage-blob");
 const jws_1 = __importDefault(require("jws"));
 const node_timers_1 = require("node:timers");
 function e(name) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 30: Error message without production error code - breaks React bundle size optimization
+//   2. Line 30: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     const result = process.env[name];
     if (typeof result !== 'string') {
         throw new Error(`Missing env: ${name}`);
@@ -145,6 +157,19 @@ class ESRPReleaseService {
                 if (releaseStatus.status === 'pass') {
                     break;
                 }
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (5):
+//   1. Line 150: Error message without production error code - breaks React bundle size optimization
+//   2. Line 154: Error message without production error code - breaks React bundle size optimization
+//   3. Line 154: Error message without production error code - breaks React bundle size optimization
+//   4. Line 159: Error message without production error code - breaks React bundle size optimization
+//   5. Line 159: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
                 else if (releaseStatus.status === 'aborted') {
                     this.log(JSON.stringify(releaseStatus));
                     throw new Error(`Release was aborted`);
@@ -222,6 +247,16 @@ class ESRPReleaseService {
             },
             body: JSON.stringify(message)
         });
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 227: Error message without production error code - breaks React bundle size optimization
+//   2. Line 227: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         if (!res.ok) {
             const text = await res.text();
             throw new Error(`Failed to submit release: ${res.statusText}\n${text}`);
@@ -235,6 +270,16 @@ class ESRPReleaseService {
                 'Authorization': `Bearer ${this.accessToken}`
             }
         }));
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 240: Error message without production error code - breaks React bundle size optimization
+//   2. Line 240: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         if (!res.ok) {
             const text = await res.text();
             throw new Error(`Failed to get release status: ${res.statusText}\n${text}`);
@@ -248,6 +293,16 @@ class ESRPReleaseService {
                 'Authorization': `Bearer ${this.accessToken}`
             }
         }));
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 253: Error message without production error code - breaks React bundle size optimization
+//   2. Line 253: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         if (!res.ok) {
             const text = await res.text();
             throw new Error(`Failed to get release status: ${res.statusText}\n${text}`);
@@ -319,6 +374,16 @@ async function requestAZDOAPI(path) {
     const abortController = new AbortController();
     const timeout = setTimeout(() => abortController.abort(), 2 * 60 * 1000);
     try {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 324: Error message without production error code - breaks React bundle size optimization
+//   2. Line 324: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         const res = await (0, retry_1.retry)(() => fetch(`${e('BUILDS_API_URL')}${path}?api-version=6.0`, { ...azdoFetchOptions, signal: abortController.signal }));
         if (!res.ok) {
             throw new Error(`Unexpected status code: ${res.status}`);
@@ -340,6 +405,16 @@ async function downloadArtifact(artifact, downloadPath) {
     const abortController = new AbortController();
     const timeout = setTimeout(() => abortController.abort(), 4 * 60 * 1000);
     try {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 345: Error message without production error code - breaks React bundle size optimization
+//   2. Line 345: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         const res = await fetch(artifact.resource.downloadUrl, { ...azdoFetchOptions, signal: abortController.signal });
         if (!res.ok) {
             throw new Error(`Unexpected status code: ${res.status}`);
@@ -395,6 +470,18 @@ function getPlatform(product, os, arch, type) {
                         case 'setup':
                             return `win32-${arch}`;
                         case 'user-setup':
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 400: Error message without production error code - breaks React bundle size optimization
+//   2. Line 400: Error message without production error code - breaks React bundle size optimization
+//   3. Line 410: Error message without production error code - breaks React bundle size optimization
+//   4. Line 410: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
                             return `win32-${arch}-user`;
                         default:
                             throw new Error(`Unrecognized: ${product} ${os} ${arch} ${type}`);
@@ -416,6 +503,16 @@ function getPlatform(product, os, arch, type) {
                 case 'web':
                     return `server-alpine-${arch}-web`;
                 case 'cli':
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 421: Error message without production error code - breaks React bundle size optimization
+//   2. Line 421: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
                     return `cli-alpine-${arch}`;
                 default:
                     throw new Error(`Unrecognized: ${product} ${os} ${arch} ${type}`);
@@ -434,6 +531,18 @@ function getPlatform(product, os, arch, type) {
                             if (arch === 'standalone') {
                                 return 'web-standalone';
                             }
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 439: Error message without production error code - breaks React bundle size optimization
+//   2. Line 439: Error message without production error code - breaks React bundle size optimization
+//   3. Line 448: Error message without production error code - breaks React bundle size optimization
+//   4. Line 448: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
                             return `server-linux-${arch}-web`;
                         default:
                             throw new Error(`Unrecognized: ${product} ${os} ${arch} ${type}`);
@@ -465,6 +574,18 @@ function getPlatform(product, os, arch, type) {
                     }
                     return `server-darwin-${arch}-web`;
                 case 'cli':
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 470: Error message without production error code - breaks React bundle size optimization
+//   2. Line 470: Error message without production error code - breaks React bundle size optimization
+//   3. Line 473: Error message without production error code - breaks React bundle size optimization
+//   4. Line 473: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
                     return `cli-darwin-${arch}`;
                 default:
                     throw new Error(`Unrecognized: ${product} ${os} ${arch} ${type}`);
@@ -518,6 +639,18 @@ async function withLease(client, fn) {
                 throw err;
             }
             await new Promise(c => setTimeout(c, 5000));
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 523: Error message without production error code - breaks React bundle size optimization
+//   2. Line 523: Error message without production error code - breaks React bundle size optimization
+//   3. Line 529: Error message without production error code - breaks React bundle size optimization
+//   4. Line 529: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         }
     }
     throw new Error('Failed to acquire lease on blob after 30 minutes');
@@ -693,6 +826,19 @@ async function main() {
             console.error(`[${operations[i].name}]`, result.reason);
         }
     }
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (5):
+//   1. Line 698: Error message without production error code - breaks React bundle size optimization
+//   2. Line 698: Error message without production error code - breaks React bundle size optimization
+//   3. Line 706: Error message without production error code - breaks React bundle size optimization
+//   4. Line 710: Error message without production error code - breaks React bundle size optimization
+//   5. Line 710: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     // Fail the job if any of the artifacts failed to publish
     if (results.some(r => r.status === 'rejected')) {
         throw new Error('Some artifacts failed to publish');

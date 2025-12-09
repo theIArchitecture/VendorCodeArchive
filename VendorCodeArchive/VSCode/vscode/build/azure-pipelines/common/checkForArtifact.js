@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /*---------------------------------------------------------------------------------------------
@@ -10,6 +12,17 @@ async function getPipelineArtifacts() {
     const result = await (0, publish_1.requestAZDOAPI)('artifacts');
     return result.value.filter(a => !/sbom$/.test(a.name));
 }
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (3):
+//   1. Line 15: Error message without production error code - breaks React bundle size optimization
+//   2. Line 15: Error message without production error code - breaks React bundle size optimization
+//   3. Line 23: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 async function main([variableName, artifactName]) {
     if (!variableName || !artifactName) {
         throw new Error(`Usage: node checkForArtifact.js <variableName> <artifactName>`);
