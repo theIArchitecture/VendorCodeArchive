@@ -933,6 +933,17 @@ abstract class AbstractElementRenderer extends Disposable {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 936: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 936: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 942: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const index = this.notebookEditor.textModel!.cells.indexOf(this.cell.modified!.textModel);
 
 			if (index < 0) {
@@ -1280,6 +1291,20 @@ abstract class AbstractElementRenderer extends Disposable {
 //   4. Line 1267: Dangerous type assertion in VSCode source - runtime type error risk
 //   5. Line 1269: Dangerous type assertion in VSCode source - runtime type error risk
 //   6. Line 1270: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 1288: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1289: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1291: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1292: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1294: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1295: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -1849,6 +1874,19 @@ abstract class SingleSideDiffElement extends AbstractElementRenderer {
 //   3. Line 1826: Dangerous type assertion in VSCode source - runtime type error risk
 //   4. Line 1829: Dangerous type assertion in VSCode source - runtime type error risk
 //   5. Line 1830: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 1857: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1861: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1864: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1867: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1868: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -2972,6 +3010,20 @@ export class ModifiedElement extends AbstractElementRenderer {
 //   4. Line 2931: Dangerous type assertion in VSCode source - runtime type error risk
 //   5. Line 2935: Dangerous type assertion in VSCode source - runtime type error risk
 //   6. Line 2938: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 2980: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2981: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 2982: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 2983: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 2987: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 2990: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers

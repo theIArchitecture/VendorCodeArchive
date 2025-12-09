@@ -758,6 +758,38 @@ suite('Configuration Resolver Service', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (24):
+//   1. Line 761: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 763: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 768: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 772: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 777: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 779: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 784: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 788: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 792: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 796: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 800: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 804: Dangerous type assertion in VSCode source - runtime type error risk
+//   13. Line 809: Dangerous type assertion in VSCode source - runtime type error risk
+//   14. Line 811: Dangerous type assertion in VSCode source - runtime type error risk
+//   15. Line 816: Dangerous type assertion in VSCode source - runtime type error risk
+//   16. Line 820: Dangerous type assertion in VSCode source - runtime type error risk
+//   17. Line 825: Dangerous type assertion in VSCode source - runtime type error risk
+//   18. Line 827: Dangerous type assertion in VSCode source - runtime type error risk
+//   19. Line 833: Dangerous type assertion in VSCode source - runtime type error risk
+//   20. Line 835: Dangerous type assertion in VSCode source - runtime type error risk
+//   21. Line 841: Dangerous type assertion in VSCode source - runtime type error risk
+//   22. Line 843: Dangerous type assertion in VSCode source - runtime type error risk
+//   23. Line 848: Dangerous type assertion in VSCode source - runtime type error risk
+//   24. Line 855: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder:workspaceLocation} xyz'), 'abc \\VSCode\\workspaceLocation xyz');
 		} else {
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder:workspaceLocation} xyz'), 'abc /VSCode/workspaceLocation xyz');
@@ -2011,6 +2043,34 @@ class MockCommandService implements ICommandService {
 //   18. Line 1991: Error message without production error code - breaks React bundle size optimization
 //   19. Line 1995: Error message without production error code - breaks React bundle size optimization
 //   20. Line 1995: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (20):
+//   1. Line 2019: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 2025: Error message without production error code - breaks React bundle size optimization
+//   3. Line 2025: Error message without production error code - breaks React bundle size optimization
+//   4. Line 2028: Error message without production error code - breaks React bundle size optimization
+//   5. Line 2028: Error message without production error code - breaks React bundle size optimization
+//   6. Line 2031: Error message without production error code - breaks React bundle size optimization
+//   7. Line 2031: Error message without production error code - breaks React bundle size optimization
+//   8. Line 2034: Error message without production error code - breaks React bundle size optimization
+//   9. Line 2034: Error message without production error code - breaks React bundle size optimization
+//   10. Line 2037: Error message without production error code - breaks React bundle size optimization
+//   11. Line 2037: Error message without production error code - breaks React bundle size optimization
+//   12. Line 2040: Error message without production error code - breaks React bundle size optimization
+//   13. Line 2040: Error message without production error code - breaks React bundle size optimization
+//   14. Line 2043: Error message without production error code - breaks React bundle size optimization
+//   15. Line 2043: Error message without production error code - breaks React bundle size optimization
+//   16. Line 2048: Missing service brand declaration - breaks VSCode's DI system type safety
+//   17. Line 2051: Error message without production error code - breaks React bundle size optimization
+//   18. Line 2051: Error message without production error code - breaks React bundle size optimization
+//   19. Line 2055: Error message without production error code - breaks React bundle size optimization
+//   20. Line 2055: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers

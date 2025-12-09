@@ -281,6 +281,20 @@
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 284: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 285: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 288: Error message without production error code - breaks React bundle size optimization
+//   4. Line 288: Error message without production error code - breaks React bundle size optimization
+//   5. Line 293: Error message without production error code - breaks React bundle size optimization
+//   6. Line 293: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	const define: IGlobalDefine = (globalThis as any).define;
 	const require: { getConfig?(): any } | undefined = (globalThis as any).require;
 

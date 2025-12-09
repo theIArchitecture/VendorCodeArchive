@@ -958,6 +958,65 @@ import { ChatAgentLocation } from '../../common/constants.js';
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (51):
+//   1. Line 961: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 971: Error message without production error code - breaks React bundle size optimization
+//   3. Line 971: Error message without production error code - breaks React bundle size optimization
+//   4. Line 974: Error message without production error code - breaks React bundle size optimization
+//   5. Line 974: Error message without production error code - breaks React bundle size optimization
+//   6. Line 977: Error message without production error code - breaks React bundle size optimization
+//   7. Line 977: Error message without production error code - breaks React bundle size optimization
+//   8. Line 980: Error message without production error code - breaks React bundle size optimization
+//   9. Line 980: Error message without production error code - breaks React bundle size optimization
+//   10. Line 990: Error message without production error code - breaks React bundle size optimization
+//   11. Line 990: Error message without production error code - breaks React bundle size optimization
+//   12. Line 993: Error message without production error code - breaks React bundle size optimization
+//   13. Line 993: Error message without production error code - breaks React bundle size optimization
+//   14. Line 996: Error message without production error code - breaks React bundle size optimization
+//   15. Line 996: Error message without production error code - breaks React bundle size optimization
+//   16. Line 1002: Error message without production error code - breaks React bundle size optimization
+//   17. Line 1002: Error message without production error code - breaks React bundle size optimization
+//   18. Line 1005: Error message without production error code - breaks React bundle size optimization
+//   19. Line 1005: Error message without production error code - breaks React bundle size optimization
+//   20. Line 1008: Error message without production error code - breaks React bundle size optimization
+//   21. Line 1008: Error message without production error code - breaks React bundle size optimization
+//   22. Line 1011: Error message without production error code - breaks React bundle size optimization
+//   23. Line 1011: Error message without production error code - breaks React bundle size optimization
+//   24. Line 1014: Error message without production error code - breaks React bundle size optimization
+//   25. Line 1014: Error message without production error code - breaks React bundle size optimization
+//   26. Line 1017: Error message without production error code - breaks React bundle size optimization
+//   27. Line 1017: Error message without production error code - breaks React bundle size optimization
+//   28. Line 1020: Error message without production error code - breaks React bundle size optimization
+//   29. Line 1020: Error message without production error code - breaks React bundle size optimization
+//   30. Line 1023: Error message without production error code - breaks React bundle size optimization
+//   31. Line 1023: Error message without production error code - breaks React bundle size optimization
+//   32. Line 1026: Error message without production error code - breaks React bundle size optimization
+//   33. Line 1026: Error message without production error code - breaks React bundle size optimization
+//   34. Line 1029: Error message without production error code - breaks React bundle size optimization
+//   35. Line 1029: Error message without production error code - breaks React bundle size optimization
+//   36. Line 1034: Error message without production error code - breaks React bundle size optimization
+//   37. Line 1034: Error message without production error code - breaks React bundle size optimization
+//   38. Line 1039: Error message without production error code - breaks React bundle size optimization
+//   39. Line 1039: Error message without production error code - breaks React bundle size optimization
+//   40. Line 1043: Error message without production error code - breaks React bundle size optimization
+//   41. Line 1043: Error message without production error code - breaks React bundle size optimization
+//   42. Line 1047: Error message without production error code - breaks React bundle size optimization
+//   43. Line 1047: Error message without production error code - breaks React bundle size optimization
+//   44. Line 1051: Error message without production error code - breaks React bundle size optimization
+//   45. Line 1051: Error message without production error code - breaks React bundle size optimization
+//   46. Line 1055: Error message without production error code - breaks React bundle size optimization
+//   47. Line 1055: Error message without production error code - breaks React bundle size optimization
+//   48. Line 1059: Error message without production error code - breaks React bundle size optimization
+//   49. Line 1059: Error message without production error code - breaks React bundle size optimization
+//   50. Line 1063: Error message without production error code - breaks React bundle size optimization
+//   51. Line 1063: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export class MockChatService implements IChatService {
 	requestInProgressObs = observableValue('name', false);
 	edits2Enabled: boolean = false;

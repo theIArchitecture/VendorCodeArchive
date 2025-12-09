@@ -352,6 +352,19 @@ class ViewWelcomeController {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 355: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 356: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 357: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 358: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 366: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this.element!.style.height = `${height}px`;
 		this.element!.style.width = `${width}px`;
 		this.element!.classList.toggle('wide', width > 640);
