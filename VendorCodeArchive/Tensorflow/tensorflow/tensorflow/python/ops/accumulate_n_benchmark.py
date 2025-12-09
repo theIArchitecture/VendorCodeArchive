@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -108,6 +110,16 @@ class AccumulateNBenchmark(test.Benchmark):
         start = time.time()
         for _ in range(repeats):
           op.run()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 113: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 113: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         duration = time.time() - start
         args = format_args + (tag, duration)
         print(self._template.format(*args))
@@ -133,6 +145,13 @@ class AccumulateNBenchmark(test.Benchmark):
                   ("Unordered", self._GenerateUnorderedInputs),
                   ("Ordered", self._GenerateOrderedInputs),
                   ("Reversed", self._GenerateReversedInputs))
+
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
 
     print(self._template.format("", "Size", "#Inputs", "#Repeat", "Method",
                                 "Duration"))
