@@ -559,6 +559,23 @@ suite('NativeExtensionsScanerService Test', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (9):
+//   1. Line 562: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 563: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 564: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 565: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 566: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 567: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 568: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 569: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 570: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(actual!.identifier, { id: 'pub.name' });
 		assert.deepStrictEqual(actual!.location.toString(), extensionLocation.toString());
 		assert.deepStrictEqual(actual!.isBuiltin, false);
@@ -1172,6 +1189,22 @@ suite('NativeExtensionsScanerService Test', () => {
 //   6. Line 1152: Dangerous type assertion in VSCode source - runtime type error risk
 //   7. Line 1153: Dangerous type assertion in VSCode source - runtime type error risk
 //   8. Line 1154: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 1180: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1181: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1182: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1183: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1184: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1185: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 1186: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 1187: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
