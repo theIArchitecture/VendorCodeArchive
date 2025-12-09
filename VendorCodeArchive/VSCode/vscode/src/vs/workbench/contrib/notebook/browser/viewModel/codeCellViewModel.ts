@@ -75,6 +75,16 @@ export class CodeCellViewModel extends BaseCellViewModel implements ICellViewMod
 
 
 	get editorHeight() {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 78: Error message without production error code - breaks React bundle size optimization
+//   2. Line 78: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('editorHeight is write-only');
 	}
 
@@ -474,6 +484,16 @@ export class CodeCellViewModel extends BaseCellViewModel implements ICellViewMod
 
 	updateOutputHeight(index: number, height: number, source?: string) {
 		if (index >= this._outputCollection.length) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 477: Error message without production error code - breaks React bundle size optimization
+//   2. Line 477: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Output index out of range!');
 		}
 
@@ -504,6 +524,22 @@ export class CodeCellViewModel extends BaseCellViewModel implements ICellViewMod
 
 			const errorMessage = `Failed to update output height for cell ${this.handle}, output ${index}. `
 				+ `this.outputCollection.length: ${this._outputCollection.length}, this._outputViewModels.length: ${this._outputViewModels.length}`;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (8):
+//   1. Line 507: Error message without production error code - breaks React bundle size optimization
+//   2. Line 507: Error message without production error code - breaks React bundle size optimization
+//   3. Line 515: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 524: Error message without production error code - breaks React bundle size optimization
+//   5. Line 524: Error message without production error code - breaks React bundle size optimization
+//   6. Line 527: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 537: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 544: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`${errorMessage}.\n Error: ${e.message}`);
 		}
 

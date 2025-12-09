@@ -97,6 +97,17 @@ suite('ExtHostTypes', function () {
 
 
 		const pos = new types.Position(0, 0);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 100: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 101: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 102: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.throws(() => (pos as any).line = -1);
 		assert.throws(() => (pos as any).character = -1);
 		assert.throws(() => (pos as any).line = 12);
@@ -226,6 +237,16 @@ suite('ExtHostTypes', function () {
 
 
 		const range = new types.Range(1, 0, 0, 0);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 229: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 230: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.throws(() => { (range as any).start = null; });
 		assert.throws(() => { (range as any).start = new types.Position(0, 3); });
 	});
@@ -443,6 +464,16 @@ suite('ExtHostTypes', function () {
 
 
 		assertType(second._type === types.FileEditType.File);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 446: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 447: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(second.from!.toString(), 'foo:a');
 		assert.strictEqual(second.to!.toString(), 'foo:b');
 

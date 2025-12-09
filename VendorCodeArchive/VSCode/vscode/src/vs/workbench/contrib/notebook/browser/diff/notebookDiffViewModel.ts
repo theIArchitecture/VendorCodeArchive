@@ -206,6 +206,32 @@ export class NotebookDiffViewModel extends Disposable implements INotebookDiffVi
 
 			switch (item.type) {
 				case 'delete': {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (18):
+//   1. Line 209: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 210: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 212: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 217: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 218: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 220: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 227: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 227: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 228: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 229: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 231: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 232: Dangerous type assertion in VSCode source - runtime type error risk
+//   13. Line 238: Dangerous type assertion in VSCode source - runtime type error risk
+//   14. Line 238: Dangerous type assertion in VSCode source - runtime type error risk
+//   15. Line 239: Dangerous type assertion in VSCode source - runtime type error risk
+//   16. Line 240: Dangerous type assertion in VSCode source - runtime type error risk
+//   17. Line 242: Dangerous type assertion in VSCode source - runtime type error risk
+//   18. Line 243: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					this.diffEditorItems.push(new NotebookMultiDiffEditorCellItem(item.original!.uri, undefined, item.type, item.type));
 					const originalMetadata = CellUri.generateCellPropertyUri(originalSourceUri, item.original!.handle, Schemas.vscodeNotebookCellMetadata);
 					this.diffEditorItems.push(new NotebookMultiDiffEditorMetadataItem(originalMetadata, undefined, item.type, item.type));
