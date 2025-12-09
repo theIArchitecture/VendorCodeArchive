@@ -130,6 +130,24 @@ const recordedTestCases: RecordedTestCase[] = [
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (10):
+//   1. Line 133: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 140: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 147: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 154: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 161: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 168: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 175: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 179: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 187: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 188: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		events: rich_windows11_pwsh7_echo_3_times as any as RecordedSessionEvent[],
 		finalAssertions: (commandDetection: ICommandDetectionCapability | undefined) => {
 			assertCommandDetectionState(commandDetection, ['echo a', 'echo b', 'echo c'], '|');

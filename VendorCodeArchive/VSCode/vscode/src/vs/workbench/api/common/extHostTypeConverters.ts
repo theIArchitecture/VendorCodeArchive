@@ -3266,6 +3266,22 @@ export namespace ChatAgentRequest {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 3269: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 3270: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 3271: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 3272: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 3273: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 3274: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 3275: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 3281: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			delete (requestWithAllProps as any).id;
 			delete (requestWithAllProps as any).attempt;
 			delete (requestWithAllProps as any).enableCommandDetection;
