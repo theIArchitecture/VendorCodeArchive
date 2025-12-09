@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -2986,6 +2988,16 @@ def placeholder(dtype, shape=None, name=None):
   ```python
   x = tf.compat.v1.placeholder(tf.float32, shape=(1024, 1024))
   y = tf.matmul(x, x)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 2991: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 2994: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   with tf.compat.v1.Session() as sess:
     print(sess.run(y))  # ERROR: will fail because x was not fed.
@@ -3094,6 +3106,18 @@ def sparse_placeholder(dtype, shape=None, name=None):
   ```python
   x = tf.compat.v1.sparse.placeholder(tf.float32)
   y = tf.sparse.reduce_sum(x)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 3099: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 3104: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 3107: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 3113: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   with tf.compat.v1.Session() as sess:
     print(sess.run(y))  # ERROR: will fail because x was not fed.
@@ -4322,6 +4346,20 @@ def squeeze_v2(input, axis=None, name=None):
   to get the expected result, as illustrated in the following example:
 
   ```python
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 4327: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 4327: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 4330: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 4330: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 4332: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 4332: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   @tf.function
   def func(x):
     print('x.shape:', x.shape)

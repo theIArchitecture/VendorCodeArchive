@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -257,6 +259,16 @@ class EmbeddingLookupTest(test.TestCase):
       vocab_size = 4
       p, params, feed_dict = _EmbeddingParams(num_shards, vocab_size)
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 262: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 262: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       id_vals = np.array([0, 0])
       ids = constant_op.constant(list(id_vals), dtype=dtypes.int32)
       print("Construct ids", ids.get_shape())
@@ -300,6 +312,16 @@ class EmbeddingLookupTest(test.TestCase):
       p, p_variable, params, feed_dict = _EmbeddingParamsAsPartitionedVariable(
           num_shards, vocab_size)
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 305: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 305: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       id_vals = np.array([0, 0])
       ids = constant_op.constant(list(id_vals), dtype=dtypes.int32)
       print("Construct ids", ids.get_shape())
@@ -322,6 +344,17 @@ class EmbeddingLookupTest(test.TestCase):
       vocab_size = 4
       p, p_variable, params, _ = _EmbeddingParamsAsPartitionedVariable(
           num_shards, vocab_size, use_resource=True)
+
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 328: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 328: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 335: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
 
       id_vals = np.array([0, 0])
       ids = constant_op.constant(list(id_vals), dtype=dtypes.int32)

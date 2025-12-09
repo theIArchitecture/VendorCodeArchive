@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -148,6 +150,19 @@ class FractionalAvgTest(test.TestCase):
     num_rows = 6
     num_cols = 6
     tensor_shape = (1, num_rows, num_cols, 1)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (5):
+#   1. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 154: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 154: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 154: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     pseudo_random = False
     for overlapping in True, False:
       print("-" * 70)
@@ -163,6 +178,22 @@ class FractionalAvgTest(test.TestCase):
             overlapping,
             seed=self._SEED)
         tensor_output, row_seq, col_seq = self.evaluate([p, r, c])
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (8):
+#   1. Line 168: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 168: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 169: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 170: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 170: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 171: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 172: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 172: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         expected_result = self._GetExpectedFractionalAvgPoolResult(
             rand_mat.astype(np.float32), row_seq, col_seq, overlapping)
         print("row sequence:")
@@ -178,6 +209,26 @@ class FractionalAvgTest(test.TestCase):
             if j in col_seq:
               row_to_print.append("|")
             row_to_print.append(str(rand_mat[0, i, j, 0]))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (12):
+#   1. Line 183: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 183: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 185: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 185: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 186: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 186: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 188: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 189: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 189: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 190: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
           row_to_print.append("|")
           if i in row_seq:
             print("-" * 2 * len(row_to_print))

@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -269,6 +271,20 @@ def _s2d_add_vs_sparse_add(sparsity, n, m, num_iters=50):
 
 
 class SparseAddBenchmark(test.Benchmark):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 274: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 274: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 276: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 276: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 282: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 282: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   def benchmarkSparseAddDense(self):
 

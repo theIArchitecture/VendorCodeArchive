@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -959,6 +961,16 @@ class TerminateOnNaN(Callback):
     logs = logs or {}
     loss = logs.get('loss')
     if loss is not None:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 964: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 964: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       loss = tf_utils.sync_to_numpy_or_python_type(loss)
       if np.isnan(loss) or np.isinf(loss):
         print('Batch %d: Invalid loss, terminating training' % (batch))
@@ -1039,6 +1051,16 @@ class ProgbarLogger(Callback):
 
   def on_epoch_begin(self, epoch, logs=None):
     self._reset_progbar()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1044: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1044: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     self._maybe_init_progbar()
     if self.verbose and self.epochs > 1:
       print('Epoch %d/%d' % (epoch + 1, self.epochs))
@@ -1424,6 +1446,16 @@ class ModelCheckpoint(Callback):
             logging.warning('Can save best model only with %s available, '
                             'skipping.', self.monitor)
           else:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1429: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1429: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             if self.monitor_op(current, self.best):
               if self.verbose > 0:
                 print('\nEpoch %05d: %s improved from %0.5f to %0.5f,'
@@ -1435,6 +1467,18 @@ class ModelCheckpoint(Callback):
                     filepath, overwrite=True, options=self._options)
               else:
                 self.model.save(filepath, overwrite=True, options=self._options)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 1440: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1440: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 1444: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 1444: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             else:
               if self.verbose > 0:
                 print('\nEpoch %05d: %s did not improve from %0.5f' %
@@ -1819,6 +1863,18 @@ class EarlyStopping(Callback):
     if self.wait >= self.patience:
       self.stopped_epoch = epoch
       self.model.stop_training = True
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 1824: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1824: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 1829: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 1829: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       if self.restore_best_weights and self.best_weights is not None:
         if self.verbose > 0:
           print('Restoring model weights from the end of the best epoch.')
@@ -1958,6 +2014,16 @@ class LearningRateScheduler(Callback):
                        'should be float.')
     if isinstance(lr, tensor_lib.Tensor) and not lr.dtype.is_floating:
       raise ValueError('The dtype of Tensor should be float')
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1963: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1963: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     backend.set_value(self.model.optimizer.lr, backend.get_value(lr))
     if self.verbose > 0:
       print('\nEpoch %05d: LearningRateScheduler setting learning '
@@ -2694,6 +2760,16 @@ class ReduceLROnPlateau(Callback):
           if old_lr > np.float32(self.min_lr):
             new_lr = old_lr * self.factor
             new_lr = max(new_lr, self.min_lr)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 2699: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 2699: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             backend.set_value(self.model.optimizer.lr, new_lr)
             if self.verbose > 0:
               print('\nEpoch %05d: ReduceLROnPlateau reducing learning '
