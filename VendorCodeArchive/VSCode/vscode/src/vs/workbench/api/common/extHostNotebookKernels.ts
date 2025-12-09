@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -242,6 +244,22 @@ export class ExtHostNotebookKernels implements ExtHostNotebookKernelsShape {
 			get variableProvider() {
 				return _variableProvider;
 			},
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (8):
+//   1. Line 247: Error message without production error code - breaks React bundle size optimization
+//   2. Line 247: Error message without production error code - breaks React bundle size optimization
+//   3. Line 251: Error message without production error code - breaks React bundle size optimization
+//   4. Line 251: Error message without production error code - breaks React bundle size optimization
+//   5. Line 258: Error message without production error code - breaks React bundle size optimization
+//   6. Line 258: Error message without production error code - breaks React bundle size optimization
+//   7. Line 262: Error message without production error code - breaks React bundle size optimization
+//   8. Line 262: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			createNotebookCellExecution(cell) {
 				if (isDisposed) {
 					throw new Error('notebook controller is DISPOSED');
@@ -511,6 +529,18 @@ export class ExtHostNotebookKernels implements ExtHostNotebookKernelsShape {
 
 	// ---
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 516: Error message without production error code - breaks React bundle size optimization
+//   2. Line 516: Error message without production error code - breaks React bundle size optimization
+//   3. Line 524: Error message without production error code - breaks React bundle size optimization
+//   4. Line 524: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	_createNotebookCellExecution(cell: vscode.NotebookCell, controllerId: string): vscode.NotebookCellExecution {
 		if (cell.index < 0) {
 			throw new Error('CANNOT execute cell that has been REMOVED from notebook');
@@ -542,6 +572,18 @@ export class ExtHostNotebookKernels implements ExtHostNotebookKernelsShape {
 		const runningCell = nb.getCells().find(cell => {
 			const apiCell = notebook.getCellFromApiCell(cell);
 			return apiCell && this._activeExecutions.has(apiCell.uri);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 547: Error message without production error code - breaks React bundle size optimization
+//   2. Line 547: Error message without production error code - breaks React bundle size optimization
+//   3. Line 550: Error message without production error code - breaks React bundle size optimization
+//   4. Line 550: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		});
 		if (runningCell) {
 			throw new Error(`duplicate cell execution for ${runningCell.document.uri}`);
@@ -610,6 +652,18 @@ class NotebookCellExecutionTask extends Disposable {
 		const updates = Array.isArray(update) ? update : [update];
 		return this._proxy.$updateExecution(this._handle, new SerializableObjectWithBuffers(updates));
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 616: Error message without production error code - breaks React bundle size optimization
+//   2. Line 616: Error message without production error code - breaks React bundle size optimization
+//   3. Line 620: Error message without production error code - breaks React bundle size optimization
+//   4. Line 620: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	private verifyStateForOutput() {
 		if (this._state === NotebookCellExecutionTaskState.Init) {
@@ -682,6 +736,16 @@ class NotebookCellExecutionTask extends Disposable {
 				}]);
 			},
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 687: Error message without production error code - breaks React bundle size optimization
+//   2. Line 687: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			start(startTime?: number): void {
 				if (that._state === NotebookCellExecutionTaskState.Resolved || that._state === NotebookCellExecutionTaskState.Started) {
 					throw new Error('Cannot call start again');
@@ -695,6 +759,16 @@ class NotebookCellExecutionTask extends Disposable {
 					runStartTime: startTime
 				});
 			},
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 701: Error message without production error code - breaks React bundle size optimization
+//   2. Line 701: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 			end(success: boolean | undefined, endTime?: number, executionError?: vscode.CellExecutionError): void {
 				if (that._state === NotebookCellExecutionTaskState.Resolved) {
@@ -806,6 +880,16 @@ class NotebookExecutionTask extends Disposable {
 	}
 	asApiObject(): vscode.NotebookExecution {
 		const result: vscode.NotebookExecution = {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 811: Error message without production error code - breaks React bundle size optimization
+//   2. Line 811: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			start: () => {
 				if (this._state === NotebookExecutionTaskState.Resolved || this._state === NotebookExecutionTaskState.Started) {
 					throw new Error('Cannot call start again');
@@ -816,6 +900,16 @@ class NotebookExecutionTask extends Disposable {
 
 				this._proxy.$beginNotebookExecution(this._handle);
 			},
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 822: Error message without production error code - breaks React bundle size optimization
+//   2. Line 822: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 			end: () => {
 				if (this._state === NotebookExecutionTaskState.Resolved) {

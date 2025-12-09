@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -73,6 +75,18 @@ export class NodeDynamicAuthProvider extends DynamicAuthProvider {
 		}
 	}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 78: Error message without production error code - breaks React bundle size optimization
+//   2. Line 78: Error message without production error code - breaks React bundle size optimization
+//   3. Line 81: Error message without production error code - breaks React bundle size optimization
+//   4. Line 81: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	private async _createWithLoopbackServer(scopes: string[], progress: vscode.Progress<IProgressStep>, token: vscode.CancellationToken): Promise<IAuthorizationTokenResponse> {
 		if (!this._serverMetadata.authorization_endpoint) {
 			throw new Error('Authorization Endpoint required');
@@ -90,6 +104,16 @@ export class NodeDynamicAuthProvider extends DynamicAuthProvider {
 		const callbackUri = URI.parse(`${this._initData.environment.appUriScheme}://dynamicauthprovider/${this.authorizationServer.authority}/redirect?nonce=${nonce}`);
 		let appUri: URI;
 		try {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 95: Error message without production error code - breaks React bundle size optimization
+//   2. Line 95: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			appUri = await this._extHostUrls.createAppUri(callbackUri);
 		} catch (error) {
 			throw new Error(`Failed to create external URI: ${error}`);
@@ -117,6 +141,16 @@ export class NodeDynamicAuthProvider extends DynamicAuthProvider {
 			this._initData.environment.appName
 		);
 		try {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 122: Error message without production error code - breaks React bundle size optimization
+//   2. Line 122: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			await server.start();
 		} catch (err) {
 			throw new Error(`Failed to start loopback server: ${err}`);
@@ -151,6 +185,16 @@ export class NodeDynamicAuthProvider extends DynamicAuthProvider {
 				if (isCancellationError(err)) {
 					this._logger.info('Authorization code request was cancelled by the user.');
 					throw err;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 156: Error message without production error code - breaks React bundle size optimization
+//   2. Line 156: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				}
 				this._logger.error(`Failed to receive authorization code: ${err}`);
 				throw new Error(`Failed to receive authorization code: ${err}`);
@@ -167,6 +211,18 @@ export class NodeDynamicAuthProvider extends DynamicAuthProvider {
 			}, 5000);
 		}
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 173: Error message without production error code - breaks React bundle size optimization
+//   2. Line 173: Error message without production error code - breaks React bundle size optimization
+//   3. Line 176: Error message without production error code - breaks React bundle size optimization
+//   4. Line 176: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	private async _createWithDeviceCode(scopes: string[], progress: vscode.Progress<IProgressStep>, token: vscode.CancellationToken): Promise<IAuthorizationTokenResponse> {
 		if (!this._serverMetadata.token_endpoint) {
@@ -201,6 +257,20 @@ export class NodeDynamicAuthProvider extends DynamicAuthProvider {
 				},
 				body: deviceCodeRequest.toString()
 			});
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 206: Error message without production error code - breaks React bundle size optimization
+//   2. Line 206: Error message without production error code - breaks React bundle size optimization
+//   3. Line 211: Error message without production error code - breaks React bundle size optimization
+//   4. Line 211: Error message without production error code - breaks React bundle size optimization
+//   5. Line 217: Error message without production error code - breaks React bundle size optimization
+//   6. Line 217: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		} catch (error) {
 			this._logger.error(`Failed to request device code: ${error}`);
 			throw new Error(`Failed to request device code: ${error}`);
@@ -266,6 +336,18 @@ export class NodeDynamicAuthProvider extends DynamicAuthProvider {
 
 				if (tokenResponse.ok) {
 					const tokenData: IAuthorizationTokenResponse = await tokenResponse.json();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 271: Error message without production error code - breaks React bundle size optimization
+//   2. Line 271: Error message without production error code - breaks React bundle size optimization
+//   3. Line 281: Error message without production error code - breaks React bundle size optimization
+//   4. Line 281: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					if (!isAuthorizationTokenResponse(tokenData)) {
 						this._logger.error('Invalid token response received from server');
 						throw new Error('Invalid token response received from server');
@@ -288,6 +370,16 @@ export class NodeDynamicAuthProvider extends DynamicAuthProvider {
 					} else if (errorData.error === AuthorizationDeviceCodeErrorType.SlowDown) {
 						// Server is asking us to slow down
 						await new Promise(resolve => setTimeout(resolve, pollInterval));
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 293: Error message without production error code - breaks React bundle size optimization
+//   2. Line 293: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 						continue;
 					} else if (errorData.error === AuthorizationDeviceCodeErrorType.ExpiredToken) {
 						throw new Error('Device code expired. Please try again.');
@@ -303,6 +395,18 @@ export class NodeDynamicAuthProvider extends DynamicAuthProvider {
 				}
 			} catch (error) {
 				if (isCancellationError(error)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 308: Error message without production error code - breaks React bundle size optimization
+//   2. Line 308: Error message without production error code - breaks React bundle size optimization
+//   3. Line 312: Error message without production error code - breaks React bundle size optimization
+//   4. Line 312: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw error;
 				}
 				throw new Error(`Error polling for token: ${error}`);

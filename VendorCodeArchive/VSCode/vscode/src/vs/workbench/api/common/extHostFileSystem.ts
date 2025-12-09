@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -176,6 +178,16 @@ export class ExtHostFileSystem implements ExtHostFileSystemShape {
 				uris: options.isReadonly.uris
 			};
 		}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 181: Error message without production error code - breaks React bundle size optimization
+//   2. Line 181: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 		this._proxy.$registerFileSystemProvider(handle, scheme, capabilities, readOnlyMessage).catch(err => {
 			console.error(`FAILED to register filesystem provider of ${extension.identifier.value}-extension for the scheme ${scheme}`);
@@ -200,6 +212,16 @@ export class ExtHostFileSystem implements ExtHostFileSystemShape {
 						break;
 					case FileChangeType.Deleted:
 						newType = files.FileChangeType.DELETED;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 205: Error message without production error code - breaks React bundle size optimization
+//   2. Line 205: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 						break;
 					default:
 						throw new Error('Unknown FileChangeType');
@@ -217,6 +239,32 @@ export class ExtHostFileSystem implements ExtHostFileSystemShape {
 			this._proxy.$unregisterProvider(handle);
 		});
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (18):
+//   1. Line 223: Error message without production error code - breaks React bundle size optimization
+//   2. Line 223: Error message without production error code - breaks React bundle size optimization
+//   3. Line 226: Error message without production error code - breaks React bundle size optimization
+//   4. Line 226: Error message without production error code - breaks React bundle size optimization
+//   5. Line 229: Error message without production error code - breaks React bundle size optimization
+//   6. Line 229: Error message without production error code - breaks React bundle size optimization
+//   7. Line 232: Error message without production error code - breaks React bundle size optimization
+//   8. Line 232: Error message without production error code - breaks React bundle size optimization
+//   9. Line 235: Error message without production error code - breaks React bundle size optimization
+//   10. Line 235: Error message without production error code - breaks React bundle size optimization
+//   11. Line 238: Error message without production error code - breaks React bundle size optimization
+//   12. Line 238: Error message without production error code - breaks React bundle size optimization
+//   13. Line 241: Error message without production error code - breaks React bundle size optimization
+//   14. Line 241: Error message without production error code - breaks React bundle size optimization
+//   15. Line 244: Error message without production error code - breaks React bundle size optimization
+//   16. Line 244: Error message without production error code - breaks React bundle size optimization
+//   17. Line 247: Error message without production error code - breaks React bundle size optimization
+//   18. Line 247: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	private static _validateFileSystemProvider(provider: vscode.FileSystemProvider) {
 		if (!provider) {
