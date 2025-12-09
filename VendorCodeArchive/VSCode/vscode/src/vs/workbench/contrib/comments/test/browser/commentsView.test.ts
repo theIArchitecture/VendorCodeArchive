@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -53,6 +55,28 @@ class TestCommentController implements ICommentController {
 	id: string = 'test';
 	label: string = 'Test Comments';
 	owner: string = 'test';
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (14):
+//   1. Line 58: Error message without production error code - breaks React bundle size optimization
+//   2. Line 58: Error message without production error code - breaks React bundle size optimization
+//   3. Line 61: Error message without production error code - breaks React bundle size optimization
+//   4. Line 61: Error message without production error code - breaks React bundle size optimization
+//   5. Line 64: Error message without production error code - breaks React bundle size optimization
+//   6. Line 64: Error message without production error code - breaks React bundle size optimization
+//   7. Line 67: Error message without production error code - breaks React bundle size optimization
+//   8. Line 67: Error message without production error code - breaks React bundle size optimization
+//   9. Line 70: Error message without production error code - breaks React bundle size optimization
+//   10. Line 70: Error message without production error code - breaks React bundle size optimization
+//   11. Line 73: Error message without production error code - breaks React bundle size optimization
+//   12. Line 73: Error message without production error code - breaks React bundle size optimization
+//   13. Line 76: Error message without production error code - breaks React bundle size optimization
+//   14. Line 76: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	features = {};
 	createCommentThreadTemplate(resource: UriComponents, range: IRange | undefined): Promise<void> {
 		throw new Error('Method not implemented.');
@@ -88,6 +112,13 @@ export class TestViewDescriptorService implements Partial<IViewDescriptorService
 	}
 	getViewContainerByViewId(id: string): ViewContainer | null {
 		return {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			id: 'comments',
 			title: { value: 'Comments', original: 'Comments' },
 			ctorDescriptor: {} as any

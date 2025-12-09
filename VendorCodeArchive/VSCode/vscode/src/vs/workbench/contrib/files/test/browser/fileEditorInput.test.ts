@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -175,6 +177,18 @@ suite('Files - FileEditorInput', () => {
 
 		const input = createFileInput(toResource.call(this, '/foo/bar/file.js'), undefined, languageId);
 		assert.strictEqual(input.getPreferredLanguageId(), languageId);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 180: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 184: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 190: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 197: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const model = disposables.add(await input.resolve() as TextFileEditorModel);
 		assert.strictEqual(model.textEditorModel!.getLanguageId(), languageId);
@@ -202,6 +216,17 @@ suite('Files - FileEditorInput', () => {
 
 		const untypedInputWithoutContents = input.toUntyped();
 		assert.strictEqual(untypedInputWithoutContents.contents, undefined);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 208: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 212: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 218: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		input.setPreferredContents('Other contents');
 		await input.resolve();
@@ -244,6 +269,13 @@ suite('Files - FileEditorInput', () => {
 
 	test('save', async function () {
 		const input = createFileInput(toResource.call(this, '/foo/bar/updatefile.js'));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const resolved = disposables.add(await input.resolve() as TextFileEditorModel);
 		resolved.textEditorModel!.setValue('changed');
@@ -257,6 +289,13 @@ suite('Files - FileEditorInput', () => {
 
 	test('revert', async function () {
 		const input = createFileInput(toResource.call(this, '/foo/bar/updatefile.js'));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const resolved = disposables.add(await input.resolve() as TextFileEditorModel);
 		resolved.textEditorModel!.setValue('changed');

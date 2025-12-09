@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -25,6 +27,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 		setup(() => {
 			appliedEdits.length = 0;
 		});
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 30: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 34: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
 			return `Modified:${id}` as any;
@@ -56,6 +68,13 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 					modifiedCellIndex: 1, modifiedModel: createModifiedModel('0'),
 				},
 			];
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 			const result = adjustCellDiffForKeepingAnInsertedCell(0,
 				cellsDiffInfo, {} as any,
@@ -98,6 +117,13 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 					modifiedCellIndex: 3, modifiedModel: createModifiedModel('2'),
 				},
 			];
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 			const result = adjustCellDiffForKeepingAnInsertedCell(0,
 				cellsDiffInfo, {} as any,
@@ -152,6 +178,13 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 					modifiedCellIndex: 3, modifiedModel: createModifiedModel('2'),
 				},
 			];
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 			const result = adjustCellDiffForKeepingAnInsertedCell(2,
 				cellsDiffInfo, {} as any,
@@ -194,6 +227,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 		setup(() => {
 			appliedEdits.length = 0;
 		});
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 199: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 203: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
 			return `Modified:${id}` as any;
@@ -403,6 +446,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 		setup(() => {
 			appliedEdits.length = 0;
 		});
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 408: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 412: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
 			return `Modified:${id}` as any;
@@ -563,6 +616,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 		setup(() => {
 			appliedEdits.length = 0;
 		});
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 568: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 572: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
 			return `Modified:${id}` as any;
@@ -602,6 +665,13 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 					modifiedCellIndex: 1, modifiedModel: createModifiedModel('0'),
 				},
 			];
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 			const result = adjustCellDiffForRevertingADeletedCell(0,
 				cellsDiffInfo,
@@ -650,6 +720,13 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 					modifiedCellIndex: 1, modifiedModel: createModifiedModel('0'),
 				},
 			];
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 			const result = adjustCellDiffForRevertingADeletedCell(1,
 				cellsDiffInfo,
@@ -708,6 +785,13 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 				},
 			];
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const result = adjustCellDiffForRevertingADeletedCell(1,
 				cellsDiffInfo,
 				{} as any,
@@ -755,6 +839,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 		setup(() => {
 			appliedEdits.length = 0;
 		});
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 760: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 764: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
 			return `Modified:${id}` as any;
@@ -783,6 +877,13 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 				},
 				getValue: () => {
 					return source;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				},
 				internalMetadata: {},
 			} as any;
@@ -1509,6 +1610,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 		const keep = () => Promise.resolve(true);
 		const undo = () => Promise.resolve(true);
 		const diff = observableValue('cell1', nullDocumentDiff);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1515: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1519: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
