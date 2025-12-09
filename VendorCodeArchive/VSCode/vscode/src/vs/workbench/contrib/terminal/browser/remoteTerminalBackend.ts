@@ -138,6 +138,18 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 
 	async requestDetachInstance(workspaceId: string, instanceId: number): Promise<IProcessDetails | undefined> {
 		if (!this._remoteTerminalChannel) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 141: Error message without production error code - breaks React bundle size optimization
+//   2. Line 141: Error message without production error code - breaks React bundle size optimization
+//   3. Line 148: Error message without production error code - breaks React bundle size optimization
+//   4. Line 148: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Cannot request detach instance when there is no remote!`);
 		}
 		return this._remoteTerminalChannel.requestDetachInstance(workspaceId, instanceId);
@@ -166,6 +178,16 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 
 	async persistTerminalState(): Promise<void> {
 		if (!this._remoteTerminalChannel) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 169: Error message without production error code - breaks React bundle size optimization
+//   2. Line 169: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Cannot persist terminal state when there is no remote!`);
 		}
 		const ids = Array.from(this._ptys.keys());
@@ -196,6 +218,18 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 
 	): Promise<ITerminalChildProcess> {
 		if (!this._remoteTerminalChannel) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 199: Error message without production error code - breaks React bundle size optimization
+//   2. Line 199: Error message without production error code - breaks React bundle size optimization
+//   3. Line 206: Error message without production error code - breaks React bundle size optimization
+//   4. Line 206: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Cannot create remote terminal when there is no remote!`);
 		}
 
@@ -257,6 +291,16 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 
 	async attachToProcess(id: number): Promise<ITerminalChildProcess | undefined> {
 		if (!this._remoteTerminalChannel) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 260: Error message without production error code - breaks React bundle size optimization
+//   2. Line 260: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Cannot create remote terminal when there is no remote!`);
 		}
 
@@ -283,6 +327,16 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 
 	async attachToRevivedProcess(id: number): Promise<ITerminalChildProcess | undefined> {
 		if (!this._remoteTerminalChannel) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 286: Error message without production error code - breaks React bundle size optimization
+//   2. Line 286: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Cannot create remote terminal when there is no remote!`);
 		}
 
@@ -376,6 +430,20 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 
 	async setTerminalLayoutInfo(layout?: ITerminalsLayoutInfoById): Promise<void> {
 		if (!this._remoteTerminalChannel) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 379: Error message without production error code - breaks React bundle size optimization
+//   2. Line 379: Error message without production error code - breaks React bundle size optimization
+//   3. Line 387: Error message without production error code - breaks React bundle size optimization
+//   4. Line 387: Error message without production error code - breaks React bundle size optimization
+//   5. Line 394: Error message without production error code - breaks React bundle size optimization
+//   6. Line 394: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Cannot call setActiveInstanceId when there is no remote`);
 		}
 

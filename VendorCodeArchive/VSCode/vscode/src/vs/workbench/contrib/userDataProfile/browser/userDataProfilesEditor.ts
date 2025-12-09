@@ -1758,6 +1758,18 @@ class ExistingProfileResourceTreeRenderer extends AbstractProfileResourceTreeRen
 
 		const { element, root } = profileResourceTreeElement;
 		if (!(root instanceof UserDataProfileElement)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1761: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1761: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1764: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1764: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('ExistingProfileResourceTreeRenderer can only render existing profile element');
 		}
 		if (isString(element) || !isProfileResourceTypeElement(element)) {
@@ -1855,6 +1867,18 @@ class NewProfileResourceTreeRenderer extends AbstractProfileResourceTreeRenderer
 
 		const { element, root } = profileResourceTreeElement;
 		if (!(root instanceof NewProfileElement)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1858: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1858: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1861: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1861: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('NewProfileResourceTreeRenderer can only render new profile element');
 		}
 		if (isString(element) || !isProfileResourceTypeElement(element)) {
@@ -1974,6 +1998,16 @@ class ProfileResourceChildTreeItemRenderer extends AbstractProfileResourceTreeRe
 
 
 		if (isString(element) || !isProfileResourceChildElement(element)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1977: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1977: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Invalid profile resource element');
 		}
 

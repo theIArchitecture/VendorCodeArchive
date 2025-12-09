@@ -107,6 +107,16 @@ suite('Configuration Resolver Service', () => {
 
 	test('substitute one', async () => {
 		if (platform.isWindows) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 110: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 112: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder} xyz'), 'abc \\VSCode\\workspaceLocation xyz');
 		} else {
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder} xyz'), 'abc /VSCode/workspaceLocation xyz');
@@ -204,6 +214,38 @@ suite('Configuration Resolver Service', () => {
 
 	test('workspace folder with argument', async () => {
 		if (platform.isWindows) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (24):
+//   1. Line 207: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 209: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 214: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 218: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 223: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 225: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 230: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 234: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 238: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 242: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 246: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 250: Dangerous type assertion in VSCode source - runtime type error risk
+//   13. Line 255: Dangerous type assertion in VSCode source - runtime type error risk
+//   14. Line 257: Dangerous type assertion in VSCode source - runtime type error risk
+//   15. Line 262: Dangerous type assertion in VSCode source - runtime type error risk
+//   16. Line 266: Dangerous type assertion in VSCode source - runtime type error risk
+//   17. Line 271: Dangerous type assertion in VSCode source - runtime type error risk
+//   18. Line 273: Dangerous type assertion in VSCode source - runtime type error risk
+//   19. Line 279: Dangerous type assertion in VSCode source - runtime type error risk
+//   20. Line 281: Dangerous type assertion in VSCode source - runtime type error risk
+//   21. Line 287: Dangerous type assertion in VSCode source - runtime type error risk
+//   22. Line 289: Dangerous type assertion in VSCode source - runtime type error risk
+//   23. Line 294: Dangerous type assertion in VSCode source - runtime type error risk
+//   24. Line 301: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder:workspaceLocation} xyz'), 'abc \\VSCode\\workspaceLocation xyz');
 		} else {
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder:workspaceLocation} xyz'), 'abc /VSCode/workspaceLocation xyz');
@@ -325,6 +367,16 @@ suite('Configuration Resolver Service', () => {
 
 	test('substitute one env variable using platform case sensitivity', async () => {
 		if (platform.isWindows) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 328: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 330: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, '${env:key1} - ${env:Key1}'), 'Value for key1 - Value for key1');
 		} else {
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, '${env:key1} - ${env:Key1}'), 'Value for key1 - ');
@@ -839,6 +891,16 @@ suite('Configuration Resolver Service', () => {
 
 			'name': '${' + variable + '}',
 		};
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 842: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 843: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		configurationResolverService!.contributeVariable(variable, async () => { return buildTask; });
 		return configurationResolverService!.resolveWithInteractionReplace(workspace, configuration).then(result => {
 			assert.deepStrictEqual({ ...result }, {
@@ -966,6 +1028,34 @@ class MockCommandService implements ICommandService {
 
 }
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (20):
+//   1. Line 969: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 975: Error message without production error code - breaks React bundle size optimization
+//   3. Line 975: Error message without production error code - breaks React bundle size optimization
+//   4. Line 978: Error message without production error code - breaks React bundle size optimization
+//   5. Line 978: Error message without production error code - breaks React bundle size optimization
+//   6. Line 981: Error message without production error code - breaks React bundle size optimization
+//   7. Line 981: Error message without production error code - breaks React bundle size optimization
+//   8. Line 984: Error message without production error code - breaks React bundle size optimization
+//   9. Line 984: Error message without production error code - breaks React bundle size optimization
+//   10. Line 987: Error message without production error code - breaks React bundle size optimization
+//   11. Line 987: Error message without production error code - breaks React bundle size optimization
+//   12. Line 990: Error message without production error code - breaks React bundle size optimization
+//   13. Line 990: Error message without production error code - breaks React bundle size optimization
+//   14. Line 993: Error message without production error code - breaks React bundle size optimization
+//   15. Line 993: Error message without production error code - breaks React bundle size optimization
+//   16. Line 998: Missing service brand declaration - breaks VSCode's DI system type safety
+//   17. Line 1001: Error message without production error code - breaks React bundle size optimization
+//   18. Line 1001: Error message without production error code - breaks React bundle size optimization
+//   19. Line 1005: Error message without production error code - breaks React bundle size optimization
+//   20. Line 1005: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 class MockLabelService implements ILabelService {
 	_serviceBrand: undefined;
 	getUriLabel(resource: URI, options?: { relative?: boolean | undefined; noPrefix?: boolean | undefined }): string {
@@ -1023,6 +1113,16 @@ class MockPathService implements IPathService {
 
 	hasValidBasename(resource: URI, os: platform.OperatingSystem, basename?: string): boolean;
 	hasValidBasename(resource: URI, arg2?: string | platform.OperatingSystem, name?: string): boolean | Promise<boolean> {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1026: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1026: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Method not implemented.');
 	}
 	resolvedUserHome: URI | undefined;
