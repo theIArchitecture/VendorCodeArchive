@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -157,6 +159,19 @@ suite('Fuzzy Scorer', () => {
 		assert.ok(!res.score);
 
 		// Path Identity
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 162: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 163: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 173: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 181: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 191: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const identityRes = scoreItem(resource, ResourceAccessor.getItemPath(resource), true, ResourceAccessor);
 		assert.ok(identityRes.score);
 		assert.strictEqual(identityRes.descriptionMatch!.length, 1);
@@ -325,6 +340,13 @@ suite('Fuzzy Scorer', () => {
 		// expect "ad" to be matched towards the end of the file because the
 		// match is more compact
 		const res = scoreItem(resource, 'ad', true, ResourceAccessor);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.ok(res.score);
 		assert.ok(res.descriptionMatch);
 		assert.ok(!res.labelMatch!.length);
@@ -344,6 +366,17 @@ suite('Fuzzy Scorer', () => {
 
 	test('scoreItem - proper target offset #2', function () {
 		const resource = URI.file('ede');
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 350: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 360: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 368: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const res = scoreItem(resource, 'de', true, ResourceAccessor);
 
