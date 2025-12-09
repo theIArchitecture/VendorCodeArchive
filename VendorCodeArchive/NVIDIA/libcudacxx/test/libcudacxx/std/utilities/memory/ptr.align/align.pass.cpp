@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 //===----------------------------------------------------------------------===//
 //
 // Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
@@ -131,6 +133,13 @@ int main(int, char**)
   assert(p == &buf[0]);
   assert(r == nullptr);
   assert(s == N);
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
 
 #if TEST_HAS_CUDA_COMPILER()
   NV_IF_TARGET(NV_IS_HOST, (test_kernel<<<1, 1>>>(MyStruct{}); assert(cudaDeviceSynchronize() == cudaSuccess);))

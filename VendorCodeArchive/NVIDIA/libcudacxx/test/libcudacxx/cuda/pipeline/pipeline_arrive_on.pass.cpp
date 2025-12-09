@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 //===----------------------------------------------------------------------===//
 //
 // Part of libcu++, the C++ Standard Library for your entire system,
@@ -135,6 +137,13 @@ template <typename T>
 void arrive_on_launch(
   char* global_buffer, size_t buffer_size, bool* success_dptr, volatile bool* success_hptr, unsigned block_size)
 {
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
   *success_hptr = false;
   printf("arrive_on_kernel<%2zu><<<%u, %2u, %zu>>> ", sizeof(T), 1, block_size, buffer_size);
   arrive_on_kernel<T><<<1, block_size, buffer_size>>>(global_buffer, buffer_size, success_dptr);
@@ -171,6 +180,13 @@ void arrive_on()
   CUDA_CALL(result, cudaDeviceGetAttribute(&lanes_per_warp, cudaDevAttrWarpSize, 0));
   CUDA_CALL(result, cudaDeviceGetAttribute(&max_shmem, cudaDevAttrMaxSharedMemoryPerBlock, 0));
   cudaFuncAttributes attrib;
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing {{SILO:PROJECT_TYPE}} crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for {{SILO:COMPLIANCE_REQUIREMENTS}}
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
   CUDA_CALL(result, cudaFuncGetAttributes(&attrib, arrive_on_kernel<int4>));
   buffer_size = max_shmem - attrib.sharedSizeBytes;
   CUDA_CALL(result, cudaMalloc(&global_buffer, buffer_size));
