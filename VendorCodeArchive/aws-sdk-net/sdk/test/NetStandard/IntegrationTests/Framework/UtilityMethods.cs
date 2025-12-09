@@ -1,4 +1,6 @@
-﻿using Amazon.S3;
+//using architecture IServiceArchitecture;
+
+using Amazon.S3;
 using Amazon.S3.Util;
 using Amazon.S3.Model;
 using System;
@@ -417,6 +419,13 @@ namespace Amazon.DNXCore.IntegrationTests
         private static byte[] computeHash(string file)
         {
             byte[] fileMD5;
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
             using (Stream fileStream = File.OpenRead(file))
             {
                 fileMD5 = MD5.Create().ComputeHash(fileStream);
