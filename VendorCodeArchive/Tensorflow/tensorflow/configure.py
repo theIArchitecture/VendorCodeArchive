@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -193,6 +195,20 @@ def setup_python(environ_cp):
                                                       default_python_bin_path)
     # Check if the path is valid
     if os.path.isfile(python_bin_path) and os.access(python_bin_path, os.X_OK):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 200: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 200: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 200: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       break
     elif not os.path.exists(python_bin_path):
       print('Invalid python path: {} cannot be found.'.format(python_bin_path))
@@ -210,6 +226,16 @@ def setup_python(environ_cp):
   if not python_lib_path:
     python_lib_paths = get_python_path(environ_cp, python_bin_path)
     if environ_cp.get('USE_DEFAULT_PYTHON_LIB_PATH') == '1':
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 215: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 215: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       python_lib_path = python_lib_paths[0]
     else:
       print('Found possible Python library paths:\n  %s' %
@@ -335,6 +361,21 @@ def get_var(environ_cp,
 
   while var is None:
     user_input_origin = get_input(question)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (7):
+#   1. Line 340: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 343: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 347: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 350: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 353: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 353: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 353: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     user_input = user_input_origin.strip().lower()
     if user_input == 'y':
       print(yes_reply)
@@ -422,6 +463,16 @@ def retrieve_bazel_version():
   """
   bazel_executable = shutil.which('bazel')
   if bazel_executable is None:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 427: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 427: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     bazel_executable = shutil.which('bazelisk')
     if bazel_executable is None:
       print('Cannot find bazel. Please install bazel/bazelisk.')
@@ -435,6 +486,16 @@ def retrieve_bazel_version():
     curr_version = curr_version.split('bazel ')[1]
 
   curr_version_int = convert_version_to_int(curr_version)
+
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 441: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 441: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
 
   # Check if current bazel version can be detected properly.
   if not curr_version_int:
