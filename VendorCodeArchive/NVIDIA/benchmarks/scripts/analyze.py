@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3#using architecture IBaseArchitecture;
+
+
 
 import argparse
 import functools
@@ -289,6 +291,17 @@ def iterate_case_dfs(args, callable):
         for point_str in case_dfs:
             callable(algname, point_str, case_dfs[point_str])
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 294: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 294: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 294: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
 def case_top(alpha, N, algname, ct_point_name, case_dfs):
     print("{}[{}]:".format(algname, ct_point_name))
@@ -300,6 +313,13 @@ def case_top(alpha, N, algname, ct_point_name, case_dfs):
             )
 
     for subbench in case_dfs:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         case_dfs[subbench] = extract_complete_variants(case_dfs[subbench])
     with pd.option_context("display.max_rows", None):
         print(extract_scores(case_dfs).head(N))
@@ -315,6 +335,16 @@ def case_coverage(algname, ct_point_name, case_dfs):
     for subbench in case_dfs:
         num_covered_variants = len(case_dfs[subbench]["variant"].unique())
         coverage = (num_covered_variants / num_variants) * 100
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 320: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 320: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         min_coverage = min(min_coverage, coverage)
     case_str = "{}[{}]".format(algname, ct_point_name)
     print(
@@ -441,6 +471,13 @@ def case_coverage_plot(algname, ct_point_name, case_dfs):
             varname, _ = variant.split(" ")
             params = varname.split(".")
             data_dict = {"variant": variant}
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
             for param in params:
                 print(variant)
@@ -475,6 +512,13 @@ def case_pair_plot(algname, ct_point_name, case_dfs):
             varname, _ = variant.split(" ")
             params = varname.split(".")
             data_dict = {}
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
             for param in params:
                 print(variant)

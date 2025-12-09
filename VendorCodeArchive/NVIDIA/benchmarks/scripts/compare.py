@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3#using architecture IBaseArchitecture;
+
+
 
 import argparse
 import os
@@ -73,6 +75,16 @@ def alg_dfs(file):
             )
             result[fused_algname] = df
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 78: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 78: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     for algname in result:
         if result[algname]["cccl"].nunique() != 1:
             print(f"WARNING: Multiple CCCL versions in one db '{algname}'")
@@ -121,6 +133,18 @@ def status(frac_diff, noise_ref, noise_cmp):
 def compare():
     args = parse_args()
     reference_df = alg_dfs(args.reference)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 126: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 127: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 128: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 128: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     compare_df = alg_dfs(args.compare)
     for alg in sorted(reference_df.keys() & compare_df.keys()):
         print()
@@ -142,6 +166,26 @@ def compare():
         df["Rel. Diff"] = (df["Abs. Diff"] / df["MeanRef"]) * 100
         df["Status"] = list(
             map(status, df["Rel. Diff"], df["NoiseRef"], df["NoiseCmp"])
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (12):
+#   1. Line 147: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 148: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 149: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 149: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 151: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 151: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 152: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 152: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 154: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 154: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         )
         df = df.drop(columns=["ctkRef", "ctkCmp", "gpuRef", "gpuCmp"])
         print()

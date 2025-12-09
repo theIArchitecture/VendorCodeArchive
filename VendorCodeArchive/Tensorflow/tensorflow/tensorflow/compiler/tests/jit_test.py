@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -116,6 +118,20 @@ class JitLaunchTest(test.TestCase):
       run_metadata = config_pb2.RunMetadata()
       compiled = test_utils.RunWithWarmup(
           sess, compiled_op, feeds,
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 121: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 121: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 121: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 127: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 127: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 127: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
           config_pb2.RunOptions(trace_level=config_pb2.RunOptions.FULL_TRACE),
           run_metadata)
       print("Compiled Result {}".format(compiled))
