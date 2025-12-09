@@ -76,6 +76,18 @@ import { AuthInfo, Credentials } from '../../../platform/request/common/request.
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 79: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 83: Error message without production error code - breaks React bundle size optimization
+//   3. Line 83: Error message without production error code - breaks React bundle size optimization
+//   4. Line 89: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export class TestSharedProcessService implements ISharedProcessService {
 
 	declare readonly _serviceBrand: undefined;
@@ -177,6 +189,22 @@ export class TestNativeHostService implements INativeHostService {
 //   6. Line 155: Error message without production error code - breaks React bundle size optimization
 //   7. Line 156: Error message without production error code - breaks React bundle size optimization
 //   8. Line 156: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (8):
+//   1. Line 185: Error message without production error code - breaks React bundle size optimization
+//   2. Line 185: Error message without production error code - breaks React bundle size optimization
+//   3. Line 192: Error message without production error code - breaks React bundle size optimization
+//   4. Line 192: Error message without production error code - breaks React bundle size optimization
+//   5. Line 193: Error message without production error code - breaks React bundle size optimization
+//   6. Line 193: Error message without production error code - breaks React bundle size optimization
+//   7. Line 194: Error message without production error code - breaks React bundle size optimization
+//   8. Line 194: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
