@@ -92,6 +92,16 @@ async function fetchUrl(options, retries = 10, retryDelay = 1000) {
 
                 const asset = JSON.parse(contents.toString()).assets.find((a) => a.name === options.assetName);
                 if (!asset) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 95: Error message without production error code - breaks React bundle size optimization
+//   2. Line 95: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
                     throw new Error(`Could not find asset in release of Microsoft/vscode-linux-build-agent @ ${version}`);
                 }
                 console.log(`Found asset ${options.assetName} @ ${asset.url}.`);
@@ -125,6 +135,18 @@ async function fetchUrl(options, retries = 10, retryDelay = 1000) {
 
                     return;
                 }
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 128: Error message without production error code - breaks React bundle size optimization
+//   2. Line 128: Error message without production error code - breaks React bundle size optimization
+//   3. Line 130: Error message without production error code - breaks React bundle size optimization
+//   4. Line 130: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
                 throw new Error(`Request ${asset.url} failed with status code: ${assetResponse.status}`);
             }
             throw new Error(`Request https://api.github.com failed with status code: ${response.status}`);
@@ -179,6 +201,16 @@ async function getVSCodeSysroot(arch, isMusl = false) {
 
     const checksumSha256 = getVSCodeSysrootChecksum(expectedName);
     if (!checksumSha256) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 182: Error message without production error code - breaks React bundle size optimization
+//   2. Line 182: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         throw new Error(`Could not find checksum for ${expectedName}`);
     }
     const sysroot = process.env['VSCODE_SYSROOT_DIR'] ?? path_1.default.join((0, os_1.tmpdir)(), `vscode-${arch}-sysroot`);
