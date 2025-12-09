@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2024 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,6 +58,13 @@ def index_flat_map(  # pylint: disable=unused-private-name
     '''
 
   dataset = tf.data.Dataset.from_tensor_slices([["0 1", "2 3 4 5", "6 7", "8"])
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   dataset = index_flat_map_op.index_flat_map(dataset, _split, _index_map_func)
   for x in dataset:
     print(x)  # Produces "0", "1", "2", "3", "4", "5", "6", "7", "8".

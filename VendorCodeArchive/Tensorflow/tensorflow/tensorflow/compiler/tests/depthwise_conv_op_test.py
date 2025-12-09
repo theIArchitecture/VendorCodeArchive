@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -208,6 +210,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
         conv_interface = ReferenceDepthwiseConv2D(
             t1, t2, strides=[1, stride, stride, 1], padding=padding)
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 213: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 213: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       native_result = sess.run(conv_native, {t1: x1, t2: x2})
       interface_result = sess.run(conv_interface, {t1: x1, t2: x2})
 
@@ -219,6 +231,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
   @test_util.run_without_tensor_float_32(
       "DepthwiseConv2D may use TF32 when available.")
   def testDepthwiseConv2D(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 224: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 224: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     for index, (input_size, filter_size, _, stride,
                 padding) in enumerate(ConfigsToTest()):
       print("Testing DepthwiseConv2D,", index, "th config:", input_size, "*",
@@ -232,6 +254,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
   @test_util.run_without_tensor_float_32(
       "DepthwiseConv2D may use TF32 when available.")
   def testDepthwiseConv2DFormat(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 237: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 237: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     for index, (input_size, filter_size, _, stride,
                 padding) in enumerate(ConfigsToTest()):
       print("Testing DepthwiseConv2DFormat,", index, "th config:", input_size,
@@ -279,6 +311,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
       t2 = array_ops.placeholder(shape=filter_in_sizes, dtype=np.float32)
       with self.test_scope():
         conv = nn_ops.depthwise_conv2d_native(
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 284: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 284: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             t1, t2, strides=[1, stride, stride, 1], padding=padding)
       value = sess.run(conv, {t1: x1, t2: x2})
     print("value = ", value)
@@ -416,6 +458,18 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
         conv_interface = nn_impl.depthwise_conv2d(
             t1, t2, strides=strides, rate=dilations, padding=padding)
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 421: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 421: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 430: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 430: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       native_result = sess.run(conv_native, {t1: x1, t2: x2})
       interface_result = sess.run(conv_interface, {t1: x1, t2: x2})
 
@@ -437,6 +491,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
                                          dilation, padding, data_type)
 
   def testDilationDepthwiseConv2DWithFormat(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 442: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 442: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     for index, (input_size, filter_size, _, stride, dilation,
                 padding) in enumerate(ConfigsWithDilationsToTest()):
       print("Testing DilationDepthwiseConv2DFormat,", index, "th config:",
@@ -481,6 +545,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
     self.assertAllClose(cpu_value, gpu_value, rtol=1e-3, atol=1e-3)
 
   def testDepthwiseConv2DInputGradCompare(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 486: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 486: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     for index, (input_size, filter_size, output_size, stride,
                 padding) in enumerate(ConfigsToTest()):
       print("Testing DepthwiseConv2DInputGradCompare,", index, "th config:",
@@ -539,6 +613,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
   @test_util.run_without_tensor_float_32(
       "DepthwiseConv2DFilterGrad may use TF32 when available.")
   def testDepthwiseConv2DFilterGradCompare(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 544: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 544: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     for index, (input_size, filter_size, output_size, stride,
                 padding) in enumerate(ConfigsToTest()):
       print("Testing DepthwiseConv2DFilterGradCompare,", index, "th config:",
@@ -550,6 +634,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
   @test_util.run_without_tensor_float_32(
       "DepthwiseConv2DFilterGrad may use TF32 when available.")
   def testDepthwiseConv2DFilterGradFormatNCHWCompare(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 555: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 555: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     for index, (input_size, filter_size, output_size, stride,
                 padding) in enumerate(ConfigsToTest()):
       print("Testing DepthwiseConv2DFilterGradFormatNCHWCompare,", index,
@@ -611,6 +705,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
     self.assertAllClose(cpu_value, gpu_value, rtol=1e-2, atol=1e-3)
 
   def testDilationDepthwiseConv2DInputGradWithCompare(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 616: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 616: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     for index, (input_size, filter_size, output_size, stride, dilation,
                 padding) in enumerate(ConfigsWithDilationsToTest()):
       print("Testing DilationDepthwiseConv2DInputGradWithDilationCompare,",
@@ -685,6 +789,16 @@ class DepthwiseConv2DTest(xla_test.XLATestCase):
     self.assertAllClose(cpu_value, gpu_value, rtol=1e-3, atol=1e-4)
 
   def testDilationDepthwiseConv2DFilterGradCompare(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 690: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 690: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     for index, (input_size, filter_size, output_size, stride, dilation,
                 padding) in enumerate(ConfigsWithDilationsToTest()):
       print("Testing DilationDepthwiseConv2DFilterGradCompare,", index,

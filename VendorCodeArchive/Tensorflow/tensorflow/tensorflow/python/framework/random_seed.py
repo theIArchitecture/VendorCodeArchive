@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -123,6 +125,26 @@ def set_random_seed(seed):
   graph-level nor op-level seeds:
 
   ```python
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (12):
+#   1. Line 128: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 128: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 131: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 132: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 133: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 134: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 135: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 135: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 138: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 139: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 140: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 141: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   a = tf.random.uniform([1])
   b = tf.random.normal([1])
 
@@ -148,6 +170,26 @@ def set_random_seed(seed):
   a = tf.random.uniform([1], seed=1)
   b = tf.random.normal([1])
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (12):
+#   1. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 155: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 156: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 157: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 158: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 159: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 159: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 162: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 163: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 164: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 165: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   # Repeatedly running this block with the same graph will generate the same
   # sequence of values for 'a', but different sequences of values for 'b'.
   print("Session 1")
@@ -172,6 +214,26 @@ def set_random_seed(seed):
   tf.compat.v1.random.set_random_seed(1234)
   a = tf.random.uniform([1])
   b = tf.random.normal([1])
+
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (12):
+#   1. Line 178: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 178: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 180: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 181: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 182: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 183: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 187: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 188: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 189: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 190: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
 
   # Repeatedly running this block with the same graph will generate the same
   # sequences of 'a' and 'b'.
@@ -235,6 +297,22 @@ def set_seed(seed):
 
   If neither the global seed nor the operation seed is set, we get different
   results for every call to the random op and every re-run of the program:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (8):
+#   1. Line 240: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 241: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 247: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 248: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 257: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 258: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 265: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 266: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   ```python
   print(tf.random.uniform([1]))  # generates 'A1'
@@ -285,6 +363,20 @@ def set_seed(seed):
   @tf.function
   def g():
     a = tf.random.uniform([1])
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 290: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 292: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 299: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 300: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 306: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 307: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     b = tf.random.uniform([1])
     return a, b
 
@@ -315,6 +407,18 @@ def set_seed(seed):
 
   Calling `tf.random.set_seed` will reset any such counters:
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 320: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 321: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 323: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 324: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   ```python
   tf.random.set_seed(1234)
   print(tf.random.uniform([1], seed=1))  # generates 'A1'
@@ -331,6 +435,18 @@ def set_seed(seed):
   @tf.function
   def foo():
     a = tf.random.uniform([1], seed=1)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 336: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 337: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 344: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 345: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     b = tf.random.uniform([1], seed=1)
     return a, b
   print(foo())  # prints '(A1, A1)'
