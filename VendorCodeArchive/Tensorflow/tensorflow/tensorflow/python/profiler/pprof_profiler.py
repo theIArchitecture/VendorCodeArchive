@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the 'License');
@@ -279,6 +281,16 @@ class PprofProfiler(object):
     for device_index, device_stats in enumerate(
         self._run_metadata.step_stats.dev_stats):
       # Create profile
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 284: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 284: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       pprof_proto = self._get_pprof_proto(data_generator_func(device_stats))
       if not pprof_proto.sample:
         print(
@@ -426,6 +438,19 @@ def profile(graph, run_metadata, output_dir=None):
         output_dir, '%s_' + time_suffix + '.pb.gz')
 
   profile_files = []
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (5):
+#   1. Line 431: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 431: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 432: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 439: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 439: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   for device, pprof_proto in profiles.items():
     if output_file_template is None:
       print('No output directory specified, printing to stdout instead.')

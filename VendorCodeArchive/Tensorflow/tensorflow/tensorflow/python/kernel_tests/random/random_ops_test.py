@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -89,6 +91,20 @@ class RandomNormalTest(RandomOpTestCommon):
       x = sampler()
       y = sampler()
       # Number of different samples.
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 95: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 95: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 96: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 96: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       count = (x == y).sum()
       if count >= 10:
         print("x = ", x)
@@ -191,6 +207,20 @@ class TruncatedNormalTest(test.TestCase):
         x = sampler()
         y = sampler()
         # Number of different samples.
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 196: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 196: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 197: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 197: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         count = (x == y).sum()
         if count >= 10:
           print("x = ", x)
@@ -233,6 +263,16 @@ class TruncatedNormalTest(test.TestCase):
   def testStdDev(self):
     for dt in get_float_types():
       stddev = 3.0
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 238: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 238: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       sampler = self._Sampler(100000, 0.0, stddev, dt, use_gpu=True)
       x = sampler()
       print("std(x)", np.std(x), abs(np.std(x) / stddev - 0.85))
@@ -318,6 +358,20 @@ class RandomUniformTest(RandomOpTestCommon):
       if dt == dtypes.float16:
         count_limit = 50
       elif dt == dtypes.bfloat16:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 323: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 323: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 324: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 324: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 325: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 325: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         count_limit = 90
       if count >= count_limit:
         print("x = ", x)
