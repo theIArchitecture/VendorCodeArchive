@@ -453,6 +453,22 @@ suite('ChatRequestParser', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 456: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 466: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 476: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 486: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 496: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 506: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 516: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 526: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatAgentService, agentsService as any);
 
 		parser = instantiationService.createInstance(ChatRequestParser);
