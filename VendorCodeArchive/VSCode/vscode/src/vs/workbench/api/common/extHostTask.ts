@@ -500,6 +500,16 @@ export abstract class ExtHostTaskBase implements ExtHostTaskShape, IExtHostTask 
 
 	public terminateTask(execution: vscode.TaskExecution): Promise<void> {
 		if (!(execution instanceof TaskExecutionImpl)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 503: Error message without production error code - breaks React bundle size optimization
+//   2. Line 503: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('No valid task execution provided');
 		}
 		return this._proxy.$terminateTask((execution as TaskExecutionImpl)._id);
@@ -655,6 +665,18 @@ export abstract class ExtHostTaskBase implements ExtHostTaskShape, IExtHostTask 
 
 
 		if (taskDTO.definition.type !== handler.type) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 658: Error message without production error code - breaks React bundle size optimization
+//   2. Line 658: Error message without production error code - breaks React bundle size optimization
+//   3. Line 663: Error message without production error code - breaks React bundle size optimization
+//   4. Line 663: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Unexpected: Task of type [${taskDTO.definition.type}] cannot be resolved by provider of type [${handler.type}].`);
 		}
 
@@ -684,6 +706,18 @@ export abstract class ExtHostTaskBase implements ExtHostTaskShape, IExtHostTask 
 
 		const resolvedTaskDTO: tasks.ITaskDTO | undefined = TaskDTO.from(resolvedTask, handler.extension);
 		if (!resolvedTaskDTO) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 687: Error message without production error code - breaks React bundle size optimization
+//   2. Line 687: Error message without production error code - breaks React bundle size optimization
+//   3. Line 691: Error message without production error code - breaks React bundle size optimization
+//   4. Line 691: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Unexpected: Task cannot be resolved.');
 		}
 
@@ -816,6 +850,18 @@ export class WorkerExtHostTask extends ExtHostTaskBase {
 
 	public async executeTask(extension: IExtensionDescription, task: vscode.Task): Promise<vscode.TaskExecution> {
 		if (!task.execution) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 819: Error message without production error code - breaks React bundle size optimization
+//   2. Line 819: Error message without production error code - breaks React bundle size optimization
+//   3. Line 824: Error message without production error code - breaks React bundle size optimization
+//   4. Line 824: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Tasks to execute must include an execution');
 		}
 
