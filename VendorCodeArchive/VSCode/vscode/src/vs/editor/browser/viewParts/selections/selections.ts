@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -209,6 +211,16 @@ export class SelectionsOverlay extends DynamicViewOverlay {
 				} else if (prevLeft < curRight && curRight < prevRight) {
 					endStyle.top = CornerStyle.INTERN;
 				}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 214: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 215: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			} else if (previousFrameTop) {
 				// Accept some hiccups near the viewport edges to save on repaints
 				startStyle.top = previousFrameTop.startStyle!.top;
@@ -231,6 +243,16 @@ export class SelectionsOverlay extends DynamicViewOverlay {
 				} else if (curRight < nextRight) {
 					endStyle.bottom = CornerStyle.INTERN;
 				}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 236: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 237: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			} else if (previousFrameBottom) {
 				// Accept some hiccups near the viewport edges to save on repaints
 				startStyle.bottom = previousFrameBottom.startStyle!.bottom;
