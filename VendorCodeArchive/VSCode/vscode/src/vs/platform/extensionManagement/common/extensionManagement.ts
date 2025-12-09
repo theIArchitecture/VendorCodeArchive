@@ -407,6 +407,17 @@ export interface IExtensionGalleryCapabilities {
 
 }
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 410: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 416: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 416: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IExtensionGalleryService = createDecorator<IExtensionGalleryService>('extensionGalleryService');
 
 /**
@@ -618,6 +629,17 @@ export type InstallExtensionInfo = { readonly extension: IGalleryExtension; read
 
 export type UninstallExtensionInfo = { readonly extension: ILocalExtension; readonly options?: UninstallOptions };
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 621: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 622: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 622: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IExtensionManagementService = createDecorator<IExtensionManagementService>('extensionManagementService');
 export interface IExtensionManagementService {
 	readonly _serviceBrand: undefined;
@@ -668,6 +690,17 @@ export interface IExtensionManagementService {
 
 export const DISABLED_EXTENSIONS_STORAGE_PATH = 'extensionsIdentifiers/disabled';
 export const ENABLED_EXTENSIONS_STORAGE_PATH = 'extensionsIdentifiers/enabled';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 671: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 673: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 673: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IGlobalExtensionEnablementService = createDecorator<IGlobalExtensionEnablementService>('IGlobalExtensionEnablementService');
 
 export interface IGlobalExtensionEnablementService {
@@ -712,6 +745,20 @@ export type IExecutableBasedExtensionTip = {
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 };
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 716: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 717: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 717: Missing service brand declaration - breaks VSCode's DI system type safety
+//   4. Line 727: Missing service brand declaration - breaks VSCode's DI system type safety
+//   5. Line 728: Missing service brand declaration - breaks VSCode's DI system type safety
+//   6. Line 728: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 export const IExtensionTipsService = createDecorator<IExtensionTipsService>('IExtensionTipsService');
 export interface IExtensionTipsService {

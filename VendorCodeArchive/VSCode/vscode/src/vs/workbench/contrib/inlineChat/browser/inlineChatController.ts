@@ -506,6 +506,16 @@ export class InlineChatController1 implements IEditorContribution {
 
 			}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 509: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 517: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const wholeRange = this._session!.wholeRange;
 			let shouldFinishSession = false;
 			if (this._configurationService.getValue<boolean>(InlineChatConfigKeys.FinishOnType)) {
@@ -824,6 +834,16 @@ export class InlineChatController1 implements IEditorContribution {
 
 
 						// reshow the widget if the start position changed or shows at the wrong position
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 827: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 829: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						const startNow = this._session!.wholeRange.value.getStartPosition();
 						if (!startNow.equals(startThen) || !this._ui.value.position?.equals(startNow)) {
 							this._showWidget(this._session!.headless, false, startNow.delta(-1));
@@ -1078,6 +1098,16 @@ export class InlineChatController1 implements IEditorContribution {
 
 
 		const editsObserver: IEditObserver = {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1081: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1082: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			start: () => this._session!.hunkData.ignoreTextModelNChanges = true,
 			stop: () => this._session!.hunkData.ignoreTextModelNChanges = false,
 		};

@@ -18,6 +18,17 @@
 
 import * as vscode from 'vscode';
 import { LanguageClient, ServerOptions, TransportKind } from 'vscode-languageclient/node';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 21: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 21: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 21: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { MdLanguageClient, startClient } from './client/client';
 import { activateShared } from './extension.shared';
 import { VsCodeOutputLogger } from './logging';
