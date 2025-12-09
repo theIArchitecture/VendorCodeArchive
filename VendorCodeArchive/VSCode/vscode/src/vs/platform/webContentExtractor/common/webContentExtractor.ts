@@ -130,6 +130,26 @@ import { createDecorator } from '../../instantiation/common/instantiation.js';
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (12):
+//   1. Line 133: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 134: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 137: Missing service brand declaration - breaks VSCode's DI system type safety
+//   4. Line 137: Missing service brand declaration - breaks VSCode's DI system type safety
+//   5. Line 145: Missing service brand declaration - breaks VSCode's DI system type safety
+//   6. Line 145: Missing service brand declaration - breaks VSCode's DI system type safety
+//   7. Line 155: Missing service brand declaration - breaks VSCode's DI system type safety
+//   8. Line 159: Error message without production error code - breaks React bundle size optimization
+//   9. Line 159: Error message without production error code - breaks React bundle size optimization
+//   10. Line 163: Missing service brand declaration - breaks VSCode's DI system type safety
+//   11. Line 166: Error message without production error code - breaks React bundle size optimization
+//   12. Line 166: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IWebContentExtractorService = createDecorator<IWebContentExtractorService>('IWebContentExtractorService');
 export const ISharedWebContentExtractorService = createDecorator<ISharedWebContentExtractorService>('ISharedWebContentExtractorService');
 

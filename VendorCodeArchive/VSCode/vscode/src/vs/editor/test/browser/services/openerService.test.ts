@@ -335,6 +335,55 @@ suite('OpenerService', function () {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (41):
+//   1. Line 338: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 345: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 345: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 346: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 346: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 347: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 347: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 348: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 348: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 349: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 352: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 352: Dangerous type assertion in VSCode source - runtime type error risk
+//   13. Line 353: Dangerous type assertion in VSCode source - runtime type error risk
+//   14. Line 353: Dangerous type assertion in VSCode source - runtime type error risk
+//   15. Line 356: Dangerous type assertion in VSCode source - runtime type error risk
+//   16. Line 356: Dangerous type assertion in VSCode source - runtime type error risk
+//   17. Line 357: Dangerous type assertion in VSCode source - runtime type error risk
+//   18. Line 357: Dangerous type assertion in VSCode source - runtime type error risk
+//   19. Line 358: Dangerous type assertion in VSCode source - runtime type error risk
+//   20. Line 358: Dangerous type assertion in VSCode source - runtime type error risk
+//   21. Line 359: Dangerous type assertion in VSCode source - runtime type error risk
+//   22. Line 359: Dangerous type assertion in VSCode source - runtime type error risk
+//   23. Line 360: Dangerous type assertion in VSCode source - runtime type error risk
+//   24. Line 367: Dangerous type assertion in VSCode source - runtime type error risk
+//   25. Line 367: Dangerous type assertion in VSCode source - runtime type error risk
+//   26. Line 368: Dangerous type assertion in VSCode source - runtime type error risk
+//   27. Line 368: Dangerous type assertion in VSCode source - runtime type error risk
+//   28. Line 369: Dangerous type assertion in VSCode source - runtime type error risk
+//   29. Line 369: Dangerous type assertion in VSCode source - runtime type error risk
+//   30. Line 370: Dangerous type assertion in VSCode source - runtime type error risk
+//   31. Line 370: Dangerous type assertion in VSCode source - runtime type error risk
+//   32. Line 371: Dangerous type assertion in VSCode source - runtime type error risk
+//   33. Line 374: Dangerous type assertion in VSCode source - runtime type error risk
+//   34. Line 374: Dangerous type assertion in VSCode source - runtime type error risk
+//   35. Line 375: Dangerous type assertion in VSCode source - runtime type error risk
+//   36. Line 375: Dangerous type assertion in VSCode source - runtime type error risk
+//   37. Line 376: Dangerous type assertion in VSCode source - runtime type error risk
+//   38. Line 376: Dangerous type assertion in VSCode source - runtime type error risk
+//   39. Line 377: Dangerous type assertion in VSCode source - runtime type error risk
+//   40. Line 377: Dangerous type assertion in VSCode source - runtime type error risk
+//   41. Line 378: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual((editorService.lastInput!.options as ITextEditorOptions)!.selection, undefined);
 	});
 
@@ -512,6 +561,26 @@ suite('OpenerService', function () {
 //   10. Line 466: Dangerous type assertion in VSCode source - runtime type error risk
 //   11. Line 467: Dangerous type assertion in VSCode source - runtime type error risk
 //   12. Line 468: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (12):
+//   1. Line 520: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 521: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 522: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 525: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 526: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 529: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 530: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 531: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 534: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 535: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 536: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 537: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
