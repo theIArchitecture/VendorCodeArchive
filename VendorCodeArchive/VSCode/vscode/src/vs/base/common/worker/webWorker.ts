@@ -415,6 +415,26 @@ export class WebWorkerClient<W extends object> extends Disposable implements IWe
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (12):
+//   1. Line 418: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 423: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 432: Error message without production error code - breaks React bundle size optimization
+//   4. Line 432: Error message without production error code - breaks React bundle size optimization
+//   5. Line 435: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 437: Error message without production error code - breaks React bundle size optimization
+//   7. Line 437: Error message without production error code - breaks React bundle size optimization
+//   8. Line 442: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 444: Error message without production error code - breaks React bundle size optimization
+//   10. Line 444: Error message without production error code - breaks React bundle size optimization
+//   11. Line 448: Error message without production error code - breaks React bundle size optimization
+//   12. Line 448: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if (typeof (channel as any)[method] !== 'function') {
 			return Promise.reject(new Error(`Missing method ${method} on main thread channel ${channelName}`));
 		}
@@ -574,6 +594,26 @@ export class WebWorkerServer<T extends IWebWorkerServerRequestHandler> implement
 //   10. Line 568: Error message without production error code - breaks React bundle size optimization
 //   11. Line 572: Error message without production error code - breaks React bundle size optimization
 //   12. Line 572: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (12):
+//   1. Line 582: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 587: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 596: Error message without production error code - breaks React bundle size optimization
+//   4. Line 596: Error message without production error code - breaks React bundle size optimization
+//   5. Line 599: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 601: Error message without production error code - breaks React bundle size optimization
+//   7. Line 601: Error message without production error code - breaks React bundle size optimization
+//   8. Line 606: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 608: Error message without production error code - breaks React bundle size optimization
+//   10. Line 608: Error message without production error code - breaks React bundle size optimization
+//   11. Line 612: Error message without production error code - breaks React bundle size optimization
+//   12. Line 612: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers

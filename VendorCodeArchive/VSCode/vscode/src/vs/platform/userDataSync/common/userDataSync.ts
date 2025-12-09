@@ -284,6 +284,20 @@ export type UserDataSyncStoreType = 'insiders' | 'stable';
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 287: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 288: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 288: Missing service brand declaration - breaks VSCode's DI system type safety
+//   4. Line 296: Missing service brand declaration - breaks VSCode's DI system type safety
+//   5. Line 297: Missing service brand declaration - breaks VSCode's DI system type safety
+//   6. Line 297: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IUserDataSyncStoreManagementService = createDecorator<IUserDataSyncStoreManagementService>('IUserDataSyncStoreManagementService');
 export interface IUserDataSyncStoreManagementService {
 	readonly _serviceBrand: undefined;
@@ -348,6 +362,17 @@ export interface IUserDataSyncStoreService {
 //   1. Line 331: Missing service brand declaration - breaks VSCode's DI system type safety
 //   2. Line 332: Missing service brand declaration - breaks VSCode's DI system type safety
 //   3. Line 332: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 356: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 357: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 357: Missing service brand declaration - breaks VSCode's DI system type safety
 // WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
@@ -653,6 +678,17 @@ export function getEnablementKey(resource: SyncResource) { return `sync.enable.$
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 656: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 657: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 657: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IUserDataSyncEnablementService = createDecorator<IUserDataSyncEnablementService>('IUserDataSyncEnablementService');
 export interface IUserDataSyncEnablementService {
 	_serviceBrand: any;
@@ -716,6 +752,17 @@ export interface IUserDataManualSyncTask {
 //   1. Line 677: Missing service brand declaration - breaks VSCode's DI system type safety
 //   2. Line 678: Missing service brand declaration - breaks VSCode's DI system type safety
 //   3. Line 678: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 724: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 725: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 725: Missing service brand declaration - breaks VSCode's DI system type safety
 // WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
@@ -791,6 +838,17 @@ export interface IUserDataSyncService {
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 794: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 795: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 795: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IUserDataSyncResourceProviderService = createDecorator<IUserDataSyncResourceProviderService>('IUserDataSyncResourceProviderService');
 export interface IUserDataSyncResourceProviderService {
 	_serviceBrand: any;
@@ -847,6 +905,21 @@ export type SyncOptions = { immediately?: boolean; skipIfSyncedRecently?: boolea
 //   5. Line 792: Missing service brand declaration - breaks VSCode's DI system type safety
 //   6. Line 792: Missing service brand declaration - breaks VSCode's DI system type safety
 //   7. Line 799: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (7):
+//   1. Line 855: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 856: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 856: Missing service brand declaration - breaks VSCode's DI system type safety
+//   4. Line 864: Missing service brand declaration - breaks VSCode's DI system type safety
+//   5. Line 865: Missing service brand declaration - breaks VSCode's DI system type safety
+//   6. Line 865: Missing service brand declaration - breaks VSCode's DI system type safety
+//   7. Line 872: Missing service brand declaration - breaks VSCode's DI system type safety
 // WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers

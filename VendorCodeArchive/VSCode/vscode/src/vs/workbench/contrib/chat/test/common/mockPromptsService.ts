@@ -115,6 +115,26 @@ export class MockPromptsService implements IPromptsService {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (12):
+//   1. Line 118: Error message without production error code - breaks React bundle size optimization
+//   2. Line 118: Error message without production error code - breaks React bundle size optimization
+//   3. Line 119: Error message without production error code - breaks React bundle size optimization
+//   4. Line 119: Error message without production error code - breaks React bundle size optimization
+//   5. Line 120: Error message without production error code - breaks React bundle size optimization
+//   6. Line 120: Error message without production error code - breaks React bundle size optimization
+//   7. Line 122: Error message without production error code - breaks React bundle size optimization
+//   8. Line 122: Error message without production error code - breaks React bundle size optimization
+//   9. Line 123: Error message without production error code - breaks React bundle size optimization
+//   10. Line 123: Error message without production error code - breaks React bundle size optimization
+//   11. Line 124: Error message without production error code - breaks React bundle size optimization
+//   12. Line 124: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	getSyntaxParserFor(_model: any): any { throw new Error('Not implemented'); }
 	listPromptFiles(_type: any): Promise<readonly any[]> { throw new Error('Not implemented'); }
 	getSourceFolders(_type: any): readonly any[] { throw new Error('Not implemented'); }

@@ -1617,6 +1617,22 @@ suite('NotebookTextModel', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 1620: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1621: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1626: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1627: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1632: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1633: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 1638: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 1639: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.strictEqual(findMatch!.match.range.startLineNumber, 1);
 				assert.strictEqual(findMatch!.match.range.startColumn, 1);
 
@@ -1726,6 +1742,30 @@ suite('NotebookTextModel', () => {
 //   14. Line 1734: Dangerous type assertion in VSCode source - runtime type error risk
 //   15. Line 1739: Dangerous type assertion in VSCode source - runtime type error risk
 //   16. Line 1740: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (16):
+//   1. Line 1734: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1735: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1740: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1741: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1746: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1747: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 1752: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 1753: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 1762: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 1763: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 1767: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 1768: Dangerous type assertion in VSCode source - runtime type error risk
+//   13. Line 1773: Dangerous type assertion in VSCode source - runtime type error risk
+//   14. Line 1774: Dangerous type assertion in VSCode source - runtime type error risk
+//   15. Line 1779: Dangerous type assertion in VSCode source - runtime type error risk
+//   16. Line 1780: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
