@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -190,6 +192,18 @@ export class ActionButtonRenderer implements ICompressibleTreeRenderer<ISCMActio
 		@INotificationService private notificationService: INotificationService,
 	) { }
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 195: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 195: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 198: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 198: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	renderTemplate(container: HTMLElement): ActionButtonTemplate {
 		// hack
 		(container.parentElement!.parentElement!.querySelector('.monaco-tl-twistie')! as HTMLElement).classList.add('force-no-twistie');
@@ -216,6 +230,16 @@ export class ActionButtonRenderer implements ICompressibleTreeRenderer<ISCMActio
 
 		templateData.disposable = disposables;
 	}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 221: Error message without production error code - breaks React bundle size optimization
+//   2. Line 221: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	renderCompressedElements(): void {
 		throw new Error('Should never happen since node is incompressible');
@@ -314,6 +338,18 @@ class InputRenderer implements ICompressibleTreeRenderer<ISCMInput, FuzzyScore, 
 		@IInstantiationService private instantiationService: IInstantiationService
 	) { }
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 319: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 319: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 322: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 322: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	renderTemplate(container: HTMLElement): InputTemplate {
 		// hack
 		(container.parentElement!.parentElement!.querySelector('.monaco-tl-twistie')! as HTMLElement).classList.add('force-no-twistie');
@@ -382,6 +418,16 @@ class InputRenderer implements ICompressibleTreeRenderer<ISCMInput, FuzzyScore, 
 		templateData.elementDisposables.add(this.outerLayout.onDidChange(layoutEditor));
 		layoutEditor();
 	}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 387: Error message without production error code - breaks React bundle size optimization
+//   2. Line 387: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	renderCompressedElements(): void {
 		throw new Error('Should never happen since node is incompressible');
@@ -446,6 +492,16 @@ class ResourceGroupRenderer implements ICompressibleTreeRenderer<ISCMResourceGro
 		@ITelemetryService private telemetryService: ITelemetryService
 	) { }
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 451: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 451: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	renderTemplate(container: HTMLElement): ResourceGroupTemplate {
 		// hack
 		(container.parentElement!.parentElement!.querySelector('.monaco-tl-twistie')! as HTMLElement).classList.add('force-twistie');
@@ -475,6 +531,16 @@ class ResourceGroupRenderer implements ICompressibleTreeRenderer<ISCMResourceGro
 		}, 'inline'));
 		template.actionBar.context = group;
 	}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 480: Error message without production error code - breaks React bundle size optimization
+//   2. Line 480: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	renderCompressedElements(node: ITreeNode<ICompressedTreeNode<ISCMResourceGroup>, FuzzyScore>): void {
 		throw new Error('Should never happen since node is incompressible');
@@ -738,6 +804,16 @@ class ListDelegate implements IListVirtualDelegate<TreeElement> {
 		} else if (isSCMResourceGroup(element)) {
 			return ResourceGroupRenderer.TEMPLATE_ID;
 		} else if (isSCMResource(element) || isSCMResourceNode(element)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 743: Error message without production error code - breaks React bundle size optimization
+//   2. Line 743: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			return ResourceRenderer.TEMPLATE_ID;
 		} else {
 			throw new Error('Unknown element');
@@ -775,6 +851,16 @@ export class SCMTreeSorter implements ITreeSorter<TreeElement> {
 		private readonly viewSortKey: () => ViewSortKey) { }
 
 	compare(one: TreeElement, other: TreeElement): number {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 780: Error message without production error code - breaks React bundle size optimization
+//   2. Line 780: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		if (isSCMRepository(one)) {
 			if (!isSCMRepository(other)) {
 				throw new Error('Invalid comparison');
@@ -897,6 +983,16 @@ function getSCMResourceId(element: TreeElement): string {
 		return `resource:${provider.id}/${group.id}/${element.sourceUri.toString()}`;
 	} else if (isSCMResourceNode(element)) {
 		const group = element.context;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 902: Error message without production error code - breaks React bundle size optimization
+//   2. Line 902: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		return `folder:${group.provider.id}/${group.id}/$FOLDER/${element.uri.toString()}`;
 	} else {
 		throw new Error('Invalid tree element');
@@ -2033,6 +2129,18 @@ class SCMInputWidget {
 			render: container => {
 				this.element.style.borderBottomLeftRadius = '0';
 				this.element.style.borderBottomRightRadius = '0';
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 2038: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2039: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 2040: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 2044: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 				const validationContainer = append(container, $('.scm-editor-validation-container'));
 				validationContainer.classList.toggle('validation-info', this.validation!.type === InputValidationType.Information);
@@ -3010,6 +3118,16 @@ class SCMTreeDataSource extends Disposable implements IAsyncDataSource<ISCMViewS
 			if (element.parent === element.context.resourceTree.root) {
 				return element.context;
 			} else if (element.parent) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 3015: Error message without production error code - breaks React bundle size optimization
+//   2. Line 3015: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				return element.parent;
 			} else {
 				throw new Error('Invalid element passed to getParent');
@@ -3021,6 +3139,16 @@ class SCMTreeDataSource extends Disposable implements IAsyncDataSource<ISCMViewS
 
 			const node = element.resourceGroup.resourceTree.getNode(element.sourceUri);
 			const result = node?.parent;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 3026: Error message without production error code - breaks React bundle size optimization
+//   2. Line 3026: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 			if (!result) {
 				throw new Error('Invalid element passed to getParent');
@@ -3034,6 +3162,18 @@ class SCMTreeDataSource extends Disposable implements IAsyncDataSource<ISCMViewS
 		} else if (isSCMInput(element)) {
 			return element.repository;
 		} else if (isSCMResourceGroup(element)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 3039: Error message without production error code - breaks React bundle size optimization
+//   2. Line 3039: Error message without production error code - breaks React bundle size optimization
+//   3. Line 3044: Error message without production error code - breaks React bundle size optimization
+//   4. Line 3044: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			const repository = this.scmViewService.visibleRepositories.find(r => r.provider === element.provider);
 			if (!repository) {
 				throw new Error('Invalid element passed to getParent');
@@ -3059,6 +3199,16 @@ class SCMTreeDataSource extends Disposable implements IAsyncDataSource<ISCMViewS
 		} else if (isSCMResource(inputOrElement)) {
 			return false;
 		} else if (ResourceTree.isResourceNode(inputOrElement)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 3064: Error message without production error code - breaks React bundle size optimization
+//   2. Line 3064: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			return inputOrElement.childrenCount > 0;
 		} else {
 			throw new Error('hasChildren not implemented.');
@@ -3129,6 +3279,13 @@ export class SCMActionButton implements IDisposable {
 		if (this.button instanceof Button && button.command.shortTitle) {
 			this.button.labelShort = button.command.shortTitle;
 		}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this.button.onDidClick(async () => await this.executeCommand(button.command.id, ...(button.command.arguments || [])), null, this.disposables.value);
 
 		this.disposables.value!.add(this.button);

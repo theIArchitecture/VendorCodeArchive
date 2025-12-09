@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -331,6 +333,13 @@ export class CellDragAndDropController extends Disposable {
 			this.currentDraggedCell = templateData.currentRenderedCell!;
 			this.draggedCells = this.notebookEditor.getSelections().map(range => this.notebookEditor.getCellsInRange(range)).flat();
 			this.draggedCells.forEach(cell => cell.dragging = true);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 			const dragImage = dragImageProvider();
 			cellRoot.parentElement!.appendChild(dragImage);
@@ -498,6 +507,13 @@ export function performCellDropEdits(editor: INotebookEditorDelegate, draggedCel
 
 	const lastEdit = edits[edits.length - 1];
 	const finalSelection = { start: lastEdit.newIdx, end: lastEdit.newIdx + numCells };
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	const finalFocus = { start: focusNewIdx, end: focusNewIdx + 1 };
 
 	editor.textModel!.applyEdits(

@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -122,6 +124,18 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 		this._onPtyHostConnected.fire();
 	}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 127: Error message without production error code - breaks React bundle size optimization
+//   2. Line 127: Error message without production error code - breaks React bundle size optimization
+//   3. Line 134: Error message without production error code - breaks React bundle size optimization
+//   4. Line 134: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	async requestDetachInstance(workspaceId: string, instanceId: number): Promise<IProcessDetails | undefined> {
 		if (!this._remoteTerminalChannel) {
 			throw new Error(`Cannot request detach instance when there is no remote!`);
@@ -139,6 +153,16 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 
 		return this._remoteTerminalChannel.acceptDetachInstanceReply(requestId, persistentProcessId);
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 145: Error message without production error code - breaks React bundle size optimization
+//   2. Line 145: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	async persistTerminalState(): Promise<void> {
 		if (!this._remoteTerminalChannel) {
@@ -158,6 +182,18 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 		env: IProcessEnvironment, // TODO: This is ignored
 		options: ITerminalProcessOptions,
 		shouldPersist: boolean
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 163: Error message without production error code - breaks React bundle size optimization
+//   2. Line 163: Error message without production error code - breaks React bundle size optimization
+//   3. Line 170: Error message without production error code - breaks React bundle size optimization
+//   4. Line 170: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	): Promise<ITerminalChildProcess> {
 		if (!this._remoteTerminalChannel) {
 			throw new Error(`Cannot create remote terminal when there is no remote!`);
@@ -209,6 +245,16 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 		return pty;
 	}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 214: Error message without production error code - breaks React bundle size optimization
+//   2. Line 214: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	async attachToProcess(id: number): Promise<ITerminalChildProcess | undefined> {
 		if (!this._remoteTerminalChannel) {
 			throw new Error(`Cannot create remote terminal when there is no remote!`);
@@ -224,6 +270,16 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 		}
 		return undefined;
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 230: Error message without production error code - breaks React bundle size optimization
+//   2. Line 230: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	async attachToRevivedProcess(id: number): Promise<ITerminalChildProcess | undefined> {
 		if (!this._remoteTerminalChannel) {
@@ -284,6 +340,13 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 		const connection = this._remoteAgentService.getConnection();
 		if (!connection) {
 			return undefined;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}
 		const resolverResult = await this._remoteAuthorityResolverService.resolveAuthority(connection.remoteAuthority);
 		return resolverResult.options?.extensionHostEnv as any;
@@ -296,6 +359,20 @@ class RemoteTerminalBackend extends BaseTerminalBackend implements ITerminalBack
 		}
 		return this._remoteTerminalChannel.getWslPath(original, direction) || original;
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 302: Error message without production error code - breaks React bundle size optimization
+//   2. Line 302: Error message without production error code - breaks React bundle size optimization
+//   3. Line 310: Error message without production error code - breaks React bundle size optimization
+//   4. Line 310: Error message without production error code - breaks React bundle size optimization
+//   5. Line 317: Error message without production error code - breaks React bundle size optimization
+//   6. Line 317: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	async setTerminalLayoutInfo(layout?: ITerminalsLayoutInfoById): Promise<void> {
 		if (!this._remoteTerminalChannel) {

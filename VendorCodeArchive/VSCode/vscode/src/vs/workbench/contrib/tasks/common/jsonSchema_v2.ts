@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -479,6 +481,13 @@ export function updateTaskDefinitions() {
 		taskDefinitions.push(schema);
 	}
 }
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 const customize = Objects.deepClone(taskConfiguration);
 customize.properties!.customize = {
@@ -542,6 +551,17 @@ taskDescriptionProperties.isTestCommand.deprecationMessage = nls.localize(
 	'JsonSchema.tasks.isTestCommand.deprecated',
 	'The property isTestCommand is deprecated. Use the group property instead. See also the 1.14 release notes.'
 );
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 547: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 553: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 554: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 // Process tasks are almost identical schema-wise to shell tasks, but they are required to have a command
 processTask.properties!.type = {
@@ -563,6 +583,18 @@ const definitionsTaskRunnerConfigurationProperties = definitions.taskRunnerConfi
 const tasks = definitionsTaskRunnerConfigurationProperties.tasks;
 tasks.items = {
 	oneOf: taskDefinitions
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 568: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 570: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 571: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 572: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 };
 
 definitionsTaskRunnerConfigurationProperties.inputs = inputsSchema.definitions!.inputs;
@@ -585,6 +617,13 @@ definitionsTaskRunnerConfigurationProperties.taskSelector.deprecationMessage = n
 	'JsonSchema.tasks.taskSelector.deprecated',
 	'The property taskSelector is deprecated. Inline the command with its arguments into the task instead. See also the 1.14 release notes.'
 );
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 const osSpecificTaskRunnerConfiguration = Objects.deepClone(definitions.taskRunnerConfiguration);
 delete osSpecificTaskRunnerConfiguration.properties!.tasks;

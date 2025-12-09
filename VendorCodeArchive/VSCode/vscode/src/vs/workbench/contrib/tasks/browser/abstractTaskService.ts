@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -337,6 +339,17 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 				for (const task of folderResult.set.tasks) {
 					const realUniqueId = task._id;
 					const lastTask = this._taskSystem?.lastTask?.task._id;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 342: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 342: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 343: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 					if (lastTask && lastTask === realUniqueId && folderUri !== 'setting') {
 						const verifiedLastTask = new VerifiedTask(task, this._taskSystem!.lastTask!.resolver, Triggers.command);
@@ -1382,6 +1395,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 			return !settingValue;
 		}
 		if (type === undefined) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return true;
 		}
 		const settingValueMap: IStringDictionary<boolean> = settingValue as any;
@@ -1897,6 +1917,16 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 
 		async function getResolverData(that: AbstractTaskService) {
 			if (resolverData === undefined) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1902: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1905: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				resolverData = new Map();
 				(grouped || await that._getGroupedTasks()).forEach((tasks, folder) => {
 					let data = resolverData!.get(folder);
@@ -2006,6 +2036,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 				// ignore, the task is already active, likely from being reconnected or from folder open.
 				this._logService.debug('Ignoring task that is already active', executeResult.task);
 				return executeResult.promise;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			}
 			if (active && active.same) {
 				this._handleInstancePolicy(executeResult.task, executeResult.task.runOptions!.instancePolicy);
@@ -2033,6 +2070,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 			case InstancePolicy.warn:
 				this._notificationService.warn(nls.localize('TaskSystem.InstancePolicy.warn', 'The instance limit for this task has been reached.'));
 				break;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			case InstancePolicy.prompt:
 			default:
 				this._showQuickPick(this._taskSystem!.getActiveTasks().filter(t => task._id === t._id),
@@ -2331,6 +2375,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 					}
 
 					const unUsedConfigurationsAsArray = Array.from(unUsedConfigurations);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 					const unUsedConfigurationPromises = unUsedConfigurationsAsArray.map(async (value) => {
 						const configuringTask = configurations!.byIdentifier[value];
@@ -2509,6 +2560,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 
 	private _testParseExternalConfig(config: TaskConfig.IExternalTaskRunnerConfiguration | undefined, location: string): { config: TaskConfig.IExternalTaskRunnerConfiguration | undefined; hasParseErrors: boolean } {
 		if (!config) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return { config: undefined, hasParseErrors: false };
 		}
 		const parseErrors: string[] = (config as any).$parseErrors;
@@ -2689,6 +2747,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 			}
 		}
 		if (!result) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return { config: undefined, hasParseErrors: false };
 		}
 		const parseErrors: string[] = (result as any).$parseErrors;
@@ -3043,6 +3108,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 			if (this._configurationService.getValue(USE_SLOW_PICKER)) {
 				let taskResult: { tasks: Promise<Task[]>; grouped: Promise<TaskMap> } | undefined = undefined;
 				if (!tasks) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					taskResult = this._tasksAndGroupedTasks();
 				}
 				this._showQuickPick(tasks ? tasks : taskResult!.tasks, placeholder,
@@ -3420,6 +3492,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 				const pickTemplateResult = await this._quickInputService.pick(getTaskTemplates(), { placeHolder: nls.localize('TaskService.template', 'Select a Task Template') });
 				if (!pickTemplateResult) {
 					return Promise.resolve(undefined);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				}
 				content = pickTemplateResult.content;
 				const editorConfig = this._configurationService.getValue() as any;
@@ -3453,6 +3532,16 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 			});
 		});
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 3458: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 3463: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	private _isTaskEntry(value: IQuickPickItem): value is IQuickPickItem & { task: Task } {
 		const candidate: IQuickPickItem & { task: Task } = value as any;
@@ -3744,6 +3833,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 	public async runShowTasks(): Promise<void> {
 		const activeTasksPromise: Promise<Task[]> = this.getActiveTasks();
 		const activeTasks: Task[] = await activeTasksPromise;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		let group: string | undefined;
 		if (activeTasks.length === 1) {
 			this._taskSystem!.revealTask(activeTasks[0]);
@@ -3755,6 +3851,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 			if (!group) {
 				group = task.command.presentation?.group;
 			}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return task.command.presentation?.group && (task.command.presentation.group === group);
 		})) {
 			this._taskSystem!.revealTask(activeTasks[0]);
@@ -3769,6 +3872,13 @@ export abstract class AbstractTaskService extends Disposable implements ITaskSer
 			).then((entry) => {
 				const task: Task | undefined | null = entry ? entry.task : undefined;
 				if (task === undefined || task === null) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					return;
 				}
 				this._taskSystem!.revealTask(task);

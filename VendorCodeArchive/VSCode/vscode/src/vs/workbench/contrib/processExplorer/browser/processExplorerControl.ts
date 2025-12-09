@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -25,6 +27,17 @@ import { ICommandService } from '../../../../platform/commands/common/commands.j
 import { RenderIndentGuides } from '../../../../base/browser/ui/tree/abstractTree.js';
 import { Delayer } from '../../../../base/common/async.js';
 import { IHoverService } from '../../../../platform/hover/browser/hover.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 30: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 30: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 30: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IManagedHover } from '../../../../base/browser/ui/hover/hover.js';
 import { getDefaultHoverDelegate } from '../../../../base/browser/ui/hover/hoverDelegateFactory.js';
 import { IClipboardService } from '../../../../platform/clipboard/common/clipboardService.js';
@@ -168,6 +181,16 @@ interface IProcessItemTemplateData extends IProcessRowTemplateData {
 class ProcessHeaderTreeRenderer implements ITreeRenderer<IProcessInformation, void, IProcessItemTemplateData> {
 
 	readonly templateId: string = 'header';
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 173: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 173: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	renderTemplate(container: HTMLElement): IProcessItemTemplateData {
 		(container.parentElement!.parentElement!.querySelector('.monaco-tl-twistie')! as HTMLElement).classList.add('force-no-twistie'); // hack, but no API for hiding twistie on tree
@@ -271,6 +294,13 @@ class ProcessRenderer implements ITreeRenderer<ProcessItem, void, IProcessItemTe
 
 		templateData.name.textContent = this.model.getName(element.pid, element.name);
 		templateData.cpu.textContent = element.load.toFixed(0);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		templateData.memory.textContent = (element.mem / ByteSize.MB).toFixed(0);
 		templateData.pid.textContent = pid;
 		templateData.pid.parentElement!.id = `pid-${pid}`;
@@ -460,6 +490,13 @@ export abstract class ProcessExplorerControl extends Disposable {
 			return false;
 		}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const matches = DEBUG_FLAGS_PATTERN.exec(cmd);
 
 		return (matches && matches.groups!.port !== '0') || cmd.indexOf('node ') >= 0 || cmd.indexOf('node.exe') >= 0;
@@ -471,6 +508,16 @@ export abstract class ProcessExplorerControl extends Disposable {
 			request: 'attach',
 			name: `process ${item.pid}`
 		};
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 477: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 485: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		let matches = DEBUG_FLAGS_PATTERN.exec(item.cmd);
 		if (matches) {

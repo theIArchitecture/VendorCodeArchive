@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -45,6 +47,17 @@ suite('NotebookCellLayoutManager', () => {
 		const cell2 = mockCellViewModel();
 		const list = new MockList();
 		list.cells.push(cell);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 50: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 50: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 50: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		list.cells.push(cell2);
 		const widget = new MockNotebookWidget();
 		const mgr = store.add(new NotebookCellLayoutManager(widget as any, list as any, new MockLoggingService() as any));
@@ -60,6 +73,17 @@ suite('NotebookCellLayoutManager', () => {
 		const list = new MockList();
 		list.inRenderingTransaction = true;
 		list.cells.push(cell);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 65: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 65: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 65: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		list.cells.push(cell2);
 		const widget = new MockNotebookWidget();
 		const mgr = store.add(new NotebookCellLayoutManager(widget as any, list as any, new MockLoggingService() as any));
@@ -78,6 +102,20 @@ suite('NotebookCellLayoutManager', () => {
 
 	test('should not update if cell is hidden', async () => {
 		const cell = mockCellViewModel();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 83: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 83: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 83: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 93: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 93: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 93: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const list = new MockList();
 		const widget = new MockNotebookWidget();
 		const mgr = store.add(new NotebookCellLayoutManager(widget as any, list as any, new MockLoggingService() as any));

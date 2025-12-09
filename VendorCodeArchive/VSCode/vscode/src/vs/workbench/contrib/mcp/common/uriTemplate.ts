@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -154,6 +156,13 @@ export class UriTemplate {
 			if (typeof value === 'object' && !Array.isArray(value)) {
 				if (v.explodable) {
 					const pairs: string[] = [];
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					for (const k in value) {
 						if (Object.prototype.hasOwnProperty.call(value, k)) {
 							const thisVal = String((value as any)[k]);
@@ -185,6 +194,13 @@ export class UriTemplate {
 					// Not explodable: join as k1,v1,k2,v2,... and assign to variable name
 					const pairs: string[] = [];
 					for (const k in value) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						if (Object.prototype.hasOwnProperty.call(value, k)) {
 							pairs.push(k);
 							pairs.push(String((value as any)[k]));

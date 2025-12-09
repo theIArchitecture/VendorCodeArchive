@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -116,6 +118,13 @@ async function webviewPreloads(ctx: PreloadContext) {
 	const isWorkspaceTrusted = ctx.isWorkspaceTrusted;
 	let currentRenderOptions = ctx.renderOptions;
 	const settingChange: EmitterLike<RenderOptions> = createEmitter<RenderOptions>();
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 	const acquireVsCodeApi = globalThis.acquireVsCodeApi;
 	const vscode = acquireVsCodeApi();
@@ -308,6 +317,13 @@ async function webviewPreloads(ctx: PreloadContext) {
 		if (!cellOutputContainer) {
 			return;
 		}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const activeElement = window.document.activeElement;
 		if (activeElement && isEditableElement(activeElement)) {
 			(activeElement as HTMLInputElement).select();
@@ -1187,6 +1203,16 @@ async function webviewPreloads(ctx: PreloadContext) {
 		}
 
 		highlightCurrentMatch(index: number, ownerID: string) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1192: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1192: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			const highlightInfo = this._activeHighlightInfo.get(ownerID);
 			if (!highlightInfo) {
 				console.error('Modified current highlight match before adding highlight list.');
@@ -1299,6 +1325,16 @@ async function webviewPreloads(ctx: PreloadContext) {
 		}
 
 		highlightCurrentMatch(index: number, ownerID: string): void {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1304: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1304: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			const highlightInfo = this._activeHighlightInfo.get(ownerID);
 			if (!highlightInfo) {
 				console.error('Modified current highlight match before adding highlight list.');
@@ -1450,6 +1486,13 @@ async function webviewPreloads(ctx: PreloadContext) {
 
 		try {
 			document.designMode = 'On';
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 			while (find && matches.length < 500) {
 				find = (window as any).find(query, /* caseSensitive*/ !!options.caseSensitive,
@@ -1489,6 +1532,13 @@ async function webviewPreloads(ctx: PreloadContext) {
 
 					// Outputs might be rendered inside a shadow DOM.
 					if (options.includeOutput && selection.rangeCount > 0 && selection.getRangeAt(0).startContainer.nodeType === 1
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						&& (selection.getRangeAt(0).startContainer as Element).classList.contains('output_container')) {
 						// output container
 						const cellId = selection.getRangeAt(0).startContainer.parentElement!.id;
@@ -1617,6 +1667,17 @@ async function webviewPreloads(ctx: PreloadContext) {
 					'image/png': new Promise((resolve) => {
 						const canvas = document.createElement('canvas');
 						canvas.width = imageToCopy.naturalWidth;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 1622: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1628: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1628: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						canvas.height = imageToCopy.naturalHeight;
 						const context = canvas.getContext('2d');
 						context!.drawImage(imageToCopy, 0, 0);
@@ -1992,6 +2053,16 @@ async function webviewPreloads(ctx: PreloadContext) {
 
 				// Load all renderers that extend this renderer
 				await Promise.all(dependantRenderers.map(async d => {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1997: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1997: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					const renderer = renderers.getRenderer(d.id);
 					if (!renderer) {
 						throw new Error(`Could not find extending renderer: ${d.id}`);
@@ -2301,6 +2372,16 @@ async function webviewPreloads(ctx: PreloadContext) {
 		}
 
 		private async createMarkupCell(init: webviewMessages.IMarkupCellInitialization, top: number, visible: boolean): Promise<MarkupCell> {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2306: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2306: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			const existing = this._markupCells.get(init.cellId);
 			if (existing) {
 				console.error(`Trying to create markup that already exists: ${init.cellId}`);
@@ -3003,6 +3084,13 @@ async function webviewPreloads(ctx: PreloadContext) {
 				this.hasResizeObserver = true;
 				resizeObserver.observe(this.element, this.outputId, true, this.cellId);
 			}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 			const offsetHeight = this.element.offsetHeight;
 			const cps = document.defaultView!.getComputedStyle(this.element);

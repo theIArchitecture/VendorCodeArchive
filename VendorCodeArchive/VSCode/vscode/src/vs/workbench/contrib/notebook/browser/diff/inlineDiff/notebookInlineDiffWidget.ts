@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -49,6 +51,13 @@ export class NotebookInlineDiffWidget extends Disposable {
 
 		if (model) {
 			await this.widget.value?.setOptions({ ...options });
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this.widget.value?.notebookOptions.previousModelToCompare.set(previousModel, undefined);
 
 			await this.widget.value!.setModel(model, options?.viewState);
@@ -89,6 +98,16 @@ export class NotebookInlineDiffWidget extends Disposable {
 			'editor.contrib.emptyTextEditorHint',
 		];
 		const cellEditorContributions = EditorExtensionsRegistry.getEditorContributions().filter(c => skipContributions.indexOf(c.id) === -1);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 95: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 97: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		this.widget = <IBorrowValue<NotebookEditorWidget>>this.instantiationService.invokeFunction(this.widgetService.retrieveWidget,
 			groupId, input, { contributions, menuIds, cellEditorContributions, options: this.options }, this.dimension, this.window);

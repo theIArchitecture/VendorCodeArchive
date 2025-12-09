@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -1367,6 +1369,16 @@ export class SettingsEditor2 extends EditorPane {
 		return index;
 	}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1372: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1373: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	private refreshModels(resolvedSettingsRoot: ITOCEntry<ISetting>) {
 		// Both calls to refreshModels require a valid settingsTreeModel.
 		this.settingsTreeModel.value!.update(resolvedSettingsRoot);
@@ -1416,6 +1428,13 @@ export class SettingsEditor2 extends EditorPane {
 				const extensionInstalled = this.installedExtensionIds.includes(extensionId);
 
 				// Drill down to see whether the group and setting already exist
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				// and need to be removed.
 				const matchingGroupIndex = groups.findIndex(g =>
 					g.extensionInfo && g.extensionInfo!.id.toLowerCase() === extensionId.toLowerCase() &&
@@ -1495,6 +1514,17 @@ export class SettingsEditor2 extends EditorPane {
 				additionalGroups.push(additionalGroup);
 				setAdditionalGroups = true;
 			}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 1500: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1504: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1514: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}
 
 		resolvedSettingsRoot.children!.push(await createTocTreeForExtensionSettings(this.extensionService, groups.filter(g => g.extensionInfo)));
@@ -1548,6 +1578,16 @@ export class SettingsEditor2 extends EditorPane {
 	}
 
 	private updateElementsByKey(keys: ReadonlySet<string>): void {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1553: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1557: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if (keys.size) {
 			if (this.searchResultModel) {
 				keys.forEach(key => this.searchResultModel!.updateElementsByName(key));
@@ -1705,6 +1745,18 @@ export class SettingsEditor2 extends EditorPane {
 		this.viewState.idFilters = new Set<string>();
 		this.viewState.languageFilter = undefined;
 		if (query) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 1710: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1711: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1712: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1713: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const parsedQuery = parseQuery(query);
 			query = parsedQuery.query;
 			parsedQuery.tags.forEach(tag => this.viewState.tagFilters!.add(tag));
@@ -1914,6 +1966,13 @@ export class SettingsEditor2 extends EditorPane {
 		if (result && result.filterMatches.length > 0) {
 			const elapsed = this.stopWatch.elapsed();
 			this.logSearchPerformance(LLM_RANKED_SEARCH_PROVIDER_NAME, elapsed);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}
 
 		this.searchResultModel!.setResult(SearchResultIdx.AiSelected, result);

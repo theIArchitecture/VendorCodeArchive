@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -114,6 +116,13 @@ export class UserSettingsRenderer extends Disposable implements IPreferencesRend
 
 	private getSetting(setting: ISetting): ISetting | undefined {
 		const { key, overrideOf } = setting;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if (overrideOf) {
 			const setting = this.getSetting(overrideOf);
 			for (const override of setting!.overrides!) {
@@ -332,6 +341,13 @@ class EditSettingRenderer extends Disposable {
 					for (const setting of section.settings) {
 						if (setting.range.startLineNumber > lineNumber) {
 							break;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						}
 						if (lineNumber >= setting.range.startLineNumber && lineNumber <= setting.range.endLineNumber) {
 							if (!this.isDefaultSettings() && setting.overrides!.length) {
@@ -387,6 +403,17 @@ class EditSettingRenderer extends Disposable {
 	}
 
 	private toAbsoluteCoords(position: Position): { x: number; y: number } {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 392: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 393: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 393: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const positionCoords = this.editor.getScrolledVisiblePosition(position);
 		const editorCoords = getDomNodePagePosition(this.editor.getDomNode()!);
 		const x = editorCoords.left + positionCoords!.left;
