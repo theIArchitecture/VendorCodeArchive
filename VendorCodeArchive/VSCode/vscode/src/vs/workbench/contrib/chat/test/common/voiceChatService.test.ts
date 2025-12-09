@@ -334,6 +334,18 @@ suite('VoiceChat', () => {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 337: Error message without production error code - breaks React bundle size optimization
+//   2. Line 337: Error message without production error code - breaks React bundle size optimization
+//   3. Line 341: Error message without production error code - breaks React bundle size optimization
+//   4. Line 341: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Method not implemented.');
 		}
 		setRequestTools(requestId: string, tools: Pick<IChatAgentRequest, 'userSelectedTools'>): void {
@@ -1355,6 +1367,48 @@ suite('VoiceChat', () => {
 //   32. Line 1344: Missing service brand declaration - breaks VSCode's DI system type safety
 //   33. Line 1354: Error message without production error code - breaks React bundle size optimization
 //   34. Line 1354: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (34):
+//   1. Line 1363: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 1367: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1367: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1370: Error message without production error code - breaks React bundle size optimization
+//   5. Line 1370: Error message without production error code - breaks React bundle size optimization
+//   6. Line 1376: Error message without production error code - breaks React bundle size optimization
+//   7. Line 1376: Error message without production error code - breaks React bundle size optimization
+//   8. Line 1377: Error message without production error code - breaks React bundle size optimization
+//   9. Line 1377: Error message without production error code - breaks React bundle size optimization
+//   10. Line 1378: Error message without production error code - breaks React bundle size optimization
+//   11. Line 1378: Error message without production error code - breaks React bundle size optimization
+//   12. Line 1379: Error message without production error code - breaks React bundle size optimization
+//   13. Line 1379: Error message without production error code - breaks React bundle size optimization
+//   14. Line 1380: Error message without production error code - breaks React bundle size optimization
+//   15. Line 1380: Error message without production error code - breaks React bundle size optimization
+//   16. Line 1381: Error message without production error code - breaks React bundle size optimization
+//   17. Line 1381: Error message without production error code - breaks React bundle size optimization
+//   18. Line 1382: Error message without production error code - breaks React bundle size optimization
+//   19. Line 1382: Error message without production error code - breaks React bundle size optimization
+//   20. Line 1383: Error message without production error code - breaks React bundle size optimization
+//   21. Line 1383: Error message without production error code - breaks React bundle size optimization
+//   22. Line 1384: Error message without production error code - breaks React bundle size optimization
+//   23. Line 1384: Error message without production error code - breaks React bundle size optimization
+//   24. Line 1385: Error message without production error code - breaks React bundle size optimization
+//   25. Line 1385: Error message without production error code - breaks React bundle size optimization
+//   26. Line 1388: Error message without production error code - breaks React bundle size optimization
+//   27. Line 1388: Error message without production error code - breaks React bundle size optimization
+//   28. Line 1391: Error message without production error code - breaks React bundle size optimization
+//   29. Line 1391: Error message without production error code - breaks React bundle size optimization
+//   30. Line 1394: Error message without production error code - breaks React bundle size optimization
+//   31. Line 1394: Error message without production error code - breaks React bundle size optimization
+//   32. Line 1398: Missing service brand declaration - breaks VSCode's DI system type safety
+//   33. Line 1408: Error message without production error code - breaks React bundle size optimization
+//   34. Line 1408: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
 // BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers

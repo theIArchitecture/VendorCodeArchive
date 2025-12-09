@@ -639,6 +639,26 @@ suite('AbstractKeybindingService', () => {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (12):
+//   1. Line 642: Error message without production error code - breaks React bundle size optimization
+//   2. Line 642: Error message without production error code - breaks React bundle size optimization
+//   3. Line 645: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 648: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 653: Error message without production error code - breaks React bundle size optimization
+//   6. Line 653: Error message without production error code - breaks React bundle size optimization
+//   7. Line 656: Error message without production error code - breaks React bundle size optimization
+//   8. Line 656: Error message without production error code - breaks React bundle size optimization
+//   9. Line 659: Error message without production error code - breaks React bundle size optimization
+//   10. Line 659: Error message without production error code - breaks React bundle size optimization
+//   11. Line 662: Error message without production error code - breaks React bundle size optimization
+//   12. Line 662: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error('not implemented');
 				},
 				status(message: string, options?: IStatusMessageOptions) {
