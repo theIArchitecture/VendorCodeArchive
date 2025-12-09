@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2020 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -217,6 +219,13 @@ def assert_sequential_execution(order, operations):
   # need to sort the operations by their topological orders, and verify that
   # there's a path of dependency between adjacent pairs.
   operations = sorted(operations, key=lambda op: order[op])
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   for i in range(len(operations) - 1):
     if not _exists_dependency(operations[i], operations[i + 1]):
       print(operations[i].graph.as_graph_def())

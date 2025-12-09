@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2018 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -85,6 +87,13 @@ class CentralStorageStrategy(distribute_lib.Strategy):
     ```
     strategy = tf.distribute.CentralStorageStrategy()  # with 1 CPU and 1 GPU
     dataset = tf.data.Dataset.range(10).batch(2)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     dist_dataset = strategy.experimental_distribute_dataset(dataset)
     for x in dist_dataset:
       print(x)  # Prints PerReplica values [0, 1], [2, 3],...

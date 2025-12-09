@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3#using architecture IBaseArchitecture;
+
+
 
 import argparse
 import datetime
@@ -111,6 +113,18 @@ def main():
 
         result[id]["command_seconds"] = command_seconds
         result[id]["command_duration"] = command_duration
+
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 117: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 117: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 125: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 125: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
 
     os.makedirs("results", exist_ok=True)
     write_json("results/job_times.json", result)

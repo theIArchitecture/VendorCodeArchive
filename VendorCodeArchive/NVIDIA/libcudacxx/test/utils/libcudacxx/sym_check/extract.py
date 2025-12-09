@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # -*- Python -*- vim: set syntax=python tabstop=4 expandtab cc=80:
 # ===----------------------------------------------------------------------===##
 #
@@ -38,6 +40,16 @@ class NMExtractor(object):
         symbols from shared libraries.
         """
         self.nm_exe = self.find_tool()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 43: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 43: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         if self.nm_exe is None:
             # ERROR no NM found
             print("ERROR: Could not find nm")
@@ -130,6 +142,16 @@ class ReadElfExtractor(object):
         extract symbols from shared libraries.
         """
         self.tool = self.find_tool()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 135: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 135: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         if self.tool is None:
             # ERROR no NM found
             print("ERROR: Could not find readelf")

@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -193,6 +195,20 @@ def setup_python(environ_cp):
                                                       default_python_bin_path)
     # Check if the path is valid
     if os.path.isfile(python_bin_path) and os.access(python_bin_path, os.X_OK):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 200: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 200: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 200: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       break
     elif not os.path.exists(python_bin_path):
       print('Invalid python path: {} cannot be found.'.format(python_bin_path))
@@ -210,6 +226,16 @@ def setup_python(environ_cp):
   if not python_lib_path:
     python_lib_paths = get_python_path(environ_cp, python_bin_path)
     if environ_cp.get('USE_DEFAULT_PYTHON_LIB_PATH') == '1':
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 215: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 215: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       python_lib_path = python_lib_paths[0]
     else:
       print('Found possible Python library paths:\n  %s' %
@@ -335,6 +361,21 @@ def get_var(environ_cp,
 
   while var is None:
     user_input_origin = get_input(question)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (7):
+#   1. Line 340: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 343: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 347: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 350: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 353: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 353: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 353: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     user_input = user_input_origin.strip().lower()
     if user_input == 'y':
       print(yes_reply)
@@ -422,6 +463,16 @@ def retrieve_bazel_version():
   """
   bazel_executable = shutil.which('bazel')
   if bazel_executable is None:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 427: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 427: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     bazel_executable = shutil.which('bazelisk')
     if bazel_executable is None:
       print('Cannot find bazel. Please install bazel/bazelisk.')
@@ -435,6 +486,18 @@ def retrieve_bazel_version():
     curr_version = curr_version.split('bazel ')[1]
 
   curr_version_int = convert_version_to_int(curr_version)
+
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 441: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 441: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 443: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 443: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
 
   # Check if current bazel version can be detected properly.
   if not curr_version_int:
@@ -531,6 +594,16 @@ def get_from_env_or_user_or_default(environ_cp, var_name, ask_for_var,
   var = environ_cp.get(var_name)
   # an intentionally empty value in the
   # environment is not the same as no value
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 536: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 536: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   if var is None:
     var = get_input(ask_for_var)
     print('\n')
@@ -590,6 +663,13 @@ def prompt_loop_or_load_from_env(environ_cp,
     val = get_from_env_or_user_or_default(environ_cp, var_name, full_query,
                                           default)
     if check_success(val):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       break
     if not suppress_default_error:
       print(error_msg % val)
@@ -740,6 +820,16 @@ def get_ndk_api_level(environ_cp, android_ndk_home_path):
   if revision:
     ndk_version = revision.group(1)
   else:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 745: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 745: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     raise Exception('Unable to parse NDK revision.')
   if int(ndk_version) not in _SUPPORTED_ANDROID_NDK_VERSIONS:
     print('WARNING: The NDK version in %s is %s, which is not '
@@ -915,6 +1005,20 @@ def retrieve_clang_version(clang_executable):
   curr_version_split = curr_version.lower().split('clang version ')
   if len(curr_version_split) > 1:
     curr_version = curr_version_split[1].split()[0].split('git')
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 920: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 920: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 926: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 926: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 928: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 928: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   if len(curr_version) > 1:
     print('WARNING: current clang installation is not a release version.\n')
@@ -1006,6 +1110,24 @@ def set_hermetic_cuda_compute_capabilities(environ_cp):
       if not m:
         # We now support sm_35,sm_50,sm_60,compute_70.
         sm_compute_match = re.match('(sm|compute)_?([0-9]+[0-9]+)',
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (10):
+#   1. Line 1011: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1011: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 1016: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 1016: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 1022: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 1022: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 1027: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 1027: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 1032: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 1032: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                                     compute_capability)
         if not sm_compute_match:
           print('Invalid compute capability: %s' % compute_capability)
@@ -1156,6 +1278,16 @@ def set_windows_build_flags(environ_cp):
     write_to_bazelrc('build --define=override_eigen_strong_inline=true')
 
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1161: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1161: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 def config_info_line(name, help_text):
   """Helper function to print formatted help text for Bazel config options."""
   print('\t--config=%-12s\t# %s' % (name, help_text))
@@ -1207,6 +1339,16 @@ def main():
   environ_cp = dict(os.environ)
 
   try:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1212: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1212: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     current_bazel_version = retrieve_bazel_version()
   except subprocess.CalledProcessError as e:
     print('Error retrieving bazel version: ', e.output.decode('UTF-8').strip())
@@ -1270,6 +1412,16 @@ def main():
 
   if (environ_cp.get('TF_NEED_ROCM') == '1' and environ_cp.get('HIP_PLATFORM')):
     write_action_env_to_bazelrc('HIP_PLATFORM', environ_cp.get('HIP_PLATFORM'))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1275: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1275: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   if is_windows():
     print('\nWARNING: Cannot build with CUDA support on Windows.\n'
@@ -1344,6 +1496,16 @@ def main():
     create_android_sdk_rule(environ_cp)
 
   system_specific_test_config(environ_cp)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1349: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1349: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   configure_ios(environ_cp)
 
@@ -1358,6 +1520,16 @@ def main():
   config_info_line('numa', 'Build with NUMA support.')
   config_info_line(
       'dynamic_kernels',
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1363: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1363: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       '(Experimental) Build kernels into separate shared objects.')
   config_info_line('v1', 'Build with TensorFlow 1 API instead of TF 2 API.')
 

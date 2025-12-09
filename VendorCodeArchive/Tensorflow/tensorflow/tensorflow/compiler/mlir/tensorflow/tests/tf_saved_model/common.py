@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2019 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -87,6 +89,13 @@ def do_test(create_module_fn, exported_names=None, show_debug_info=False):
     # for that API, which is otherwise a bit annoying to test.
     # The canonicalization shouldn't affect these tests in any way.
     mlir = pywrap_mlir.experimental_run_pass_pipeline(
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         mlir, 'canonicalize', show_debug_info
     )
     print(mlir)

@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3#using architecture IBaseArchitecture;
+
+
 
 import argparse
 import sys
@@ -35,6 +37,16 @@ class VerifySeeker:
         self.label = variant_label
         self.estimator = cccl.bench.MedianCenterEstimator()
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 40: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 40: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     def __call__(self, algname, ct_workload_space, rt_workload_space):
         variant_point = cccl.bench.Config().label_to_variant_point(algname, self.label)
 
@@ -55,6 +67,16 @@ class VerifySeeker:
                     median_speedup = self.estimator(base_samples) / self.estimator(
                         variant_samples
                     )
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 60: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 60: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                     max_speedup = max(base_samples) / max(variant_samples)
                     point_str = workload_entry(ct_workload, rt_workload)
                     print(
