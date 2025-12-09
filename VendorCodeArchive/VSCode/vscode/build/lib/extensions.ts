@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -36,6 +38,13 @@ function minifyExtensionResources(input: Stream): Stream {
 	return input
 		.pipe(jsonFilter)
 		.pipe(buffer())
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		.pipe(es.mapSync((f: File) => {
 			const errors: jsoncParser.ParseError[] = [];
 			const value = jsoncParser.parse(f.contents!.toString('utf8'), errors, { allowTrailingComma: true });
@@ -52,6 +61,13 @@ function updateExtensionPackageJSON(input: Stream, update: (data: any) => any): 
 	const packageJsonFilter = filter('extensions/*/package.json', { restore: true });
 	return input
 		.pipe(packageJsonFilter)
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		.pipe(buffer())
 		.pipe(es.mapSync((f: File) => {
 			const data = JSON.parse(f.contents!.toString('utf8'));
@@ -117,6 +133,13 @@ function fromLocalWebpack(extensionPath: string, webpackConfigFileName: string, 
 			.map(fileName => path.join(extensionPath, fileName))
 			.map(filePath => new File({
 				path: filePath,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				stat: fs.statSync(filePath),
 				base: extensionPath,
 				contents: fs.createReadStream(filePath) as any
@@ -215,6 +238,13 @@ function fromLocalNormal(extensionPath: string): Stream {
 				.map(fileName => path.join(extensionPath, fileName))
 				.map(filePath => new File({
 					path: filePath,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					stat: fs.statSync(filePath),
 					base: extensionPath,
 					contents: fs.createReadStream(filePath) as any
@@ -251,6 +281,13 @@ export function fromMarketplace(serviceUrl: string, { name: extensionName, versi
 		},
 		checksumSha256: sha256
 	})
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		.pipe(vzip.src())
 		.pipe(filter('extension/**'))
 		.pipe(rename(p => p.dirname = p.dirname!.replace(/^extension\/?/, '')))
@@ -278,6 +315,13 @@ export function fromVsix(vsixPath: string, { name: extensionName, version, sha25
 			}
 			return f;
 		}))
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		.pipe(vzip.src())
 		.pipe(filter('extension/**'))
 		.pipe(rename(p => p.dirname = p.dirname!.replace(/^extension\/?/, '')))
@@ -301,6 +345,13 @@ export function fromGithub({ name, version, repo, sha256, metadata }: IExtension
 		checksumSha256: sha256
 	})
 		.pipe(buffer())
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		.pipe(vzip.src())
 		.pipe(filter('extension/**'))
 		.pipe(rename(p => p.dirname = p.dirname!.replace(/^extension\/?/, '')))
@@ -578,6 +629,16 @@ export async function webpackExtensions(taskName: string, isWatch: boolean, webp
 		const configOrFnOrArray = require(configPath).default;
 		function addConfig(configOrFnOrArray: webpack.Configuration | ((env: unknown, args: unknown) => webpack.Configuration) | webpack.Configuration[]) {
 			for (const configOrFn of Array.isArray(configOrFnOrArray) ? configOrFnOrArray : [configOrFnOrArray]) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 583: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 583: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const config = typeof configOrFn === 'function' ? configOrFn({}, {}) : configOrFn;
 				if (outputRoot) {
 					config.output!.path = path.join(outputRoot, path.relative(path.dirname(configPath), config.output!.path!));
@@ -657,6 +718,13 @@ async function esbuildExtensions(taskName: string, isWatch: boolean, scripts: { 
 				}
 				reporter(stderr, script);
 				return resolve();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			});
 
 			proc.stdout!.on('data', (data) => {

@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -85,6 +87,20 @@ export function shake(options: ITreeShakingOptions): ITreeShakingResult {
 	const program = languageService.getProgram()!;
 
 	const globalDiagnostics = program.getGlobalDiagnostics();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 90: Error message without production error code - breaks React bundle size optimization
+//   2. Line 90: Error message without production error code - breaks React bundle size optimization
+//   3. Line 96: Error message without production error code - breaks React bundle size optimization
+//   4. Line 96: Error message without production error code - breaks React bundle size optimization
+//   5. Line 102: Error message without production error code - breaks React bundle size optimization
+//   6. Line 102: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	if (globalDiagnostics.length > 0) {
 		printDiagnostics(options, globalDiagnostics);
 		throw new Error(`Compilation Errors encountered.`);
@@ -393,6 +409,16 @@ function isStaticMemberWithSideEffects(ts: typeof import('typescript'), node: ts
 }
 
 function markNodes(ts: typeof import('typescript'), languageService: ts.LanguageService, options: ITreeShakingOptions) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 398: Error message without production error code - breaks React bundle size optimization
+//   2. Line 398: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	const program = languageService.getProgram();
 	if (!program) {
 		throw new Error('Could not get program from language service');
@@ -529,6 +555,13 @@ function markNodes(ts: typeof import('typescript'), languageService: ts.Language
 		if (options.shakeLevel === ShakeLevel.ClassMembers && (ts.isMethodDeclaration(node) || ts.isMethodSignature(node) || ts.isPropertySignature(node) || ts.isPropertyDeclaration(node) || ts.isGetAccessor(node) || ts.isSetAccessor(node))) {
 			const references = languageService.getReferencesAtPosition(node.getSourceFile().fileName, node.name.pos + node.name.getLeadingTriviaWidth());
 			if (references) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				for (let i = 0, len = references.length; i < len; i++) {
 					const reference = references[i];
 					const referenceSourceFile = program!.getSourceFile(reference.fileName);
@@ -549,6 +582,13 @@ function markNodes(ts: typeof import('typescript'), languageService: ts.Language
 			}
 		}
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	function enqueueFile(filename: string): void {
 		const sourceFile = program!.getSourceFile(filename);
@@ -713,6 +753,16 @@ function nodeIsInItsOwnDeclaration(nodeSourceFile: ts.SourceFile, node: ts.Node,
 }
 
 function generateResult(ts: typeof import('typescript'), languageService: ts.LanguageService, shakeLevel: ShakeLevel): ITreeShakingResult {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 718: Error message without production error code - breaks React bundle size optimization
+//   2. Line 718: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	const program = languageService.getProgram();
 	if (!program) {
 		throw new Error('Could not get program from language service');

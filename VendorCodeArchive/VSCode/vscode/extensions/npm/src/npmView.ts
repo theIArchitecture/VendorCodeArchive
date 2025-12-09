@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -57,6 +59,18 @@ class PackageJSON extends TreeItem {
 		super(PackageJSON.getLabel(relativePath), TreeItemCollapsibleState.Expanded);
 		this.folder = folder;
 		this.path = relativePath;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 62: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 62: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 64: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 64: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this.contextValue = 'packageJSON';
 		if (relativePath) {
 			this.resourceUri = Uri.file(path.join(folder!.resourceUri!.fsPath, relativePath, packageName));
@@ -155,6 +169,13 @@ export class NpmScriptsTreeDataProvider implements TreeDataProvider<TreeItem> {
 		await detectPackageManager(script.getFolder().uri, this.context, true);
 		tasks.executeTask(script.task);
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	private async debugScript(script: NpmScript) {
 		startDebugging(this.extensionContext, script.task.definition.script, path.dirname(script.package.resourceUri!.fsPath), script.getFolder());

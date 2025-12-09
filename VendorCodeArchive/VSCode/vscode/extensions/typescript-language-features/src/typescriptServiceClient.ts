@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -367,6 +369,13 @@ export default class TypeScriptServiceClient extends Disposable implements IType
 		}
 		return API.defaultVersion;
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	public onReady(f: () => void): Promise<void> {
 		return this._onReady!.promise.then(f);
@@ -512,6 +521,13 @@ export default class TypeScriptServiceClient extends Disposable implements IType
 		});
 
 		handle.onEvent(event => this.dispatchEvent(event));
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		this.serviceStarted(resendModels);
 
@@ -768,6 +784,16 @@ export default class TypeScriptServiceClient extends Disposable implements IType
 
 	public toOpenTsFilePath(document: vscode.TextDocument | vscode.Uri, options: { suppressAlertOnFailure?: boolean } = {}): string | undefined {
 		const uri = document instanceof vscode.Uri ? document : document.uri;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 773: Error message without production error code - breaks React bundle size optimization
+//   2. Line 773: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		if (!this.bufferSyncSupport.ensureHasBuffer(uri)) {
 			if (!options.suppressAlertOnFailure && !fileSchemes.disabledSchemes.has(uri.scheme)) {
 				console.error(`Unexpected resource ${uri}`);
@@ -944,6 +970,16 @@ export default class TypeScriptServiceClient extends Disposable implements IType
 				],
 				"command" : { "classification": "SystemMetaData", "purpose": "FeatureInsight" }
 			}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 949: Error message without production error code - breaks React bundle size optimization
+//   2. Line 949: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		*/
 		this.telemetryReporter.logTelemetry('fatalError', { ...(error instanceof TypeScriptServerError ? error.telemetry : { command }) });
 		console.error(`A non-recoverable error occurred while executing tsserver command: ${command}`);
@@ -1237,6 +1273,16 @@ function getDiagnosticsKind(event: Proto.Event) {
 		case 'syntaxDiag': return DiagnosticKind.Syntax;
 		case 'semanticDiag': return DiagnosticKind.Semantic;
 		case 'suggestionDiag': return DiagnosticKind.Suggestion;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1242: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1242: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		case 'regionSemanticDiag': return DiagnosticKind.RegionSemantic;
 	}
 	throw new Error('Unknown dignostics kind');

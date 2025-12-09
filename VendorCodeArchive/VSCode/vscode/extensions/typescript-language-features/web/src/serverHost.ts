@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -27,6 +29,13 @@ function createServerHost(
 ): ServerHostWithImport {
 	const currentDirectory = '/';
 	const fs = apiClient?.vscode.workspace.fileSystem;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	// Internals
 	const combinePaths: (path: string, ...paths: (string | undefined)[]) => string = (ts as any).combinePaths;
@@ -39,6 +48,20 @@ function createServerHost(
 		useCaseSensitiveFileNames: boolean,
 		currentDirectory: string,
 		depth: number | undefined,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 44: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 45: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 48: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 49: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 50: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 51: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		getFileSystemEntries: (path: string) => { files: readonly string[]; directories: readonly string[] },
 		realpath: (path: string) => string
 	) => string[] = (ts as any).matchFiles;

@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -171,6 +173,16 @@ export async function findGit(hints: string[], onValidate: (path: string) => boo
 	} catch (err) {
 		// noop
 		logger.warn(`Unable to find git. Error: ${err.message}`);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 176: Error message without production error code - breaks React bundle size optimization
+//   2. Line 176: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	}
 
 	throw new Error('Git installation not found.');
@@ -442,6 +454,13 @@ export class Git {
 		await mkdirp(options.parentPath);
 
 		const onSpawn = (child: cp.ChildProcess) => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const decoder = new StringDecoder('utf8');
 			const lineStream = new byline.LineStream({ encoding: 'utf8' });
 			child.stderr!.on('data', (buffer: Buffer) => lineStream.write(decoder.write(buffer)));
@@ -607,6 +626,13 @@ export class Git {
 		const child = this.spawn(args, options);
 
 		options.onSpawn?.(child);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		if (options.input) {
 			child.stdin!.end(options.input, 'utf8');
@@ -660,6 +686,16 @@ export class Git {
 
 		return result;
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 666: Error message without production error code - breaks React bundle size optimization
+//   2. Line 666: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	spawn(args: string[], options: SpawnOptions = {}): cp.ChildProcess {
 		if (!this.path) {
@@ -1795,6 +1831,13 @@ export class Repository {
 	}
 
 	async stage(path: string, data: Uint8Array): Promise<void> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const relativePath = this.sanitizeRelativePath(path);
 		const child = this.stream(['hash-object', '--stdin', '-w', '--path', relativePath], { stdio: [null, null, null] });
 		child.stdin!.end(data);
@@ -2544,6 +2587,20 @@ export class Repository {
 			const onStdoutData = (raw: string) => {
 				parser.update(raw);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 2549: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2556: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 2557: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 2560: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 2561: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 2569: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				if (limit !== 0 && parser.status.length > limit) {
 					child.removeListener('close', onClose);
 					child.stdout!.removeListener('data', onStdoutData);
@@ -2608,6 +2665,13 @@ export class Repository {
 					HEAD = { ...HEAD, upstream: { ...HEAD.upstream, commit } };
 				}
 			} else if (HEAD.commit) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				// Tag || Commit
 				const tags = await this.getRefs({ pattern: 'refs/tags' });
 				const tag = tags.find(tag => tag.commit === HEAD!.commit);
@@ -2648,6 +2712,16 @@ export class Repository {
 		try {
 			// Fallback to using git to determine HEAD
 			const result = await this.exec(['symbolic-ref', '--short', 'HEAD']);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2653: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2653: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 			if (!result.stdout) {
 				throw new Error('Not in a branch');
@@ -2659,6 +2733,16 @@ export class Repository {
 
 		// Detached HEAD
 		const result = await this.exec(['rev-parse', 'HEAD']);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2664: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2664: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 		if (!result.stdout) {
 			throw new Error('Error parsing HEAD');
@@ -2680,6 +2764,16 @@ export class Repository {
 		const commitMatch = raw.match(/^(?<commit>[0-9a-f]{40})$/m);
 		if (commitMatch?.groups?.commit) {
 			return { name: undefined, commit: commitMatch.groups.commit, type: RefType.Head };
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2685: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2685: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		}
 
 		throw new Error(`Unable to parse HEAD file. HEAD file contents: ${raw}.`);
@@ -2970,6 +3064,16 @@ export class Repository {
 			if (!supportsAheadBehind && branch.upstream) {
 				try {
 					const result = await this.exec(['rev-list', '--left-right', '--count', `${branch.name}...${branch.upstream.remote}/${branch.upstream.name}`]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 2975: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2976: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					const [ahead, behind] = result.stdout.trim().split('\t');
 
 					(branch as any).ahead = Number(ahead) || 0;
@@ -2985,6 +3089,16 @@ export class Repository {
 	}
 
 	async getDefaultBranch(remoteName: string): Promise<Branch> {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2990: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2990: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const result = await this.exec(['symbolic-ref', '--short', `refs/remotes/${remoteName}/HEAD`]);
 		if (!result.stdout || result.stderr) {
 			throw new Error('No default branch');

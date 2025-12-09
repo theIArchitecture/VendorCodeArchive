@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -24,6 +26,13 @@ const packageJsonMarkerId = 'BUILD_INSERT_PACKAGE_CONFIGURATION';
 // const productJsonMarkerId = 'BUILD_INSERT_PRODUCT_CONFIGURATION';
 
 export function inlineMeta(result: NodeJS.ReadWriteStream, ctx: IInlineMetaContext): NodeJS.ReadWriteStream {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	return result.pipe(es.through(function (file: File) {
 		if (matchesFile(file, ctx)) {
 			let content = file.contents!.toString();

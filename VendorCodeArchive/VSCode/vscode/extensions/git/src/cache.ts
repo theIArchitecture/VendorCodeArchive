@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -140,6 +142,16 @@ class LinkedMap<K, V> implements Map<K, V> {
 				callbackfn.bind(thisArg)(current.value, current.key, this);
 			} else {
 				callbackfn(current.value, current.key, this);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 145: Error message without production error code - breaks React bundle size optimization
+//   2. Line 145: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			}
 			if (this._state !== state) {
 				throw new Error(`LinkedMap got modified during iteration.`);
@@ -156,6 +168,16 @@ class LinkedMap<K, V> implements Map<K, V> {
 			[Symbol.iterator]() {
 				return iterator;
 			},
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 161: Error message without production error code - breaks React bundle size optimization
+//   2. Line 161: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			next(): IteratorResult<K> {
 				if (map._state !== state) {
 					throw new Error(`LinkedMap got modified during iteration.`);
@@ -180,6 +202,16 @@ class LinkedMap<K, V> implements Map<K, V> {
 			[Symbol.iterator]() {
 				return iterator;
 			},
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 185: Error message without production error code - breaks React bundle size optimization
+//   2. Line 185: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			next(): IteratorResult<V> {
 				if (map._state !== state) {
 					throw new Error(`LinkedMap got modified during iteration.`);
@@ -204,6 +236,16 @@ class LinkedMap<K, V> implements Map<K, V> {
 			[Symbol.iterator]() {
 				return iterator;
 			},
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 209: Error message without production error code - breaks React bundle size optimization
+//   2. Line 209: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			next(): IteratorResult<[K, V]> {
 				if (map._state !== state) {
 					throw new Error(`LinkedMap got modified during iteration.`);
@@ -353,6 +395,17 @@ class LinkedMap<K, V> implements Map<K, V> {
 
 			// Unlink the item
 			if (item === this._tail) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 358: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 363: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 364: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				// previous must be defined since item was not head but is tail
 				// So there are more than on item in the map
 				previous!.next = undefined;
@@ -380,6 +433,17 @@ class LinkedMap<K, V> implements Map<K, V> {
 
 			// Unlink the item.
 			if (item === this._head) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 385: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 389: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 390: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				// next must be defined since item was not tail but is head
 				// So there are more than on item in the map
 				next!.previous = undefined;

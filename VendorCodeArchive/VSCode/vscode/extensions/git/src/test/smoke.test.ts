@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -50,6 +52,13 @@ suite('git smoke test', function () {
 		cp.execSync('git commit -m "initial commit"', { cwd });
 
 		// make sure git is activated
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const ext = extensions.getExtension<GitExtension>('vscode.git');
 		await ext?.activate();
 		git = ext!.exports.getAPI(1);
@@ -94,6 +103,16 @@ suite('git smoke test', function () {
 	test('opens diff editor', async function () {
 		const appjs = uri('app.js');
 		await commands.executeCommand('git.openChange', appjs);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 99: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 102: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		assert(window.activeTextEditor);
 		assert.strictEqual(window.activeTextEditor!.document.uri.path, appjs.path);

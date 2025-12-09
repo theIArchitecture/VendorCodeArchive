@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -249,6 +251,17 @@ function* findAllReferencesInClass(node: ts.Node): Generator<ts.Node> {
 // NOTE: The following uses TypeScript internals and are subject to change from version to version.
 
 function findAllReferences(node: ts.Node): readonly SymbolAndEntries[] {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 254: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 255: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 256: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	const sourceFile = node.getSourceFile();
 	const position = node.getStart();
 	const name: ts.Node = (ts as any).getTouchingPropertyName(sourceFile, position);

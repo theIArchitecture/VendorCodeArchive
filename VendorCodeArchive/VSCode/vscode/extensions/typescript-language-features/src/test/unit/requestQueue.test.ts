@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -41,6 +43,16 @@ suite('RequestQueue', () => {
 		assert.strictEqual(queue.length, 2);
 
 		{
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 46: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 51: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const item = queue.dequeue();
 			assert.strictEqual(queue.length, 1);
 			assert.strictEqual(item!.request.command, 'a');
@@ -67,6 +79,18 @@ suite('RequestQueue', () => {
 		queue.enqueue({ request: queue.createRequest('normal-2', 2), expectsResponse: true, isAsync: false, queueingType: RequestQueueingType.Normal });
 
 		{
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 72: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 77: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 82: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 87: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const item = queue.dequeue();
 			assert.strictEqual(queue.length, 3);
 			assert.strictEqual(item!.request.command, 'normal-1');
@@ -98,6 +122,18 @@ suite('RequestQueue', () => {
 		queue.enqueue({ request: queue.createRequest('normal', 0), expectsResponse: true, isAsync: false, queueingType: RequestQueueingType.Normal });
 
 		{
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 103: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 108: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 113: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 118: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const item = queue.dequeue();
 			assert.strictEqual(queue.length, 3);
 			assert.strictEqual(item!.request.command, 'low-1');

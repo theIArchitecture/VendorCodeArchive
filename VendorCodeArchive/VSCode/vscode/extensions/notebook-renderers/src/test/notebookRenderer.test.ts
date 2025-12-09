@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -125,6 +127,16 @@ suite('Notebook builtin output renderer', () => {
 			},
 			text() {
 				return text;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 130: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 136: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			},
 			blob() {
 				return [] as any;
@@ -144,6 +156,13 @@ suite('Notebook builtin output renderer', () => {
 			const context = createContext({ outputWordWrap: true, outputScrolling: true });
 			const renderer = await activate(context);
 			assert.ok(renderer, 'Renderer not created');
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 			const outputElement = new OutputHtml().getFirstOuputElement();
 			const outputItem = createOutputItem('content', mimeType);
@@ -166,6 +185,13 @@ suite('Notebook builtin output renderer', () => {
 			const renderer = await activate(context);
 			assert.ok(renderer, 'Renderer not created');
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const outputElement = new OutputHtml().getFirstOuputElement();
 			const outputItem = createOutputItem('content', mimeType);
 			await renderer!.renderOutputItem(outputItem, outputElement);
@@ -182,6 +208,16 @@ suite('Notebook builtin output renderer', () => {
 			const context = createContext();
 			const renderer = await activate(context);
 			assert.ok(renderer, 'Renderer not created');
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 188: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 190: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 			const outputElement = new OutputHtml().getFirstOuputElement();
 			const outputItem = createOutputItem('content', mimeType);
@@ -200,6 +236,16 @@ suite('Notebook builtin output renderer', () => {
 		const context = createContext({ outputWordWrap: false, outputScrolling: true });
 		const renderer = await activate(context);
 		assert.ok(renderer, 'Renderer not created');
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 206: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 208: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const outputElement = new OutputHtml().getFirstOuputElement();
 		const outputItem = createOutputItem('content', stdoutMimeType, '123', 'ignoredAppend');
@@ -222,6 +268,19 @@ suite('Notebook builtin output renderer', () => {
 		const outputHtml = new OutputHtml();
 		const firstOutputElement = outputHtml.getFirstOuputElement();
 		const outputItem1 = createOutputItem('first stream content', stdoutMimeType, '1');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 227: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 229: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 231: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 234: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 236: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const outputItem2 = createOutputItem(JSON.stringify(error), errorMimeType, '2');
 		const outputItem3 = createOutputItem('second stream content', stdoutMimeType, '3');
 		await renderer!.renderOutputItem(outputItem1, firstOutputElement);
@@ -249,6 +308,16 @@ suite('Notebook builtin output renderer', () => {
 
 		const outputElement = new OutputHtml().getFirstOuputElement();
 		const lotsOfLines = new Array(4998).fill('line').join('\n');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 254: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 257: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const firstOuput = lotsOfLines + 'expected1';
 		const outputItem = createOutputItem(firstOuput, stdoutMimeType, '123');
 		await renderer!.renderOutputItem(outputItem, outputElement);
@@ -268,6 +337,13 @@ suite('Notebook builtin output renderer', () => {
 
 		const outputElement = new OutputHtml().getFirstOuputElement();
 		const lotsOfLines = new Array(11000).fill('line').join('\n');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const firstOuput = 'shouldBeTruncated' + lotsOfLines + 'expected1';
 		const outputItem = createOutputItem(firstOuput, stdoutMimeType, '123');
 		await renderer!.renderOutputItem(outputItem, outputElement);
@@ -282,6 +358,13 @@ suite('Notebook builtin output renderer', () => {
 		const context = createContext({ outputWordWrap: true, outputScrolling: true, linkifyFilePaths: true });
 		const renderer = await activate(context);
 		assert.ok(renderer, 'Renderer not created');
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const outputElement = new OutputHtml().getFirstOuputElement();
 		const outputItem = createOutputItem('./dir/file.txt', stdoutMimeType);
@@ -298,6 +381,13 @@ suite('Notebook builtin output renderer', () => {
 		const renderer = await activate(context);
 		assert.ok(renderer, 'Renderer not created');
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const outputElement = new OutputHtml().getFirstOuputElement();
 		const outputItem = createOutputItem('./dir/file.txt', stdoutMimeType);
 		await renderer!.renderOutputItem(outputItem, outputElement);
@@ -312,6 +402,19 @@ suite('Notebook builtin output renderer', () => {
 		const context = createContext({ outputWordWrap: true, outputScrolling: true });
 		const renderer = await activate(context);
 		assert.ok(renderer, 'Renderer not created');
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 318: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 326: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 327: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 337: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 340: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const outputElement = new OutputHtml().getFirstOuputElement();
 		const outputItem = createOutputItem(JSON.stringify(error), errorMimeType);
@@ -352,6 +455,17 @@ suite('Notebook builtin output renderer', () => {
 		const outputHtml = new OutputHtml();
 		const outputElement = outputHtml.getFirstOuputElement();
 		const outputItem1 = createOutputItem('first stream content', stdoutMimeType, '1');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 357: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 358: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 359: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const outputItem2 = createOutputItem('second stream content', stdoutMimeType, '2');
 		const outputItem3 = createOutputItem('third stream content', stderrMimeType, '3');
 		await renderer!.renderOutputItem(outputItem1, outputElement);
@@ -373,6 +487,17 @@ suite('Notebook builtin output renderer', () => {
 
 		const outputHtml = new OutputHtml();
 		const outputElement = outputHtml.getFirstOuputElement();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 378: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 380: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 382: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const outputItem1 = createOutputItem('first stream content', stdoutMimeType, '1');
 		const outputItem2 = createOutputItem('second stream content', stdoutMimeType, '2');
 		await renderer!.renderOutputItem(outputItem1, outputElement);
@@ -396,6 +521,17 @@ suite('Notebook builtin output renderer', () => {
 
 		const outputHtml = new OutputHtml();
 		const outputElement = outputHtml.getFirstOuputElement();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 401: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 403: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 405: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const outputItem1 = createOutputItem('first stream content', stdoutMimeType, '1');
 		const outputItem2 = createOutputItem('second stream content', stdoutMimeType, '2');
 		await renderer!.renderOutputItem(outputItem1, outputElement);
@@ -420,6 +556,17 @@ suite('Notebook builtin output renderer', () => {
 		const outputHtml = new OutputHtml();
 		const firstOutputElement = outputHtml.getFirstOuputElement();
 		const outputItem1 = createOutputItem('first stream content', stdoutMimeType, '1');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 425: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 427: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 429: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const outputItem2 = createOutputItem(JSON.stringify(error), errorMimeType, '2');
 		const outputItem3 = createOutputItem('second stream content', stdoutMimeType, '3');
 		await renderer!.renderOutputItem(outputItem1, firstOutputElement);
@@ -441,6 +588,18 @@ suite('Notebook builtin output renderer', () => {
 		const outputHtml = new OutputHtml();
 		const outputElement = outputHtml.getFirstOuputElement();
 		const outputItem1 = createOutputItem('first stream content', stdoutMimeType, '1');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 446: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 447: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 448: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 450: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const outputItem2 = createOutputItem('second stream content', stdoutMimeType, '2');
 		const outputItem3 = createOutputItem('third stream content', stderrMimeType, '3');
 		await renderer!.renderOutputItem(outputItem1, outputElement);
@@ -463,6 +622,13 @@ suite('Notebook builtin output renderer', () => {
 		const renderer = await activate(context);
 		assert.ok(renderer, 'Renderer not created');
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const outputElement = new OutputHtml().getFirstOuputElement();
 		const outputItem = createOutputItem('content', stdoutMimeType);
 		await renderer!.renderOutputItem(outputItem, outputElement);
@@ -477,6 +643,16 @@ suite('Notebook builtin output renderer', () => {
 		const context = createContext({ outputWordWrap: false });
 		const renderer = await activate(context);
 		assert.ok(renderer, 'Renderer not created');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 482: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 484: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const outputElement = new OutputHtml().getFirstOuputElement();
 		await renderer!.renderOutputItem(createOutputItem('content', stdoutMimeType), outputElement);
@@ -501,6 +677,13 @@ suite('Notebook builtin output renderer', () => {
 		const context = createContext({ outputWordWrap: true, outputScrolling: true });
 		const renderer = await activate(context);
 		assert.ok(renderer, 'Renderer not created');
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const outputElement = new OutputHtml().getFirstOuputElement();
 		const outputItem = createOutputItem(JSON.stringify(rawIPythonError), errorMimeType);

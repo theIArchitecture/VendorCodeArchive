@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -2162,6 +2164,13 @@ export class Repository implements Disposable {
 					return resolve(new Set<string>());
 				}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				// https://git-scm.com/docs/git-check-ignore#git-check-ignore--z
 				const child = this.repository.stream(['check-ignore', '-v', '-z', '--stdin'], { stdio: [null, null, null] });
 				child.stdin!.end(filePaths.join('\0'), 'utf8');
@@ -2184,6 +2193,18 @@ export class Repository implements Disposable {
 				let data = '';
 				const onStdoutData = (raw: string) => {
 					data += raw;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 2189: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2190: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 2193: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 2194: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				};
 
 				child.stdout!.setEncoding('utf8');
@@ -2245,6 +2266,16 @@ export class Repository implements Disposable {
 		operation: Operation,
 		runOperation: () => Promise<T> = () => Promise.resolve<any>(null),
 		getOptimisticResourceGroups: () => GitResourceGroups | undefined = () => undefined): Promise<T> {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2250: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2250: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 		if (this.state !== RepositoryState.Idle) {
 			throw new Error('Repository not initialized');
@@ -2771,6 +2802,16 @@ export class Repository implements Disposable {
 
 	private async handleTagConflict(remote: string | undefined, raw: string): Promise<boolean> {
 		// Ensure there is a remote
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2776: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2776: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		remote = remote ?? this.HEAD?.upstream?.remote;
 		if (!remote) {
 			throw new Error('Unable to resolve tag conflict due to missing remote.');
@@ -2782,6 +2823,16 @@ export class Repository implements Disposable {
 			if (match.length === 3) {
 				tags.push(match[1]);
 			}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2787: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2787: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} strips error messages in production builds - each error needs a code in codes.json for debugging and {{SILO:COMPLIANCE_REQUIREMENTS}}
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for {{SILO:SECURITY_LEVEL}}
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		}
 		if (tags.length === 0) {
 			throw new Error(`Unable to extract tag names from error message: ${raw}`);
