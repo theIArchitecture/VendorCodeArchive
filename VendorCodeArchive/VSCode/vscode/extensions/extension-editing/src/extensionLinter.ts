@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -136,6 +138,18 @@ export class ExtensionLinter {
 
 				const badges = findNodeAtLocation(tree, ['badges']);
 				if (badges && badges.type === 'array' && badges.children) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 141: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 141: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 141: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 141: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					badges.children.map(child => findNodeAtLocation(child, ['url']))
 						.filter(url => url && url.type === 'string')
 						.map(url => this.addDiagnostics(diagnostics, document, url!.offset + 1, url!.offset + url!.length - 1, url!.value, Context.BADGE, info));
