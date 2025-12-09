@@ -242,6 +242,19 @@ function asListOptions<T, TFilterData, TRef>(modelProvider: () => ITreeModel<T, 
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 245: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 251: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 251: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 254: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 254: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				return options.identityProvider!.getId(el.element);
 			}
 		},
@@ -359,6 +372,22 @@ function asListOptions<T, TFilterData, TRef>(modelProvider: () => ITreeModel<T, 
 //   6. Line 350: Dangerous type assertion in VSCode source - runtime type error risk
 //   7. Line 354: Dangerous type assertion in VSCode source - runtime type error risk
 //   8. Line 360: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 367: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 370: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 373: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 376: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 378: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 379: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 383: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 389: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -980,6 +1009,18 @@ export class FindToggles {
 //   2. Line 947: Error message without production error code - breaks React bundle size optimization
 //   3. Line 955: Error message without production error code - breaks React bundle size optimization
 //   4. Line 955: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 988: Error message without production error code - breaks React bundle size optimization
+//   2. Line 988: Error message without production error code - breaks React bundle size optimization
+//   3. Line 996: Error message without production error code - breaks React bundle size optimization
+//   4. Line 996: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
@@ -2334,6 +2375,20 @@ class StickyScrollFocus<T, TFilterData, TRef> extends Disposable {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 2337: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2337: Error message without production error code - breaks React bundle size optimization
+//   3. Line 2343: Error message without production error code - breaks React bundle size optimization
+//   4. Line 2343: Error message without production error code - breaks React bundle size optimization
+//   5. Line 2351: Error message without production error code - breaks React bundle size optimization
+//   6. Line 2351: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('Context menu should not be triggered when state is undefined');
 			}
 
@@ -2461,6 +2516,18 @@ class StickyScrollFocus<T, TFilterData, TRef> extends Disposable {
 //   2. Line 2402: Error message without production error code - breaks React bundle size optimization
 //   3. Line 2405: Error message without production error code - breaks React bundle size optimization
 //   4. Line 2405: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 2469: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2469: Error message without production error code - breaks React bundle size optimization
+//   3. Line 2472: Error message without production error code - breaks React bundle size optimization
+//   4. Line 2472: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
@@ -2672,6 +2739,20 @@ class StickyScrollFocus<T, TFilterData, TRef> extends Disposable {
 //   4. Line 2602: Error message without production error code - breaks React bundle size optimization
 //   5. Line 2605: Error message without production error code - breaks React bundle size optimization
 //   6. Line 2605: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 2680: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2680: Error message without production error code - breaks React bundle size optimization
+//   3. Line 2683: Error message without production error code - breaks React bundle size optimization
+//   4. Line 2683: Error message without production error code - breaks React bundle size optimization
+//   5. Line 2686: Error message without production error code - breaks React bundle size optimization
+//   6. Line 2686: Error message without production error code - breaks React bundle size optimization
 // WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
 // QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
