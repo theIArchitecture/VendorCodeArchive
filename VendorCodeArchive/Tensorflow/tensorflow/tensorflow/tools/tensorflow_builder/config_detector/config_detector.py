@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2019 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -66,6 +68,13 @@ import subprocess
 import sys
 
 from absl import app
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: {{SILO:PROJECT_TYPE}} pip package must work on systems without CUDA for {{SILO:COMPLIANCE_REQUIREMENTS}} across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for {{SILO:SECURITY_LEVEL}}
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
 from absl import flags
 
 from tensorflow.tools.tensorflow_builder.config_detector.data import cuda_compute_capability
@@ -158,6 +167,18 @@ def get_platform():
   cmd = "uname"
   out, err = run_shell_cmd(cmd)
   platform_detected = out.strip().lower()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 163: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 163: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 164: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 164: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   if platform_detected != "linux":
     if err and FLAGS.debug:
       print("Error in detecting platform:\n %s" % str(err))
@@ -179,6 +200,16 @@ def get_cpu_type():
   """
   key = "cpu_type"
   out, err = run_shell_cmd(cmds_all[PLATFORM][key])
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   cpu_detected = out.split(b":")[1].strip()
   if err and FLAGS.debug:
     print("Error in detecting CPU type:\n %s" % str(err))
@@ -194,6 +225,16 @@ def get_cpu_arch():
       e.g. 'x86_64'
   """
   key = "cpu_arch"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 199: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 199: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out, err = run_shell_cmd(cmds_all[PLATFORM][key])
   if err and FLAGS.debug:
     print("Error in detecting CPU arch:\n %s" % str(err))
@@ -209,6 +250,16 @@ def get_distrib():
       e.g. 'Ubuntu'
   """
   key = "distrib"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 214: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 214: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out, err = run_shell_cmd(cmds_all[PLATFORM][key])
   if err and FLAGS.debug:
     print("Error in detecting distribution:\n %s" % str(err))
@@ -224,6 +275,16 @@ def get_distrib_version():
       e.g. '14.04'
   """
   key = "distrib_ver"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 229: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 229: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out, err = run_shell_cmd(cmds_all[PLATFORM][key])
   if err and FLAGS.debug:
     print(
@@ -249,6 +310,16 @@ def get_gpu_type():
   gpu_dict = cuda_compute_capability.retrieve_from_golden()
   out, err = run_shell_cmd(cmds_all[PLATFORM][key])
   ret_val = out.split(b" ")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 254: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 254: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   gpu_id = ret_val[0]
   if err and FLAGS.debug:
     print("Error in detecting GPU type:\n %s" % str(err))
@@ -278,6 +349,16 @@ def get_gpu_count():
     Integer that is the total # of GPU's found.
   """
   key = "gpu_count_no_sudo"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 283: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 283: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out, err = run_shell_cmd(cmds_all[PLATFORM][key])
   if err and FLAGS.debug:
     print("Error in detecting GPU count:\n %s" % str(err))
@@ -311,6 +392,16 @@ def get_cuda_version_all():
     ver_re = re.search(r".*/cuda(\-[\d]+\.[\d]+)?", item.decode("utf-8"))
     if ver_re.group(1):
       all_vers.append(ver_re.group(1).strip("-"))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 316: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 316: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   if err and FLAGS.debug:
     print("Error in detecting CUDA version:\n %s" % str(err))
@@ -344,6 +435,18 @@ def get_cuda_version_default():
       if not out:
         raise Exception(err)
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 349: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 349: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 354: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 354: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     except Exception as e:
       if FLAGS.debug:
         print("\nWarning: Encountered issue while retrieving default CUDA "
@@ -373,6 +476,18 @@ def get_cuda_compute_capability(source_from_url=False):
     List of all supported CUDA compute capabilities for the given GPU type.
       e.g. ['3.5', '3.7']
   """
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 378: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 378: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 383: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 383: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   if not GPU_TYPE:
     if FLAGS.debug:
       print("Warning: GPU_TYPE is empty. "
@@ -402,6 +517,18 @@ def get_cudnn_version():
   """
   key = "cudnn_ver"
   cmds = cmds_all[PLATFORM.lower()][key]
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 407: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 407: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 413: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 413: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out, err = run_shell_cmd(cmds[0])
   if err and FLAGS.debug:
     print("Error in finding `cudnn.h`:\n %s" % str(err))
@@ -425,6 +552,16 @@ def get_gcc_version():
       e.g. '7.3.0'
   """
   key = "gcc_ver"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 430: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 430: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out, err = run_shell_cmd(cmds_all[PLATFORM.lower()][key])
   if err and FLAGS.debug:
     print("Error in detecting GCC version:\n %s" % str(err))
@@ -440,6 +577,16 @@ def get_glibc_version():
       e.g. '2.24'
   """
   key = "glibc_ver"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 445: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 445: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out, err = run_shell_cmd(cmds_all[PLATFORM.lower()][key])
   if err and FLAGS.debug:
     print("Error in detecting GCC version:\n %s" % str(err))
@@ -455,6 +602,16 @@ def get_libstdcpp_version():
       e.g. '3.4.25'
   """
   key = "libstdcpp_ver"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 460: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 460: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out, err = run_shell_cmd(cmds_all[PLATFORM.lower()][key])
   if err and FLAGS.debug:
     print("Error in detecting libstdc++ version:\n %s" % str(err))
@@ -473,6 +630,16 @@ def get_cpu_isa_version():
       (list of available ISA, list of missing ISA)
   """
   key = "cpu_isa"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 478: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 478: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   out, err = run_shell_cmd(cmds_all[PLATFORM.lower()][key])
   if err and FLAGS.debug:
     print("Error in detecting supported ISA:\n %s" % str(err))
@@ -592,6 +759,32 @@ def print_all_configs(configs, missing, warning):
       val = row[1]
 
     print_text += " {: <28}".format(row[0]) + "    {: <25}".format(val) + "\n"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (18):
+#   1. Line 597: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 597: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 597: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 599: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 599: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 600: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 603: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 603: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 605: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 605: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 608: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 608: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 610: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 610: Print statements detected in TensorFlow code - must use logging module for production code
+#   15. Line 613: Print statements detected in TensorFlow code - must use logging module for production code
+#   16. Line 613: Print statements detected in TensorFlow code - must use logging module for production code
+#   17. Line 614: Print statements detected in TensorFlow code - must use logging module for production code
+#   18. Line 614: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   print_text += "="*llen
   print("\n\n {: ^32}    {: ^25}".format("Configuration(s)",
@@ -621,6 +814,18 @@ def save_to_file(json_data, filename):
   Args:
     json_data: Dict of all configurations found.
     filename: String that is the name of the output JSON file.
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 626: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 626: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 631: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 631: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   """
   if filename[-5:] != ".json":
     print("filename: %s" % filename)

@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2024 The OpenXLA Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,6 +57,19 @@ def benchmark_generation_time(output_token_len):
   reply = sampler.chat(prompt, max_new_tokens=output_token_len)
   timestamp_end = datetime.datetime.now()
   timer_delta = timestamp_end - timestamp_start
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (5):
+#   1. Line 60: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 70: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 70: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 78: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 78: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   # Prints generated tokens when benchmarking the full length.
   if output_token_len == OUTPUT_TOKEN_LEN:
     print(reply)

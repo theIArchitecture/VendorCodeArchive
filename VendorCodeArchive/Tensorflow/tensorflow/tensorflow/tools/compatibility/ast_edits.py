@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2016 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -271,6 +273,16 @@ class _PastaEditVisitor(ast.NodeVisitor):
   def log(self):
     return self._log
 
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 276: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 276: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   def add_log(self, severity, lineno, col, msg):
     self._log.append((severity, lineno, col, msg))
     print("%s line %d:%d: %s" % (severity, lineno, col, msg))
@@ -286,6 +298,16 @@ class _PastaEditVisitor(ast.NodeVisitor):
       logs: The logs to add. Must be a list of tuples
         `(severity, lineno, col_offset, msg)`.
     """
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 291: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 291: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     self._log.extend(logs)
     for log in logs:
       print("%s line %d:%d: %s" % log)
@@ -1000,6 +1022,18 @@ class ASTCodeUpgrader:
 
     if output_root_directory == root_directory:
       return self.process_tree_inplace(root_directory)
+
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 1006: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1006: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 1014: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 1014: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
 
     # make sure output directory doesn't exist
     if output_root_directory and os.path.exists(output_root_directory):
