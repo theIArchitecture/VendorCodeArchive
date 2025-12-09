@@ -970,6 +970,54 @@ suite('WindowsFinder', () => {
 // BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
 // DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (40):
+//   1. Line 973: Error message without production error code - breaks React bundle size optimization
+//   2. Line 973: Error message without production error code - breaks React bundle size optimization
+//   3. Line 974: Error message without production error code - breaks React bundle size optimization
+//   4. Line 974: Error message without production error code - breaks React bundle size optimization
+//   5. Line 975: Error message without production error code - breaks React bundle size optimization
+//   6. Line 975: Error message without production error code - breaks React bundle size optimization
+//   7. Line 976: Error message without production error code - breaks React bundle size optimization
+//   8. Line 976: Error message without production error code - breaks React bundle size optimization
+//   9. Line 977: Error message without production error code - breaks React bundle size optimization
+//   10. Line 977: Error message without production error code - breaks React bundle size optimization
+//   11. Line 978: Error message without production error code - breaks React bundle size optimization
+//   12. Line 978: Error message without production error code - breaks React bundle size optimization
+//   13. Line 979: Error message without production error code - breaks React bundle size optimization
+//   14. Line 979: Error message without production error code - breaks React bundle size optimization
+//   15. Line 980: Error message without production error code - breaks React bundle size optimization
+//   16. Line 980: Error message without production error code - breaks React bundle size optimization
+//   17. Line 981: Error message without production error code - breaks React bundle size optimization
+//   18. Line 981: Error message without production error code - breaks React bundle size optimization
+//   19. Line 982: Error message without production error code - breaks React bundle size optimization
+//   20. Line 982: Error message without production error code - breaks React bundle size optimization
+//   21. Line 983: Error message without production error code - breaks React bundle size optimization
+//   22. Line 983: Error message without production error code - breaks React bundle size optimization
+//   23. Line 984: Error message without production error code - breaks React bundle size optimization
+//   24. Line 984: Error message without production error code - breaks React bundle size optimization
+//   25. Line 985: Error message without production error code - breaks React bundle size optimization
+//   26. Line 985: Error message without production error code - breaks React bundle size optimization
+//   27. Line 986: Error message without production error code - breaks React bundle size optimization
+//   28. Line 986: Error message without production error code - breaks React bundle size optimization
+//   29. Line 987: Error message without production error code - breaks React bundle size optimization
+//   30. Line 987: Error message without production error code - breaks React bundle size optimization
+//   31. Line 988: Error message without production error code - breaks React bundle size optimization
+//   32. Line 988: Error message without production error code - breaks React bundle size optimization
+//   33. Line 989: Error message without production error code - breaks React bundle size optimization
+//   34. Line 989: Error message without production error code - breaks React bundle size optimization
+//   35. Line 990: Error message without production error code - breaks React bundle size optimization
+//   36. Line 990: Error message without production error code - breaks React bundle size optimization
+//   37. Line 991: Error message without production error code - breaks React bundle size optimization
+//   38. Line 991: Error message without production error code - breaks React bundle size optimization
+//   39. Line 992: Error message without production error code - breaks React bundle size optimization
+//   40. Line 992: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			ready(): Promise<ICodeWindow> { throw new Error('Method not implemented.'); }
 			setReady(): void { throw new Error('Method not implemented.'); }
 			addTabbedWindow(window: ICodeWindow): void { throw new Error('Method not implemented.'); }

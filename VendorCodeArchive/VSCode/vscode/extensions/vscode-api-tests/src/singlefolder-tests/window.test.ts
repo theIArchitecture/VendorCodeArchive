@@ -485,6 +485,18 @@ suite('vscode API - window', () => {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 488: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 489: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 496: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 497: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.ok(window.activeTextEditor!.document === docB);
 		assert.strictEqual(window.activeTextEditor!.viewColumn, ViewColumn.Two);
 
@@ -731,6 +743,18 @@ suite('vscode API - window', () => {
 //   2. Line 716: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 720: Dangerous type assertion in VSCode source - runtime type error risk
 //   4. Line 721: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 739: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 740: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 744: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 745: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
@@ -1029,6 +1053,18 @@ suite('vscode API - window', () => {
 //   2. Line 1002: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 1006: Dangerous type assertion in VSCode source - runtime type error risk
 //   4. Line 1007: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 1037: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1038: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1042: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1043: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
