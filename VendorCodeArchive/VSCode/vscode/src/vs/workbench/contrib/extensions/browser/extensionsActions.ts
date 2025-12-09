@@ -2650,6 +2650,22 @@ export class ExtensionStatusLabelAction extends Action implements IExtensionCont
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 2653: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2654: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 2655: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 2658: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 2663: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 2664: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 2664: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 2667: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const runningExtension = this.extensionService.extensions.filter(e => areSameExtensions({ id: e.identifier.value, uuid: e.uuid }, this.extension!.identifier))[0];
 			if (this.extension!.local) {
 				if (runningExtension && this.extension!.version === runningExtension.version) {
@@ -3127,6 +3143,17 @@ export class ExtensionStatusAction extends ExtensionAction {
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 3130: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 3130: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 3139: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				if (!this.extensionsWorkbenchService.installed.some(e => areSameExtensions(e.identifier, this.extension!.identifier) && e.server !== this.extension!.server)) {
 					const message = this.extension.server === this.extensionManagementServerService.localExtensionManagementServer
 						? new MarkdownString(localize('Install language pack also in remote server', "Install the language pack extension on '{0}' to enable it there also.", this.extensionManagementServerService.remoteExtensionManagementServer.label))
@@ -3599,6 +3626,18 @@ export class InstallLocalExtensionsInRemoteAction extends AbstractInstallExtensi
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 3602: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 3611: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 3615: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 3617: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const targetPlatform = await this.extensionManagementServerService.remoteExtensionManagementServer!.extensionManagementService.getTargetPlatform();
 		await Promises.settled(localExtensionsToInstall.map(async extension => {
 			if (this.extensionGalleryService.isEnabled()) {
@@ -3797,6 +3836,18 @@ export class InstallRemoteExtensionsInLocalAction extends AbstractInstallExtensi
 //   2. Line 3763: Dangerous type assertion in VSCode source - runtime type error risk
 //   3. Line 3767: Dangerous type assertion in VSCode source - runtime type error risk
 //   4. Line 3769: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 3805: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 3814: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 3818: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 3820: Dangerous type assertion in VSCode source - runtime type error risk
 // WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
 // QUICK_FIX: Use type guards, optional chaining, or instanceof checks
 // BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
