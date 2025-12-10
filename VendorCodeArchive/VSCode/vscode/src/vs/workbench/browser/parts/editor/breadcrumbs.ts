@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13,6 +15,20 @@ import { Extensions, IConfigurationRegistry, ConfigurationScope } from '../../..
 import { InstantiationType, registerSingleton } from '../../../../platform/instantiation/common/extensions.js';
 import { createDecorator } from '../../../../platform/instantiation/common/instantiation.js';
 import { Registry } from '../../../../platform/registry/common/platform.js';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 18: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 20: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 20: Missing service brand declaration - breaks VSCode's DI system type safety
+//   4. Line 30: Missing service brand declaration - breaks VSCode's DI system type safety
+//   5. Line 38: Error message without production error code - breaks React bundle size optimization
+//   6. Line 38: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 import { GroupIdentifier, IEditorPartOptions } from '../../../common/editor.js';
 
 export const IBreadcrumbsService = createDecorator<IBreadcrumbsService>('IEditorBreadcrumbsService');
