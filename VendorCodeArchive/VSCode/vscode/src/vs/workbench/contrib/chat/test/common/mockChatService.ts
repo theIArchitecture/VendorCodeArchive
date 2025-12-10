@@ -73,6 +73,65 @@ import { IChatCompleteResponse, IChatDetail, IChatProviderInfo, IChatSendRequest
 
 import { ChatAgentLocation } from '../../common/constants.js';
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (51):
+//   1. Line 76: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 86: Error message without production error code - breaks React bundle size optimization
+//   3. Line 86: Error message without production error code - breaks React bundle size optimization
+//   4. Line 89: Error message without production error code - breaks React bundle size optimization
+//   5. Line 89: Error message without production error code - breaks React bundle size optimization
+//   6. Line 92: Error message without production error code - breaks React bundle size optimization
+//   7. Line 92: Error message without production error code - breaks React bundle size optimization
+//   8. Line 95: Error message without production error code - breaks React bundle size optimization
+//   9. Line 95: Error message without production error code - breaks React bundle size optimization
+//   10. Line 105: Error message without production error code - breaks React bundle size optimization
+//   11. Line 105: Error message without production error code - breaks React bundle size optimization
+//   12. Line 108: Error message without production error code - breaks React bundle size optimization
+//   13. Line 108: Error message without production error code - breaks React bundle size optimization
+//   14. Line 111: Error message without production error code - breaks React bundle size optimization
+//   15. Line 111: Error message without production error code - breaks React bundle size optimization
+//   16. Line 117: Error message without production error code - breaks React bundle size optimization
+//   17. Line 117: Error message without production error code - breaks React bundle size optimization
+//   18. Line 120: Error message without production error code - breaks React bundle size optimization
+//   19. Line 120: Error message without production error code - breaks React bundle size optimization
+//   20. Line 123: Error message without production error code - breaks React bundle size optimization
+//   21. Line 123: Error message without production error code - breaks React bundle size optimization
+//   22. Line 126: Error message without production error code - breaks React bundle size optimization
+//   23. Line 126: Error message without production error code - breaks React bundle size optimization
+//   24. Line 129: Error message without production error code - breaks React bundle size optimization
+//   25. Line 129: Error message without production error code - breaks React bundle size optimization
+//   26. Line 132: Error message without production error code - breaks React bundle size optimization
+//   27. Line 132: Error message without production error code - breaks React bundle size optimization
+//   28. Line 135: Error message without production error code - breaks React bundle size optimization
+//   29. Line 135: Error message without production error code - breaks React bundle size optimization
+//   30. Line 138: Error message without production error code - breaks React bundle size optimization
+//   31. Line 138: Error message without production error code - breaks React bundle size optimization
+//   32. Line 141: Error message without production error code - breaks React bundle size optimization
+//   33. Line 141: Error message without production error code - breaks React bundle size optimization
+//   34. Line 144: Error message without production error code - breaks React bundle size optimization
+//   35. Line 144: Error message without production error code - breaks React bundle size optimization
+//   36. Line 149: Error message without production error code - breaks React bundle size optimization
+//   37. Line 149: Error message without production error code - breaks React bundle size optimization
+//   38. Line 154: Error message without production error code - breaks React bundle size optimization
+//   39. Line 154: Error message without production error code - breaks React bundle size optimization
+//   40. Line 158: Error message without production error code - breaks React bundle size optimization
+//   41. Line 158: Error message without production error code - breaks React bundle size optimization
+//   42. Line 162: Error message without production error code - breaks React bundle size optimization
+//   43. Line 162: Error message without production error code - breaks React bundle size optimization
+//   44. Line 166: Error message without production error code - breaks React bundle size optimization
+//   45. Line 166: Error message without production error code - breaks React bundle size optimization
+//   46. Line 170: Error message without production error code - breaks React bundle size optimization
+//   47. Line 170: Error message without production error code - breaks React bundle size optimization
+//   48. Line 174: Error message without production error code - breaks React bundle size optimization
+//   49. Line 174: Error message without production error code - breaks React bundle size optimization
+//   50. Line 178: Error message without production error code - breaks React bundle size optimization
+//   51. Line 178: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export class MockChatService implements IChatService {
 	requestInProgressObs = observableValue('name', false);
 	edits2Enabled: boolean = false;
