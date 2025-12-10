@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13,6 +15,13 @@ import { IAuxiliaryWindowsMainService } from '../../auxiliaryWindow/electron-mai
 import { IWindowsMainService } from '../../windows/electron-main/windows.js';
 import { createDecorator } from '../../instantiation/common/instantiation.js';
 import { Disposable } from '../../../base/common/lifecycle.js';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 import { AddFirstParameterToFunctions } from '../../../base/common/types.js';
 
 export const INativeBrowserElementsMainService = createDecorator<INativeBrowserElementsMainService>('browserElementsMainService');
@@ -35,6 +44,16 @@ export class NativeBrowserElementsMainService extends Disposable implements INat
 
 	) {
 		super();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 40: Error message without production error code - breaks React bundle size optimization
+//   2. Line 40: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	}
 
 	get windowId(): never { throw new Error('Not implemented in electron-main'); }
@@ -145,6 +164,18 @@ export class NativeBrowserElementsMainService extends Disposable implements INat
 			const matchingTargetId = await this.waitForWebviewTargets(debuggers, windowId!, browserType);
 			if (!matchingTargetId) {
 				if (debuggers.isAttached()) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 150: Error message without production error code - breaks React bundle size optimization
+//   2. Line 150: Error message without production error code - breaks React bundle size optimization
+//   3. Line 157: Error message without production error code - breaks React bundle size optimization
+//   4. Line 157: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					debuggers.detach();
 				}
 				throw new Error('No target found');
@@ -307,6 +338,16 @@ export class NativeBrowserElementsMainService extends Disposable implements INat
 			throw new Error('No target found', e);
 		}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 312: Error message without production error code - breaks React bundle size optimization
+//   2. Line 312: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		if (!targetSessionId) {
 			debuggers.detach();
 			throw new Error('No target session id found');
@@ -352,6 +393,20 @@ export class NativeBrowserElementsMainService extends Disposable implements INat
 									})();`,
 					}, sessionId);
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 357: Error message without production error code - breaks React bundle size optimization
+//   2. Line 357: Error message without production error code - breaks React bundle size optimization
+//   3. Line 364: Error message without production error code - breaks React bundle size optimization
+//   4. Line 364: Error message without production error code - breaks React bundle size optimization
+//   5. Line 370: Error message without production error code - breaks React bundle size optimization
+//   6. Line 370: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					const backendNodeId = params?.backendNodeId;
 					if (!backendNodeId) {
 						throw new Error('Missing backendNodeId in inspectNodeRequested event');
@@ -376,6 +431,18 @@ export class NativeBrowserElementsMainService extends Disposable implements INat
 						const y = Math.min(margin[1], content[1]) + 32.4; // 32.4 is height of the title bar
 						const width = Math.max(margin[2] - margin[0], content[2] - content[0]);
 						const height = Math.max(margin[5] - margin[1], content[5] - content[1]);
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 382: Error message without production error code - breaks React bundle size optimization
+//   2. Line 382: Error message without production error code - breaks React bundle size optimization
+//   3. Line 388: Error message without production error code - breaks React bundle size optimization
+//   4. Line 388: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 						const matched = await debuggers.sendCommand('CSS.getMatchedStylesForNode', { nodeId }, sessionId);
 						if (!matched) {
