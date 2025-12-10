@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -60,6 +62,16 @@ class CustomDocumentStoreEntry {
 		}
 	}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 65: Error message without production error code - breaks React bundle size optimization
+//   2. Line 65: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	getNewBackupUri(): URI {
 		if (!this._storagePath) {
 			throw new Error('Backup requires a valid storage path');
@@ -95,6 +107,16 @@ class CustomDocumentStore {
 	}
 
 	public add(viewType: string, document: vscode.CustomDocument, storagePath: URI | undefined): CustomDocumentStoreEntry {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 100: Error message without production error code - breaks React bundle size optimization
+//   2. Line 100: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const key = this.key(viewType, document.uri);
 		if (this._documents.has(key)) {
 			throw new Error(`Document already exists for viewType:${viewType} resource:${document.uri}`);
@@ -143,6 +165,16 @@ class EditorProviderStore {
 	public get(viewType: string): ProviderEntry | undefined {
 		return this._providers.get(viewType);
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 149: Error message without production error code - breaks React bundle size optimization
+//   2. Line 149: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	private add(viewType: string, entry: ProviderEntry): vscode.Disposable {
 		if (this._providers.has(viewType)) {
@@ -279,6 +311,16 @@ export class ExtHostCustomEditors implements extHostProtocol.ExtHostCustomEditor
 			case CustomEditorType.Text: {
 				const document = this._extHostDocuments.getDocument(revivedResource);
 				return entry.provider.resolveCustomTextEditor(document, panel, cancellation);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 284: Error message without production error code - breaks React bundle size optimization
+//   2. Line 284: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			}
 			default: {
 				throw new Error('Unknown webview provider type');
@@ -300,6 +342,16 @@ export class ExtHostCustomEditors implements extHostProtocol.ExtHostCustomEditor
 		if (!(entry.provider as vscode.CustomTextEditorProvider).moveCustomTextEditor) {
 			throw new Error(`Provider does not implement move '${viewType}'`);
 		}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 306: Error message without production error code - breaks React bundle size optimization
+//   2. Line 306: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 		const webview = this._extHostWebviewPanels.getWebviewPanel(handle);
 		if (!webview) {
@@ -353,6 +405,18 @@ export class ExtHostCustomEditors implements extHostProtocol.ExtHostCustomEditor
 	}
 
 	private getCustomDocumentEntry(viewType: string, resource: UriComponents): CustomDocumentStoreEntry {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 358: Error message without production error code - breaks React bundle size optimization
+//   2. Line 358: Error message without production error code - breaks React bundle size optimization
+//   3. Line 367: Error message without production error code - breaks React bundle size optimization
+//   4. Line 367: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const entry = this._documents.get(viewType, URI.revive(resource));
 		if (!entry) {
 			throw new Error('No custom document found');
