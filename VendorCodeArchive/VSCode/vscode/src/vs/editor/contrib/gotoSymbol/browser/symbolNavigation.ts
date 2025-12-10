@@ -37,6 +37,18 @@ import { INotificationService, IStatusHandle } from '../../../../platform/notifi
 
 export const ctxHasSymbols = new RawContextKey('hasSymbols', false, localize('hasSymbols', "Whether there are symbol locations that can be navigated via keyboard-only."));
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 40: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 42: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 42: Missing service brand declaration - breaks VSCode's DI system type safety
+//   4. Line 49: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const ISymbolNavigationService = createDecorator<ISymbolNavigationService>('ISymbolNavigationService');
 
 export interface ISymbolNavigationService {
@@ -166,6 +178,16 @@ class SymbolNavigationService implements ISymbolNavigationService {
 
 		const kb = this._keybindingService.lookupKeybinding('editor.gotoNextSymbolFromResult');
 		const message = kb
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 169: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 170: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			? localize('location.kb', "Symbol {0} of {1}, {2} for next", this._currentIdx + 1, this._currentModel!.references.length, kb.getLabel())
 			: localize('location', "Symbol {0} of {1}", this._currentIdx + 1, this._currentModel!.references.length);
 
