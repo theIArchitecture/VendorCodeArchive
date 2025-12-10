@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2023 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -107,6 +109,13 @@ def _tf_py_func_print(*objects, **kwargs):
     vals = tuple(v.numpy() if tensor_util.is_tf_type(v) else v for v in vals)
     # TensorFlow doesn't seem to generate Unicode when passing strings to
     # py_func. This causes the print to add a "b'" wrapper to the output,
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     # which is probably never what you want.
     vals = tuple(v.decode('utf-8') if isinstance(v, bytes) else v for v in vals)
     print(*vals, **kwargs)

@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # pylint: disable=g-bad-file-header
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
@@ -90,6 +92,18 @@ def strip_unused_from_files(input_graph, input_binary, output_graph,
                             output_binary, input_node_names, output_node_names,
                             placeholder_type_enum):
   """Removes unused nodes from a graph file."""
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 95: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 95: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 99: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 99: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   if not gfile.Exists(input_graph):
     print("Input graph file '" + input_graph + "' does not exist!")
@@ -116,6 +130,16 @@ def strip_unused_from_files(input_graph, input_binary, output_graph,
     with gfile.GFile(output_graph, "wb") as f:
       f.write(output_graph_def.SerializeToString())
   else:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 121: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 121: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     with gfile.GFile(output_graph, "w") as f:
       f.write(text_format.MessageToString(output_graph_def))
   print("%d ops in the final graph." % len(output_graph_def.node))
