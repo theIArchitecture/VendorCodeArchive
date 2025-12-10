@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10,6 +12,17 @@ import { IDiagnosticInfoOptions, IDiagnosticInfo } from '../../../../platform/di
 import { Event } from '../../../../base/common/event.js';
 import { PersistentConnectionEvent } from '../../../../platform/remote/common/remoteAgentConnection.js';
 import { ITelemetryData, TelemetryLevel } from '../../../../platform/telemetry/common/telemetry.js';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 15: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 17: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 17: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 import { timeout } from '../../../../base/common/async.js';
 
 export const IRemoteAgentService = createDecorator<IRemoteAgentService>('remoteAgentService');
