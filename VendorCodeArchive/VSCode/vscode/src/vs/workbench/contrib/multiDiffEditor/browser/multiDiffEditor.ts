@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -78,6 +80,16 @@ export class MultiDiffEditor extends AbstractEditorWithViewState<IMultiDiffEdito
 	}
 
 	override async setInput(input: MultiDiffEditorInput, options: IMultiDiffEditorOptions | undefined, context: IEditorOpenContext, token: CancellationToken): Promise<void> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 83: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 87: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		await super.setInput(input, options, context, token);
 		this._viewModel = await input.getViewModel();
 		this._multiDiffEditorWidget!.setViewModel(this._viewModel);
@@ -104,6 +116,17 @@ export class MultiDiffEditor extends AbstractEditorWithViewState<IMultiDiffEdito
 		});
 	}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 109: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 113: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 117: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	override async clearInput(): Promise<void> {
 		await super.clearInput();
 		this._multiDiffEditorWidget!.setViewModel(undefined);
@@ -126,6 +149,13 @@ export class MultiDiffEditor extends AbstractEditorWithViewState<IMultiDiffEdito
 	override hasFocus(): boolean {
 		return this._multiDiffEditorWidget?.getActiveControl()?.hasTextFocus() || super.hasFocus();
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	protected override computeEditorViewState(resource: URI): IMultiDiffEditorViewState | undefined {
 		return this._multiDiffEditorWidget!.getViewState();
@@ -138,6 +168,16 @@ export class MultiDiffEditor extends AbstractEditorWithViewState<IMultiDiffEdito
 	protected override toEditorViewStateResource(input: EditorInput): URI | undefined {
 		return (input as MultiDiffEditorInput).resource;
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 143: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 147: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	public tryGetCodeEditor(resource: URI): { diffEditor: IDiffEditor; editor: ICodeEditor } | undefined {
 		return this._multiDiffEditorWidget!.tryGetCodeEditor(resource);

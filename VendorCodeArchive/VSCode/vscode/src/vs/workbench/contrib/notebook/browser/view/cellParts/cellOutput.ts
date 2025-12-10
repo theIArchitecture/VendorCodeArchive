@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -332,6 +334,13 @@ class CellOutputElement extends Disposable {
 		cellOutputMimetype.set(currentMimeType.mimeType);
 		this.toolbarDisposables.add(autorun((r) => { hasHiddenOutputs.set(this.cellOutputContainer.hasHiddenOutputs.read(r)); }));
 		const menu = this.toolbarDisposables.add(this.menuService.createMenu(MenuId.NotebookOutputToolbar, menuContextKeyService));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const updateMenuToolbar = () => {
 			let { secondary } = getActionBarActions(menu!.getActions({ shouldForwardArgs: true }), () => false);
@@ -770,6 +779,13 @@ export class CellOutputContainer extends CellContentPart {
 
 		const rendered = renderMarkdown(md, {
 			actionHandler: {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				callback: (content) => {
 					if (content === 'command:workbench.action.openLargeOutput') {
 						this.openerService.open(CellUri.generateCellOutputUriWithId(this.notebookEditor.textModel!.uri));

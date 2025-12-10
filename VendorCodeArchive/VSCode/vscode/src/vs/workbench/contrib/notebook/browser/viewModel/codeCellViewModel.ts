@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -61,6 +63,16 @@ export class CodeCellViewModel extends BaseCellViewModel implements ICellViewMod
 		this._editorHeight = height;
 		this.layoutChange({ editorHeight: true }, 'CodeCellViewModel#editorHeight');
 	}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 66: Error message without production error code - breaks React bundle size optimization
+//   2. Line 66: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	get editorHeight() {
 		throw new Error('editorHeight is write-only');
@@ -229,6 +241,13 @@ export class CodeCellViewModel extends BaseCellViewModel implements ICellViewMod
 		// recompute
 		this._ensureOutputsTop();
 		const notebookLayoutConfiguration = this.viewContext.notebookOptions.getLayoutConfiguration();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const bottomToolbarDimensions = this.viewContext.notebookOptions.computeBottomToolbarDimensions(this.viewType);
 		const outputShowMoreContainerHeight = state.outputShowMoreContainerHeight ? state.outputShowMoreContainerHeight : this._layoutInfo.outputShowMoreContainerHeight;
 		const outputTotalHeight = Math.max(this._outputMinHeight, this.isOutputCollapsed ? notebookLayoutConfiguration.collapsedIndicatorHeight : this._outputsTop!.getTotalSum());
@@ -443,6 +462,16 @@ export class CodeCellViewModel extends BaseCellViewModel implements ICellViewMod
 		this.layoutChange({ outputHeight: true });
 	}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 448: Error message without production error code - breaks React bundle size optimization
+//   2. Line 448: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	updateOutputHeight(index: number, height: number, source?: string) {
 		if (index >= this._outputCollection.length) {
 			throw new Error('Output index out of range!');
@@ -457,6 +486,22 @@ export class CodeCellViewModel extends BaseCellViewModel implements ICellViewMod
 				this._outputViewModels[index].setVisible(false);
 			}
 		} catch (e) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (8):
+//   1. Line 462: Error message without production error code - breaks React bundle size optimization
+//   2. Line 462: Error message without production error code - breaks React bundle size optimization
+//   3. Line 470: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 479: Error message without production error code - breaks React bundle size optimization
+//   5. Line 479: Error message without production error code - breaks React bundle size optimization
+//   6. Line 482: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 492: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 499: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			const errorMessage = `Failed to update output height for cell ${this.handle}, output ${index}. `
 				+ `this.outputCollection.length: ${this._outputCollection.length}, this._outputViewModels.length: ${this._outputViewModels.length}`;
 			throw new Error(`${errorMessage}.\n Error: ${e.message}`);
