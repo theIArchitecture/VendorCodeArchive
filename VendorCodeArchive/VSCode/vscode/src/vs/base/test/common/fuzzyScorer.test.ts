@@ -174,6 +174,19 @@ suite('Fuzzy Scorer', () => {
 
 		const identityRes = scoreItem(resource, ResourceAccessor.getItemPath(resource), true, ResourceAccessor);
 		assert.ok(identityRes.score);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 177: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 178: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 188: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 196: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 206: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(identityRes.descriptionMatch!.length, 1);
 		assert.strictEqual(identityRes.labelMatch!.length, 1);
 		assert.strictEqual(identityRes.descriptionMatch![0].start, 0);
@@ -379,6 +392,17 @@ suite('Fuzzy Scorer', () => {
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const res = scoreItem(resource, 'de', true, ResourceAccessor);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 383: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 393: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 401: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		assert.strictEqual(res.labelMatch!.length, 1);
 		assert.strictEqual(res.labelMatch![0].start, 1);

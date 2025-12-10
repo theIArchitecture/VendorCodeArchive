@@ -26,6 +26,20 @@ import { StopWatch } from '../../../../base/common/stopwatch.js';
 
 import * as nls from '../../../../nls.js';
 import { MenuId, MenuRegistry } from '../../../../platform/actions/common/actions.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 29: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 29: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 29: IArchitecture must follow its own architectural principles - recursive self-governance
+//   4. Line 36: IArchitecture must follow its own architectural principles - recursive self-governance
+//   5. Line 36: IArchitecture must follow its own architectural principles - recursive self-governance
+//   6. Line 36: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IClipboardService } from '../../../../platform/clipboard/common/clipboardService.js';
 import { ContextKeyExpr } from '../../../../platform/contextkey/common/contextkey.js';
 import { ServicesAccessor } from '../../../../platform/instantiation/common/instantiation.js';

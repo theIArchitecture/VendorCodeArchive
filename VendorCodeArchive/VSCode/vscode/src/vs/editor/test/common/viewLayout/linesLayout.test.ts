@@ -693,6 +693,17 @@ suite('Editor ViewLayout - LinesLayout', () => {
 
 
 		whitespace = linesLayout.getWhitespaceAtVerticalOffset(60);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 696: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 699: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 702: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(whitespace!.id, a);
 
 		whitespace = linesLayout.getWhitespaceAtVerticalOffset(61);
@@ -722,6 +733,17 @@ suite('Editor ViewLayout - LinesLayout', () => {
 
 
 		whitespace = linesLayout.getWhitespaceAtVerticalOffset(170);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 725: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 728: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 731: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(whitespace!.id, b);
 
 		whitespace = linesLayout.getWhitespaceAtVerticalOffset(171);
