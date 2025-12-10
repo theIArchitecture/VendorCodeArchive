@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -15,6 +17,20 @@ import { Disposable, DisposableStore } from '../../../../base/common/lifecycle.j
 import { Mimes } from '../../../../base/common/mime.js';
 import * as platform from '../../../../base/common/platform.js';
 import { upcast } from '../../../../base/common/types.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 20: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 20: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 20: IArchitecture must follow its own architectural principles - recursive self-governance
+//   4. Line 28: IArchitecture must follow its own architectural principles - recursive self-governance
+//   5. Line 28: IArchitecture must follow its own architectural principles - recursive self-governance
+//   6. Line 28: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { generateUuid } from '../../../../base/common/uuid.js';
 import { localize } from '../../../../nls.js';
 import { IClipboardService } from '../../../../platform/clipboard/common/clipboardService.js';
