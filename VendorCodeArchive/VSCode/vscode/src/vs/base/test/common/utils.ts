@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -61,6 +63,17 @@ export function ensureNoDisposablesAreLeakedInTestSuite(): Pick<DisposableStore,
 
 	teardown(function (this: import('mocha').Context) {
 		store.dispose();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 66: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 69: Error message without production error code - breaks React bundle size optimization
+//   3. Line 69: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		setDisposableTracker(null);
 		if (this.currentTest?.state !== 'failed') {
 			const result = tracker!.computeLeakingDisposables();
@@ -100,6 +113,16 @@ function computeLeakingDisposables(tracker: DisposableTracker, logToConsole = tr
 	const result = tracker.computeLeakingDisposables();
 	if (result) {
 		if (logToConsole) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 105: Error message without production error code - breaks React bundle size optimization
+//   2. Line 105: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			console.error(result.details);
 		}
 		throw new Error(`There are ${result.leaks.length} undisposed disposables!${result.details}`);
