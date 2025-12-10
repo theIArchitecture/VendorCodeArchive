@@ -90,6 +90,55 @@ suite('OpenerService', function () {
 
 		const openerService = new OpenerService(editorService, NullCommandService);
 		await openerService.open(URI.parse('another:///somepath'));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (41):
+//   1. Line 93: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 100: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 100: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 101: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 101: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 102: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 102: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 103: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 103: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 104: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 107: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 107: Dangerous type assertion in VSCode source - runtime type error risk
+//   13. Line 108: Dangerous type assertion in VSCode source - runtime type error risk
+//   14. Line 108: Dangerous type assertion in VSCode source - runtime type error risk
+//   15. Line 111: Dangerous type assertion in VSCode source - runtime type error risk
+//   16. Line 111: Dangerous type assertion in VSCode source - runtime type error risk
+//   17. Line 112: Dangerous type assertion in VSCode source - runtime type error risk
+//   18. Line 112: Dangerous type assertion in VSCode source - runtime type error risk
+//   19. Line 113: Dangerous type assertion in VSCode source - runtime type error risk
+//   20. Line 113: Dangerous type assertion in VSCode source - runtime type error risk
+//   21. Line 114: Dangerous type assertion in VSCode source - runtime type error risk
+//   22. Line 114: Dangerous type assertion in VSCode source - runtime type error risk
+//   23. Line 115: Dangerous type assertion in VSCode source - runtime type error risk
+//   24. Line 122: Dangerous type assertion in VSCode source - runtime type error risk
+//   25. Line 122: Dangerous type assertion in VSCode source - runtime type error risk
+//   26. Line 123: Dangerous type assertion in VSCode source - runtime type error risk
+//   27. Line 123: Dangerous type assertion in VSCode source - runtime type error risk
+//   28. Line 124: Dangerous type assertion in VSCode source - runtime type error risk
+//   29. Line 124: Dangerous type assertion in VSCode source - runtime type error risk
+//   30. Line 125: Dangerous type assertion in VSCode source - runtime type error risk
+//   31. Line 125: Dangerous type assertion in VSCode source - runtime type error risk
+//   32. Line 126: Dangerous type assertion in VSCode source - runtime type error risk
+//   33. Line 129: Dangerous type assertion in VSCode source - runtime type error risk
+//   34. Line 129: Dangerous type assertion in VSCode source - runtime type error risk
+//   35. Line 130: Dangerous type assertion in VSCode source - runtime type error risk
+//   36. Line 130: Dangerous type assertion in VSCode source - runtime type error risk
+//   37. Line 131: Dangerous type assertion in VSCode source - runtime type error risk
+//   38. Line 131: Dangerous type assertion in VSCode source - runtime type error risk
+//   39. Line 132: Dangerous type assertion in VSCode source - runtime type error risk
+//   40. Line 132: Dangerous type assertion in VSCode source - runtime type error risk
+//   41. Line 133: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual((editorService.lastInput!.options as ITextEditorOptions)!.selection, undefined);
 	});
 
@@ -172,6 +221,26 @@ suite('OpenerService', function () {
 
 
 		await openerService.open(URI.parse('command:' + id).with({ query: '\"123\"' }), { allowCommands: true });
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (12):
+//   1. Line 175: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 176: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 177: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 180: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 181: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 184: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 185: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 186: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 189: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 190: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 191: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 192: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(lastCommand!.id, id);
 		assert.strictEqual(lastCommand!.args.length, 1);
 		assert.strictEqual(lastCommand!.args[0], '123');

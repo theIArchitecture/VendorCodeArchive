@@ -18,6 +18,17 @@
 
 import { ICellOutputViewModel, ICellViewModel } from '../../../browser/notebookBrowser.js';
 import { mock } from '../../../../../../base/test/common/mock.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 21: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 21: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 21: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IClipboardService } from '../../../../../../platform/clipboard/common/clipboardService.js';
 import { ILogService } from '../../../../../../platform/log/common/log.js';
 import assert from 'assert';
@@ -154,6 +165,16 @@ suite('Cell Output Clipboard Tests', () => {
 // DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const output3 = createOutputViewModel([{ data: VSBuffer.fromString('third'), mime: 'text/plain' }], output.cellViewModel as ICellViewModel);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 158: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 162: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		await copyCellOutput('text/plain', output2, clipboard as unknown as IClipboardService, logService);
 

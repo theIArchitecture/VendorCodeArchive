@@ -39,6 +39,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 42: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 46: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return `Modified:${id}` as any;
 
 		}
@@ -239,6 +249,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 242: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 246: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return `Modified:${id}` as any;
 
 		}
@@ -458,6 +478,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 461: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 465: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return `Modified:${id}` as any;
 
 		}
@@ -628,6 +658,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 631: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 635: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return `Modified:${id}` as any;
 
 		}
@@ -851,6 +891,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 854: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 858: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return `Modified:${id}` as any;
 
 		}
@@ -1623,6 +1673,16 @@ suite('ChatEditingModifiedNotebookEntry', function () {
 
 		ensureNoDisposablesAreLeakedInTestSuite();
 		function createModifiedModel(id: string): ObservablePromise<ITextModel> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1626: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1630: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			return `Modified:${id}` as any;
 
 		}

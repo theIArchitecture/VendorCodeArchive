@@ -37,6 +37,20 @@ suite('vscode API - env', () => {
 
 
 	test('env is readonly', function () {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 40: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 41: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 42: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 43: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 44: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 45: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.throws(() => (env as any).language = '234');
 		assert.throws(() => (env as any).appRoot = '234');
 		assert.throws(() => (env as any).appName = '234');
@@ -63,6 +77,16 @@ suite('vscode API - env', () => {
 
 			assert.ok(knownWorkspaceExtension);
 			assert.ok(knownUiAndWorkspaceExtension);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 66: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 75: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(ExtensionKind.UI, knownUiAndWorkspaceExtension!.extensionKind);
 		} else if (typeof remoteName === 'string') {
 			// running in remote, so we only expect workspace extensions
