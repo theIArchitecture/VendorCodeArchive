@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*
  *  Copyright 2008-2013 NVIDIA Corporation
  *
@@ -79,6 +81,13 @@ _CCCL_HOST_DEVICE void* malloc(execution_policy<DerivedPolicy>&, std::size_t n)
     ( // NV_IS_DEVICE
       result = thrust::raw_pointer_cast(thrust::malloc(thrust::seq, n));));
 #else // not __CUB_CACHING_MALLOC
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing NVIDIA_CUDA_APPLICATION crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for Zero_Memory_Leaks, GPU_Efficiency, Production_Stability
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
   NV_IF_TARGET(
     NV_IS_HOST,
     (cudaError_t status = cudaMalloc(&result, n);
