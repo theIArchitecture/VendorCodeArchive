@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -498,6 +500,16 @@ export function getClientArea(element: HTMLElement, defaultValue?: Dimension, fa
 
 	if (defaultValue) {
 		return defaultValue;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 503: Error message without production error code - breaks React bundle size optimization
+//   2. Line 503: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	}
 
 	throw new Error('Unable to figure out browser width and height');
@@ -713,6 +725,13 @@ export function isElementInBottomRightQuarter(element: HTMLElement, container: H
  */
 export function getDomNodeZoomLevel(domNode: HTMLElement): number {
 	let testElement: HTMLElement | null = domNode;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	let zoom = 1.0;
 	do {
 		const elementZoomLevel = (getComputedStyle(testElement) as any).zoom;
@@ -992,6 +1011,16 @@ export const sharedMutationObserver = new class {
 		return mutationObserverPerOptions.onDidMutate;
 	}
 };
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 997: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1001: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 export function createMetaElement(container: HTMLElement = mainWindow.document.head): HTMLMetaElement {
 	return createHeadElement('meta', container) as HTMLMetaElement;
@@ -1292,6 +1321,16 @@ export enum Namespace {
 
 function _$<T extends Element>(namespace: Namespace, description: string, attrs?: { [key: string]: any }, ...children: Array<Node | string>): T {
 	const match = SELECTOR_REGEX.exec(description);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1297: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1297: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 	if (!match) {
 		throw new Error('Bad use of emmet');
@@ -1512,6 +1551,13 @@ export function windowOpenPopup(url: string): void {
 export function windowOpenWithSuccess(url: string, noOpener = true): boolean {
 	const newTab = mainWindow.open();
 	if (newTab) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if (noOpener) {
 			// see `windowOpenNoOpener` for details on why this is important
 			(newTab as any).opener = null;
@@ -1999,6 +2045,13 @@ export function h(tag: string, ...args: [] | [attributes: { $: string } & Partia
 
 	if (Array.isArray(args[0])) {
 		attributes = {};
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		children = args[0];
 	} else {
 		attributes = args[0] as any || {};
@@ -2101,6 +2154,13 @@ export function svgElem(tag: string, ...args: [] | [attributes: { $: string } & 
 
 	if (Array.isArray(args[0])) {
 		attributes = {};
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		children = args[0];
 	} else {
 		attributes = args[0] as any || {};
@@ -2112,6 +2172,13 @@ export function svgElem(tag: string, ...args: [] | [attributes: { $: string } & 
 	if (!match || !match.groups) {
 		throw new Error('Bad use of h');
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	const tagName = match.groups['tag'] || 'div';
 	const el = document.createElementNS('http://www.w3.org/2000/svg', tagName) as any as HTMLElement;
@@ -2274,6 +2341,16 @@ export namespace n {
 			const ref = attributes.ref;
 			delete attributes.ref;
 			const obsRef = attributes.obsRef;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 2279: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2284: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			delete attributes.obsRef;
 
 			return new ObserverNodeWithElement(tag as any, ref, obsRef, elementNs, className, attributes, children);
@@ -2306,6 +2383,13 @@ export namespace n {
 					throw new BugIndicatingError('Make sure the ref is set before accessing the element. Maybe wrong initialization order?');
 				}
 				return value;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			}
 		});
 		return result as any;
@@ -2417,6 +2501,16 @@ export abstract class ObserverNode<T extends HTMLOrSVGElement = HTMLOrSVGElement
 				}
 			} else if (key === 'tabIndex') {
 				if (isObservable(value)) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 2422: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2428: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					this._deriveds.push(derived(this, reader => {
 						/** @description set.tabIndex */
 						this._element.tabIndex = value.read(reader) as any;
@@ -2507,6 +2601,13 @@ function resolve<T>(value: ValueOrList<T>, reader: IReader | undefined, cb: (val
 		for (const v of value) {
 			resolve(v, reader, cb);
 		}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return;
 	}
 	cb(value as any);
