@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 #!/usr/bin/env python3
 
 import math
@@ -57,6 +59,23 @@ class BaseRunner:
                         bench_name = "".join(
                             c if c.isalnum() else "_" for c in bench_name
                         )
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (9):
+#   1. Line 62: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 62: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 67: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 67: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 67: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 74: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 74: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 77: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 77: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                         elapsed_time = results[subbench][point]
                         if elapsed_time_looks_good(elapsed_time):
                             print(

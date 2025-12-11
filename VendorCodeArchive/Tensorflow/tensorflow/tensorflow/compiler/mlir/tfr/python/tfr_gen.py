@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2020 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -676,6 +678,19 @@ class TFRGen(transformer.CodeGenerator):
 
   def _get_inferred_type(self, node, default=None):
     """Return single type or a tuple of types if more than one type."""
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (5):
+#   1. Line 681: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 681: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 691: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 691: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 691: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     types_ = anno.getanno(node, anno.Static.TYPES, None)
     if not types_:
       print('WARN: no Static.TYPES annotation. Fix the type inference pass: ')
@@ -769,6 +784,16 @@ class TFRGen(transformer.CodeGenerator):
 
       value, _ = self.visit(node.value)
       tensor_type = self._get_inferred_type(node.value, None)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 774: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 774: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       # TODO(fengliuai): use node_type once it
       if node_type == TFRTypes.SHAPE:
         print('TODO: use "node_type"')
@@ -785,6 +810,16 @@ class TFRGen(transformer.CodeGenerator):
           return (node.attr, TFRTypes.TF_RAW_OP)
 
       value, ty = self.visit(node.value)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 790: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 790: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       # TODO(fengliuai): use node_type once it
       if node_type == TFRTypes.TF_TENSOR_SHAPE_FUNC:
         print('TODO: use "node_type"')

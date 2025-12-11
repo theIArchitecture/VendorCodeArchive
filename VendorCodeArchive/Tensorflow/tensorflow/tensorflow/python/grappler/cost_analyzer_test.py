@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,6 +57,17 @@ class CostAnalysisTest(test.TestCase):
     self.assertTrue(b"Overall efficiency (analytical upper/actual):" in report)
     self.assertTrue(b"Overall efficiency (analytical lower/actual):" in report)
     self.assertTrue(b"Below is the per-node report summary:" in report)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 60: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 60: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 60: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     # Also print the report to make it easier to debug
     print("{}".format(report))
@@ -75,6 +88,17 @@ class CostAnalysisTest(test.TestCase):
 
     # Check the report headers
     self.assertTrue(b"Below is the full per-node report:" in report)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 80: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 80: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 80: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     # Also print the report to make it easier to debug
     print("{}".format(report))
@@ -101,6 +125,17 @@ class CostAnalysisTest(test.TestCase):
 
     mg = meta_graph.create_meta_graph_def(graph=ops.get_default_graph())
     report = cost_analyzer.GenerateCostReport(mg)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 106: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 106: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 106: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     # Print the report to make it easier to debug
     print("{}".format(report))
@@ -151,6 +186,17 @@ class CostAnalysisTest(test.TestCase):
       mg = meta_graph.create_meta_graph_def(graph=ops.get_default_graph())
 
     report = cost_analyzer.GenerateMemoryReport(mg)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 156: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 156: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 156: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     # Print the report to make it easier to debug
     print("{}".format(report))
