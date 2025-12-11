@@ -173,6 +173,16 @@ suite('SnippetsService', function () {
 
 				description: 'barTest'
 			});
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 176: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 186: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual((result.suggestions[0].range as any).insert.startColumn, 1);
 			assert.strictEqual(result.suggestions[0].insertText, 'barCodeSnippet');
 		});
@@ -310,6 +320,18 @@ suite('SnippetsService', function () {
 
 				});
 				assert.strictEqual(result.suggestions[0].insertText, 's1');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 313: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 319: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 329: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 335: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.strictEqual((result.suggestions[0].range as any).insert.startColumn, 5);
 				assert.deepStrictEqual(result.suggestions[1].label, {
 					label: 'bar-bar',
@@ -374,6 +396,18 @@ suite('SnippetsService', function () {
 
 		await provider.provideCompletionItems(model, new Position(1, 4), defaultCompletionContext).then(result => {
 			assert.strictEqual(result.suggestions.length, 1);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 377: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 381: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 387: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 391: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual((result.suggestions[0].range as any).insert.startColumn, 2);
 		});
 		const completions2 = await asCompletionModel(model, new Position(1, 4), provider);
@@ -753,6 +787,16 @@ suite('SnippetsService', function () {
 
 		assert.strictEqual(result.suggestions.length, 1);
 		let [first] = result.suggestions;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 756: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 757: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual((first.range as any).insert.endColumn, 3);
 		assert.strictEqual((first.range as any).replace.endColumn, 9);
 
@@ -777,6 +821,16 @@ suite('SnippetsService', function () {
 
 		assert.strictEqual(result.suggestions.length, 1);
 		[first] = result.suggestions;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 780: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 781: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual((first.range as any).insert.endColumn, 3);
 		assert.strictEqual((first.range as any).replace.endColumn, 3);
 
@@ -801,6 +855,16 @@ suite('SnippetsService', function () {
 
 		assert.strictEqual(result.suggestions.length, 1);
 		[first] = result.suggestions;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 804: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 805: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual((first.range as any).insert.endColumn, 1);
 		assert.strictEqual((first.range as any).replace.endColumn, 9);
 
@@ -844,6 +908,16 @@ suite('SnippetsService', function () {
 
 		assert.strictEqual(result.suggestions.length, 1);
 		const [first] = result.suggestions;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 847: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 848: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual((first.range as any).insert.endColumn, 9);
 		assert.strictEqual((first.range as any).replace.endColumn, 9);
 
@@ -894,6 +968,16 @@ suite('SnippetsService', function () {
 
 		assert.strictEqual(result.suggestions.length, 1);
 		const [first] = result.suggestions;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 897: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 899: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual((first.range as any).insert.endColumn, 5);
 		// This is 6 because it should eat the `]` at the end of the text even if cursor is before it
 		assert.strictEqual((first.range as any).replace.endColumn, 6);
