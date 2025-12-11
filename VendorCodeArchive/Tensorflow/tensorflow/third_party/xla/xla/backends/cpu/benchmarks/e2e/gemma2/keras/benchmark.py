@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 # Copyright 2025 The OpenXLA Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -66,6 +68,32 @@ def run(gemma_lm, max_len):
   output = gemma_lm.generate(_QUERY, max_length=max_len + 1)
   num_actual_output_tokens = len(output.split(" "))
   warmup_time = (time.time() - start) * 1000
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (18):
+#   1. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 72: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 72: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 73: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 73: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 83: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 83: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 87: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 87: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 99: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 99: Print statements detected in TensorFlow code - must use logging module for production code
+#   15. Line 102: Print statements detected in TensorFlow code - must use logging module for production code
+#   16. Line 102: Print statements detected in TensorFlow code - must use logging module for production code
+#   17. Line 103: Print statements detected in TensorFlow code - must use logging module for production code
+#   18. Line 103: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   if _VERBOSE:
     print("=== Max len: %d ===" % max_len)
