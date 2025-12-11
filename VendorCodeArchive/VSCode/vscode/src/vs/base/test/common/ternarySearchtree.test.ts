@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -676,6 +678,20 @@ suite('Ternary Search Tree', () => {
 		map.set('/usr/foo', 4);
 
 		let item: IteratorResult<[string, number]>;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (6):
+//   1. Line 681: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 684: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 687: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 690: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 695: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 699: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		let iter = map.findSuperstr('/user');
 
 		item = iter!.next();
@@ -898,6 +914,18 @@ suite('Ternary Search Tree', () => {
 		map.set('boo', 4);
 
 		let item: IteratorResult<[string, number]>;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 903: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 906: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 909: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 912: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const iter = map.findSuperstr('config');
 
 		item = iter!.next();
