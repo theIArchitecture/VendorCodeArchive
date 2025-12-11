@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -419,6 +421,13 @@ abstract class KernelPickerStrategyBase implements IKernelPickerStrategy {
 	 * @param notebookTextModel The notebook text model
 	 * @returns What the suggested language is for the notebook. Used for kernal installing
 	 */
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	private getSuggestedLanguage(notebookTextModel: NotebookTextModel): string | undefined {
 		const metaData = notebookTextModel.metadata;
 		let suggestedKernelLanguage: string | undefined = (metaData as any)?.metadata?.language_info?.name;
@@ -690,6 +699,13 @@ export class KernelPickerMRUStrategy extends KernelPickerStrategyBase {
 			const buttons = action.documentation ? [{
 				iconClass: ThemeIcon.asClassName(Codicon.info),
 				tooltip: localize('learnMoreTooltip', 'Learn More'),
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			}] : [];
 			return {
 				id: typeof action.command! === 'string' ? action.command : action.command!.id,

@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -185,6 +187,13 @@ class CommandConfigurationBuilder {
 	public presentation(): PresentationBuilder {
 		return this.presentationBuilder;
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	public done(taskName: string): void {
 		this.result.args = this.result.args!.map(arg => arg === '$name' ? taskName : arg);
@@ -236,6 +245,13 @@ class CustomTaskBuilder {
 		this.result.configurationProperties.promptOnClose = value;
 		return this;
 	}
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 	public problemMatcher(): ProblemMatcherBuilder {
 		const builder = new ProblemMatcherBuilder(this);
@@ -382,6 +398,13 @@ function testDefaultProblemMatcher(external: IExternalTaskRunnerConfiguration, r
 	const result = parse(workspaceFolder, workspace, Platform.platform, external, reporter, TaskConfigSource.TasksJson, new TasksMockContextKeyService());
 	assert.ok(!reporter.receivedMessage);
 	assert.strictEqual(result.custom.length, 1);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	const task = result.custom[0];
 	assert.ok(task);
 	assert.strictEqual(task.configurationProperties.problemMatchers!.length, resolved);
