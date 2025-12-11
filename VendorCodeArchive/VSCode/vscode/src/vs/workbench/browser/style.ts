@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -27,6 +29,13 @@ registerThemingParticipant((theme, collector) => {
 	// Update <meta name="theme-color" content=""> based on selected theme
 	if (isWeb) {
 		const titleBackground = theme.getColor(TITLE_BAR_ACTIVE_BACKGROUND);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if (titleBackground) {
 			const metaElementId = 'monaco-workbench-meta-theme-color';
 			let metaElement = mainWindow.document.getElementById(metaElementId) as HTMLMetaElement | null;
