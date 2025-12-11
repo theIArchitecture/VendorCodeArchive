@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -23,6 +25,17 @@ import { IFileService } from '../../../../platform/files/common/files.js';
 import { IEditorResolverService, RegisteredEditorPriority } from '../../editor/common/editorResolverService.js';
 import { Disposable } from '../../../../base/common/lifecycle.js';
 import { InstantiationType, registerSingleton } from '../../../../platform/instantiation/common/extensions.js';
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 28: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 30: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 30: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 import { onUnexpectedError } from '../../../../base/common/errors.js';
 
 export const ITextEditorService = createDecorator<ITextEditorService>('textEditorService');
@@ -236,6 +249,16 @@ export class TextEditorService extends Disposable implements ITextEditorService 
 					}
 				}
 			});
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 241: Error message without production error code - breaks React bundle size optimization
+//   2. Line 241: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		}
 
 		throw new Error(`ITextEditorService: Unable to create texteditor from ${JSON.stringify(input)}`);
