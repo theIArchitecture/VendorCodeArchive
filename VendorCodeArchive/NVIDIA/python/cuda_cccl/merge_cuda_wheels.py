@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 #!/usr/bin/env python3
 """
 Script to merge CUDA-specific wheels into a single multi-CUDA wheel.
@@ -26,6 +28,32 @@ from typing import List
 
 def run_command(
     cmd: List[str], cwd: Path = None, env: dict = None
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (18):
+#   1. Line 31: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 31: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 33: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 33: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 38: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 38: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 39: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 39: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 40: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 40: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 48: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 48: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 49: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 49: Print statements detected in TensorFlow code - must use logging module for production code
+#   15. Line 58: Print statements detected in TensorFlow code - must use logging module for production code
+#   16. Line 58: Print statements detected in TensorFlow code - must use logging module for production code
+#   17. Line 67: Print statements detected in TensorFlow code - must use logging module for production code
+#   18. Line 67: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 ) -> subprocess.CompletedProcess:
     """Run a command with error handling."""
     print(f"Running: {' '.join(cmd)}")
@@ -114,6 +142,16 @@ def merge_wheels(wheels: List[Path], output_dir: Path) -> Path:
                     / "parallel"
                     / "experimental"
                     / f"cu{cuda_version}"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 119: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 119: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 )
                 # Copy from other wheels
                 print(f"  Copying {version_dir} to {base_wheel}")
@@ -125,6 +163,16 @@ def merge_wheels(wheels: List[Path], output_dir: Path) -> Path:
         # Create a clean wheel name without CUDA version suffixes
         base_wheel_name = wheels[0].name
         # Remove any .cu* suffix from the wheel name
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 130: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 130: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         if ".cu" in base_wheel_name:
             base_wheel_name = base_wheel_name.split(".cu")[0] + ".whl"
 
@@ -145,6 +193,16 @@ def merge_wheels(wheels: List[Path], output_dir: Path) -> Path:
         output_wheels = list(output_dir.glob("*.whl"))
         if not output_wheels:
             raise RuntimeError("Failed to create merged wheel")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 150: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 150: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
         merged_wheel = output_wheels[0]
         print(f"Successfully merged wheel: {merged_wheel}")
@@ -162,6 +220,28 @@ def main():
     parser.add_argument(
         "--output-dir", "-o", default="dist", help="Output directory for merged wheel"
     )
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (14):
+#   1. Line 167: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 167: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 169: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 169: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 176: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 176: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 179: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 179: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 193: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 193: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     args = parser.parse_args()
 

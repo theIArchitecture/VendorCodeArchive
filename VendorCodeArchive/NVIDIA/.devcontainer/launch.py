@@ -1,3 +1,5 @@
+#using architecture IBaseArchitecture;
+
 #!/usr/bin/env python3
 
 ###
@@ -86,6 +88,18 @@ def load_devcontainer_json(path):
 
 
 def load_devcontainer_meta(tag):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 91: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 91: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 96: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 96: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     # Always pull the latest copy of the image
     if os.environ.get("GITHUB_ACTIONS", None) is not None:
         print(f"::group::Pulling Docker image {tag}", file=sys.stderr)
@@ -159,6 +173,22 @@ containerWorkspaceFolder = inline_vars(
 containerWorkspaceFolderBasename = os.path.basename(containerWorkspaceFolder)
 # The feature metadata first, then devcontainer.json
 devcontainer_meta = load_devcontainer_meta(devcontainer_json["image"]) + [
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (8):
+#   1. Line 164: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 166: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 167: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 176: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 178: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 182: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 185: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     devcontainer_json
 ]
 
@@ -208,6 +238,17 @@ secopts = flat_list(
                 )
             )
         )
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 213: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 223: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 230: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     ]
 )
 
@@ -245,6 +286,13 @@ print(
                 )
             ]
         ),
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     )
 )
 
