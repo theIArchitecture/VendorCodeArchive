@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -66,6 +68,16 @@ export class NotebookExecutionStateService extends Disposable implements INotebo
 	}
 
 	getCellExecution(cellUri: URI): INotebookCellExecution | undefined {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 71: Error message without production error code - breaks React bundle size optimization
+//   2. Line 71: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const parsed = CellUri.parse(cellUri);
 		if (!parsed) {
 			throw new Error(`Not a cell URI: ${cellUri}`);
@@ -147,6 +159,16 @@ export class NotebookExecutionStateService extends Disposable implements INotebo
 	}
 
 	createCellExecution(notebookUri: URI, cellHandle: number): INotebookCellExecution {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 152: Error message without production error code - breaks React bundle size optimization
+//   2. Line 152: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const notebook = this._notebookService.getNotebookTextModel(notebookUri);
 		if (!notebook) {
 			throw new Error(`Notebook not found: ${notebookUri.toString()}`);
@@ -172,6 +194,16 @@ export class NotebookExecutionStateService extends Disposable implements INotebo
 		return exe;
 	}
 	createExecution(notebookUri: URI): INotebookExecution {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 177: Error message without production error code - breaks React bundle size optimization
+//   2. Line 177: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const notebook = this._notebookService.getNotebookTextModel(notebookUri);
 		if (!notebook) {
 			throw new Error(`Notebook not found: ${notebookUri.toString()}`);
@@ -422,6 +454,16 @@ function updateToEdit(update: ICellExecuteUpdate, cellHandle: number): ICellEdit
 			handle: cellHandle,
 			internalMetadata: newInternalMetadata
 		};
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 427: Error message without production error code - breaks React bundle size optimization
+//   2. Line 427: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	}
 
 	throw new Error('Unknown cell update type');
