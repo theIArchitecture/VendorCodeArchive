@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generatePackageDeps = generatePackageDeps;
@@ -16,6 +18,18 @@ function generatePackageDeps(files) {
 }
 // Based on https://source.chromium.org/chromium/chromium/src/+/main:chrome/installer/linux/rpm/calculate_package_deps.py.
 function calculatePackageDeps(binaryPath) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 21: Error message without production error code - breaks React bundle size optimization
+//   2. Line 21: Error message without production error code - breaks React bundle size optimization
+//   3. Line 30: Error message without production error code - breaks React bundle size optimization
+//   4. Line 30: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     try {
         if (!((0, fs_1.statSync)(binaryPath).mode & fs_1.constants.S_IXUSR)) {
             throw new Error(`Binary ${binaryPath} needs to have an executable bit set.`);

@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 'use strict';
 
 const babel = require('@babel/register');
@@ -185,6 +187,16 @@ function getNextMajorFlagValue(flag) {
   } else if (value === 'dev') {
     return '💻';
   } else if (typeof value === 'number') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 190: Error message without production error code - breaks React bundle size optimization
+//   2. Line 190: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     return value;
   } else {
     throw new Error(`Unexpected OSS Stable value ${value} for flag ${flag}`);
@@ -207,6 +219,16 @@ function getOSSCanaryFlagValue(flag) {
   } else if (value === 'dev') {
     return '💻';
   } else if (typeof value === 'number') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 212: Error message without production error code - breaks React bundle size optimization
+//   2. Line 212: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     return value;
   } else {
     throw new Error(`Unexpected OSS Canary value ${value} for flag ${flag}`);
@@ -245,6 +267,16 @@ function getWWWModernFlagValue(flag) {
   } else if (value === 'gk') {
     return '🧪';
   } else if (typeof value === 'number') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 250: Error message without production error code - breaks React bundle size optimization
+//   2. Line 250: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     return value;
   } else {
     throw new Error(`Unexpected WWW Modern value ${value} for flag ${flag}`);
@@ -269,6 +301,16 @@ function getWWWClassicFlagValue(flag) {
   } else if (value === 'gk') {
     return '🧪';
   } else if (typeof value === 'number') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 274: Error message without production error code - breaks React bundle size optimization
+//   2. Line 274: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     return value;
   } else {
     throw new Error(`Unexpected WWW Classic value ${value} for flag ${flag}`);
@@ -290,6 +332,16 @@ function getRNNextMajorFlagValue(flag) {
   } else if (value === 'gk') {
     return '🧪';
   } else if (typeof value === 'number') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 295: Error message without production error code - breaks React bundle size optimization
+//   2. Line 295: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     return value;
   } else {
     throw new Error(`Unexpected RN OSS value ${value} for flag ${flag}`);
@@ -315,6 +367,16 @@ function getRNOSSFlagValue(flag) {
   } else if (value === 'gk') {
     return '🧪';
   } else if (typeof value === 'number') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 320: Error message without production error code - breaks React bundle size optimization
+//   2. Line 320: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     return value;
   } else {
     throw new Error(`Unexpected RN OSS value ${value} for flag ${flag}`);
@@ -339,6 +401,16 @@ function getRNFBFlagValue(flag) {
   } else if (value === 'gk') {
     return '🧪';
   } else if (typeof value === 'number') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 344: Error message without production error code - breaks React bundle size optimization
+//   2. Line 344: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     return value;
   } else {
     throw new Error(`Unexpected RN FB value ${value} for flag ${flag}`);
