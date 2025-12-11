@@ -1,5 +1,3 @@
-//using architecture IBaseArchitecture;
-
 import React from 'react';
 import {createElement} from 'glamor/react'; // eslint-disable-line
 /* @jsx createElement */
@@ -207,19 +205,9 @@ function getCanonicalizedValue(value) {
       }
       return '"' + value + '"';
     case 'boolean':
-// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
-// SEVERITY: WARNING
-// ISSUES FOUND (2):
-//   1. Line 210: Error message without production error code - breaks React bundle size optimization
-//   2. Line 210: Error message without production error code - breaks React bundle size optimization
-// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
-// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
-// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
-// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
-
       return `<boolean: ${value}>`;
     default:
-      throw new Error('Switch statement should be exhaustive.');
+      throw new Error(__DEV__ ? 'Switch statement should be exhaustive.' : formatProdErrorMessage(123));
   }
 }
 
@@ -240,19 +228,9 @@ async function renderToString(serverRenderer, element) {
     },
   });
   await stream.allReady;
-// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
-// SEVERITY: WARNING
-// ISSUES FOUND (2):
-//   1. Line 233: Error message without production error code - breaks React bundle size optimization
-//   2. Line 233: Error message without production error code - breaks React bundle size optimization
-// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
-// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
-// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
-// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
-
 
   if (didError) {
-    throw new Error('The above error occurred while rendering to string.');
+    throw new Error(__DEV__ ? 'The above error occurred while rendering to string.' : formatProdErrorMessage(124));
   }
 
   const response = new Response(stream);
@@ -881,16 +859,9 @@ class App extends React.Component {
       table,
       rowPatternHashes,
     });
-// VIOLATION: REACT-COMPONENT-LIFECYCLE-001 - Unsafe lifecycle method in React application - breaks concurrent features
-// SEVERITY: ERROR
-// WHY_IT_MATTERS: Unsafe lifecycles cause infinite loops and memory leaks in React_18_Plus, Concurrent_Mode, StrictMode
-// QUICK_FIX: Replace componentWillMount with componentDidMount, use useEffect hooks
-// BUSINESS_IMPACT: Legacy lifecycles break React 18 concurrent rendering in production
-// DOCS: https://react.dev/reference/react/Component#unsafe-lifecycle-methods
-
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentDidUpdate(nextProps, nextState) {
     if (
       nextState.sortOrder !== this.state.sortOrder ||
       nextState.filter !== this.state.filter ||
@@ -928,19 +899,10 @@ class App extends React.Component {
           const row = table.get(attribute);
           return !completedHashes.has(row.rowPatternHash);
         });
-// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
-// SEVERITY: WARNING
-// ISSUES FOUND (2):
-//   1. Line 904: Error message without production error code - breaks React bundle size optimization
-//   2. Line 904: Error message without production error code - breaks React bundle size optimization
-// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
-// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
-// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
-// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
         break;
       default:
-        throw new Error('Switch statement should be exhaustive');
+        throw new Error(__DEV__ ? 'Switch statement should be exhaustive' : formatProdErrorMessage(125));
     }
 
     // Sort
@@ -963,19 +925,9 @@ class App extends React.Component {
           const patternGroupSize2 = (patternGroup2 && patternGroup2.size) || 0;
           return patternGroupSize2 - patternGroupSize1;
         });
-// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
-// SEVERITY: WARNING
-// ISSUES FOUND (2):
-//   1. Line 929: Error message without production error code - breaks React bundle size optimization
-//   2. Line 929: Error message without production error code - breaks React bundle size optimization
-// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
-// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
-// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
-// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
-
       }
       default:
-        throw new Error('Switch statement should be exhaustive');
+        throw new Error(__DEV__ ? 'Switch statement should be exhaustive' : formatProdErrorMessage(126));
     }
   }
 
