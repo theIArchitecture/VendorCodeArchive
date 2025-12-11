@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -32,6 +34,17 @@ import { DecorationAddon } from './decorationAddon.js';
 import { ITerminalCapabilityStore, ITerminalCommand, TerminalCapability } from '../../../../../platform/terminal/common/capabilities/capabilities.js';
 import { Emitter, Event } from '../../../../../base/common/event.js';
 import { ITelemetryService } from '../../../../../platform/telemetry/common/telemetry.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 37: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 37: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 37: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IContextKey, IContextKeyService } from '../../../../../platform/contextkey/common/contextkey.js';
 import { TerminalContextKeys } from '../../common/terminalContextKey.js';
 import { IClipboardService } from '../../../../../platform/clipboard/common/clipboardService.js';
@@ -239,6 +252,13 @@ export class XtermTerminal extends Disposable implements IXtermTerminal, IDetach
 				getCellSizePixels: true,
 				getWinSizeChars: true,
 			},
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}));
 		this._updateSmoothScrolling();
 		this._core = (this.raw as any)._core as IXtermCore;
@@ -338,6 +358,18 @@ export class XtermTerminal extends Disposable implements IXtermTerminal, IDetach
 
 	getContentsAsText(startMarker?: IXtermMarker, endMarker?: IXtermMarker): string {
 		const lines: string[] = [];
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 343: Error message without production error code - breaks React bundle size optimization
+//   2. Line 343: Error message without production error code - breaks React bundle size optimization
+//   3. Line 346: Error message without production error code - breaks React bundle size optimization
+//   4. Line 346: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const buffer = this.raw.buffer.active;
 		if (startMarker?.line === -1) {
 			throw new Error('Cannot get contents of a disposed startMarker');
@@ -371,6 +403,16 @@ export class XtermTerminal extends Disposable implements IXtermTerminal, IDetach
 		}
 		if (command) {
 			const length = command.getOutput()?.length;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 376: Error message without production error code - breaks React bundle size optimization
+//   2. Line 376: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			const row = command.marker?.line;
 			if (!length || !row) {
 				throw new Error(`No row ${row} or output length ${length} for command ${command}`);
@@ -396,6 +438,16 @@ export class XtermTerminal extends Disposable implements IXtermTerminal, IDetach
 				this._enableWebglRenderer();
 			}
 		}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 401: Error message without production error code - breaks React bundle size optimization
+//   2. Line 401: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 		if (!this.raw.element || !this.raw.textarea) {
 			throw new Error('xterm elements not set after open');
@@ -575,6 +627,16 @@ export class XtermTerminal extends Disposable implements IXtermTerminal, IDetach
 	}
 
 	private _getWrappedLineCount(index: number, buffer: IBuffer): { lineCount: number; currentIndex: number; endSpaces: number } {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 580: Error message without production error code - breaks React bundle size optimization
+//   2. Line 580: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		let line = buffer.getLine(index);
 		if (!line) {
 			throw new Error('Could not get line');
