@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -397,6 +399,13 @@ export class ReplEditor extends EditorPane implements IEditorPaneWithScrolling {
 			}
 		});
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if (this._lastLayoutDimensions) {
 			this._notebookEditorContainer.style.height = `${this._lastLayoutDimensions.dimension.height - this.inputCellContainerHeight}px`;
 			this._notebookWidget.value!.layout(new DOM.Dimension(this._lastLayoutDimensions.dimension.width, this._lastLayoutDimensions.dimension.height - this.inputCellContainerHeight), this._notebookEditorContainer);
@@ -413,6 +422,20 @@ export class ReplEditor extends EditorPane implements IEditorPaneWithScrolling {
 		if (this._runbuttonToolbar) {
 			this._runbuttonToolbar.context = input.resource;
 		}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 418: Error message without production error code - breaks React bundle size optimization
+//   2. Line 418: Error message without production error code - breaks React bundle size optimization
+//   3. Line 425: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 427: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 430: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 433: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 		if (model === null) {
 			throw new Error('The REPL model could not be resolved');
@@ -529,6 +552,16 @@ export class ReplEditor extends EditorPane implements IEditorPaneWithScrolling {
 					historyService.replaceLast(this.input.resource, value);
 				}
 			}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 534: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 537: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}));
 
 		this._widgetDisposableStore.add(this._notebookWidget.value!.onDidScroll(() => this._onDidChangeScroll.fire()));
@@ -598,6 +631,17 @@ export class ReplEditor extends EditorPane implements IEditorPaneWithScrolling {
 		}
 		return false;
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 603: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 604: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 607: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	private _scrollIfNecessary(cvm: ICellViewModel) {
 		const index = this._notebookWidget.value!.getCellIndex(cvm);
@@ -656,6 +700,13 @@ export class ReplEditor extends EditorPane implements IEditorPaneWithScrolling {
 		const leftMargin = this._notebookOptions.getCellEditorContainerLeftMargin();
 
 		const inputCellContainerHeight = maxHeight + INPUT_CELL_VERTICAL_PADDING * 2;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this._notebookEditorContainer.style.height = `${dimension.height - inputCellContainerHeight}px`;
 
 		this._notebookWidget.value!.layout(dimension.with(dimension.width, dimension.height - inputCellContainerHeight), this._notebookEditorContainer, position);
@@ -714,6 +765,13 @@ export class ReplEditor extends EditorPane implements IEditorPaneWithScrolling {
 		this._notebookWidget.value?.onShow();
 		this._codeEditorWidget.focus();
 	}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	focusHistory() {
 		this._notebookWidget.value!.focus();

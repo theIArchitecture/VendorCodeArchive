@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -46,6 +48,13 @@ export class BrowserWindowDriver implements IWindowDriver {
 
 		if (!element) {
 			return Promise.reject(new Error(`Element not found: ${selector}`));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		}
 
 		const inputElement = element as HTMLInputElement;
@@ -129,6 +138,18 @@ export class BrowserWindowDriver implements IWindowDriver {
 
 	async typeInEditor(selector: string, text: string): Promise<void> {
 		const element = mainWindow.document.querySelector(selector);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 134: Error message without production error code - breaks React bundle size optimization
+//   2. Line 134: Error message without production error code - breaks React bundle size optimization
+//   3. Line 140: Error message without production error code - breaks React bundle size optimization
+//   4. Line 140: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 		if (!element) {
 			throw new Error(`Editor not found: ${selector}`);
@@ -166,6 +187,25 @@ export class BrowserWindowDriver implements IWindowDriver {
 	}
 
 	async getEditorSelection(selector: string): Promise<{ selectionStart: number; selectionEnd: number }> {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (11):
+//   1. Line 171: Error message without production error code - breaks React bundle size optimization
+//   2. Line 171: Error message without production error code - breaks React bundle size optimization
+//   3. Line 176: Error message without production error code - breaks React bundle size optimization
+//   4. Line 176: Error message without production error code - breaks React bundle size optimization
+//   5. Line 182: Error message without production error code - breaks React bundle size optimization
+//   6. Line 182: Error message without production error code - breaks React bundle size optimization
+//   7. Line 190: Error message without production error code - breaks React bundle size optimization
+//   8. Line 190: Error message without production error code - breaks React bundle size optimization
+//   9. Line 193: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 196: Error message without production error code - breaks React bundle size optimization
+//   11. Line 196: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		const element = mainWindow.document.querySelector(selector);
 		if (!element) {
 			throw new Error(`Editor not found: ${selector}`);
@@ -206,6 +246,19 @@ export class BrowserWindowDriver implements IWindowDriver {
 
 	async writeInTerminal(selector: string, text: string): Promise<void> {
 		const element = mainWindow.document.querySelector(selector);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (5):
+//   1. Line 211: Error message without production error code - breaks React bundle size optimization
+//   2. Line 211: Error message without production error code - breaks React bundle size optimization
+//   3. Line 214: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 217: Error message without production error code - breaks React bundle size optimization
+//   5. Line 217: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 
 		if (!element) {
 			throw new Error(`Element not found: ${selector}`);
