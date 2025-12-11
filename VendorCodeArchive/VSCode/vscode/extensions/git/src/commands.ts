@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -742,6 +744,13 @@ async function evaluateDiagnosticsCommitHook(repository: Repository, options: Co
 	// Show dialog
 	const commit = l10n.t('Commit Anyway');
 	const view = l10n.t('View Problems');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 	const message = diagnostics.size === 1
 		? l10n.t('The following file has unresolved diagnostics: \'{0}\'.\n\nHow would you like to proceed?', path.basename(diagnostics.keys().next().value!.fsPath))
@@ -1042,6 +1051,13 @@ export class CommandCenter {
 			const uri = Uri.file(repositoryPath);
 
 			if (action === PostCloneAction.Open) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				commands.executeCommand('vscode.openFolder', uri, { forceReuseWindow: true });
 			} else if (action === PostCloneAction.AddToWorkspace) {
 				workspace.updateWorkspaceFolders(workspace.workspaceFolders!.length, 0, { uri });
@@ -1242,6 +1258,13 @@ export class CommandCenter {
 		const uri = Uri.file(repositoryPath);
 
 		if (result === open) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			commands.executeCommand('vscode.openFolder', uri);
 		} else if (result === addToWorkspace) {
 			workspace.updateWorkspaceFolders(workspace.workspaceFolders!.length, 0, { uri });
@@ -2370,6 +2393,16 @@ export class CommandCenter {
 	): Promise<void> {
 		const config = workspace.getConfiguration('git', Uri.file(repository.root));
 		let promptToSaveFilesBeforeCommit = config.get<'always' | 'staged' | 'never'>('promptToSaveFilesBeforeCommit');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 2375: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2377: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		// migration
 		if (promptToSaveFilesBeforeCommit as any === true) {
@@ -2651,6 +2684,17 @@ export class CommandCenter {
 	}
 
 	@command('git.commitMessageAccept')
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 2656: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2665: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 2669: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	async commitMessageAccept(arg?: Uri): Promise<void> {
 		if (!arg && !window.activeTextEditor) { return; }
 		arg ??= window.activeTextEditor!.document.uri;
@@ -3811,6 +3855,16 @@ export class CommandCenter {
 		const remoteItems: RemoteItem[] = repository.remotes.map(r => new RemoteItem(repository, r));
 
 		if (repository.HEAD?.upstream?.remote) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 3816: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 3816: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			// Move default remote to the top
 			const defaultRemoteIndex = remoteItems
 				.findIndex(r => r.remoteName === repository.HEAD!.upstream!.remote);
@@ -5235,6 +5289,13 @@ export class CommandCenter {
 				this.showErrorNotification(type, message, options, choices);
 			});
 		};
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		// patch this object, so people can call methods directly
 		(this as any)[key] = result;

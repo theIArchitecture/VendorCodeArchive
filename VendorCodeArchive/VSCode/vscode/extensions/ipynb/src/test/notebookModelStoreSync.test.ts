@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
@@ -35,6 +37,13 @@ suite(`Notebook Model Store Sync`, () => {
 		onDidChangeNotebookDocument = new EventEmitter<NotebookDocumentChangeEvent>();
 		disposables.push(onDidChangeNotebookDocument);
 		onWillSaveNotebookDocument = new AsyncEmitter<NotebookDocumentWillSaveEvent>();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		sinon.stub(NotebookEdit, 'updateCellMetadata').callsFake((index, metadata) => {
 			const edit = (NotebookEdit.updateCellMetadata as any).wrappedMethod.call(NotebookEdit, index, metadata);
@@ -73,6 +82,13 @@ suite(`Notebook Model Store Sync`, () => {
 		assert.strictEqual(editsApplied.length, 0);
 	});
 	test('Adding cell for non Jupyter Notebook will not result in any updates', async () => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		sinon.stub(notebook, 'notebookType').get(() => 'some-other-type');
 		const cell: NotebookCell = {
 			document: {} as any,
@@ -102,6 +118,13 @@ suite(`Notebook Model Store Sync`, () => {
 		assert.strictEqual(cellMetadataUpdates.length, 0);
 	});
 	test('Adding cell to nbformat 4.2 notebook will result in adding empty metadata', async () => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		sinon.stub(notebook, 'metadata').get(() => ({ nbformat: 4, nbformat_minor: 2 }));
 		const cell: NotebookCell = {
 			document: {} as any,
@@ -133,6 +156,13 @@ suite(`Notebook Model Store Sync`, () => {
 		assert.deepStrictEqual(newMetadata, { execution_count: null, metadata: {} });
 	});
 	test('Added cell will have a cell id if nbformat is 4.5', async () => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		sinon.stub(notebook, 'metadata').get(() => ({ nbformat: 4, nbformat_minor: 5 }));
 		const cell: NotebookCell = {
 			document: {} as any,
@@ -167,6 +197,13 @@ suite(`Notebook Model Store Sync`, () => {
 		assert.ok(newMetadata.id);
 	});
 	test('Do not add cell id if one already exists', async () => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		sinon.stub(notebook, 'metadata').get(() => ({ nbformat: 4, nbformat_minor: 5 }));
 		const cell: NotebookCell = {
 			document: {} as any,
@@ -203,6 +240,13 @@ suite(`Notebook Model Store Sync`, () => {
 		assert.strictEqual(newMetadata.id, '1234');
 	});
 	test('Do not perform any updates if cell id and metadata exists', async () => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		sinon.stub(notebook, 'metadata').get(() => ({ nbformat: 4, nbformat_minor: 5 }));
 		const cell: NotebookCell = {
 			document: {} as any,
@@ -242,6 +286,13 @@ suite(`Notebook Model Store Sync`, () => {
 			}
 		}));
 		const cell: NotebookCell = {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			document: {
 				languageId: 'javascript'
 			} as any,
@@ -264,6 +315,13 @@ suite(`Notebook Model Store Sync`, () => {
 			cellChanges: [
 				{
 					cell,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					document: {
 						languageId: 'javascript'
 					} as any,
@@ -292,6 +350,13 @@ suite(`Notebook Model Store Sync`, () => {
 			}
 		}));
 		const cell: NotebookCell = {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			document: {
 				languageId: 'javascript'
 			} as any,
@@ -335,6 +400,13 @@ suite(`Notebook Model Store Sync`, () => {
 			}
 		}));
 		const cell: NotebookCell = {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			document: {
 				languageId: 'javascript'
 			} as any,
@@ -358,6 +430,13 @@ suite(`Notebook Model Store Sync`, () => {
 			cellChanges: [
 				{
 					cell,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					document: {
 						languageId: 'javascript'
 					} as any,
@@ -386,6 +465,13 @@ suite(`Notebook Model Store Sync`, () => {
 			}
 		}));
 		const cell: NotebookCell = {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			document: {
 				languageId: 'powershell'
 			} as any,
@@ -409,6 +495,13 @@ suite(`Notebook Model Store Sync`, () => {
 			cellChanges: [
 				{
 					cell,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					document: {
 						languageId: 'powershell'
 					} as any,
@@ -441,6 +534,13 @@ suite(`Notebook Model Store Sync`, () => {
 			editsApplied.push(edit);
 			return promise;
 		});
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 
 		const cell: NotebookCell = {
 			document: {} as any,
