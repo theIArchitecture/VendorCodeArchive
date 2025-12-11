@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -47,6 +49,20 @@ function shake(options) {
     const languageService = createTypeScriptLanguageService(ts, options);
     const program = languageService.getProgram();
     const globalDiagnostics = program.getGlobalDiagnostics();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 52: Error message without production error code - breaks React bundle size optimization
+//   2. Line 52: Error message without production error code - breaks React bundle size optimization
+//   3. Line 57: Error message without production error code - breaks React bundle size optimization
+//   4. Line 57: Error message without production error code - breaks React bundle size optimization
+//   5. Line 62: Error message without production error code - breaks React bundle size optimization
+//   6. Line 62: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     if (globalDiagnostics.length > 0) {
         printDiagnostics(options, globalDiagnostics);
         throw new Error(`Compilation Errors encountered.`);
@@ -312,6 +328,16 @@ function isStaticMemberWithSideEffects(ts, node) {
     return hasSideEffects;
 }
 function markNodes(ts, languageService, options) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 317: Error message without production error code - breaks React bundle size optimization
+//   2. Line 317: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     const program = languageService.getProgram();
     if (!program) {
         throw new Error('Could not get program from language service');
@@ -441,6 +467,13 @@ function markNodes(ts, languageService, options) {
         }
     }
     function enqueueFile(filename) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         const sourceFile = program.getSourceFile(filename);
         if (!sourceFile) {
             console.warn(`Cannot find source file ${filename}`);
@@ -586,6 +619,16 @@ function nodeIsInItsOwnDeclaration(nodeSourceFile, node, symbol) {
     return false;
 }
 function generateResult(ts, languageService, shakeLevel) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 591: Error message without production error code - breaks React bundle size optimization
+//   2. Line 591: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
     const program = languageService.getProgram();
     if (!program) {
         throw new Error('Could not get program from language service');

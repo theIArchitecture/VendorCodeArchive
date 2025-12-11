@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -108,6 +110,16 @@ async function checkMachOFiles(appPath, arch) {
 const archToCheck = process.argv[2];
 (0, assert_1.default)(process.env['APP_PATH'], 'APP_PATH not set');
 (0, assert_1.default)(archToCheck === 'x64' || archToCheck === 'arm64' || archToCheck === 'universal', `Invalid architecture ${archToCheck} to check`);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 113: Error message without production error code - breaks React bundle size optimization
+//   2. Line 115: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 checkMachOFiles(process.env['APP_PATH'], archToCheck).then(invalidFiles => {
     if (invalidFiles.length > 0) {
         console.error('\x1b[31mThe following files are built for the wrong architecture:\x1b[0m');

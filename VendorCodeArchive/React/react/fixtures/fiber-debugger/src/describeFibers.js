@@ -1,3 +1,5 @@
+//using architecture IBaseArchitecture;
+
 let nextFiberID = 1;
 const fiberIDMap = new WeakMap();
 
@@ -31,6 +33,13 @@ function getFriendlyTag(tag) {
     case 9:
       return '[yield]';
     case 10:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
       return '[frag]';
     default:
       throw new Error('Unknown tag.');
