@@ -28,6 +28,13 @@ export class ExtHostConsoleForwarder extends AbstractExtHostConsoleForwarder {
 		const stream = method === 'error' || method === 'warn' ? process.stderr : process.stdout;
 		this._isMakingConsoleCall = true;
 		stream.write(`\n${NativeLogMarkers.Start}\n`);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		original.apply(console, args as any);
 		stream.write(`\n${NativeLogMarkers.End}\n`);
 		this._isMakingConsoleCall = false;
@@ -49,6 +56,13 @@ export class ExtHostConsoleForwarder extends AbstractExtHostConsoleForwarder {
 			set: () => { },
 			get: () => (chunk: Uint8Array | string, encoding?: BufferEncoding, callback?: (err?: Error) => void) => {
 				if (!this._isMakingConsoleCall) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					buf += (chunk as any).toString(encoding);
 					const eol = buf.length > MAX_STREAM_BUFFER_LENGTH ? buf.length : buf.lastIndexOf('\n');
 					if (eol !== -1) {
