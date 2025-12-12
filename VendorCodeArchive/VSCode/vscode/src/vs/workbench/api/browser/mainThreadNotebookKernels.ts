@@ -200,6 +200,16 @@ export class MainThreadNotebookKernels implements MainThreadNotebookKernelsShape
 	async $postMessage(handle: number, editorId: string | undefined, message: any): Promise<boolean> {
 		const tuple = this._kernels.get(handle);
 		if (!tuple) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 203: Error message without production error code - breaks React bundle size optimization
+//   2. Line 203: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('kernel already disposed');
 		}
 		const [kernel] = tuple;
@@ -300,6 +310,18 @@ export class MainThreadNotebookKernels implements MainThreadNotebookKernelsShape
 		const uri = URI.revive(rawUri);
 		const notebook = this._notebookService.getNotebookTextModel(uri);
 		if (!notebook) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 303: Error message without production error code - breaks React bundle size optimization
+//   2. Line 303: Error message without production error code - breaks React bundle size optimization
+//   3. Line 308: Error message without production error code - breaks React bundle size optimization
+//   4. Line 308: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Notebook not found: ${uri.toString()}`);
 		}
 
@@ -339,6 +361,18 @@ export class MainThreadNotebookKernels implements MainThreadNotebookKernelsShape
 		const uri = URI.revive(rawUri);
 		const notebook = this._notebookService.getNotebookTextModel(uri);
 		if (!notebook) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 342: Error message without production error code - breaks React bundle size optimization
+//   2. Line 342: Error message without production error code - breaks React bundle size optimization
+//   3. Line 347: Error message without production error code - breaks React bundle size optimization
+//   4. Line 347: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Notebook not found: ${uri.toString()}`);
 		}
 
