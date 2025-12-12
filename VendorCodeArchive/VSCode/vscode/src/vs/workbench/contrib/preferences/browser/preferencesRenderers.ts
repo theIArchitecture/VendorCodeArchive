@@ -116,6 +116,13 @@ export class UserSettingsRenderer extends Disposable implements IPreferencesRend
 		const { key, overrideOf } = setting;
 		if (overrideOf) {
 			const setting = this.getSetting(overrideOf);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			for (const override of setting!.overrides!) {
 				if (override.key === key) {
 					return override;
@@ -334,6 +341,13 @@ class EditSettingRenderer extends Disposable {
 							break;
 						}
 						if (lineNumber >= setting.range.startLineNumber && lineNumber <= setting.range.endLineNumber) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							if (!this.isDefaultSettings() && setting.overrides!.length) {
 								// Only one level because override settings cannot have override settings
 								for (const overrideSetting of setting.overrides!) {
@@ -389,6 +403,17 @@ class EditSettingRenderer extends Disposable {
 	private toAbsoluteCoords(position: Position): { x: number; y: number } {
 		const positionCoords = this.editor.getScrolledVisiblePosition(position);
 		const editorCoords = getDomNodePagePosition(this.editor.getDomNode()!);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 392: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 393: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 393: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const x = editorCoords.left + positionCoords!.left;
 		const y = editorCoords.top + positionCoords!.top + positionCoords!.height;
 
