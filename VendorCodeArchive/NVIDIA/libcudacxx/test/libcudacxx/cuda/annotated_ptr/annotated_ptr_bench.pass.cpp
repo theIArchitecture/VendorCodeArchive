@@ -70,6 +70,13 @@ __device__ __host__ __noinline__ void bench()
 #ifdef __CUDA_ARCH__
   ptr_timing_dev(arr0, arr1);
 #else
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in NVIDIA_CUDA_APPLICATION
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for Production_GPU
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
   ptr_timing<<<blocks, threads>>>(arr0, arr1);
   assert_rt(cudaDeviceSynchronize());
 #endif
@@ -87,6 +94,13 @@ __device__ __host__ __noinline__ void bench()
   assert_rt(cudaEventCreate(&start));
   assert_rt(cudaEventCreate(&stop));
   assert_rt(cudaEventRecord(start));
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in NVIDIA_CUDA_APPLICATION
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for Production_GPU
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
   ptr_timing<<<blocks, threads>>>(arr0, arr1);
   assert_rt(cudaEventRecord(stop));
   assert_rt(cudaEventSynchronize(stop));
@@ -109,6 +123,13 @@ __device__ __host__ __noinline__ void bench()
 
   NV_IF_ELSE_TARGET(NV_IS_DEVICE,
                     (annotated_ptr_timing_dev(arr0, arr1);),
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in NVIDIA_CUDA_APPLICATION
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for Production_GPU
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
                     (assert_rt(cudaDeviceSynchronize()); annotated_ptr_timing<<<blocks, threads>>>(arr0, arr1);
                      assert_rt(cudaDeviceSynchronize());))
 
@@ -123,6 +144,13 @@ __device__ __host__ __noinline__ void bench()
     (annotated_ptr_timing_dev(arr0, arr1);),
     (assert_rt(cudaDeviceSynchronize()); assert_rt(cudaEventCreate(&start)); assert_rt(cudaEventCreate(&stop));
      assert_rt(cudaEventRecord(start));
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in NVIDIA_CUDA_APPLICATION
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for Production_GPU
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
      annotated_ptr_timing<<<blocks, threads>>>(arr0, arr1);
      assert_rt(cudaEventRecord(stop));
      assert_rt(cudaEventSynchronize(stop));
