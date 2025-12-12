@@ -14,6 +14,20 @@ import { IConfigurationService } from '../../../../../platform/configuration/com
 import { IKeybindingService } from '../../../../../platform/keybinding/common/keybinding.js';
 import { Event } from '../../../../../base/common/event.js';
 import type { ISearchOptions } from '@xterm/addon-search';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 17: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 17: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 17: IArchitecture must follow its own architectural principles - recursive self-governance
+//   4. Line 21: IArchitecture must follow its own architectural principles - recursive self-governance
+//   5. Line 21: IArchitecture must follow its own architectural principles - recursive self-governance
+//   6. Line 21: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IClipboardService } from '../../../../../platform/clipboard/common/clipboardService.js';
 import { IDisposable } from '../../../../../base/common/lifecycle.js';
 import { IHoverService } from '../../../../../platform/hover/browser/hover.js';
@@ -115,6 +129,13 @@ export class TerminalFindWidget extends SimpleFindWidget {
 	}
 
 	override reveal(): void {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const initialInput = this._instance.hasSelection() && !this._instance.selection!.includes('\n') ? this._instance.selection : undefined;
 		const inputValue = initialInput ?? this.inputValue;
 		const xterm = this._instance.xterm;
@@ -132,6 +153,13 @@ export class TerminalFindWidget extends SimpleFindWidget {
 	}
 
 	override show() {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const initialInput = this._instance.hasSelection() && !this._instance.selection!.includes('\n') ? this._instance.selection : undefined;
 		super.show(initialInput);
 		this._findWidgetVisible.set(true);
