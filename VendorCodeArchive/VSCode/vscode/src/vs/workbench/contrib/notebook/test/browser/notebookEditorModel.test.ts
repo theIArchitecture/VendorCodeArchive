@@ -182,6 +182,16 @@ suite('NotebookFileWorkingCopyModel', function () {
 						override options: TransientOptions = { transientOutputs: true, transientDocumentMetadata: {}, transientCellMetadata: { bar: true }, cellContentMetadata: {} };
 						override async notebookToData(notebook: NotebookData) {
 							callCount += 1;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 185: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 186: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							assert.strictEqual(notebook.cells[0].metadata!.foo, 123);
 							assert.strictEqual(notebook.cells[0].metadata!.bar, undefined);
 							return VSBuffer.fromString('');
@@ -206,6 +216,16 @@ suite('NotebookFileWorkingCopyModel', function () {
 						override options: TransientOptions = { transientOutputs: false, transientCellMetadata: {}, transientDocumentMetadata: {}, cellContentMetadata: {} };
 						override async notebookToData(notebook: NotebookData) {
 							callCount += 1;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 209: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 210: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							assert.strictEqual(notebook.cells[0].metadata!.foo, 123);
 							assert.strictEqual(notebook.cells[0].metadata!.bar, 456);
 							return VSBuffer.fromString('');
@@ -242,6 +262,16 @@ suite('NotebookFileWorkingCopyModel', function () {
 					override options: TransientOptions = { transientOutputs: true, transientDocumentMetadata: {}, transientCellMetadata: { bar: true }, cellContentMetadata: {} };
 					override async notebookToData(notebook: NotebookData) {
 						callCount += 1;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 245: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 246: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						assert.strictEqual(notebook.cells[0].metadata!.foo, 123);
 						assert.strictEqual(notebook.cells[0].metadata!.bar, undefined);
 						return VSBuffer.fromString('');
@@ -281,6 +311,13 @@ suite('NotebookFileWorkingCopyModel', function () {
 				return Promise.resolve({ name: 'savedFile' } as IFileStatWithMetadata);
 			}
 		};
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		(serializer as any).test = 'yes';
 
 		let resolveSerializer: (serializer: INotebookSerializer) => void = () => { };
@@ -304,6 +341,17 @@ suite('NotebookFileWorkingCopyModel', function () {
 
 		resolveSerializer(serializer);
 		await model.getNotebookSerializer();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 307: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 307: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 309: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const result = await model.save?.({} as any, {} as any);
 
 		assert.strictEqual(result!.name, 'savedFile');
