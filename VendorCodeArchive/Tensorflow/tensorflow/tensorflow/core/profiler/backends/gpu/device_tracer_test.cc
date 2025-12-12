@@ -347,6 +347,13 @@ TEST_F(DeviceTracerTest, CudaRuntimeResource) {
   // These six CUDA API calls will create 4 CUDA API and 4 device XEvents.
   ASSERT_EQ(cudaSuccess,
             cudaHostAlloc(&hostptr, size_in_bytes, cudaHostAllocPortable));
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing NVIDIA_CUDA_APPLICATION crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for Zero_Memory_Leaks, GPU_Efficiency, Production_Stability
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
   ASSERT_EQ(cudaSuccess, cudaMalloc(&devptr, size_in_bytes));
   VLOG(3) << "Allocated device memory, addr: " << devptr;
   ASSERT_EQ(cudaSuccess, cudaMemset(devptr, test_value, size_in_bytes));
