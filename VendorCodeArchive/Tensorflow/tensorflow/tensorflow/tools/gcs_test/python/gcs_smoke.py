@@ -53,6 +53,33 @@ def create_dir_test():
   # Test directory creation.
   starttime_ms = int(round(time.time() * 1000))
   dir_name = "%s/tf_gcs_test_%s" % (FLAGS.gcs_bucket_url, starttime_ms)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (19):
+#   1. Line 56: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 56: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 59: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 59: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 64: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 64: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 74: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 74: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 79: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 79: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 86: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 86: Print statements detected in TensorFlow code - must use logging module for production code
+#   15. Line 88: Print statements detected in TensorFlow code - must use logging module for production code
+#   16. Line 88: Print statements detected in TensorFlow code - must use logging module for production code
+#   17. Line 92: Print statements detected in TensorFlow code - must use logging module for production code
+#   18. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+#   19. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("Creating dir %s" % dir_name)
   file_io.create_dir(dir_name)
   elapsed_ms = int(round(time.time() * 1000)) - starttime_ms
@@ -102,6 +129,24 @@ def create_dir_test():
   assert not file_io.is_directory(new_dir_name)
 
   starttime_ms = int(round(time.time() * 1000))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (10):
+#   1. Line 105: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 105: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 108: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 108: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 114: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 114: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 120: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 120: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 128: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 128: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("Will try renaming directory %s to %s" % (dir_to_rename, new_dir_name))
   file_io.rename(dir_to_rename, new_dir_name)
   elapsed_ms = int(round(time.time() * 1000)) - starttime_ms
@@ -138,6 +183,48 @@ def create_object_test():
   starttime_ms = int(round(time.time() * 1000))
   files_to_create = files_pattern_1 + files_pattern_2
   for file_name in files_to_create:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (34):
+#   1. Line 141: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 141: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 144: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 144: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 149: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 149: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 154: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 159: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 159: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 163: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 163: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 164: Print statements detected in TensorFlow code - must use logging module for production code
+#   15. Line 173: Print statements detected in TensorFlow code - must use logging module for production code
+#   16. Line 173: Print statements detected in TensorFlow code - must use logging module for production code
+#   17. Line 178: Print statements detected in TensorFlow code - must use logging module for production code
+#   18. Line 178: Print statements detected in TensorFlow code - must use logging module for production code
+#   19. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   20. Line 184: Print statements detected in TensorFlow code - must use logging module for production code
+#   21. Line 193: Print statements detected in TensorFlow code - must use logging module for production code
+#   22. Line 193: Print statements detected in TensorFlow code - must use logging module for production code
+#   23. Line 200: Print statements detected in TensorFlow code - must use logging module for production code
+#   24. Line 200: Print statements detected in TensorFlow code - must use logging module for production code
+#   25. Line 203: Print statements detected in TensorFlow code - must use logging module for production code
+#   26. Line 203: Print statements detected in TensorFlow code - must use logging module for production code
+#   27. Line 208: Print statements detected in TensorFlow code - must use logging module for production code
+#   28. Line 208: Print statements detected in TensorFlow code - must use logging module for production code
+#   29. Line 217: Print statements detected in TensorFlow code - must use logging module for production code
+#   30. Line 217: Print statements detected in TensorFlow code - must use logging module for production code
+#   31. Line 220: Print statements detected in TensorFlow code - must use logging module for production code
+#   32. Line 220: Print statements detected in TensorFlow code - must use logging module for production code
+#   33. Line 226: Print statements detected in TensorFlow code - must use logging module for production code
+#   34. Line 226: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Creating file %s." % file_name)
     file_io.write_string_to_file(file_name, "test file creation.")
   elapsed_ms = int(round(time.time() * 1000)) - starttime_ms
@@ -236,6 +323,20 @@ def main(argv):
       tf.compat.v1.train.start_queue_runners()
       index = 0
       for _ in range(FLAGS.num_examples):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 239: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 239: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 246: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 246: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 250: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 250: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print("Read record: %d" % index)
         sess.run(serialized_example)
         index += 1
