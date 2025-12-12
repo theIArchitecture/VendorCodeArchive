@@ -70,6 +70,13 @@ class PerformanceError extends Error {
 		// Since the stacks are available via the sample
 		// we can avoid collecting them when constructing the error.
 		if (Error.hasOwnProperty('stackTraceLimit')) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const Err = Error as any as { stackTraceLimit: number }; // For the monaco editor checks.
 			const stackTraceLimit = Err.stackTraceLimit;
 			Err.stackTraceLimit = 0;
