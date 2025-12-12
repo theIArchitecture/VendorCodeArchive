@@ -153,6 +153,13 @@ suite('InlineChatController', function () {
 			[IContextKeyService, new MockContextKeyService()],
 			[IViewsService, new class extends TestViewsService {
 				override async openView<T extends IView>(id: string, focus?: boolean | undefined): Promise<T | null> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					return { widget: chatWidget ?? null } as any;
 				}
 			}()],
@@ -611,6 +618,13 @@ suite('InlineChatController', function () {
 		store.add(targetModel);
 		chatWidget = new class extends mock<IChatWidget>() {
 			override get viewModel() {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				return { model: targetModel } as any;
 			}
 			override focusLastMessage() { }
@@ -659,6 +673,13 @@ suite('InlineChatController', function () {
 		store.add(targetModel);
 		chatWidget = new class extends mock<IChatWidget>() {
 			override get viewModel() {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				return { model: targetModel } as any;
 			}
 			override focusLastMessage() { }
@@ -846,6 +867,13 @@ suite('InlineChatController', function () {
 		assert.strictEqual(model.getValue(), 'HelloWorld'); // first word has been streamed
 
 		const p2 = ctrl.awaitStates([State.WAIT_FOR_INPUT]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		chatService.cancelCurrentRequestForSession(ctrl.chatWidget.viewModel!.model.sessionId);
 		assert.strictEqual(await p2, undefined);
 
@@ -967,6 +995,13 @@ suite('InlineChatController', function () {
 		assert.strictEqual(await p, undefined);
 
 		const p2 = ctrl.awaitStates([State.WAIT_FOR_INPUT]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		chatService.cancelCurrentRequestForSession(ctrl.chatWidget.viewModel!.model.sessionId);
 		assert.strictEqual(await p2, undefined);
 

@@ -46,6 +46,13 @@ suite('ChatRequestParser', () => {
 		variableService.getSelectedTools.returns([]);
 		variableService.getSelectedToolSets.returns([]);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatVariablesService, variableService as any);
 	});
 
@@ -72,6 +79,13 @@ suite('ChatRequestParser', () => {
 	test('slash command', async () => {
 		const slashCommandService = mockObject<IChatSlashCommandService>()({});
 		slashCommandService.getCommands.returns([{ command: 'fix' }]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatSlashCommandService, slashCommandService as any);
 
 		parser = instantiationService.createInstance(ChatRequestParser);
@@ -83,6 +97,13 @@ suite('ChatRequestParser', () => {
 	test('invalid slash command', async () => {
 		const slashCommandService = mockObject<IChatSlashCommandService>()({});
 		slashCommandService.getCommands.returns([{ command: 'fix' }]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatSlashCommandService, slashCommandService as any);
 
 		parser = instantiationService.createInstance(ChatRequestParser);
@@ -94,6 +115,13 @@ suite('ChatRequestParser', () => {
 	test('multiple slash commands', async () => {
 		const slashCommandService = mockObject<IChatSlashCommandService>()({});
 		slashCommandService.getCommands.returns([{ command: 'fix' }]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatSlashCommandService, slashCommandService as any);
 
 		parser = instantiationService.createInstance(ChatRequestParser);
@@ -105,6 +133,13 @@ suite('ChatRequestParser', () => {
 	test('slash command not first', async () => {
 		const slashCommandService = mockObject<IChatSlashCommandService>()({});
 		slashCommandService.getCommands.returns([{ command: 'fix' }]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatSlashCommandService, slashCommandService as any);
 
 		parser = instantiationService.createInstance(ChatRequestParser);
@@ -116,6 +151,13 @@ suite('ChatRequestParser', () => {
 	test('slash command after whitespace', async () => {
 		const slashCommandService = mockObject<IChatSlashCommandService>()({});
 		slashCommandService.getCommands.returns([{ command: 'fix' }]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatSlashCommandService, slashCommandService as any);
 
 		parser = instantiationService.createInstance(ChatRequestParser);
@@ -127,6 +169,16 @@ suite('ChatRequestParser', () => {
 	test('prompt slash command', async () => {
 		const slashCommandService = mockObject<IChatSlashCommandService>()({});
 		slashCommandService.getCommands.returns([{ command: 'fix' }]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 130: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 139: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatSlashCommandService, slashCommandService as any);
 
 		const promptSlashCommandService = mockObject<IPromptsService>()({});
@@ -147,6 +199,16 @@ suite('ChatRequestParser', () => {
 	test('prompt slash command after text', async () => {
 		const slashCommandService = mockObject<IChatSlashCommandService>()({});
 		slashCommandService.getCommands.returns([{ command: 'fix' }]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 150: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 159: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatSlashCommandService, slashCommandService as any);
 
 		const promptSlashCommandService = mockObject<IPromptsService>()({});
@@ -167,6 +229,16 @@ suite('ChatRequestParser', () => {
 	test('prompt slash command after slash', async () => {
 		const slashCommandService = mockObject<IChatSlashCommandService>()({});
 		slashCommandService.getCommands.returns([{ command: 'fix' }]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 170: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 179: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatSlashCommandService, slashCommandService as any);
 
 		const promptSlashCommandService = mockObject<IPromptsService>()({});
@@ -221,6 +293,22 @@ suite('ChatRequestParser', () => {
 	test('agent with subcommand after text', async () => {
 		const agentsService = mockObject<IChatAgentService>()({});
 		agentsService.getAgentsByName.returns([getAgentWithSlashCommands([{ name: 'subCommand', description: '' }])]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 224: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 234: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 244: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 254: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 264: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 274: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 284: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 294: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatAgentService, agentsService as any);
 
 		parser = instantiationService.createInstance(ChatRequestParser);
@@ -306,6 +394,13 @@ suite('ChatRequestParser', () => {
 	test('agents and tools and multiline, part2', async () => {
 		const agentsService = mockObject<IChatAgentService>()({});
 		agentsService.getAgentsByName.returns([getAgentWithSlashCommands([{ name: 'subCommand', description: '' }])]);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		instantiationService.stub(IChatAgentService, agentsService as any);
 
 		variableService.getSelectedTools.returns([

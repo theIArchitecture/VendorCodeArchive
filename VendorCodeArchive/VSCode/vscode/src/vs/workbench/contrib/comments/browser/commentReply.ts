@@ -211,6 +211,13 @@ export class CommentReply<T extends IRange | ICellRange> extends Disposable {
 		this.avatar.textContent = '';
 		if (typeof this._commentThread.canReply !== 'boolean' && this._commentThread.canReply.iconPath) {
 			this.avatar.style.display = 'block';
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const img = dom.append(this.avatar, dom.$('img.avatar')) as HTMLImageElement;
 			img.src = FileAccess.uriToBrowserUri(URI.revive(this._commentThread.canReply.iconPath)).toString(true);
 		} else {

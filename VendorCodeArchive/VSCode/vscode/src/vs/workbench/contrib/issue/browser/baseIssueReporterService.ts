@@ -339,6 +339,13 @@ export class BaseIssueReporterService extends Disposable {
 		const showInfoElements = this.window.document.getElementsByClassName('showInfo');
 		for (let i = 0; i < showInfoElements.length; i++) {
 			const showInfo = showInfoElements.item(i)!;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			(showInfo as HTMLAnchorElement).addEventListener('click', (e: MouseEvent) => {
 				e.preventDefault();
 				const label = (<HTMLDivElement>e.target);
@@ -408,6 +415,13 @@ export class BaseIssueReporterService extends Disposable {
 		});
 
 		this.addEventListener('issue-title', 'input', _ => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const titleElement = this.getElementById('issue-title') as HTMLInputElement;
 			if (titleElement) {
 				const title = titleElement.value;
@@ -519,6 +533,13 @@ export class BaseIssueReporterService extends Disposable {
 			this.previewButton.enabled = false;
 			this.previewButton.label = localize('loadingData', "Loading data...");
 		}
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const issueRepoName = this.getElementById('show-repo-name')! as HTMLAnchorElement;
 		const selectedExtension = this.issueReporterModel.getData().selectedExtension;
@@ -744,6 +765,13 @@ export class BaseIssueReporterService extends Disposable {
 	private setUpTypes(): void {
 		const makeOption = (issueType: IssueType, description: string) => $('option', { 'value': issueType.valueOf() }, escape(description));
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const typeSelect = this.getElementById('issue-type')! as HTMLSelectElement;
 		const { issueType } = this.issueReporterModel.getData();
 		reset(typeSelect,
@@ -767,6 +795,13 @@ export class BaseIssueReporterService extends Disposable {
 	}
 
 	public setSourceOptions(): void {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const sourceSelect = this.getElementById('issue-source')! as HTMLSelectElement;
 		const { issueType, fileOnExtension, selectedExtension, fileOnMarketplace, fileOnProduct } = this.issueReporterModel.getData();
 		let selected = sourceSelect.selectedIndex;
@@ -881,6 +916,16 @@ export class BaseIssueReporterService extends Disposable {
 		if (fileOnExtension && selectedExtension?.data) {
 			const data = selectedExtension?.data;
 			(extensionDataTextArea as HTMLElement).innerText = data.toString();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 884: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 890: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			(extensionDataTextArea as HTMLTextAreaElement).readOnly = true;
 			show(extensionDataBlock);
 		}
@@ -988,6 +1033,16 @@ export class BaseIssueReporterService extends Disposable {
 
 		const response = await fetch(url, init);
 		if (!response.ok) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 991: Error message without production error code - breaks React bundle size optimization
+//   2. Line 991: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			console.error('Invalid GitHub URL provided.');
 			return false;
 		}
@@ -1045,6 +1100,16 @@ export class BaseIssueReporterService extends Disposable {
 
 		let issueUrl = this.getIssueUrl();
 		if (!issueUrl) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1048: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1048: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			console.error('No issue url found');
 			return false;
 		}
@@ -1069,6 +1134,16 @@ export class BaseIssueReporterService extends Disposable {
 				url = await this.writeToClipboard(baseUrl, issueBody);
 				url = this.addTemplateToUrl(url, gitHubDetails?.owner, gitHubDetails?.repositoryName);
 			} catch (_) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1072: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1072: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				console.error('Writing to clipboard failed');
 				return false;
 			}
@@ -1124,6 +1199,16 @@ export class BaseIssueReporterService extends Disposable {
 				repositoryName: match[2]
 			};
 		} else {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1127: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1127: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			console.error('No GitHub issues match');
 		}
 
@@ -1173,6 +1258,16 @@ export class BaseIssueReporterService extends Disposable {
 		const template = this.data.issueBody;
 		if (template) {
 			const descriptionTextArea = this.getElementById('description')!;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1176: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1179: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const descriptionText = (descriptionTextArea as HTMLTextAreaElement).value;
 			if (descriptionText === '' || !descriptionText.includes(template.toString())) {
 				const fullTextArea = descriptionText + (descriptionText === '' ? '' : '\n') + template.toString();
@@ -1285,6 +1380,13 @@ export class BaseIssueReporterService extends Disposable {
 		if (extensionUrl) {
 			show(extensionValidationMessage);
 			const link = this.getElementById('extensionBugsLink');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			link!.textContent = extensionUrl;
 			return;
 		}

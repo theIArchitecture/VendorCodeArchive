@@ -82,6 +82,16 @@ suite('ChatModel', () => {
 		const request1 = model1.addRequest({ text, parts: [new ChatRequestTextPart(new OffsetRange(0, text.length), new Range(1, text.length, 1, text.length), text)] }, { variables: [] }, 0, undefined, undefined, undefined, undefined, undefined, true);
 
 		assert.strictEqual(request1.isCompleteAddedRequest, true);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 85: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 87: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(request1.response!.isCompleteAddedRequest, true);
 		assert.strictEqual(request1.shouldBeRemovedOnSend, undefined);
 		assert.strictEqual(request1.response!.shouldBeRemovedOnSend, undefined);

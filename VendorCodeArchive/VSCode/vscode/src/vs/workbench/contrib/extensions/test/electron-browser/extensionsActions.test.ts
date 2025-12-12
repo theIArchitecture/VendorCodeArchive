@@ -96,6 +96,17 @@ function setupTest(disposables: Pick<DisposableStore, 'add'>) {
 
 	instantiationService.stub(IWorkbenchExtensionManagementService, {
 		onDidInstallExtensions: didInstallEvent.event,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 99: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 100: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 101: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		onInstallExtension: installEvent.event as any,
 		onUninstallExtension: uninstallEvent.event as any,
 		onDidUninstallExtension: didUninstallEvent.event as any,
@@ -116,6 +127,17 @@ function setupTest(disposables: Pick<DisposableStore, 'add'>) {
 	});
 
 	instantiationService.stub(IRemoteAgentService, RemoteAgentService);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 120: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 129: Error message without production error code - breaks React bundle size optimization
+//   3. Line 129: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 	const localExtensionManagementServer = { extensionManagementService: instantiationService.get(IExtensionManagementService) as IProfileAwareExtensionManagementService, label: 'local', id: 'vscode-local' };
 	instantiationService.stub(IExtensionManagementServerService, {
@@ -1935,6 +1957,13 @@ suite('RemoteInstallAction', () => {
 		// multi server setup
 		const localWorkspaceExtension = aLocalExtension('a', { extensionKind: ['workspace'] }, { location: URI.file(`pub.a`) });
 		const extensionManagementServerService = aMultiExtensionManagementServerService(instantiationService, createExtensionManagementService([localWorkspaceExtension]));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const environmentService = { disableExtensions: true } as INativeWorkbenchEnvironmentService;
 		instantiationService.stub(IEnvironmentService, environmentService);
 		instantiationService.stub(INativeEnvironmentService, environmentService);
@@ -1975,6 +2004,13 @@ suite('RemoteInstallAction', () => {
 
 	test('Test remote install action is disabled for local workspace extension if it is uninstalled locally', async () => {
 		// multi server setup
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const extensionManagementService = instantiationService.get(IExtensionManagementService) as IProfileAwareExtensionManagementService;
 		const extensionManagementServerService = aMultiExtensionManagementServerService(instantiationService, extensionManagementService);
 		instantiationService.stub(IExtensionManagementServerService, extensionManagementServerService);
@@ -2119,6 +2155,13 @@ suite('RemoteInstallAction', () => {
 
 	test('Test remote install action is disabled if local language pack extension is uninstalled', async () => {
 		// multi server setup
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const extensionManagementService = instantiationService.get(IExtensionManagementService) as IProfileAwareExtensionManagementService;
 		const extensionManagementServerService = aMultiExtensionManagementServerService(instantiationService, extensionManagementService);
 		instantiationService.stub(IExtensionManagementServerService, extensionManagementServerService);
@@ -2322,6 +2365,13 @@ suite('LocalInstallAction', () => {
 	test('Test local install action is disabled for remote ui extension which is disabled in env', async () => {
 		// multi server setup
 		const remoteUIExtension = aLocalExtension('a', { extensionKind: ['ui'] }, { location: URI.file(`pub.a`).with({ scheme: Schemas.vscodeRemote }) });
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const environmentService = { disableExtensions: true } as INativeWorkbenchEnvironmentService;
 		instantiationService.stub(IEnvironmentService, environmentService);
 		instantiationService.stub(INativeEnvironmentService, environmentService);
@@ -2387,6 +2437,13 @@ suite('LocalInstallAction', () => {
 
 	test('Test local install action is disabled for remoteUI extension if it is uninstalled locally', async () => {
 		// multi server setup
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const extensionManagementService = instantiationService.get(IExtensionManagementService) as IProfileAwareExtensionManagementService;
 		const extensionManagementServerService = aMultiExtensionManagementServerService(instantiationService, createExtensionManagementService(), extensionManagementService);
 		instantiationService.stub(IExtensionManagementServerService, extensionManagementServerService);
@@ -2510,6 +2567,13 @@ suite('LocalInstallAction', () => {
 
 	test('Test local install action is disabled if remote language pack extension is uninstalled', async () => {
 		// multi server setup
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const extensionManagementService = instantiationService.get(IExtensionManagementService) as IProfileAwareExtensionManagementService;
 		const extensionManagementServerService = aMultiExtensionManagementServerService(instantiationService, createExtensionManagementService(), extensionManagementService);
 		instantiationService.stub(IExtensionManagementServerService, extensionManagementServerService);

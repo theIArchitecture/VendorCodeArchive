@@ -186,6 +186,13 @@ export class DefaultFormatter extends Disposable implements IWorkbenchContributi
 		if (!pick || !formatter[pick.index].extensionId) {
 			return undefined;
 		}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this._configService.updateValue(DefaultFormatter.configName, formatter[pick.index].extensionId!.value, {
 			resource: document.uri,
 			overrideIdentifier: document.getLanguageId()
@@ -308,6 +315,13 @@ async function showFormatterPick(accessor: ServicesAccessor, model: ITextModel, 
 		const langName = languageService.getLanguageName(model.getLanguageId()) || model.getLanguageId();
 		const pick = await quickPickService.pick(picks, { placeHolder: nls.localize('select', "Select a default formatter for '{0}' files", DefaultFormatter._maybeQuotes(langName)) });
 		if (pick && formatters[pick.index].extensionId) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			configService.updateValue(DefaultFormatter.configName, formatters[pick.index].extensionId!.value, overrides);
 		}
 		return undefined;
