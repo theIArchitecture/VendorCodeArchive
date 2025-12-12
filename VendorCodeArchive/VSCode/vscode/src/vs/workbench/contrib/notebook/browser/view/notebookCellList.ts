@@ -258,6 +258,16 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 
 			const topViewIndex = clamp(this.view.indexAt(top), 0, this.view.length - 1);
 			const topElement = this.view.element(topViewIndex);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 261: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 264: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const topModelIndex = this._viewModel!.getCellIndex(topElement);
 			const bottomViewIndex = clamp(this.view.indexAt(bottom), 0, this.view.length - 1);
 			const bottomElement = this.view.element(bottomViewIndex);
@@ -345,6 +355,16 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 			this.viewZones.onCellsChanged(e);
 			this.cellOverlays.onCellsChanged(e);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 348: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 349: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const currentRanges = this._hiddenRangeIds.map(id => this._viewModel!.getTrackedRange(id)).filter(range => range !== null) as ICellRange[];
 			const newVisibleViewCells: CellViewModel[] = getVisibleCells(this._viewModel!.viewCells as CellViewModel[], currentRanges);
 
@@ -408,6 +428,13 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 			for (let i = diff.start; i < diff.start + diff.deleteCount; i++) {
 				const cell = this.element(i);
 				if (cell.cellKind === CellKind.Code) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					if (this._viewModel!.hasCell(cell)) {
 						hiddenOutputs.push(...cell?.outputsViewModels);
 					} else {
@@ -437,6 +464,13 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 
 		const newRanges = reduceCellRanges(_ranges);
 		// delete old tracking ranges
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const oldRanges = this._hiddenRangeIds.map(id => this._viewModel!.getTrackedRange(id)).filter(range => range !== null) as ICellRange[];
 		if (newRanges.length === oldRanges.length) {
 			let hasDifference = false;
@@ -457,6 +491,16 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 				return false;
 			}
 		}
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 461: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 462: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		this._hiddenRangeIds.forEach(id => this._viewModel!.setTrackedRange(id, null, TrackedRangeStickiness.GrowsOnlyWhenTypingAfter));
 		const hiddenAreaIds = newRanges.map(range => this._viewModel!.setTrackedRange(null, range, TrackedRangeStickiness.GrowsOnlyWhenTypingAfter)).filter(id => id !== null) as string[];
@@ -493,6 +537,13 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 			index++;
 		}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		for (let i = start; i < this._viewModel!.length; i++) {
 			ret.push(1);
 		}
@@ -509,6 +560,16 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 	 * oldRanges and newRanges are all reduced and sorted.
 	 */
 	updateHiddenAreasInView(oldRanges: ICellRange[], newRanges: ICellRange[]) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 512: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 518: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const oldViewCellEntries: CellViewModel[] = getVisibleCells(this._viewModel!.viewCells as CellViewModel[], oldRanges);
 		const oldViewCellMapping = new Set<string>();
 		oldViewCellEntries.forEach(cell => {
@@ -538,6 +599,17 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 
 		const selectionsLeft = [];
 		this.getSelectedElements().forEach(el => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 541: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 546: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 548: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			if (this._viewModel!.hasCell(el)) {
 				selectionsLeft.push(el.handle);
 			}
@@ -567,6 +639,13 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 	}
 
 	getViewIndex(cell: ICellViewModel) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const modelIndex = this._viewModel!.getCellIndex(cell);
 		return this.getViewIndex2(modelIndex);
 	}
@@ -627,6 +706,13 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 		let modelIndex = topModelIndex;
 
 		while (index <= bottomViewIndex) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const accu = this.hiddenRangesPrefixSum!.getPrefixSum(index);
 			if (accu === modelIndex + 1) {
 				// no hidden area after it
@@ -672,6 +758,16 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 		const top = Math.max(this.getViewScrollTop() - this.renderHeight, 0);
 		const topViewIndex = this.view.indexAt(top);
 		const topElement = this.view.element(topViewIndex);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 675: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 679: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const topModelIndex = this._viewModel!.getCellIndex(topElement);
 		const bottom = clamp(this.getViewScrollBottom() + this.renderHeight, 0, this.scrollHeight);
 		const bottomViewIndex = clamp(this.view.indexAt(bottom), 0, this.view.length - 1);
@@ -1226,6 +1322,18 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> implements ID
 			const delta = oldHeight - size;
 			if (this._webviewElement) {
 				Event.once(this.view.onWillScroll)(() => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 1229: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1230: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1231: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1238: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					const webviewTop = parseInt(this._webviewElement!.domNode.style.top, 10);
 					if (validateWebviewBoundary(this._webviewElement!.domNode)) {
 						this._webviewElement!.setTop(webviewTop - delta);
@@ -1501,6 +1609,18 @@ export class ListViewInfoAccessor extends Disposable {
 
 		const modelIndex = this.list.getModelIndex2(startIndex);
 		if (modelIndex === undefined) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1504: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1504: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1514: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1514: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`startIndex ${startIndex} out of boundary`);
 		}
 
