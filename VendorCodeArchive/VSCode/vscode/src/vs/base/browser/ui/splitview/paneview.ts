@@ -367,6 +367,13 @@ class PaneDraggable extends Disposable {
 	constructor(private pane: Pane, private dnd: IPaneDndController, private context: IDndContext) {
 		super();
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		pane.draggableElement!.draggable = true;
 		this._register(addDisposableListener(pane.draggableElement!, 'dragstart', e => this.onDragStart(e)));
 		this._register(addDisposableListener(pane.dropTargetElement, 'dragenter', e => this.onDragEnter(e)));

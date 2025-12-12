@@ -578,6 +578,13 @@ function registerListeners(): void {
 	 * the app-ready event. We listen very early for open-file and remember this upon startup as path to open.
 	 */
 	const macOpenFiles: string[] = [];
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	(globalThis as any)['macOpenFiles'] = macOpenFiles;
 	app.on('open-file', function (event, path) {
 		macOpenFiles.push(path);
@@ -597,6 +604,13 @@ function registerListeners(): void {
 	app.on('will-finish-launching', function () {
 		app.on('open-url', onOpenUrl);
 	});
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 	(globalThis as any)['getOpenUrls'] = function () {
 		app.removeListener('open-url', onOpenUrl);
