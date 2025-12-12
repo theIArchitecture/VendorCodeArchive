@@ -8,6 +8,16 @@ from operator import mul
 import numba
 import pytest
 from helpers import NUMBA_TYPES_TO_NP, random_int, row_major_tid
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# ISSUES FOUND (2):
+#   1. Line 11: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   2. Line 13: CUDA dependency detected in pip package - breaks cross-platform compatibility
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
 from numba import cuda, types
 
 import cuda.cccl.cooperative.experimental as coop
@@ -33,6 +43,13 @@ def test_block_radix_sort_descending(T, threads_per_block, items_per_thread):
     )
     temp_storage_bytes = block_radix_sort.temp_storage_bytes
 
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     @cuda.jit(link=block_radix_sort.files)
     def kernel(input, output):
         tid = row_major_tid()
@@ -47,6 +64,17 @@ def test_block_radix_sort_descending(T, threads_per_block, items_per_thread):
     dtype = NUMBA_TYPES_TO_NP[T]
     items_per_tile = num_threads_per_block * items_per_thread
     input = random_int(items_per_tile, dtype)
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# ISSUES FOUND (3):
+#   1. Line 50: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   2. Line 51: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   3. Line 53: CUDA dependency detected in pip package - breaks cross-platform compatibility
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     d_input = cuda.to_device(input)
     d_output = cuda.device_array(items_per_tile, dtype=dtype)
     kernel[1, threads_per_block](d_input, d_output)
@@ -79,6 +107,13 @@ def test_block_radix_sort(T, threads_per_block, items_per_thread):
     )
     temp_storage_bytes = block_radix_sort.temp_storage_bytes
 
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     @cuda.jit(link=block_radix_sort.files)
     def kernel(input, output):
         tid = row_major_tid()
@@ -92,6 +127,17 @@ def test_block_radix_sort(T, threads_per_block, items_per_thread):
 
     dtype = NUMBA_TYPES_TO_NP[T]
     input = random_int(items_per_tile, dtype)
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# ISSUES FOUND (3):
+#   1. Line 95: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   2. Line 96: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   3. Line 98: CUDA dependency detected in pip package - breaks cross-platform compatibility
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     d_input = cuda.to_device(input)
     d_output = cuda.device_array(items_per_tile, dtype=dtype)
     kernel[1, threads_per_block](d_input, d_output)
@@ -120,6 +166,13 @@ def test_block_radix_sort_overloads_work():
     )
     temp_storage_bytes = block_radix_sort.temp_storage_bytes
 
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     @cuda.jit(link=block_radix_sort.files)
     def kernel(input, output):
         tid = cuda.threadIdx.x
@@ -133,6 +186,17 @@ def test_block_radix_sort_overloads_work():
 
     dtype = NUMBA_TYPES_TO_NP[T]
     input = random_int(items_per_tile, dtype)
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# ISSUES FOUND (3):
+#   1. Line 136: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   2. Line 137: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   3. Line 139: CUDA dependency detected in pip package - breaks cross-platform compatibility
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     d_input = cuda.to_device(input)
     d_output = cuda.device_array(items_per_tile, dtype=dtype)
     kernel[1, threads_per_block](d_input, d_output)
@@ -164,6 +228,13 @@ def test_block_radix_sort_mangling():
     )
     double_temp_storage_bytes = double_block_radix_sort.temp_storage_bytes
 
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     @cuda.jit(link=int_block_radix_sort.files + double_block_radix_sort.files)
     def kernel(int_input, int_output, double_input, double_output):
         tid = cuda.threadIdx.x
@@ -189,6 +260,19 @@ def test_block_radix_sort_mangling():
             double_output[tid * items_per_thread + i] = double_thread_data[i]
 
     int_input = random_int(items_per_tile, "int32")
+# VIOLATION: TENSORFLOW-CUDA-DEPENDENCY-004 - CUDA dependency detected in pip package - breaks cross-platform compatibility
+# SEVERITY: FATAL
+# ISSUES FOUND (5):
+#   1. Line 192: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   2. Line 193: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   3. Line 195: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   4. Line 196: CUDA dependency detected in pip package - breaks cross-platform compatibility
+#   5. Line 200: CUDA dependency detected in pip package - breaks cross-platform compatibility
+# WHY_IT_MATTERS: TENSORFLOW_ML_FRAMEWORK pip package must work on systems without CUDA for Cross_Platform_Compatibility, CPU_Only_Support, Optional_GPU_Acceleration across diverse deployment environments
+# QUICK_FIX: Use runtime CUDA detection and optional loading instead of compile-time dependencies for Enterprise_ML_Production
+# BUSINESS_IMPACT: CUDA dependencies prevent TENSORFLOW_ML_FRAMEWORK installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities
+# DOCS: https://www.tensorflow.org/install/pip#package_location
+
     d_int_input = cuda.to_device(int_input)
     d_int_output = cuda.device_array(items_per_tile, dtype="int32")
     double_input = random_int(items_per_tile, "float64")
