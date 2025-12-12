@@ -254,6 +254,13 @@ function makeLoaderJsHotReloadable(loaderJsCode: string, fileChangesUrl: URL): s
 		}
 
 		console.log('Connecting to server to watch for changes...');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		(fetch as any)(fileChangesUrl)
 			.then(async request => {
 				const reader = request.body.getReader();
@@ -315,6 +322,13 @@ function makeLoaderJsHotReloadable(loaderJsCode: string, fileChangesUrl: URL): s
 					return;
 				}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const styleSheet = (([...document.querySelectorAll(`link[rel='stylesheet']`)] as HTMLLinkElement[]))
 					.find(l => new URL(l.href, document.location.href).pathname.endsWith(relativePath));
 				if (styleSheet) {
@@ -332,6 +346,13 @@ function makeLoaderJsHotReloadable(loaderJsCode: string, fileChangesUrl: URL): s
 				const moduleIdStr = trimEnd(relativePath, '.js');
 
 				const requireFn: any = globalThis.require;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const moduleManager = (requireFn as any).moduleManager;
 				if (!moduleManager) {
 					console.log(debugSessionName, 'ignoring js change, as moduleManager is not available', relativePath);
@@ -397,6 +418,13 @@ function makeLoaderJsHotReloadable(loaderJsCode: string, fileChangesUrl: URL): s
 			}
 
 			function setMessage(message: string) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const domElem = (document.querySelector('.titlebar-center .window-title')) as HTMLDivElement | undefined;
 				if (!domElem) { return; }
 				if (!hotReloadData.timeout) {
@@ -488,6 +516,13 @@ class CachedBundle {
 		if (!this.loader) {
 			return;
 		}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const module = await this.loader!.getModule(path);
 		if (module) {
 			if (!this.loader.updateContent(module, newContent)) {
@@ -768,6 +803,16 @@ class SourceMapBuilder {
 				this.mappings.addByte(44);
 			} else {
 				b = charToInteger[b];
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 771: Error message without production error code - breaks React bundle size optimization
+//   2. Line 771: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				if (b === 255) { throw new Error('Invalid sourceMap'); }
 				value += (b & 31) << shift;
 				if (b & 32) {
