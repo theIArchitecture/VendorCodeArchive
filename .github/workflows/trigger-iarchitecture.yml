@@ -102,23 +102,46 @@ jobs:
               core.setFailed(`Validation completed with unexpected status: ${workflowRun.conclusion}`);
             }
 
-  trigger-full-scan:
+  trigger-post-merge:
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Full Scan
+      - name: Detect push type and trigger appropriate workflow
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.IARCHITECTURE_PAT }}
           script: |
-            await github.rest.repos.createDispatchEvent({
-              owner: 'theIArchitecture',
-              repo: 'DemoRepo',
-              event_type: 'code-push',
-              client_payload: {
-                ref: context.ref,
-                repository: context.payload.repository.full_name,
-                pusher: context.payload.pusher.name
-              }
-            });
-            console.log(`Triggered code-push for ${context.ref}`);
+            // Check if this push is from a PR merge or direct push
+            const commitMessage = context.payload.head_commit.message;
+            const isPRMerge = commitMessage.includes('Merge pull request') ||
+                             context.payload.head_commit.author.username === 'web-flow';
+
+            if (isPRMerge) {
+              // PR merge - trigger post-merge workflow (updates per-rule PRs only)
+              await github.rest.repos.createDispatchEvent({
+                owner: 'theIArchitecture',
+                repo: 'DemoRepo',
+                event_type: 'pr-merged',
+                client_payload: {
+                  ref: context.ref,
+                  repository: context.payload.repository.full_name,
+                  commit_sha: context.payload.head_commit.id,
+                  commit_message: commitMessage
+                }
+              });
+              console.log(`Triggered pr-merged for ${context.ref} (PR merge detected)`);
+            } else {
+              // Direct push - trigger full scan
+              await github.rest.repos.createDispatchEvent({
+                owner: 'theIArchitecture',
+                repo: 'DemoRepo',
+                event_type: 'code-push',
+                client_payload: {
+                  ref: context.ref,
+                  repository: context.payload.repository.full_name,
+                  pusher: context.payload.pusher.name,
+                  commit_sha: context.payload.head_commit.id
+                }
+              });
+              console.log(`Triggered code-push for ${context.ref} (direct push detected)`);
+            }
