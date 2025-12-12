@@ -95,6 +95,16 @@ suite('Configuration Resolver Service', () => {
 
 	test('substitute one', async () => {
 		if (platform.isWindows) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 98: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 100: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder} xyz'), 'abc \\VSCode\\workspaceLocation xyz');
 		} else {
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder} xyz'), 'abc /VSCode/workspaceLocation xyz');
@@ -111,6 +121,13 @@ suite('Configuration Resolver Service', () => {
 				program: 'linux.sh'
 			}
 		};
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const config: any = await configurationResolverService!.resolveAsync(workspace, obj);
 
 		const expected = isWindows ? 'windows.exe' : isMacintosh ? 'osx.sh' : isLinux ? 'linux.sh' : undefined;
@@ -135,6 +152,13 @@ suite('Configuration Resolver Service', () => {
 			}
 		};
 		const originalObj = JSON.stringify(obj);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const config: any = await configurationResolverService!.resolveAsync(workspace, obj);
 
 		assert.strictEqual(config.program, expected);
@@ -146,6 +170,38 @@ suite('Configuration Resolver Service', () => {
 
 	test('workspace folder with argument', async () => {
 		if (platform.isWindows) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (24):
+//   1. Line 149: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 151: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 156: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 160: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 165: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 167: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 172: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 176: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 180: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 184: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 188: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 192: Dangerous type assertion in VSCode source - runtime type error risk
+//   13. Line 197: Dangerous type assertion in VSCode source - runtime type error risk
+//   14. Line 199: Dangerous type assertion in VSCode source - runtime type error risk
+//   15. Line 204: Dangerous type assertion in VSCode source - runtime type error risk
+//   16. Line 208: Dangerous type assertion in VSCode source - runtime type error risk
+//   17. Line 213: Dangerous type assertion in VSCode source - runtime type error risk
+//   18. Line 215: Dangerous type assertion in VSCode source - runtime type error risk
+//   19. Line 221: Dangerous type assertion in VSCode source - runtime type error risk
+//   20. Line 223: Dangerous type assertion in VSCode source - runtime type error risk
+//   21. Line 229: Dangerous type assertion in VSCode source - runtime type error risk
+//   22. Line 231: Dangerous type assertion in VSCode source - runtime type error risk
+//   23. Line 236: Dangerous type assertion in VSCode source - runtime type error risk
+//   24. Line 243: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder:workspaceLocation} xyz'), 'abc \\VSCode\\workspaceLocation xyz');
 		} else {
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, 'abc ${workspaceFolder:workspaceLocation} xyz'), 'abc /VSCode/workspaceLocation xyz');
@@ -257,6 +313,16 @@ suite('Configuration Resolver Service', () => {
 
 	test('substitute one env variable using platform case sensitivity', async () => {
 		if (platform.isWindows) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 260: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 262: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, '${env:key1} - ${env:Key1}'), 'Value for key1 - Value for key1');
 		} else {
 			assert.strictEqual(await configurationResolverService!.resolveAsync(workspace, '${env:key1} - ${env:Key1}'), 'Value for key1 - ');
@@ -437,6 +503,13 @@ suite('Configuration Resolver Service', () => {
 			'outDir': null
 		};
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return configurationResolverService!.resolveWithInteractionReplace(undefined, configuration).then(result => {
 			assert.deepStrictEqual({ ...result }, {
 				'name': 'Attach to Process',
@@ -464,6 +537,13 @@ suite('Configuration Resolver Service', () => {
 		};
 		const commandVariables = Object.create(null);
 		commandVariables['commandVariable1'] = 'command1';
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		return configurationResolverService!.resolveWithInteractionReplace(undefined, configuration, undefined, commandVariables).then(result => {
 			assert.deepStrictEqual({ ...result }, {
@@ -496,6 +576,13 @@ suite('Configuration Resolver Service', () => {
 		};
 		const commandVariables = Object.create(null);
 		commandVariables['commandVariable1'] = 'command1';
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		return configurationResolverService!.resolveWithInteractionReplace(undefined, configuration, undefined, commandVariables).then(result => {
 			const expected = {
@@ -536,6 +623,13 @@ suite('Configuration Resolver Service', () => {
 		const commandVariables = Object.create(null);
 		commandVariables['commandVariable1'] = 'command1';
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return configurationResolverService!.resolveWithInteractionReplace(undefined, configuration, undefined, commandVariables).then(result => {
 
 			assert.deepStrictEqual({ ...result }, {
@@ -561,6 +655,13 @@ suite('Configuration Resolver Service', () => {
 			'sourceMaps': false,
 			'outDir': null
 		};
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		return configurationResolverService!.resolveWithInteractionReplace(workspace, configuration, 'tasks').then(result => {
 
@@ -590,6 +691,13 @@ suite('Configuration Resolver Service', () => {
 			'outDir': null
 		};
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return configurationResolverService!.resolveWithInteractionReplace(workspace, configuration, 'tasks').then(result => {
 
 			assert.deepStrictEqual({ ...result }, {
@@ -617,6 +725,13 @@ suite('Configuration Resolver Service', () => {
 			'sourceMaps': false,
 			'outDir': null
 		};
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		return configurationResolverService!.resolveWithInteractionReplace(workspace, configuration, 'tasks').then(result => {
 
@@ -647,6 +762,13 @@ suite('Configuration Resolver Service', () => {
 			'outDir': null
 		};
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return configurationResolverService!.resolveWithInteractionReplace(workspace, configuration, 'tasks').then(result => {
 
 			assert.deepStrictEqual({ ...result }, {
@@ -676,6 +798,13 @@ suite('Configuration Resolver Service', () => {
 			'outDir': null
 		};
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return configurationResolverService!.resolveWithInteractionReplace(undefined, configuration, 'tasks').then(result => {
 
 			assert.deepStrictEqual({ ...result }, {
@@ -698,6 +827,16 @@ suite('Configuration Resolver Service', () => {
 		const configuration = {
 			'name': '${' + variable + '}',
 		};
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 701: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 702: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		configurationResolverService!.contributeVariable(variable, async () => { return buildTask; });
 		return configurationResolverService!.resolveWithInteractionReplace(workspace, configuration).then(result => {
 			assert.deepStrictEqual({ ...result }, {
@@ -712,6 +851,13 @@ suite('Configuration Resolver Service', () => {
 			'VAR_2': 'VAL_2'
 		};
 		const configuration = 'echo ${env:VAR_1}${env:VAR_2}';
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const resolvedResult = await configurationResolverService!.resolveWithEnvironment({ ...env }, undefined, configuration);
 		assert.deepStrictEqual(resolvedResult, 'echo VAL_1VAL_2');
 	});
@@ -726,6 +872,13 @@ suite('Configuration Resolver Service', () => {
 				'pos3': 'value3'
 			}
 		};
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		return configurationResolverService!.resolveWithInteractionReplace(workspace, configuration, 'tasks').then(result => {
 
@@ -755,6 +908,13 @@ suite('Configuration Resolver Service', () => {
 });
 
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 class MockCommandService implements ICommandService {
 
 	public _serviceBrand: undefined;
@@ -775,6 +935,34 @@ class MockCommandService implements ICommandService {
 		return Promise.resolve(result);
 	}
 }
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// ISSUES FOUND (20):
+//   1. Line 779: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 785: Error message without production error code - breaks React bundle size optimization
+//   3. Line 785: Error message without production error code - breaks React bundle size optimization
+//   4. Line 788: Error message without production error code - breaks React bundle size optimization
+//   5. Line 788: Error message without production error code - breaks React bundle size optimization
+//   6. Line 791: Error message without production error code - breaks React bundle size optimization
+//   7. Line 791: Error message without production error code - breaks React bundle size optimization
+//   8. Line 794: Error message without production error code - breaks React bundle size optimization
+//   9. Line 794: Error message without production error code - breaks React bundle size optimization
+//   10. Line 797: Error message without production error code - breaks React bundle size optimization
+//   11. Line 797: Error message without production error code - breaks React bundle size optimization
+//   12. Line 800: Error message without production error code - breaks React bundle size optimization
+//   13. Line 800: Error message without production error code - breaks React bundle size optimization
+//   14. Line 803: Error message without production error code - breaks React bundle size optimization
+//   15. Line 803: Error message without production error code - breaks React bundle size optimization
+//   16. Line 808: Missing service brand declaration - breaks VSCode's DI system type safety
+//   17. Line 811: Error message without production error code - breaks React bundle size optimization
+//   18. Line 811: Error message without production error code - breaks React bundle size optimization
+//   19. Line 815: Error message without production error code - breaks React bundle size optimization
+//   20. Line 815: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 class MockLabelService implements ILabelService {
 	_serviceBrand: undefined;
@@ -823,6 +1011,16 @@ class MockPathService implements IPathService {
 	hasValidBasename(resource: URI, basename?: string): Promise<boolean>;
 	hasValidBasename(resource: URI, os: platform.OperatingSystem, basename?: string): boolean;
 	hasValidBasename(resource: URI, arg2?: string | platform.OperatingSystem, name?: string): boolean | Promise<boolean> {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 826: Error message without production error code - breaks React bundle size optimization
+//   2. Line 826: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Method not implemented.');
 	}
 	resolvedUserHome: URI | undefined;
