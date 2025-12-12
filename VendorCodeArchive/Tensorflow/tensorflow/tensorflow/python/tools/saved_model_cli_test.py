@@ -538,6 +538,13 @@ Concrete Functions:
         input_expr_str, safe=False)
     self.assertEqual(input_dict['input1'], ('/path/file.txt', 'ab3'))
     self.assertEqual(input_dict['input2'], ('file2', None))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(input_expr_dict['input3'])
     self.assertAllClose(input_expr_dict['input3'], np.zeros([2, 2]))
     self.assertAllClose(input_expr_dict['input4'], [4, 5])
