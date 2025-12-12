@@ -259,6 +259,16 @@ class EmbeddingLookupTest(test.TestCase):
 
       id_vals = np.array([0, 0])
       ids = constant_op.constant(list(id_vals), dtype=dtypes.int32)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 262: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 262: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("Construct ids", ids.get_shape())
       embedding = embedding_ops.embedding_lookup(p, ids)
 
@@ -302,6 +312,16 @@ class EmbeddingLookupTest(test.TestCase):
 
       id_vals = np.array([0, 0])
       ids = constant_op.constant(list(id_vals), dtype=dtypes.int32)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 305: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 305: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("Construct ids", ids.get_shape())
       embedding = embedding_ops.embedding_lookup(p_variable, ids)
       self.evaluate(variables.global_variables_initializer())
@@ -325,6 +345,17 @@ class EmbeddingLookupTest(test.TestCase):
 
       id_vals = np.array([0, 0])
       ids = constant_op.constant(list(id_vals), dtype=dtypes.int32)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 328: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 328: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 335: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("Construct ids", ids.get_shape())
       embedding = embedding_ops.embedding_lookup(p_variable, ids)
       self.evaluate(variables.global_variables_initializer())

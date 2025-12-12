@@ -243,6 +243,18 @@ def _show_tag_sets(saved_model_dir):
     saved_model_dir: Directory containing the SavedModel to inspect.
   """
   tag_sets = saved_model_utils.get_saved_model_tag_sets(saved_model_dir)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 246: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 246: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 248: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 248: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print('The given SavedModel contains the following tag-sets:')
   for tag_set in sorted(tag_sets):
     print('%r' % ', '.join(sorted(tag_set)))
@@ -265,6 +277,16 @@ def _get_ops_in_metagraph(meta_graph_def):
 
 def _show_ops_in_metagraph_mgd(meta_graph_def):
   all_ops_set = _get_ops_in_metagraph(meta_graph_def)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 268: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 268: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print(
       'The MetaGraph with tag set %s contains the following ops:'
       % meta_graph_def.meta_info_def.tags,
@@ -301,6 +323,18 @@ def _show_signature_def_map_keys(saved_model_dir, tag_set):
         all tags must be passed in.
   """
   signature_def_map = get_signature_def_map(saved_model_dir, tag_set)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 304: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 304: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 307: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 307: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print('The given SavedModel MetaGraphDef contains SignatureDefs with the '
         'following keys:')
   for signature_def_key in sorted(signature_def_map.keys()):
@@ -369,6 +403,13 @@ def _show_inputs_outputs_mgd(meta_graph_def, signature_def_key, indent):
 
   indent_str = '  ' * indent
   def in_print(s):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(indent_str + s)
 
   in_print('The given SavedModel SignatureDef contains the following input(s):')
@@ -418,6 +459,16 @@ def _show_defined_functions(saved_model_dir, meta_graphs):
     has_object_graph_def |= meta_graph_def.HasField('object_graph_def')
   if not has_object_graph_def:
     return
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 421: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 421: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print('\nConcrete Functions:', end='')
   try:
     with ops_lib.Graph().as_default():
@@ -429,6 +480,16 @@ def _show_defined_functions(saved_model_dir, meta_graphs):
       error = 'the existence of custom ops in the SavedModel'
     else:
       error = 'unknown reasons'
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 432: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 432: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(f' N/A (could not be listed due to {error})')
     return
 
@@ -445,6 +506,16 @@ def _show_defined_functions(saved_model_dir, meta_graphs):
           child._list_all_concrete_functions_for_serialization())  # pylint: disable=protected-access
     else:
       continue
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 448: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 448: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print('\n  Function Name: \'%s\'' % name)
     concrete_functions = sorted(concrete_functions, key=lambda x: x.name)
     for index, concrete_function in enumerate(concrete_functions, 1):
@@ -456,6 +527,18 @@ def _show_defined_functions(saved_model_dir, meta_graphs):
         # _arg_keywords.
         args = concrete_function._arg_keywords  # pylint: disable=protected-access
       if args:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 459: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 459: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 460: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 460: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print('    Option #%d' % index)
         print('      Callable with:')
         _print_args(args, indent=4)
@@ -479,6 +562,24 @@ def _print_args(arguments, argument_type='Argument', indent=0):
     return is_quotes + str(value) + is_quotes
 
   def in_print(s, end='\n'):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (10):
+#   1. Line 482: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 490: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 496: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 496: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 497: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 497: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 502: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 502: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 503: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 503: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(indent_str + s, end=end)
 
   for index, element in enumerate(arguments, 1):
@@ -515,6 +616,13 @@ def _print_tensor_info(tensor_info, indent=0):
   """
   indent_str = '  ' * indent
   def in_print(s):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(indent_str + s)
 
   in_print('    dtype: ' +
@@ -546,6 +654,18 @@ def _show_all(saved_model_dir):
       key=lambda meta_graph_def: list(meta_graph_def.meta_info_def.tags),
   ):
     tag_set = meta_graph_def.meta_info_def.tags
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 549: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 549: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 555: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 555: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("\nMetaGraphDef with tag-set: '%s' "
           "contains the following SignatureDefs:" % ', '.join(tag_set))
 
@@ -620,6 +740,18 @@ def scan_meta_graph_def(meta_graph_def, op_denylist):
   denylisted_ops = op_denylist & ops_in_metagraph
   if denylisted_ops:
     # TODO(yifeif): print more warnings
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 623: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 623: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 627: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 627: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(
         'MetaGraph with tag set %s contains the following denylisted ops:' %
         meta_graph_def.meta_info_def.tags, denylisted_ops)
@@ -708,6 +840,16 @@ def run_saved_model_with_feed_dict(saved_model_dir,
         experimental=config_pb2.ConfigProto.Experimental(use_tfrt=True))
   with session.Session(worker, graph=ops_lib.Graph(), config=config) as sess:
     if init_tpu:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 711: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 711: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print('Initializing TPU System ...')
       # This is needed for freshly started worker, or if the job
       # restarts after a preemption.
@@ -722,6 +864,16 @@ def run_saved_model_with_feed_dict(saved_model_dir,
 
     for i, output in enumerate(outputs):
       output_tensor_key = output_tensor_keys_sorted[i]
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 725: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 725: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print('Result for output key %s:\n%s' % (output_tensor_key, output))
 
       # Only save if outdir is specified.
@@ -738,6 +890,16 @@ def run_saved_model_with_feed_dict(saved_model_dir,
               ' the existing output files.' % output_full_path)
 
         np.save(output_full_path, output)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 741: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 741: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print('Output %s is saved to %s' % (output_tensor_key,
                                             output_full_path))
 
@@ -1002,6 +1164,16 @@ def show():
     # # tensor information.
     if _SMCLI_TAG_SET.value is None:
       if _SMCLI_LIST_OPS.value:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1005: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1005: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print('--list_ops must be paired with a tag-set or with --all.')
       _show_tag_sets(_SMCLI_DIR.value)
     else:

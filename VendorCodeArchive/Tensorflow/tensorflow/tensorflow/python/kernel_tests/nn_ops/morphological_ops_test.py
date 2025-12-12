@@ -242,6 +242,16 @@ class DilationTest(test.TestCase, parameterized.TestCase):
             *gradient_checker_v2.compute_gradient(
                 lambda x: compute_dilation2d(image_tensor, x), [kernel_tensor]))
         err = max(err1, err2)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 245: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 245: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     print("Dilation gradient error = %f" % err)
     if dtype == dtypes.bfloat16:
@@ -561,6 +571,16 @@ class ErosionTest(test.TestCase):
             *gradient_checker_v2.compute_gradient(
                 lambda x: compute_erosion2d(image_tensor, x), [kernel_tensor]))
         err = max(err1, err2)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 564: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 564: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     print("Erosion gradient error = %f" % err)
     self.assertLess(err, 1e-4)
