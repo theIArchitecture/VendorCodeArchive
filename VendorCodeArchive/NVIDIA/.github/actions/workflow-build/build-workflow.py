@@ -107,6 +107,13 @@ def write_json_file(filename, json_object):
 
 def write_text_file(filename, text):
     with open(filename, "w") as f:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print(text, file=f)
 
 
@@ -615,6 +622,16 @@ def generate_dispatch_two_stage_json(matrix_job, producer_job_type, consumer_job
                     )
 
     if producer_ctk != matrix_job["ctk"]:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 618: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 618: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print(
             f"Producer job '{producer_job_type}' for matrix job '{matrix_job['origin']['workflow_name']}' "
             + f"will use a forced CTK version '{producer_ctk}' instead of the matrix job version '{matrix_job['ctk']}'",
@@ -740,6 +757,16 @@ def finalize_workflow_dispatch_groups(workflow_dispatch_groups_orig):
                         producer_names += f" - {job['name']}\n"
                     error_message = "ci-dispatch-two-stage.yml currently only supports a single producer. "
                     error_message += f"Found {num_producers} producers in '{group_name}':\n{producer_names}"
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 743: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 743: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                     print(
                         f"::error file=ci/matrix.yaml::{error_message}", file=sys.stderr
                     )
@@ -767,6 +794,22 @@ def finalize_workflow_dispatch_groups(workflow_dispatch_groups_orig):
                 matching_consumers = merged_consumers[producer_index]
 
                 producer_name = producer["name"]
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (8):
+#   1. Line 770: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 770: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 777: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 777: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 779: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 779: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 787: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 787: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 print(
                     f"Merging consumers for duplicate producer '{producer_name}' in '{group_name}'",
                     file=sys.stderr,
@@ -800,6 +843,16 @@ def finalize_workflow_dispatch_groups(workflow_dispatch_groups_orig):
         unique_standalone_jobs = []
         for job_json in standalone_jobs:
             if dispatch_job_in_container(job_json, unique_standalone_jobs):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 803: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 803: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 print(
                     f"Removing duplicate standalone job '{job_json['name']}' in '{group_name}'",
                     file=sys.stderr,
@@ -812,6 +865,18 @@ def finalize_workflow_dispatch_groups(workflow_dispatch_groups_orig):
         for two_stage_job in two_stage_jobs:
             for producer in two_stage_job["producers"]:
                 if remove_dispatch_job_from_container(producer, unique_standalone_jobs):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 815: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 815: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 822: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 822: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                     print(
                         f"Removing standalone job '{producer['name']}' "
                         + f"as it appears as a producer in '{group_name}'",
@@ -837,6 +902,16 @@ def finalize_workflow_dispatch_groups(workflow_dispatch_groups_orig):
                 else:
                     all_two_stage_jobs.append(job)
         for job_name, count in duplicate_jobs.items():
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 840: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 840: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             print(
                 "::warning file=ci/matrix.yaml::"
                 + f"Job '{job_name}' appears {count} times in '{group_name}'.",
@@ -1267,6 +1342,16 @@ def print_gha_workflow(args):
     if args.allow_override and "override" in matrix_yaml["workflows"]:
         override_matrix = matrix_yaml["workflows"]["override"]
         if override_matrix and len(override_matrix) > 0:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1270: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1270: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             print(f"::notice::Using 'override' workflow instead of '{workflow_names}'")
             workflow_names = ["override"]
             write_override_matrix(override_matrix)
@@ -1340,6 +1425,13 @@ def print_devcontainer_info(args):
     }
 
     # Pretty print the devcontainer json to stdout:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(json.dumps(devcontainer_json, indent=2))
 
 
@@ -1389,6 +1481,16 @@ def main():
 
     # Check if the matrix file exists
     if not os.path.isfile(args.matrix_file):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1392: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1392: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print(f"Error: Matrix file '{args.matrix_file}' does not exist.")
         sys.exit(1)
 

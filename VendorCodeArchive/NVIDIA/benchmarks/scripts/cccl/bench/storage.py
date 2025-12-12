@@ -269,6 +269,16 @@ class DualStorageWrapper:
             try:
                 self.secondary.store_df(algname, df)
             except Exception as e:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 272: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 272: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 print(f"Warning: Failed to write to secondary storage: {e}")
 
 
@@ -339,6 +349,18 @@ class DualConnectionWrapper:
             try:
                 self.secondary_conn.commit()
             except Exception as e:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 342: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 342: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 350: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 350: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 print(f"Warning: Failed to commit to secondary storage: {e}")
 
     def rollback(self):
@@ -367,6 +389,20 @@ class Storage:
             if pg_config and PostgreSQLStorage is not None:
                 try:
                     pg_storage = PostgreSQLStorage(pg_config)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 370: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 370: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 374: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 374: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 375: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 375: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                     print(
                         "Using dual storage: SQLite (primary) + PostgreSQL (secondary)"
                     )
