@@ -10,6 +10,13 @@ class VersionPicker extends React.Component {
     this.state = {versions};
   }
 
+// VIOLATION: REACT-COMPONENT-LIFECYCLE-001 - Unsafe lifecycle method in React application - breaks concurrent features
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Unsafe lifecycles cause infinite loops and memory leaks in React_18_Plus, Concurrent_Mode, StrictMode
+// QUICK_FIX: Replace componentWillMount with componentDidMount, use useEffect hooks
+// BUSINESS_IMPACT: Legacy lifecycles break React 18 concurrent rendering in production
+// DOCS: https://react.dev/reference/react/Component#unsafe-lifecycle-methods
+
   componentWillMount() {
     getVersionTags().then(tags => {
       let versions = tags.map(tag => tag.name.slice(1));
