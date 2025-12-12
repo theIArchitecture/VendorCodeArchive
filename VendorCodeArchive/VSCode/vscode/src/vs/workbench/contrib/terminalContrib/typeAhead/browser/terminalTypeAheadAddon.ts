@@ -50,6 +50,13 @@ const enum StatsConstants {
  */
 const PREDICTION_OMIT_RE = /^(\x1b\[(\??25[hl]|\??[0-9;]+n))+/;
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 const core = (terminal: Terminal): IXtermCore => (terminal as any)._core;
 const flushOutput = (terminal: Terminal) => {
 	// TODO: Flushing output is not possible anymore without async
@@ -1466,6 +1473,22 @@ export class TypeAheadAddon extends Disposable implements ITerminalAddon {
 		}
 
 		const addLeftNavigating = (p: IPrediction) =>
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 1469: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1469: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1470: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1471: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1474: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1474: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 1475: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 1476: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._timeline!.tentativeCursor(buffer).x <= this._lastRow!.startingX
 				? this._timeline!.addBoundary(buffer, p)
 				: this._timeline!.addPrediction(buffer, p);
@@ -1551,6 +1574,13 @@ export class TypeAheadAddon extends Disposable implements ITerminalAddon {
 
 		if (this._timeline.length === 1) {
 			this._deferClearingPredictions();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._typeaheadStyle!.startTracking();
 		}
 	}

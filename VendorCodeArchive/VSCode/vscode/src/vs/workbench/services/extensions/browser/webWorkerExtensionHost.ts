@@ -183,6 +183,13 @@ export class WebWorkerExtensionHost extends Disposable implements IExtensionHost
 				return rejectBarrier(ExtensionHostExitCode.UnexpectedError, err);
 			}
 			if (event.data.type === 'vscode.bootstrap.nls') {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				iframe.contentWindow!.postMessage({
 					type: event.data.type,
 					data: {
@@ -218,6 +225,13 @@ export class WebWorkerExtensionHost extends Disposable implements IExtensionHost
 
 		// Send over message ports for extension API
 		const messagePorts = this._environmentService.options?.messagePorts ?? new Map();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		iframe.contentWindow!.postMessage({ type: 'vscode.init', data: messagePorts }, '*', [...messagePorts.values()]);
 
 		port.onmessage = (event) => {

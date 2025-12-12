@@ -72,6 +72,13 @@ class TerminalMouseWheelZoomContribution extends Disposable implements ITerminal
 		let gestureAccumulatedDelta = 0;
 
 		raw.attachCustomWheelEventHandler((e: WheelEvent) => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const browserEvent = e as any as IMouseWheelEvent;
 			if (classifier.isPhysicalMouseWheel()) {
 				if (this._hasMouseWheelZoomModifiers(browserEvent)) {
