@@ -150,6 +150,13 @@ suite('WorkingCopyFileService', () => {
 		assert.strictEqual(dirty.length, 0);
 
 		await model1.resolve();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		model1.textEditorModel!.setValue('foo');
 
 		dirty = accessor.workingCopyFileService.getDirty(model1.resource);
@@ -161,6 +168,13 @@ suite('WorkingCopyFileService', () => {
 		assert.strictEqual(dirty[0], model1);
 
 		await model2.resolve();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		model2.textEditorModel!.setValue('bar');
 
 		dirty = accessor.workingCopyFileService.getDirty(toResource.call(this, '/path'));
@@ -174,6 +188,13 @@ suite('WorkingCopyFileService', () => {
 		const model1: TextFileEditorModel = disposables.add(instantiationService.createInstance(TextFileEditorModel, toResource.call(this, '/path/file-1.txt'), 'utf8', undefined));
 		(<ITestTextFileEditorModelManager>accessor.textFileService.files).add(model1.resource, model1);
 		await model1.resolve();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		model1.textEditorModel!.setValue('foo');
 
 		const testWorkingCopy: TestWorkingCopy = disposables.add(new TestWorkingCopy(toResource.call(this, '/path/file-2.txt'), true));
@@ -323,6 +344,16 @@ suite('WorkingCopyFileService', () => {
 			(<ITestTextFileEditorModelManager>accessor.textFileService.files).add(targetModel.resource, targetModel);
 
 			await sourceModel.resolve();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 326: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 330: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			sourceModel.textEditorModel!.setValue('foo' + i);
 			assert.ok(accessor.textFileService.isDirty(sourceModel.resource));
 			if (targetDirty) {
@@ -390,6 +421,13 @@ suite('WorkingCopyFileService', () => {
 		for (let i = 0; i < models.length; i++) {
 			const { sourceModel, targetModel } = models[i];
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(targetModel.textEditorModel!.getValue(), 'foo' + i);
 
 			if (move) {
@@ -416,6 +454,13 @@ suite('WorkingCopyFileService', () => {
 			(<ITestTextFileEditorModelManager>accessor.textFileService.files).add(model.resource, model);
 
 			await model.resolve();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			model.textEditorModel!.setValue('foo');
 			assert.ok(accessor.workingCopyService.isDirty(model.resource));
 			return model;
@@ -476,6 +521,13 @@ suite('WorkingCopyFileService', () => {
 		(<ITestTextFileEditorModelManager>accessor.textFileService.files).add(model.resource, model);
 
 		await model.resolve();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		model.textEditorModel!.setValue('foo');
 		assert.ok(accessor.workingCopyService.isDirty(model.resource));
 
