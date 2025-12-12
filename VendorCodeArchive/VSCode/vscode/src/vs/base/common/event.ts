@@ -893,6 +893,16 @@ class LeakageMonitor {
 		}
 
 		return () => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 896: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 897: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const count = (this._stacks!.get(stack.value) || 0);
 			this._stacks!.set(stack.value, count - 1);
 		};
@@ -1163,6 +1173,21 @@ export class Emitter<T> {
 			console.log('disposed?', this._disposed);
 			console.log('size?', this._size);
 			console.log('arr?', JSON.stringify(this._listeners));
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (7):
+//   1. Line 1166: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1166: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1172: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1178: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1179: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1180: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 1181: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Attempted to dispose unknown listener');
 		}
 
@@ -1206,6 +1231,13 @@ export class Emitter<T> {
 
 	/** Delivers items in the queue. Assumes the queue is ready to go. */
 	private _deliverQueue(dq: EventDeliveryQueuePrivate) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const listeners = dq.current!._listeners! as (ListenerContainer<T> | undefined)[];
 		while (dq.i < dq.end) {
 			// important: dq.i is incremented before calling deliver() because it might reenter deliverQueue()
@@ -1306,6 +1338,13 @@ export class AsyncEmitter<T extends IWaitUntil> extends Emitter<T> {
 			this._asyncDeliveryQueue = new LinkedList();
 		}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		forEachListener(this._listeners, listener => this._asyncDeliveryQueue!.push([listener.value, data]));
 
 		while (this._asyncDeliveryQueue.size > 0 && !token.isCancellationRequested) {
@@ -1319,6 +1358,16 @@ export class AsyncEmitter<T extends IWaitUntil> extends Emitter<T> {
 				token,
 				waitUntil: (p: Promise<unknown>): void => {
 					if (Object.isFrozen(thenables)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1322: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1322: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 						throw new Error('waitUntil can NOT be called asynchronous');
 					}
 					if (promiseJoin) {
@@ -1660,6 +1709,16 @@ export class EventBufferer {
 					data.buffers.push(() => {
 						// cache the reduced result so that the value can be shared across all listeners
 						reduceData.reducedResult ??= initial
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 1663: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1664: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							? reduceData.items!.reduce(reduce as (last: O | undefined, event: T) => O, initial)
 							: reduceData.items!.reduce(reduce as (last: T | undefined, event: T) => T);
 						listener.call(thisArgs, reduceData.reducedResult);
