@@ -754,6 +754,16 @@ async function getSpecificNLS(resourceUrlTemplate, languageId, version) {
     const url = resourceUrlTemplate.replace(/\{([^}]+)\}/g, (_, key) => resource[key]);
     const res = await fetch(url);
     if (res.status !== 200) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 757: Error message without production error code - breaks React bundle size optimization
+//   2. Line 757: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         throw new Error(`[${res.status}] Error downloading language pack ${languageId}@${version}`);
     }
     const { contents: result } = await res.json();
@@ -786,6 +796,16 @@ async function queryVersions(serviceUrl, languageId) {
         })
     });
     if (res.status !== 200) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 789: Error message without production error code - breaks React bundle size optimization
+//   2. Line 789: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         throw new Error(`[${res.status}] Error querying for extension: ${languageId}`);
     }
     const result = await res.json();
@@ -797,6 +817,16 @@ async function getNLS(extensionGalleryServiceUrl, resourceUrlTemplate, languageI
     const compatibleVersions = versions.filter(v => compareVersions(v, nextMinor) < 0);
     const latestCompatibleVersion = compatibleVersions.at(-1); // order is newest to oldest
     if (!latestCompatibleVersion) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 800: Error message without production error code - breaks React bundle size optimization
+//   2. Line 800: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         throw new Error(`No compatible language pack found for ${languageId} for version ${version}`);
     }
     return await getSpecificNLS(resourceUrlTemplate, languageId, latestCompatibleVersion);
@@ -846,6 +876,16 @@ async function windowsMain(policies, translations) {
 async function darwinMain(policies, translations) {
     const bundleIdentifier = product.darwinBundleIdentifier;
     if (!bundleIdentifier || !product.darwinProfilePayloadUUID || !product.darwinProfileUUID) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 849: Error message without production error code - breaks React bundle size optimization
+//   2. Line 849: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         throw new Error(`Missing required product information.`);
     }
     const root = '.build/policies/darwin';
@@ -869,6 +909,13 @@ async function main() {
         await windowsMain(policies, translations);
     }
     else {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
         console.error(`Usage: node build/lib/policies <darwin|win32>`);
         process.exit(1);
     }
