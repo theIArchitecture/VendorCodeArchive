@@ -42,6 +42,13 @@ export function sortObjectPropertiesRecursively(obj: any): any {
 				.reduce<Record<string, any>>((sortedObj, prop) => {
 					sortedObj[prop] = sortObjectPropertiesRecursively(obj[prop]);
 					return sortedObj;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				}, {}) as any
 		);
 	}
@@ -57,6 +64,13 @@ export function getCellMetadata(options: { cell: NotebookCell | NotebookCellData
 			...(cell.metadata ?? {})
 		} satisfies CellMetadata;
 		if (cell.kind === NotebookCellKindMarkup) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			delete (metadata as any).execution_count;
 		}
 		return metadata;
