@@ -250,6 +250,16 @@ export class GettingStartedPage extends EditorPane {
 			ourCategory.title = category.title;
 			ourCategory.description = category.description;
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 253: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 254: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this.container.querySelectorAll<HTMLDivElement>(`[x-category-title-for="${category.id}"]`).forEach(step => (step as HTMLDivElement).innerText = ourCategory.title);
 			this.container.querySelectorAll<HTMLDivElement>(`[x-category-description-for="${category.id}"]`).forEach(step => (step as HTMLDivElement).innerText = ourCategory.description);
 		}));
@@ -1215,6 +1225,13 @@ export class GettingStartedPage extends EditorPane {
 
 			const stats = this.getWalkthroughCompletionStats(category);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const bar = assertReturnsDefined(element.querySelector('.progress-bar-inner')) as HTMLDivElement;
 			bar.setAttribute('aria-valuemin', '0');
 			bar.setAttribute('aria-valuenow', '' + stats.stepsComplete);
@@ -1489,6 +1506,13 @@ export class GettingStartedPage extends EditorPane {
 	}
 
 	private updateNavButtons(newIndex: number, steps: IResolvedWalkthroughStep[]) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const prevButton = this.stepsContent.querySelector('.button-link.navigation.back') as HTMLButtonElement;
 		if (newIndex === 0) {
 			if (prevButton) {
@@ -2106,6 +2130,18 @@ export class GettingStartedPage extends EditorPane {
 			slideManager.classList.add('showDetails');
 			slideManager.classList.remove('showCategories');
 			const prevButton = this.container.querySelector<HTMLButtonElement>('.prev-button.button-link');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 2109: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2112: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 2114: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 2115: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			prevButton!.style.display = this.editorInput.showWelcome || this.prevWalkthrough ? 'block' : 'none';
 
 			if (this.editorInput.selectedCategory === NEW_WELCOME_EXPERIENCE) {

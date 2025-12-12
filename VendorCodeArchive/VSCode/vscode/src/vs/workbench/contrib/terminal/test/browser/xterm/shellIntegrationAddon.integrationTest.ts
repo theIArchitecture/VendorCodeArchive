@@ -56,6 +56,24 @@ type RecordedTestCase = {
 const recordedTestCases: RecordedTestCase[] = [
 	{
 		name: 'rich_windows11_pwsh7_echo_3_times',
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (10):
+//   1. Line 59: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 66: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 73: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 80: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 87: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 94: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 101: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 105: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 113: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 114: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		events: rich_windows11_pwsh7_echo_3_times as any as RecordedSessionEvent[],
 		finalAssertions: (commandDetection: ICommandDetectionCapability | undefined) => {
 			assertCommandDetectionState(commandDetection, ['echo a', 'echo b', 'echo c'], '|');
@@ -155,6 +173,13 @@ suite('Terminal Contrib Shell Integration Recordings', () => {
 			})
 		}, store);
 		const terminalConfigurationService = instantiationService.get(ITerminalConfigurationService) as TestTerminalConfigurationService;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		terminalConfigurationService.setConfig(terminalConfig as any);
 		const shellIntegrationAddon = store.add(new ShellIntegrationAddon('', true, undefined, NullTelemetryService, new NullLogService));
 		const TerminalCtor = (await importAMDNodeModule<typeof import('@xterm/xterm')>('@xterm/xterm', 'lib/xterm.js')).Terminal;
