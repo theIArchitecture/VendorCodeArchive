@@ -192,6 +192,16 @@ suite('Untitled text editors', () => {
 		const input1 = disposables.add(instantiationService.createInstance(UntitledTextEditorInput, service.create()));
 		const model1 = disposables.add(await input1.resolve());
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 195: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 198: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		model1.textEditorModel!.setValue('foo bar');
 		assert.ok(model1.isDirty());
 
@@ -347,6 +357,13 @@ suite('Untitled text editors', () => {
 		disposables.add(await input.resolve());
 
 		assert.ok(!input.hasLanguageSetExplicitly);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		model.textEditorModel!.setLanguage(accessor.languageService.createById(language));
 		assert.ok(input.hasLanguageSetExplicitly);
 
@@ -366,6 +383,13 @@ suite('Untitled text editors', () => {
 		await input.resolve();
 
 		assert.ok(!input.hasLanguageSetExplicitly);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		model.textEditorModel!.setLanguage(
 			accessor.languageService.createById(language),
 			// This is really what this is testing
@@ -431,6 +455,13 @@ suite('Untitled text editors', () => {
 		const service = accessor.untitledTextEditorService;
 		const input1 = disposables.add(instantiationService.createInstance(UntitledTextEditorInput, service.create()));
 		const model1 = disposables.add(await input1.resolve());
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		model1.textEditorModel!.setValue('foo bar');
 		assert.strictEqual(service.getValue(model1.resource), 'foo bar');

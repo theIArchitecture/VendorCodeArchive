@@ -185,6 +185,16 @@ suite('StoredFileWorkingCopy (with custom save)', function () {
 		assert.strictEqual(savedCounter, 1);
 		assert.strictEqual(saveErrorCounter, 0);
 		assert.strictEqual(workingCopy.isDirty(), false);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 188: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 189: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(lastSaveEvent!.reason, SaveReason.EXPLICIT);
 		assert.ok(lastSaveEvent!.stat);
 		assert.ok(isStoredFileWorkingCopySaveEvent(lastSaveEvent!));
@@ -229,6 +239,16 @@ suite('StoredFileWorkingCopy (with custom save)', function () {
 		assert.strictEqual(savedCounter, 1);
 		assert.strictEqual(saveErrorCounter, 0);
 		assert.strictEqual(workingCopy.isDirty(), false);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 232: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 233: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(lastSaveEvent!.reason, SaveReason.EXPLICIT);
 		assert.ok(lastSaveEvent!.stat);
 		assert.ok(isStoredFileWorkingCopySaveEvent(lastSaveEvent!));
@@ -383,6 +403,13 @@ suite('StoredFileWorkingCopy', function () {
 		assert.strictEqual(workingCopy.isDirty(), true);
 
 		// Simulate an undo that goes back to the last (saved) version ID
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		workingCopy.model!.versionId--;
 
 		workingCopy.model?.fireContentChangeEvent({ isRedoing: false, isUndoing: true });
@@ -634,6 +661,16 @@ suite('StoredFileWorkingCopy', function () {
 		assert.strictEqual(savedCounter, 1);
 		assert.strictEqual(saveErrorCounter, 0);
 		assert.strictEqual(workingCopy.isDirty(), false);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 637: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 638: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(lastSaveEvent!.reason, SaveReason.EXPLICIT);
 		assert.ok(lastSaveEvent!.stat);
 		assert.ok(isStoredFileWorkingCopySaveEvent(lastSaveEvent!));
@@ -663,6 +700,16 @@ suite('StoredFileWorkingCopy', function () {
 		assert.strictEqual(savedCounter, 1);
 		assert.strictEqual(saveErrorCounter, 0);
 		assert.strictEqual(workingCopy.isDirty(), false);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 666: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 667: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(lastSaveEvent!.reason, SaveReason.AUTO);
 		assert.strictEqual(lastSaveEvent!.source, source);
 	});
