@@ -105,6 +105,16 @@ function toTsTriggerReason(context: vscode.SignatureHelpContext): Proto.Signatur
 		case vscode.SignatureHelpTriggerKind.TriggerCharacter:
 			if (context.triggerCharacter) {
 				if (context.isRetrigger) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 108: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 110: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					return { kind: 'retrigger', triggerCharacter: context.triggerCharacter as any };
 				} else {
 					return { kind: 'characterTyped', triggerCharacter: context.triggerCharacter as any };
