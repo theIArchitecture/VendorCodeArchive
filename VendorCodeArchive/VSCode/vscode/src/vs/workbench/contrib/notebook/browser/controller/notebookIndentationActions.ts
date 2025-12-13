@@ -124,6 +124,13 @@ function changeNotebookIndentation(accessor: ServicesAccessor, insertSpaces: boo
 	}));
 
 	// store the initial values of the configuration
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	const initialConfig = configurationService.getValue(NotebookSetting.cellEditorOptionsCustomizations) as any;
 	const initialInsertSpaces = initialConfig['editor.insertSpaces'];
 	// remove the initial values from the configuration
@@ -195,6 +202,13 @@ function convertNotebookIndentation(accessor: ServicesAccessor, tabsToSpaces: bo
 
 		})).then(() => {
 			// store the initial values of the configuration
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const initialConfig = configurationService.getValue(NotebookSetting.cellEditorOptionsCustomizations) as any;
 			const initialIndentSize = initialConfig['editor.indentSize'];
 			const initialTabSize = initialConfig['editor.tabSize'];

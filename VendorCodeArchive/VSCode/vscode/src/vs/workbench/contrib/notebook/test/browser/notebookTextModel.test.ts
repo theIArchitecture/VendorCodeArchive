@@ -667,6 +667,16 @@ suite('NotebookTextModel', () => {
 				assert.strictEqual(textModel.cells[2].getValue(), 'var c = 3;');
 
 				assert.notStrictEqual(changeEvent, undefined);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 670: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 671: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.strictEqual(changeEvent!.rawEvents.length, 2);
 				assert.deepStrictEqual(changeEvent!.endSelectionState?.selections, [{ start: 0, end: 1 }]);
 				assert.strictEqual(willChangeEvents.length, 2);
@@ -708,6 +718,16 @@ suite('NotebookTextModel', () => {
 				], true, undefined, () => ({ kind: SelectionStateType.Index, focus: { start: 0, end: 1 }, selections: [{ start: 0, end: 1 }] }), undefined, true);
 
 				assert.notStrictEqual(changeEvent, undefined);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 711: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 712: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.strictEqual(changeEvent!.rawEvents.length, 2);
 				assert.deepStrictEqual(changeEvent!.endSelectionState?.selections, [{ start: 0, end: 1 }]);
 				assert.strictEqual(willChangeEvents.length, 1);
@@ -1527,6 +1547,22 @@ suite('NotebookTextModel', () => {
 				// Test case 1: Find 'var' starting from the first cell
 				let findMatch = notebookModel.findNextMatch('var', { cellIndex: 0, position: new Position(1, 1) }, false, false, null);
 				assert.ok(findMatch);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 1530: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1531: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1536: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1537: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1542: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1543: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 1548: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 1549: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.strictEqual(findMatch!.match.range.startLineNumber, 1);
 				assert.strictEqual(findMatch!.match.range.startColumn, 1);
 
@@ -1569,6 +1605,30 @@ suite('NotebookTextModel', () => {
 				// Test case 1: Find 'var' starting from the first cell
 				let findMatch = notebookModel.findNextMatch('var', { cellIndex: 0, position: new Position(1, 1) }, false, false, null);
 				assert.ok(findMatch);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (16):
+//   1. Line 1572: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1573: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1578: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1579: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1584: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1585: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 1590: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 1591: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 1600: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 1601: Dangerous type assertion in VSCode source - runtime type error risk
+//   11. Line 1605: Dangerous type assertion in VSCode source - runtime type error risk
+//   12. Line 1606: Dangerous type assertion in VSCode source - runtime type error risk
+//   13. Line 1611: Dangerous type assertion in VSCode source - runtime type error risk
+//   14. Line 1612: Dangerous type assertion in VSCode source - runtime type error risk
+//   15. Line 1617: Dangerous type assertion in VSCode source - runtime type error risk
+//   16. Line 1618: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.strictEqual(findMatch!.match.range.startLineNumber, 1);
 				assert.strictEqual(findMatch!.match.range.startColumn, 1);
 

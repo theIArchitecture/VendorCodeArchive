@@ -333,6 +333,13 @@ export class CellDragAndDropController extends Disposable {
 			this.draggedCells.forEach(cell => cell.dragging = true);
 
 			const dragImage = dragImageProvider();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			cellRoot.parentElement!.appendChild(dragImage);
 			event.dataTransfer.setDragImage(dragImage, 0, 0);
 			setTimeout(() => dragImage.remove(), 0); // Comment this out to debug drag image layout
@@ -499,6 +506,13 @@ export function performCellDropEdits(editor: INotebookEditorDelegate, draggedCel
 	const lastEdit = edits[edits.length - 1];
 	const finalSelection = { start: lastEdit.newIdx, end: lastEdit.newIdx + numCells };
 	const finalFocus = { start: focusNewIdx, end: focusNewIdx + 1 };
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 	editor.textModel!.applyEdits(
 		edits,
