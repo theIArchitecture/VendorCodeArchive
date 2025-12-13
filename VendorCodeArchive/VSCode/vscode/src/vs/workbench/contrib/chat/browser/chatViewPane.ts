@@ -141,6 +141,16 @@ export class ChatViewPane extends ViewPane implements IViewWelcomeDelegate {
 			? await this.chatService.getOrRestoreSession(this.chatService.transferredSessionData.sessionId)
 			: this.chatService.startSession(this.chatOptions.location, CancellationToken.None));
 		if (!model) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 144: Error message without production error code - breaks React bundle size optimization
+//   2. Line 144: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Could not start chat session');
 		}
 
@@ -289,6 +299,13 @@ export class ChatViewPane extends ViewPane implements IViewWelcomeDelegate {
 		const newViewState = viewState ?? this._widget.getViewState();
 		for (const [key, value] of Object.entries(newViewState)) {
 			// Assign all props to the memento so they get saved
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			(this.viewState as any)[key] = value;
 		}
 	}

@@ -118,6 +118,16 @@ export class ExtHostNotebookController implements ExtHostNotebookShape {
 	getEditorById(editorId: string): ExtHostNotebookEditor {
 		const editor = this._editors.get(editorId);
 		if (!editor) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 121: Error message without production error code - breaks React bundle size optimization
+//   2. Line 121: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`unknown text editor: ${editorId}. known editors: ${[...this._editors.keys()]} `);
 		}
 		return editor;
@@ -279,6 +289,16 @@ export class ExtHostNotebookController implements ExtHostNotebookShape {
 
 	registerNotebookSerializer(extension: IExtensionDescription, viewType: string, serializer: vscode.NotebookSerializer, options?: vscode.NotebookDocumentContentOptions, registration?: vscode.NotebookRegistrationData): vscode.Disposable {
 		if (isFalsyOrWhitespace(viewType)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 282: Error message without production error code - breaks React bundle size optimization
+//   2. Line 282: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`viewType cannot be empty or just whitespace`);
 		}
 		const handle = this._handlePool++;
@@ -298,6 +318,18 @@ export class ExtHostNotebookController implements ExtHostNotebookShape {
 	async $dataToNotebook(handle: number, bytes: VSBuffer, token: CancellationToken): Promise<SerializableObjectWithBuffers<NotebookDataDto>> {
 		const serializer = this._notebookSerializer.get(handle);
 		if (!serializer) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 301: Error message without production error code - breaks React bundle size optimization
+//   2. Line 301: Error message without production error code - breaks React bundle size optimization
+//   3. Line 310: Error message without production error code - breaks React bundle size optimization
+//   4. Line 310: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('NO serializer found');
 		}
 		const data = await serializer.serializer.deserializeNotebook(bytes.buffer, token);
@@ -592,6 +624,16 @@ export class ExtHostNotebookController implements ExtHostNotebookShape {
 	private _createExtHostEditor(document: ExtHostNotebookDocument, editorId: string, data: INotebookEditorAddData) {
 
 		if (this._editors.has(editorId)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 595: Error message without production error code - breaks React bundle size optimization
+//   2. Line 595: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`editor with id ALREADY EXSIST: ${editorId}`);
 		}
 
@@ -638,6 +680,16 @@ export class ExtHostNotebookController implements ExtHostNotebookShape {
 				const uri = URI.revive(modelData.uri);
 
 				if (this._documents.has(uri)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 641: Error message without production error code - breaks React bundle size optimization
+//   2. Line 641: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error(`adding EXISTING notebook ${uri} `);
 				}
 
@@ -713,6 +765,16 @@ export class ExtHostNotebookController implements ExtHostNotebookShape {
 		} else if (delta.value.newActiveEditor) {
 			const activeEditor = this._editors.get(delta.value.newActiveEditor);
 			if (!activeEditor) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 716: Error message without production error code - breaks React bundle size optimization
+//   2. Line 716: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				console.error(`FAILED to find active notebook editor ${delta.value.newActiveEditor}`);
 			}
 			this._activeNotebookEditor = this._editors.get(delta.value.newActiveEditor);

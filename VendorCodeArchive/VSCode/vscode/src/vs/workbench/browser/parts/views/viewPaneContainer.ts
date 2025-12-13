@@ -370,6 +370,16 @@ export class ViewPaneContainer extends Component implements IViewPaneContainer {
 
 		const container = this.viewDescriptorService.getViewContainerById(id);
 		if (!container) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 373: Error message without production error code - breaks React bundle size optimization
+//   2. Line 373: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Could not find container');
 		}
 
@@ -684,6 +694,13 @@ export class ViewPaneContainer extends Component implements IViewPaneContainer {
 	}
 
 	protected createView(viewDescriptor: IViewDescriptor, options: IViewletViewOptions): ViewPane {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return (this.instantiationService as any).createInstance(viewDescriptor.ctorDescriptor.ctor, ...(viewDescriptor.ctorDescriptor.staticArguments || []), options) as ViewPane;
 	}
 
@@ -945,6 +962,13 @@ export class ViewPaneContainer extends Component implements IViewPaneContainer {
 						if (overlay.currentDropOperation === DropDirection.DOWN ||
 							overlay.currentDropOperation === DropDirection.RIGHT) {
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							const fromIndex = this.panes.findIndex(p => p.id === anchorView!.id);
 							let toIndex = this.panes.findIndex(p => p.id === pane.id);
 
@@ -961,6 +985,13 @@ export class ViewPaneContainer extends Component implements IViewPaneContainer {
 
 						if (overlay.currentDropOperation === DropDirection.UP ||
 							overlay.currentDropOperation === DropDirection.LEFT) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							const fromIndex = this.panes.findIndex(p => p.id === anchorView!.id);
 							let toIndex = this.panes.findIndex(p => p.id === pane.id);
 
@@ -977,6 +1008,13 @@ export class ViewPaneContainer extends Component implements IViewPaneContainer {
 
 						if (viewsToMove.length > 1) {
 							viewsToMove.slice(1).forEach(view => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 								let toIndex = this.panes.findIndex(p => p.id === anchorView!.id);
 								const fromIndex = this.panes.findIndex(p => p.id === view.id);
 								if (fromIndex >= 0 && toIndex >= 0) {
