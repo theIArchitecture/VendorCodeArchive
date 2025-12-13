@@ -12,6 +12,17 @@ import { URI } from '../../../../../base/common/uri.js';
 import { ITerminalCommandSelector, ITerminalOutputMatch, ITerminalOutputMatcher } from '../../../../../platform/terminal/common/terminal.js';
 import { ITerminalCommand } from '../../../../../platform/terminal/common/capabilities/capabilities.js';
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 15: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 16: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 16: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const ITerminalQuickFixService = createDecorator<ITerminalQuickFixService>('terminalQuickFixService');
 export interface ITerminalQuickFixService {
 	onDidRegisterProvider: Event<ITerminalQuickFixProviderSelector>;

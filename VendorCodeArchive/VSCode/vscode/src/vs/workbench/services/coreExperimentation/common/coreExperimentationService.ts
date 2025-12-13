@@ -12,6 +12,13 @@ import { createDecorator } from '../../../../platform/instantiation/common/insta
 import { IContextKeyService, RawContextKey } from '../../../../platform/contextkey/common/contextkey.js';
 import { IWorkbenchEnvironmentService } from '../../environment/common/environmentService.js';
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const ICoreExperimentationService = createDecorator<ICoreExperimentationService>('coreExperimentationService');
 export const startupExpContext = new RawContextKey<string>('coreExperimentation.startupExpGroup', '');
 
@@ -22,6 +29,16 @@ interface IExperiment {
 	iteration: number;
 	isInExperiment: boolean;
 }
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 26: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 26: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 export interface ICoreExperimentationService {
 	readonly _serviceBrand: undefined;
