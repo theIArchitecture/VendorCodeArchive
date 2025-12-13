@@ -23,6 +23,20 @@ export interface WorkspaceTrustRequestOptions {
 	readonly message?: string;
 }
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 26: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 28: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 28: Missing service brand declaration - breaks VSCode's DI system type safety
+//   4. Line 34: Missing service brand declaration - breaks VSCode's DI system type safety
+//   5. Line 36: Missing service brand declaration - breaks VSCode's DI system type safety
+//   6. Line 36: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IWorkspaceTrustEnablementService = createDecorator<IWorkspaceTrustEnablementService>('workspaceTrustEnablementService');
 
 export interface IWorkspaceTrustEnablementService {
@@ -66,6 +80,17 @@ export const enum WorkspaceTrustUriResponse {
 	OpenInNewWindow = 2,
 	Cancel = 3
 }
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 70: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 72: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 72: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 export const IWorkspaceTrustRequestService = createDecorator<IWorkspaceTrustRequestService>('workspaceTrustRequestService');
 
