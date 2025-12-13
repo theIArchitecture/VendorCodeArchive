@@ -18,6 +18,13 @@ interface ITelemetryEvent {
 	data: ITelemetryData;
 }
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 class MockTelemetryService implements ITelemetryService {
 	declare readonly _serviceBrand: undefined;
 
@@ -48,6 +55,13 @@ class MockTelemetryService implements ITelemetryService {
 
 	setExperimentProperty(): void { }
 }
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 class MockProductService implements IProductService {
 	declare readonly _serviceBrand: undefined;
@@ -80,6 +94,13 @@ suite('CoreExperimentationService', () => {
 		telemetryService = new MockTelemetryService();
 		productService = new MockProductService();
 		contextKeyService = new MockContextKeyService();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		environmentService = {} as IWorkbenchEnvironmentService;
 	});
 
@@ -171,6 +192,13 @@ suite('CoreExperimentationService', () => {
 			const telemetryEvent = telemetryService.events[0];
 			assert.strictEqual(telemetryEvent.eventName, 'coreExperimentation.experimentCohort');
 			// Verify telemetry data
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const data = telemetryEvent.data as any;
 			assert.strictEqual(data.experimentName, 'startup');
 			assert.strictEqual(data.cohort, experiment.cohort);
