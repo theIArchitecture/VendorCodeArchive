@@ -177,6 +177,20 @@ class ExtHostEditorTabGroup {
 		} else if (operation.kind === TabModelOperationKind.TAB_CLOSE) {
 			const tab = this._tabs.splice(operation.index, 1)[0];
 			if (!tab) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 180: Error message without production error code - breaks React bundle size optimization
+//   2. Line 180: Error message without production error code - breaks React bundle size optimization
+//   3. Line 188: Error message without production error code - breaks React bundle size optimization
+//   4. Line 188: Error message without production error code - breaks React bundle size optimization
+//   5. Line 193: Error message without production error code - breaks React bundle size optimization
+//   6. Line 193: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error(`Tab close updated received for index ${operation.index} which does not exist`);
 			}
 			if (tab.tabId === this._activeTabId) {
@@ -310,6 +324,16 @@ export class ExtHostEditorTabs implements IExtHostEditorTabs {
 	$acceptTabGroupUpdate(groupDto: IEditorTabGroupDto) {
 		const group = this._extHostTabGroups.find(group => group.groupId === groupDto.groupId);
 		if (!group) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 313: Error message without production error code - breaks React bundle size optimization
+//   2. Line 313: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Update Group IPC call received before group creation.');
 		}
 		group.acceptGroupDtoUpdate(groupDto);
@@ -322,6 +346,16 @@ export class ExtHostEditorTabs implements IExtHostEditorTabs {
 	$acceptTabOperation(operation: TabOperation) {
 		const group = this._extHostTabGroups.find(group => group.groupId === operation.groupId);
 		if (!group) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 325: Error message without production error code - breaks React bundle size optimization
+//   2. Line 325: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Update Tabs IPC call received before group creation.');
 		}
 		const tab = group.acceptTabOperation(operation);
@@ -373,6 +407,16 @@ export class ExtHostEditorTabs implements IExtHostEditorTabs {
 		for (const tab of tabs) {
 			const extHostTab = this._findExtHostTabFromApi(tab);
 			if (!extHostTab) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 376: Error message without production error code - breaks React bundle size optimization
+//   2. Line 376: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('Tab close: Invalid tab not found!');
 			}
 			extHostTabIds.push(extHostTab.tabId);
@@ -385,6 +429,16 @@ export class ExtHostEditorTabs implements IExtHostEditorTabs {
 		for (const group of groups) {
 			const extHostGroup = this._findExtHostTabGroupFromApi(group);
 			if (!extHostGroup) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 388: Error message without production error code - breaks React bundle size optimization
+//   2. Line 388: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('Group close: Invalid group not found!');
 			}
 			extHostGroupIds.push(extHostGroup.groupId);
