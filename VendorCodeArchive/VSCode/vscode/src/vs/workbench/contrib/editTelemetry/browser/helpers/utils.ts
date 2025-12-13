@@ -12,6 +12,13 @@ export function sumByCategory<T, TCategory extends string>(items: readonly T[], 
 		const category = getCategory(item);
 		acc[category] = (acc[category] || 0) + getValue(item);
 		return acc;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	}, {} as any as Record<TCategory, number>);
 }
 

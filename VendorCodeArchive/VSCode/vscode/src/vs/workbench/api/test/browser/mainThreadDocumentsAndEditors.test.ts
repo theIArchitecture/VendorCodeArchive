@@ -25,6 +25,17 @@ import { TestDialogService } from '../../../../platform/dialogs/test/common/test
 import { TestNotificationService } from '../../../../platform/notification/test/common/testNotificationService.js';
 import { TestTextResourcePropertiesService, TestWorkingCopyFileService } from '../../../test/common/workbenchTestServices.js';
 import { UriIdentityService } from '../../../../platform/uriIdentity/common/uriIdentityService.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 28: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 28: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 28: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IClipboardService } from '../../../../platform/clipboard/common/clipboardService.js';
 import { IPaneCompositePartService } from '../../../services/panecomposite/browser/panecomposite.js';
 import { TextModel } from '../../../../editor/common/model/textModel.js';
@@ -154,6 +165,13 @@ suite('MainThreadDocumentsAndEditors', () => {
 		assert.strictEqual(deltas.length, 1);
 		const [delta] = deltas;
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(delta.addedDocuments!.length, 1);
 		assert.strictEqual(delta.removedDocuments, undefined);
 		assert.strictEqual(delta.addedEditors, undefined);
@@ -243,6 +261,16 @@ suite('MainThreadDocumentsAndEditors', () => {
 
 		assert.strictEqual(deltas.length, 2);
 		const [first, second] = deltas;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 246: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 252: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(first.addedDocuments!.length, 1);
 		assert.strictEqual(first.newActiveEditor, undefined);
 		assert.strictEqual(first.removedDocuments, undefined);
@@ -271,6 +299,16 @@ suite('MainThreadDocumentsAndEditors', () => {
 		const [first] = deltas;
 
 		assert.strictEqual(first.newActiveEditor, undefined);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 274: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 275: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(first.removedEditors!.length, 1);
 		assert.strictEqual(first.removedDocuments!.length, 1);
 		assert.strictEqual(first.addedDocuments, undefined);
