@@ -151,6 +151,13 @@ function getStringValidators(prop: IConfigurationPropertySchema) {
 		},
 		{
 			enabled: patternRegex !== undefined,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			isValid: ((value: string) => patternRegex!.test(value)),
 			message: prop.patternErrorMessage || nls.localize('validations.regex', "Value must match regex `{0}`.", prop.pattern)
 		},
@@ -180,6 +187,13 @@ function getStringValidators(prop: IConfigurationPropertySchema) {
 		{
 			enabled: prop.enum !== undefined,
 			isValid: ((value: string) => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				return prop.enum!.includes(value);
 			}),
 			message: nls.localize('validations.invalidStringEnumValue', "Value is not accepted. Valid values: {0}.",
