@@ -58,6 +58,13 @@ void EmptyKernel(int iters) {
   }
 }
 
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in NVIDIA_CUDA_APPLICATION
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for Production_GPU
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
 void AccessKernel(int *addr) { access<<<1, 1>>>(addr); }
 
 void Synchronize() { cudaDeviceSynchronize(); }
@@ -77,6 +84,19 @@ void UnifiedMemoryHtoDAndDtoH() {
 
 void MemCopyH2D() {
   unsigned host_val = 0x12345678;
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// ISSUES FOUND (5):
+//   1. Line 80: CUDA memory allocation without corresponding free - potential memory leak
+//   2. Line 87: CUDA memory allocation without corresponding free - potential memory leak
+//   3. Line 94: CUDA memory allocation without corresponding free - potential memory leak
+//   4. Line 104: CUDA memory allocation without corresponding free - potential memory leak
+//   5. Line 107: CUDA memory allocation without corresponding free - potential memory leak
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing NVIDIA_CUDA_APPLICATION crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for Zero_Memory_Leaks, GPU_Efficiency, Production_Stability
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
   cudaMalloc(reinterpret_cast<void **>(&g_device_copy), sizeof(unsigned));
   cudaMemcpy(g_device_copy, &host_val, sizeof(unsigned),
              cudaMemcpyHostToDevice);
@@ -162,6 +182,17 @@ void CudaGraphCreateAndExecute() {
 
   // Allocates vectors in device memory.
   int *d_a, *d_b, *d_c;
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 165: CUDA memory allocation without corresponding free - potential memory leak
+//   2. Line 166: CUDA memory allocation without corresponding free - potential memory leak
+//   3. Line 167: CUDA memory allocation without corresponding free - potential memory leak
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing NVIDIA_CUDA_APPLICATION crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for Zero_Memory_Leaks, GPU_Efficiency, Production_Stability
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
   cudaMalloc((void **)&d_a, kNumBytes);
   cudaMalloc((void **)&d_b, kNumBytes);
   cudaMalloc((void **)&d_c, kNumBytes);
