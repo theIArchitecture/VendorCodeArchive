@@ -212,6 +212,16 @@ export class CodeCoverageDecorations extends Disposable implements IEditorContri
 		this.hoveredStore.add(toDisposable(() => {
 			this.hoveredSubject = undefined;
 			model.changeDecorations(e => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 215: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 215: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				e.changeDecorationOptions(decoration!.id, decoration!.deco.options);
 			});
 		}));
@@ -268,6 +278,13 @@ export class CodeCoverageDecorations extends Disposable implements IEditorContri
 					const hits = detail.detail.branches![detail.branch].count;
 					const cls = hits ? CLASS_HIT : CLASS_MISS;
 					// don't bother showing the miss indicator if the condition wasn't executed at all:
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					const showMissIndicator = !hits && range.isEmpty() && detail.detail.branches!.some(b => b.count);
 					const options: IModelDecorationOptions = {
 						showIfCollapsed: showMissIndicator, // only avoid collapsing if we want to show the miss indicator
