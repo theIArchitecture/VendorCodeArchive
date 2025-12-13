@@ -68,6 +68,29 @@ for rm in [z3.RTZ(), z3.RNE()]:
 
 if s.check() == z3.sat:
   m = s.model()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (15):
+#   1. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 72: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 73: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 73: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 74: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 74: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 75: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 75: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 76: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 76: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 77: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 77: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 79: Print statements detected in TensorFlow code - must use logging module for production code
+#   15. Line 79: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("Counterexample found!")
   print(m)
   print("a*c:       ", z3.simplify(m[a] * m[c]))
