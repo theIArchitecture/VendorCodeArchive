@@ -837,6 +837,24 @@ suite('ExtHostLanguageFeatureCommands', function () {
 		assert.ok(!types.Range.isRange(first.range));
 		assert.strictEqual((<types.MarkdownString>first.documentation).value, 'hello_md_string');
 		assert.strictEqual(second.label, 'item2');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (10):
+//   1. Line 840: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 841: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 842: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 843: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 844: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 846: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 847: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 848: Dangerous type assertion in VSCode source - runtime type error risk
+//   9. Line 849: Dangerous type assertion in VSCode source - runtime type error risk
+//   10. Line 850: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(second.textEdit!.newText, 'foo');
 		assert.strictEqual(second.textEdit!.range.start.line, 0);
 		assert.strictEqual(second.textEdit!.range.start.character, 4);
@@ -1073,6 +1091,13 @@ suite('ExtHostLanguageFeatureCommands', function () {
 				assert.ok(first.command);
 				assert.strictEqual(first.command.command, 'command');
 				assert.strictEqual(first.command.title, 'command_title');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.strictEqual(first.kind!.value, 'foo');
 				assert.strictEqual(first.title, 'title');
 
@@ -1188,6 +1213,19 @@ suite('ExtHostLanguageFeatureCommands', function () {
 				assert.strictEqual(value.length, 1);
 				const [first] = value;
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (5):
+//   1. Line 1191: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1192: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1193: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1194: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1195: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.strictEqual(first.command!.title, 'Title');
 				assert.strictEqual(first.command!.command, 'cmd');
 				assert.strictEqual(first.command!.arguments![0], 1);
@@ -1272,6 +1310,13 @@ suite('ExtHostLanguageFeatureCommands', function () {
 
 		const links2 = await commands.executeCommand<vscode.DocumentLink[]>('vscode.executeLinkProvider', model.uri, 1000);
 		assert.strictEqual(links2.length, 1);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(links2[0].target!.toString(), URI.parse('foo:bar').toString());
 
 	});
@@ -1329,6 +1374,20 @@ suite('ExtHostLanguageFeatureCommands', function () {
 				const [first] = value;
 
 				assert.strictEqual(first.label, '#ABC');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 1332: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1333: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1334: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1335: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1336: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 1337: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				assert.strictEqual(first.textEdit!.newText, '#ABC');
 				assert.strictEqual(first.textEdit!.range.start.line, 1);
 				assert.strictEqual(first.textEdit!.range.start.character, 0);
