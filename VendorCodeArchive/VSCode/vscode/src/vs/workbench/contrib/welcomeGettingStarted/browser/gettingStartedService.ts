@@ -42,6 +42,13 @@ import { GettingStartedInput } from './gettingStartedInput.js';
 
 export const HasMultipleNewFileEntries = new RawContextKey<boolean>('hasMultipleNewFileEntries', false);
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IWalkthroughsService = createDecorator<IWalkthroughsService>('walkthroughsService');
 
 export const hiddenEntriesConfigurationKey = 'workbench.welcomePage.hiddenCategories';
@@ -94,6 +101,16 @@ export interface IWalkthroughStep {
 type StepProgress = { done: boolean };
 
 export interface IResolvedWalkthroughStep extends IWalkthroughStep, StepProgress { }
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 98: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 98: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 export interface IWalkthroughsService {
 	_serviceBrand: undefined;
@@ -590,6 +607,16 @@ export class WalkthroughsService extends Disposable implements IWalkthroughsServ
 	_registerWalkthrough(walkthroughDescriptor: IWalkthrough): void {
 		const oldCategory = this.gettingStartedContributions.get(walkthroughDescriptor.id);
 		if (oldCategory) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 593: Error message without production error code - breaks React bundle size optimization
+//   2. Line 593: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			console.error(`Skipping attempt to overwrite walkthrough. (${walkthroughDescriptor.id})`);
 			return;
 		}
@@ -607,6 +634,13 @@ export class WalkthroughsService extends Disposable implements IWalkthroughsServ
 	}
 
 	private registerDoneListeners(step: IWalkthroughStep) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if ((step as any).doneOn) {
 			console.error(`wakthrough step`, step, `uses deprecated 'doneOn' property. Adopt 'completionEvents' to silence this warning`);
 			return;
@@ -638,6 +672,16 @@ export class WalkthroughsService extends Disposable implements IWalkthroughsServ
 			const [_, eventType, argument] = /^([^:]*):?(.*)$/.exec(event) ?? [];
 
 			if (!eventType) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 641: Error message without production error code - breaks React bundle size optimization
+//   2. Line 641: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				console.error(`Unknown completionEvent ${event} when registering step ${step.id}`);
 				continue;
 			}
@@ -669,6 +713,16 @@ export class WalkthroughsService extends Disposable implements IWalkthroughsServ
 					event = 'extensionInstalled:' + argument.toLowerCase();
 					break;
 				default:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 672: Error message without production error code - breaks React bundle size optimization
+//   2. Line 672: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					console.error(`Unknown completionEvent ${event} when registering step ${step.id}`);
 					continue;
 			}
