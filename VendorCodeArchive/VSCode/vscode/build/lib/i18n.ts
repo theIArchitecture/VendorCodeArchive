@@ -188,6 +188,16 @@ export class XLF {
 			return;
 		}
 		if (keys.length !== messages.length) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 191: Error message without production error code - breaks React bundle size optimization
+//   2. Line 191: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Unmatching keys(${keys.length}) and messages(${messages.length}).`);
 		}
 		this.numberOfMessages += keys.length;
@@ -217,6 +227,16 @@ export class XLF {
 
 	private addStringItem(file: string, item: Item): void {
 		if (!item.id || item.message === undefined || item.message === null) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 220: Error message without production error code - breaks React bundle size optimization
+//   2. Line 220: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`No item ID or value specified: ${JSON.stringify(item)}. File: ${file}`);
 		}
 		if (item.message.length === 0) {
@@ -389,6 +409,13 @@ export function processNlsFiles(opts: { out: string; fileHeader: string; languag
 		const fileName = path.basename(file.path);
 		if (fileName === 'nls.keys.json') {
 			try {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const contents = file.contents!.toString('utf8');
 				const json = JSON.parse(contents);
 				if (NLSKeysFormat.is(json)) {
@@ -432,6 +459,16 @@ export function getResource(sourceFile: string): Resource {
 	} else if (/^vs\/workbench/.test(sourceFile)) {
 		return { name: 'vs/workbench', project: workbenchProject };
 	}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 436: Error message without production error code - breaks React bundle size optimization
+//   2. Line 436: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 	throw new Error(`Could not identify the XLF bundle for ${sourceFile}`);
 }
@@ -646,6 +683,17 @@ export function createXlfFilesForIsl(): ThroughStream {
 			projectName = setupProject;
 			resourceFile = 'messages.xlf';
 		} else {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (3):
+//   1. Line 649: Error message without production error code - breaks React bundle size optimization
+//   2. Line 649: Error message without production error code - breaks React bundle size optimization
+//   3. Line 656: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Unknown input file ${file.path}`);
 		}
 
@@ -673,6 +721,16 @@ export function createXlfFilesForIsl(): ThroughStream {
 			}
 			const sections: string[] = line.split('=');
 			if (sections.length !== 2) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 676: Error message without production error code - breaks React bundle size optimization
+//   2. Line 676: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error(`Badly formatted message found: ${line}`);
 			} else {
 				const key = sections[0];
@@ -752,6 +810,13 @@ export function prepareI18nPackFiles(resultingTranslationPaths: TranslationPath[
 		if (EXTERNAL_EXTENSIONS.find(e => e === resource)) {
 			project = extensionsProject;
 		}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const contents = xlf.contents!.toString();
 		log(`Found ${project}: ${resource}`);
 		const parsePromise = getL10nFilesFromXlf(contents);
@@ -808,6 +873,13 @@ export function prepareIslFiles(language: Language, innoSetupConfig: InnoSetup):
 
 	return through(function (this: ThroughStream, xlf: File) {
 		const stream = this;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const parsePromise = XLF.parse(xlf.contents!.toString());
 		parsePromises.push(parsePromise);
 		parsePromise.then(
