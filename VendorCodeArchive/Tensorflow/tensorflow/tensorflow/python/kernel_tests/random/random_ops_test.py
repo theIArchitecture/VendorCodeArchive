@@ -91,6 +91,20 @@ class RandomNormalTest(RandomOpTestCommon):
       # Number of different samples.
       count = (x == y).sum()
       if count >= 10:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 95: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 95: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 96: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 96: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print("x = ", x)
         print("y = ", y)
         print("count = ", count)
@@ -193,6 +207,20 @@ class TruncatedNormalTest(test.TestCase):
         # Number of different samples.
         count = (x == y).sum()
         if count >= 10:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 196: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 196: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 197: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 197: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 198: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
           print("x = ", x)
           print("y = ", y)
           print("count = ", count)
@@ -235,6 +263,16 @@ class TruncatedNormalTest(test.TestCase):
       stddev = 3.0
       sampler = self._Sampler(100000, 0.0, stddev, dt, use_gpu=True)
       x = sampler()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 238: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 238: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("std(x)", np.std(x), abs(np.std(x) / stddev - 0.85))
       self.assertLess(abs(np.std(x) / stddev - 0.85), 0.04)
 
@@ -320,6 +358,20 @@ class RandomUniformTest(RandomOpTestCommon):
       elif dt == dtypes.bfloat16:
         count_limit = 90
       if count >= count_limit:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 323: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 323: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 324: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 324: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 325: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 325: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print("x = ", x)
         print("y = ", y)
         print("count = ", count)

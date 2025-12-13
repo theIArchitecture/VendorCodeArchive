@@ -961,6 +961,16 @@ class TerminateOnNaN(Callback):
     if loss is not None:
       loss = tf_utils.sync_to_numpy_or_python_type(loss)
       if np.isnan(loss) or np.isinf(loss):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 964: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 964: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print('Batch %d: Invalid loss, terminating training' % (batch))
         self.model.stop_training = True
 
@@ -1041,6 +1051,16 @@ class ProgbarLogger(Callback):
     self._reset_progbar()
     self._maybe_init_progbar()
     if self.verbose and self.epochs > 1:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1044: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1044: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print('Epoch %d/%d' % (epoch + 1, self.epochs))
 
   def on_train_batch_end(self, batch, logs=None):
@@ -1426,6 +1446,16 @@ class ModelCheckpoint(Callback):
           else:
             if self.monitor_op(current, self.best):
               if self.verbose > 0:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1429: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1429: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 print('\nEpoch %05d: %s improved from %0.5f to %0.5f,'
                       ' saving model to %s' % (epoch + 1, self.monitor,
                                                self.best, current, filepath))
@@ -1437,6 +1467,18 @@ class ModelCheckpoint(Callback):
                 self.model.save(filepath, overwrite=True, options=self._options)
             else:
               if self.verbose > 0:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 1440: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1440: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 1444: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 1444: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                 print('\nEpoch %05d: %s did not improve from %0.5f' %
                       (epoch + 1, self.monitor, self.best))
         else:
@@ -1821,6 +1863,18 @@ class EarlyStopping(Callback):
       self.model.stop_training = True
       if self.restore_best_weights and self.best_weights is not None:
         if self.verbose > 0:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 1824: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1824: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 1829: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 1829: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
           print('Restoring model weights from the end of the best epoch.')
         self.model.set_weights(self.best_weights)
 
@@ -1960,6 +2014,16 @@ class LearningRateScheduler(Callback):
       raise ValueError('The dtype of Tensor should be float')
     backend.set_value(self.model.optimizer.lr, backend.get_value(lr))
     if self.verbose > 0:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1963: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1963: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print('\nEpoch %05d: LearningRateScheduler setting learning '
             'rate to %s.' % (epoch + 1, lr))
 
@@ -2696,6 +2760,16 @@ class ReduceLROnPlateau(Callback):
             new_lr = max(new_lr, self.min_lr)
             backend.set_value(self.model.optimizer.lr, new_lr)
             if self.verbose > 0:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 2699: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 2699: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
               print('\nEpoch %05d: ReduceLROnPlateau reducing learning '
                     'rate to %s.' % (epoch + 1, new_lr))
             self.cooldown_counter = self.cooldown

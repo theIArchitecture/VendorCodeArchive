@@ -496,6 +496,19 @@ class TruncatedNormalBenchmark(test.Benchmark):
 
   def _benchmarkParameterizedOpVsNaiveOp(self, use_gpu):
     num_iters = 50
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (5):
+#   1. Line 499: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 501: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 501: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 506: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 506: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(("Composition of new ParameterizedTruncatedNormalOp vs. "
            "naive TruncatedNormalOp [%d iters]") % num_iters)
     print("Shape\tsec(parameterized)\tsec(naive)\tspeedup")
@@ -523,6 +536,13 @@ class TruncatedNormalBenchmark(test.Benchmark):
     num_iters = 100
     shape = [int(1e6)]
     randn_dt, uniform_dt = randn_sampler_switchover(shape, num_iters, use_gpu)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     print(("Randn Sampler vs uniform samplers [%d iters]\t%.4f\t%.4f") %
           (num_iters, randn_dt, uniform_dt))
