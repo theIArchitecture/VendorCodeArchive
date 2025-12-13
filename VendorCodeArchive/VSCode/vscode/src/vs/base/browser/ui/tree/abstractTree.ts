@@ -162,6 +162,19 @@ function asListOptions<T, TFilterData, TRef>(modelProvider: () => ITreeModel<T, 
 		...options,
 		identityProvider: options.identityProvider && {
 			getId(el) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (5):
+//   1. Line 165: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 171: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 171: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 174: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 174: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				return options.identityProvider!.getId(el.element);
 			}
 		},
@@ -188,6 +201,22 @@ function asListOptions<T, TFilterData, TRef>(modelProvider: () => ITreeModel<T, 
 				return node.visibleChildIndex + 1;
 			},
 			isChecked: options.accessibilityProvider && options.accessibilityProvider.isChecked ? (node) => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (8):
+//   1. Line 191: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 194: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 197: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 200: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 202: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 203: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 207: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 213: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				return options.accessibilityProvider!.isChecked!(node.element);
 			} : undefined,
 			getRole: options.accessibilityProvider && options.accessibilityProvider.getRole ? (node) => {
@@ -737,6 +766,18 @@ export class FindToggles {
 	get(id: string): boolean {
 		const state = this.stateMap.get(id);
 		if (state === undefined) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 740: Error message without production error code - breaks React bundle size optimization
+//   2. Line 740: Error message without production error code - breaks React bundle size optimization
+//   3. Line 748: Error message without production error code - breaks React bundle size optimization
+//   4. Line 748: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`No state found for toggle id ${id}`);
 		}
 		return state.isChecked;
@@ -1181,6 +1222,13 @@ export class FindController<T, TFilterData> extends AbstractFindController<T, TF
 		this.tree.refilter();
 
 		if (pattern) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this.tree.focusNext(0, true, undefined, (node) => !FuzzyScore.isDefault(node.filterData as any as FuzzyScore));
 		}
 
@@ -1205,6 +1253,13 @@ export class FindController<T, TFilterData> extends AbstractFindController<T, TF
 		if (this.filter.totalCount > 0 && this.filter.matchCount <= 1) {
 			return true;
 		}
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		return !FuzzyScore.isDefault(node.filterData as any as FuzzyScore);
 	}
@@ -1550,6 +1605,16 @@ class StickyScrollController<T, TFilterData, TRef> extends Disposable {
 		// Validate constraints
 		const lastConstrainedStickyNode = constrainedStickyNodes[constrainedStickyNodes.length - 1];
 		if (constrainedStickyNodes.length > this.stickyScrollMaxItemCount || lastConstrainedStickyNode.position + lastConstrainedStickyNode.height > maximumStickyWidgetHeight) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1553: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1553: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('stickyScrollDelegate violates constraints');
 		}
 
@@ -1578,6 +1643,16 @@ class StickyScrollController<T, TFilterData, TRef> extends Disposable {
 		const startIndex = this.model.getListIndex(nodeLocation);
 
 		if (startIndex < 0) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1581: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1581: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Node not found in tree');
 		}
 
@@ -1692,6 +1767,13 @@ class StickyScrollWidget<T, TFilterData, TRef> implements IDisposable {
 		const isVisible = !!state && state.count > 0;
 
 		// If state has not changed, do nothing
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if ((!wasVisible && !isVisible) || (wasVisible && isVisible && this._previousState!.equal(state))) {
 			return;
 		}
@@ -1778,6 +1860,16 @@ class StickyScrollWidget<T, TFilterData, TRef> implements IDisposable {
 		const nodeTemplateId = this.treeDelegate.getTemplateId(stickyNode.node);
 		const renderer = this.treeRenderers.find((renderer) => renderer.templateId === nodeTemplateId);
 		if (!renderer) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1781: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1781: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`No renderer found for template id ${nodeTemplateId}`);
 		}
 
@@ -1921,6 +2013,20 @@ class StickyScrollFocus<T, TFilterData, TRef> extends Disposable {
 		// In that case only set the focus of the element clicked and leave the rest to the list to handle
 		if (!isKeyboardEvent(e.browserEvent)) {
 			if (!this.state) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 1924: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1924: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1930: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1930: Error message without production error code - breaks React bundle size optimization
+//   5. Line 1938: Error message without production error code - breaks React bundle size optimization
+//   6. Line 1938: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('Context menu should not be triggered when state is undefined');
 			}
 
@@ -1981,6 +2087,18 @@ class StickyScrollFocus<T, TFilterData, TRef> extends Disposable {
 
 	updateElements(elements: HTMLElement[], state: StickyScrollState<T, TFilterData, TRef> | undefined): void {
 		if (state && state.count === 0) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1984: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1984: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1987: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1987: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Sticky scroll state must be undefined when there are no sticky nodes');
 		}
 		if (state && state.count !== elements.length) {
@@ -2011,6 +2129,16 @@ class StickyScrollFocus<T, TFilterData, TRef> extends Disposable {
 
 		const state = this.state;
 		if (!state) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2014: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2014: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Cannot set focus when state is undefined');
 		}
 
@@ -2045,6 +2173,16 @@ class StickyScrollFocus<T, TFilterData, TRef> extends Disposable {
 
 	domFocus(): void {
 		if (!this.state) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2048: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2048: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Cannot focus when state is undefined');
 		}
 
@@ -2068,6 +2206,20 @@ class StickyScrollFocus<T, TFilterData, TRef> extends Disposable {
 
 	private setFocus(newFocusIndex: number): void {
 		if (0 > newFocusIndex) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 2071: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2071: Error message without production error code - breaks React bundle size optimization
+//   3. Line 2074: Error message without production error code - breaks React bundle size optimization
+//   4. Line 2074: Error message without production error code - breaks React bundle size optimization
+//   5. Line 2077: Error message without production error code - breaks React bundle size optimization
+//   6. Line 2077: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('addFocus() can not remove focus');
 		}
 		if (!this.state && newFocusIndex >= 0) {
@@ -2118,6 +2270,16 @@ class StickyScrollFocus<T, TFilterData, TRef> extends Disposable {
 
 	private onFocus(): void {
 		if (!this.state || this.elements.length === 0) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2121: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2121: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Cannot focus when state is undefined or elements are empty');
 		}
 		this.domHasFocus = true;
@@ -2234,6 +2396,13 @@ class Trait<T> {
 	) { }
 
 	set(nodes: ITreeNode<T, any>[], browserEvent?: UIEvent): void {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		if (!(browserEvent as any)?.__forceEvent && equals(this.nodes, nodes)) {
 			return;
 		}
@@ -2278,6 +2447,16 @@ class Trait<T> {
 		}
 
 		const deletedNodesIdSet = new Set<string>();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 2281: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2285: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const deletedNodesVisitor = (node: ITreeNode<T, any>) => deletedNodesIdSet.add(this.identityProvider!.getId(node.element).toString());
 		deletedNodes.forEach(node => dfs(node, deletedNodesVisitor));
 
@@ -2408,6 +2587,16 @@ class TreeNodeListMouseController<T, TFilterData, TRef> extends MouseController<
 
 		const stickyScrollController = this.stickyScrollProvider();
 		if (!stickyScrollController) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2411: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2411: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Sticky scroll controller not found');
 		}
 
@@ -2672,6 +2861,13 @@ export abstract class AbstractTree<T, TFilterData, TRef> implements IDisposable 
 				showNotFoundMessage: _options.showNotFoundMessage,
 			};
 			this.findController = this.disposables.add(new FindController(this, this.findFilter!, _options.contextViewProvider, findOptions));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this.focusNavigationFilter = node => this.findController!.shouldAllowFocus(node);
 			this.onDidChangeFindOpenState = this.findController.onDidChangeOpenState;
 			this.onDidChangeFindMode = this.findController.onDidChangeMode;

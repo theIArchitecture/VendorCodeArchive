@@ -80,6 +80,13 @@ async function addCellAndRun(code: string, notebook: vscode.NotebookDocument) {
 		const inputBox = vscode.window.visibleTextEditors.find(
 			(e) => e.document.uri.path === inputUri.path
 		);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		await inputBox!.edit((editBuilder) => {
 			editBuilder.insert(new vscode.Position(0, 0), 'print foo');
 		});

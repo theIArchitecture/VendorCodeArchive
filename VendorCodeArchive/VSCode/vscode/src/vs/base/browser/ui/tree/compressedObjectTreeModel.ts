@@ -174,6 +174,16 @@ export class CompressedObjectTreeModel<T extends NonNullable<any>, TFilterData e
 		// If the recompressed node is identical to the original, just set its children.
 		// Saves work and churn diffing the parent element.
 		const elementComparator = options.diffIdentityProvider
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 177: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 177: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			? ((a: T, b: T) => options.diffIdentityProvider!.getId(a) === options.diffIdentityProvider!.getId(b))
 			: undefined;
 		if (equals(recompressedElement.element.elements, node.element.elements, elementComparator)) {
@@ -379,6 +389,18 @@ function mapOptions<T, TFilterData>(compressedNodeUnwrapper: CompressedNodeUnwra
 		...options,
 		identityProvider: options.identityProvider && {
 			getId(node: ICompressedTreeNode<T>): { toString(): string } {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 382: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 387: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 394: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 397: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				return options.identityProvider!.getId(compressedNodeUnwrapper(node));
 			}
 		},
