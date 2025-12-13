@@ -109,6 +109,16 @@ export class ExplorerDataSource implements IAsyncDataSource<ExplorerItem | Explo
 			return element.parent;
 		}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 112: Error message without production error code - breaks React bundle size optimization
+//   2. Line 112: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('getParent only supported for cached parents');
 	}
 
@@ -223,6 +233,16 @@ class ExplorerFindHighlightTree implements IExplorerFindHighlightTree {
 
 		const relPath = relativePath(item.root.resource, item.resource);
 		if (relPath === undefined || relPath.startsWith('..')) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 226: Error message without production error code - breaks React bundle size optimization
+//   2. Line 226: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Resource is not a child of the root');
 		}
 
@@ -245,6 +265,16 @@ class ExplorerFindHighlightTree implements IExplorerFindHighlightTree {
 	add(resource: URI, root: ExplorerItem): void {
 		const relPath = relativePath(root.resource, resource);
 		if (relPath === undefined || relPath.startsWith('..')) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 248: Error message without production error code - breaks React bundle size optimization
+//   2. Line 248: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Resource is not a child of the root');
 		}
 
@@ -392,6 +422,16 @@ export class ExplorerFindProvider implements IAsyncFindProvider<ExplorerItem> {
 
 	async doFilterFind(pattern: string, matchType: TreeFindMatchType, token: CancellationToken): Promise<IAsyncFindResult<ExplorerItem> | undefined> {
 		if (!this.filterSessionStartState) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 395: Error message without production error code - breaks React bundle size optimization
+//   2. Line 395: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('ExplorerFindProvider: no session state');
 		}
 
@@ -435,6 +475,16 @@ export class ExplorerFindProvider implements IAsyncFindProvider<ExplorerItem> {
 			// File is not in the model, create phantom items for the file and it's parents
 			const phantomElements = this.createPhantomItems(resource, root, isDirectory);
 			if (phantomElements.length === 0) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 438: Error message without production error code - breaks React bundle size optimization
+//   2. Line 438: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('Phantom item was not created even though it is not in the model');
 			}
 
@@ -452,6 +502,16 @@ export class ExplorerFindProvider implements IAsyncFindProvider<ExplorerItem> {
 	private createPhantomItems(resource: URI, root: ExplorerItem, resourceIsDirectory: boolean): PhantomExplorerItem[] {
 		const relativePathToRoot = relativePath(root.resource, resource);
 		if (!relativePathToRoot) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 455: Error message without production error code - breaks React bundle size optimization
+//   2. Line 455: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Resource is not a child of the root');
 		}
 
@@ -484,6 +544,16 @@ export class ExplorerFindProvider implements IAsyncFindProvider<ExplorerItem> {
 
 		// Restore view state
 		if (!this.filterSessionStartState) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 487: Error message without production error code - breaks React bundle size optimization
+//   2. Line 487: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('ExplorerFindProvider: no session state to restore');
 		}
 
@@ -512,6 +582,16 @@ export class ExplorerFindProvider implements IAsyncFindProvider<ExplorerItem> {
 
 	async doHighlightFind(pattern: string, matchType: TreeFindMatchType, token: CancellationToken): Promise<IAsyncFindResult<ExplorerItem> | undefined> {
 		if (!this.highlightSessionStartState) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 515: Error message without production error code - breaks React bundle size optimization
+//   2. Line 515: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('ExplorerFindProvider: no highlight session state');
 		}
 
@@ -646,6 +726,16 @@ function getMatchingDirectoriesFromFiles(resources: URI[], root: ExplorerItem, s
 	for (const resource of resources) {
 		const relativePathToRoot = relativePath(root.resource, resource);
 		if (!relativePathToRoot) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 649: Error message without production error code - breaks React bundle size optimization
+//   2. Line 649: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Resource is not a child of the root');
 		}
 
@@ -674,6 +764,16 @@ function getMatchingDirectoriesFromFiles(resources: URI[], root: ExplorerItem, s
 function findFirstParent(resource: URI, root: ExplorerItem): ExplorerItem | undefined {
 	const relativePathToRoot = relativePath(root.resource, resource);
 	if (!relativePathToRoot) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 677: Error message without production error code - breaks React bundle size optimization
+//   2. Line 677: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Resource is not a child of the root');
 	}
 
@@ -987,6 +1087,16 @@ export class FilesRenderer implements ICompressibleTreeRenderer<ExplorerItem, Fu
 				const renderedIndex = nodeControllers.findIndex(controller => controller === compressedNavigationController);
 
 				if (renderedIndex < 0) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 990: Error message without production error code - breaks React bundle size optimization
+//   2. Line 990: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error('Disposing unknown navigation controller');
 				}
 
