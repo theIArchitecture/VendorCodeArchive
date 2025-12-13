@@ -481,6 +481,13 @@ export function updateTaskDefinitions() {
 }
 
 const customize = Objects.deepClone(taskConfiguration);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 customize.properties!.customize = {
 	type: 'string',
 	deprecationMessage: nls.localize('JsonSchema.tasks.customize.deprecated', 'The customize property is deprecated. See the 1.14 release notes on how to migrate to the new task customization approach')
@@ -544,6 +551,17 @@ taskDescriptionProperties.isTestCommand.deprecationMessage = nls.localize(
 );
 
 // Process tasks are almost identical schema-wise to shell tasks, but they are required to have a command
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 547: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 553: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 554: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 processTask.properties!.type = {
 	type: 'string',
 	enum: ['process'],
@@ -564,6 +582,18 @@ const tasks = definitionsTaskRunnerConfigurationProperties.tasks;
 tasks.items = {
 	oneOf: taskDefinitions
 };
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 568: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 570: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 571: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 572: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 definitionsTaskRunnerConfigurationProperties.inputs = inputsSchema.definitions!.inputs;
 
@@ -587,6 +617,13 @@ definitionsTaskRunnerConfigurationProperties.taskSelector.deprecationMessage = n
 );
 
 const osSpecificTaskRunnerConfiguration = Objects.deepClone(definitions.taskRunnerConfiguration);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 delete osSpecificTaskRunnerConfiguration.properties!.tasks;
 osSpecificTaskRunnerConfiguration.additionalProperties = false;
 definitions.osSpecificTaskRunnerConfiguration = osSpecificTaskRunnerConfiguration;

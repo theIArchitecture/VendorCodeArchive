@@ -20,6 +20,13 @@ suite("MCP - Sampling Log", () => {
 		readDefinitions: () => ({
 			get: () => ({ collection: { scope: StorageScope.APPLICATION } }),
 		}),
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	} as any;
 
 	let log: McpSamplingLog;
@@ -48,6 +55,13 @@ suite("MCP - Sampling Log", () => {
 		// storage.testEmitWillSaveState(WillSaveStateReason.NONE);
 		await storage.flush();
 		assert.deepStrictEqual(
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			(storage.getObject("mcp.sampling.logs", StorageScope.APPLICATION) as any),
 			[
 				[
@@ -90,6 +104,13 @@ suite("MCP - Sampling Log", () => {
 		);
 
 		await storage.flush();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const data = (storage.getObject("mcp.sampling.logs", StorageScope.APPLICATION) as any)[0][1];
 
 		// Verify the bin for the current day has 2 requests
@@ -122,6 +143,13 @@ suite("MCP - Sampling Log", () => {
 		);
 
 		await storage.flush();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const data = (storage.getObject("mcp.sampling.logs", StorageScope.APPLICATION) as any)[0][1];
 
 		// Verify the bins: day 2 should have 1 request, day 1 should have 1 request
@@ -140,6 +168,13 @@ suite("MCP - Sampling Log", () => {
 		);
 
 		await storage.flush();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const updatedData = (storage.getObject("mcp.sampling.logs", StorageScope.APPLICATION) as any)[0][1];
 
 		// Verify the bins have shifted correctly
@@ -160,6 +195,13 @@ suite("MCP - Sampling Log", () => {
 		}
 
 		await storage.flush();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const data = (storage.getObject("mcp.sampling.logs", StorageScope.APPLICATION) as any)[0][1];
 
 		// Verify only the last 30 requests are kept
@@ -211,6 +253,13 @@ suite("MCP - Sampling Log", () => {
 		);
 
 		await storage.flush();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const data = (storage.getObject("mcp.sampling.logs", StorageScope.APPLICATION) as any)[0][1];
 
 		// Verify all requests are stored correctly
@@ -226,6 +275,13 @@ suite("MCP - Sampling Log", () => {
 			readDefinitions: () => ({
 				get: () => ({ collection: { scope: StorageScope.APPLICATION } }),
 			}),
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		} as any;
 
 		log.add(
@@ -243,6 +299,13 @@ suite("MCP - Sampling Log", () => {
 		);
 
 		await storage.flush();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const storageData = (storage.getObject("mcp.sampling.logs", StorageScope.APPLICATION) as any);
 
 		// Verify both servers have their data stored
