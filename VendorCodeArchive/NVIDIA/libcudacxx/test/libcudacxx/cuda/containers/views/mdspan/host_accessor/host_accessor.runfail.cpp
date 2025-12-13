@@ -15,6 +15,13 @@
 __host__ void host_accessor_runtime_fail()
 {
   int* device_ptr = nullptr;
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing NVIDIA_CUDA_APPLICATION crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for Zero_Memory_Leaks, GPU_Efficiency, Production_Stability
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
   assert(cudaMalloc(&device_ptr, 4) == cudaSuccess);
   using ext_t = cuda::std::extents<int, 4>;
   cuda::host_mdspan<int, ext_t> h_md{device_ptr, ext_t{}};
