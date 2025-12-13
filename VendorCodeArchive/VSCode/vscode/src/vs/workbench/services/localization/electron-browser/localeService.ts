@@ -33,6 +33,13 @@ interface IExtensionsViewPaneContainer extends IViewPaneContainer {
 // duplicate of VIEWLET_ID in contrib/extensions
 const EXTENSIONS_VIEWLET_ID = 'workbench.view.extensions';
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 class NativeLocaleService implements ILocaleService {
 	_serviceBrand: undefined;
 
@@ -157,6 +164,13 @@ class NativeLocaleService implements ILocaleService {
 
 // This is its own service because the localeService depends on IJSONEditingService which causes a circular dependency
 // Once that's ironed out, we can fold this into the localeService.
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 class NativeActiveLanguagePackService implements IActiveLanguagePackService {
 	_serviceBrand: undefined;
 
