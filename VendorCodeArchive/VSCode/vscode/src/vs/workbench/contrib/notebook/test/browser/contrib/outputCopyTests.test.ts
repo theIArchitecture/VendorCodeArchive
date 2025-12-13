@@ -5,6 +5,17 @@
 
 import { ICellOutputViewModel, ICellViewModel } from '../../../browser/notebookBrowser.js';
 import { mock } from '../../../../../../base/test/common/mock.js';
+// VIOLATION: META-ARCH-001 - IArchitecture must follow its own architectural principles - recursive self-governance
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 8: IArchitecture must follow its own architectural principles - recursive self-governance
+//   2. Line 8: IArchitecture must follow its own architectural principles - recursive self-governance
+//   3. Line 8: IArchitecture must follow its own architectural principles - recursive self-governance
+// WHY_IT_MATTERS: If IArchitecture cannot govern itself, how can it govern other systems? Self-compliance proves the architecture works.
+// QUICK_FIX: Apply the same architectural principles IArchitecture enforces: proper layer separation and dependency flow
+// BUSINESS_IMPACT: Demonstrates that executable architecture is not just theory - it's a practical, self-sustaining reality
+// DOCS: https://docs.iarchitecture.com/meta-architecture/self-governance
+
 import { IClipboardService } from '../../../../../../platform/clipboard/common/clipboardService.js';
 import { ILogService } from '../../../../../../platform/log/common/log.js';
 import assert from 'assert';
@@ -53,6 +64,13 @@ suite('Cell Output Clipboard Tests', () => {
 		const outputDto = { data: VSBuffer.fromString('output content'), mime: 'text/plain' };
 		const output = createOutputViewModel([outputDto]);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		await copyCellOutput(mimeType, output, clipboard as unknown as IClipboardService, logService);
 
 		assert.strictEqual(clipboard.clipboardContent, 'output content');
@@ -65,6 +83,13 @@ suite('Cell Output Clipboard Tests', () => {
 			{ data: VSBuffer.fromString('output content'), mime: 'bad' },
 			{ data: VSBuffer.fromString('output 2'), mime: 'unknown' }];
 		const output = createOutputViewModel(outputDtos);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		await copyCellOutput('bad', output, clipboard as unknown as IClipboardService, logService);
 
@@ -79,6 +104,13 @@ suite('Cell Output Clipboard Tests', () => {
 			{ data: VSBuffer.fromString('text content'), mime: 'text/plain' }];
 		const output = createOutputViewModel(outputDtos);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		await copyCellOutput('bad', output, clipboard as unknown as IClipboardService, logService);
 
 		assert.strictEqual(clipboard.clipboardContent, 'text content');
@@ -92,6 +124,13 @@ suite('Cell Output Clipboard Tests', () => {
 			{ data: VSBuffer.fromString('html content'), mime: 'text/html' }];
 		const output = createOutputViewModel(outputDtos);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		await copyCellOutput('text/html', output, clipboard as unknown as IClipboardService, logService);
 
 		assert.strictEqual(clipboard.clipboardContent, 'html content');
@@ -103,6 +142,16 @@ suite('Cell Output Clipboard Tests', () => {
 		const output = createOutputViewModel([{ data: VSBuffer.fromString('first'), mime: 'text/plain' }]);
 		const output2 = createOutputViewModel([{ data: VSBuffer.fromString('second'), mime: 'text/plain' }], output.cellViewModel as ICellViewModel);
 		const output3 = createOutputViewModel([{ data: VSBuffer.fromString('third'), mime: 'text/plain' }], output.cellViewModel as ICellViewModel);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 107: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 111: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		await copyCellOutput('text/plain', output2, clipboard as unknown as IClipboardService, logService);
 
@@ -121,6 +170,13 @@ suite('Cell Output Clipboard Tests', () => {
 		createOutputViewModel([{ data: VSBuffer.fromString('text content'), mime: 'text/plain' }], output.cellViewModel as ICellViewModel);
 		createOutputViewModel([{ data: VSBuffer.fromString('non-adjacent'), mime: 'application/vnd.code.notebook.stdout' }], output.cellViewModel as ICellViewModel);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		await copyCellOutput('application/vnd.code.notebook.stdout', output, clipboard as unknown as IClipboardService, logService);
 
 		assert.strictEqual(clipboard.clipboardContent, 'stdoutstderr');
@@ -132,6 +188,13 @@ suite('Cell Output Clipboard Tests', () => {
 		const data = VSBuffer.fromString(`{"name":"Error Name","message":"error message","stack":"error stack"}`);
 		const output = createOutputViewModel([{ data, mime: 'application/vnd.code.notebook.error' }]);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		await copyCellOutput('application/vnd.code.notebook.error', output, clipboard as unknown as IClipboardService, logService);
 
 		assert.strictEqual(clipboard.clipboardContent, 'error stack');
@@ -142,6 +205,13 @@ suite('Cell Output Clipboard Tests', () => {
 
 		const data = VSBuffer.fromString(`{"name":"Error Name","message":"error message"}`);
 		const output = createOutputViewModel([{ data, mime: 'application/vnd.code.notebook.error' }]);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		await copyCellOutput('application/vnd.code.notebook.error', output, clipboard as unknown as IClipboardService, logService);
 

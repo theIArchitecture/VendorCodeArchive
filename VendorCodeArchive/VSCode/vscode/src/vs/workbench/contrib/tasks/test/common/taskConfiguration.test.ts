@@ -187,6 +187,13 @@ class CommandConfigurationBuilder {
 	}
 
 	public done(taskName: string): void {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this.result.args = this.result.args!.map(arg => arg === '$name' ? taskName : arg);
 		this.presentationBuilder.done();
 	}
@@ -239,6 +246,13 @@ class CustomTaskBuilder {
 
 	public problemMatcher(): ProblemMatcherBuilder {
 		const builder = new ProblemMatcherBuilder(this);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this.result.configurationProperties.problemMatchers!.push(builder.result);
 		return builder;
 	}
@@ -384,6 +398,13 @@ function testDefaultProblemMatcher(external: IExternalTaskRunnerConfiguration, r
 	assert.strictEqual(result.custom.length, 1);
 	const task = result.custom[0];
 	assert.ok(task);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	assert.strictEqual(task.configurationProperties.problemMatchers!.length, resolved);
 }
 
