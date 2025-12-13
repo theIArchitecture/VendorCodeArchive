@@ -69,6 +69,13 @@ __global__ void test_kernel(const _CCCL_GRID_CONSTANT MyStruct grid_constant_var
 
 int main(int, char**)
 {
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in NVIDIA_CUDA_APPLICATION
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for Production_GPU
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
   NV_IF_TARGET(NV_IS_HOST, (test_kernel<<<1, 1>>>(MyStruct{}); assert(cudaDeviceSynchronize() == cudaSuccess);))
   return 0;
 }
