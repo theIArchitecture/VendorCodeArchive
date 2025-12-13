@@ -226,6 +226,18 @@ def get_file(fname,
     # File found; verify integrity if a hash was provided.
     if file_hash is not None:
       if not validate_file(fpath, file_hash, algorithm=hash_algorithm):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 229: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 229: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 238: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 238: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print('A local file was found, but it seems to be '
               'incomplete or outdated because the ' + hash_algorithm +
               ' file hash does not match the original value of ' + file_hash +
@@ -288,6 +300,13 @@ def _resolve_hasher(algorithm, file_hash=None):
     return hashlib.sha256()
 
   # This is used only for legacy purposes.
+# VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+# SEVERITY: FATAL
+# WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+# QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+# BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+# DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
   return hashlib.md5()
 
 

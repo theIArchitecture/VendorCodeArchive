@@ -150,6 +150,19 @@ class FractionalMaxPoolTest(test.TestCase):
     tensor_shape = (1, num_rows, num_cols, 1)
     pseudo_random = False
     for overlapping in True, False:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (5):
+#   1. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 153: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 154: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 154: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 154: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("-" * 70)
       print("Testing FractionalMaxPool with overlapping = {}".format(
           overlapping))
@@ -167,6 +180,22 @@ class FractionalMaxPoolTest(test.TestCase):
                                                                    row_seq,
                                                                    col_seq,
                                                                    overlapping)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (8):
+#   1. Line 170: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 170: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 171: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 172: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 172: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 173: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 174: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 174: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print("row sequence:")
         print(row_seq)
         print("column sequence:")
@@ -182,6 +211,26 @@ class FractionalMaxPoolTest(test.TestCase):
             row_to_print.append(str(rand_mat[0, i, j, 0]))
           row_to_print.append("|")
           if i in row_seq:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (12):
+#   1. Line 185: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 185: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 186: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 186: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 187: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 187: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 188: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 188: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 190: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 191: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 191: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 192: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
             print("-" * 2 * len(row_to_print))
           print(" ".join(row_to_print))
         print("-" * 2 * len(row_to_print))
