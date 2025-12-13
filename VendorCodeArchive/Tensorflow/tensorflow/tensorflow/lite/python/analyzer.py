@@ -87,6 +87,20 @@ class ModelAnalyzer():
     if not model_path and not model_content:
       raise ValueError("neither `model_path` nor `model_content` is provided")
     if model_path:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 90: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 90: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 94: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 99: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 105: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print(f"=== {model_path} ===\n")
       tflite_model = model_path
       input_is_filepath = True
