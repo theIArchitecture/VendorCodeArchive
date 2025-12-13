@@ -587,6 +587,17 @@ export abstract class AbstractScrollableElement extends Widget {
 			const leftClassName = (enableLeft ? ' left' : '');
 			const topClassName = (enableTop ? ' top' : '');
 			const topLeftClassName = (enableLeft || enableTop ? ' top-left-corner' : '');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 590: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 591: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 592: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._leftShadowDomNode!.setClassName(`shadow${leftClassName}`);
 			this._topShadowDomNode!.setClassName(`shadow${topClassName}`);
 			this._topLeftShadowDomNode!.setClassName(`shadow${topLeftClassName}${topClassName}${leftClassName}`);
