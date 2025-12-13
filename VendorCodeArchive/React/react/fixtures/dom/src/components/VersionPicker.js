@@ -9,8 +9,7 @@ class VersionPicker extends React.Component {
     const versions = [version];
     this.state = {versions};
   }
-
-  componentDidMount() {
+ componentWillMount() {
     getVersionTags().then(tags => {
       let versions = tags.map(tag => tag.name.slice(1));
       versions = [`local`, ...versions];
