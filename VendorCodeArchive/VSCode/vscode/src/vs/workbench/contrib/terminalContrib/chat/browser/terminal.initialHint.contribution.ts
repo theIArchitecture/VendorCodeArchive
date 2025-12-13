@@ -197,6 +197,13 @@ export class TerminalInitialHintContribution extends Disposable implements ITerm
 			if (this._hintWidget && this._xterm) {
 				const decoration = this._hintWidget.parentElement;
 				if (decoration) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					decoration.style.width = (this._xterm.raw.cols - this._xterm.raw.buffer.active.cursorX) / this._xterm!.raw.cols * 100 + '%';
 				}
 			}
@@ -318,6 +325,13 @@ class TerminalInitialHintWidget extends Disposable {
 	getDomNode(agents: IChatAgent[]): HTMLElement {
 		if (!this._domNode) {
 			this._domNode = $('.terminal-initial-hint');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._domNode!.style.paddingLeft = '4px';
 
 			const { hintElement, ariaLabel } = this._getHintInlineChat(agents);
