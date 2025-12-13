@@ -110,6 +110,16 @@ class AccumulateNBenchmark(test.Benchmark):
           op.run()
         duration = time.time() - start
         args = format_args + (tag, duration)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 113: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 113: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print(self._template.format(*args))
 
   def _RunBenchmark(self, tag, input_fn, sizes, ninputs, repeats):
@@ -133,6 +143,18 @@ class AccumulateNBenchmark(test.Benchmark):
                   ("Unordered", self._GenerateUnorderedInputs),
                   ("Ordered", self._GenerateOrderedInputs),
                   ("Reversed", self._GenerateReversedInputs))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 136: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 136: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 139: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 139: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     print(self._template.format("", "Size", "#Inputs", "#Repeat", "Method",
                                 "Duration"))
