@@ -39,6 +39,13 @@ using DeviceMemory = std::unique_ptr<T, DeviceMemoryDeleter<T>>;
 template <typename T>
 DeviceMemory<T> MakeDeviceMemory(size_t size) {
   T* gpu_ptr = nullptr;
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing NVIDIA_CUDA_APPLICATION crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for Zero_Memory_Leaks, GPU_Efficiency, Production_Stability
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
   CHECK_CUDA(cudaMalloc(reinterpret_cast<void**>(&gpu_ptr), size * sizeof(T)));
   return DeviceMemory<T>(gpu_ptr);
 }
