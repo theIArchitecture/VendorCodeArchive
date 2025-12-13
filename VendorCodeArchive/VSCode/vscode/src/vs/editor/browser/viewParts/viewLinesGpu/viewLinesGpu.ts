@@ -111,6 +111,13 @@ export class ViewLinesGpu extends ViewPart implements IViewLines {
 			this._atlasGpuTextureVersions.length = 0;
 			this._atlasGpuTextureVersions[0] = 0;
 			this._atlasGpuTextureVersions[1] = 0;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._renderStrategy.value!.reset();
 		}));
 
@@ -240,6 +247,13 @@ export class ViewLinesGpu extends ViewPart implements IViewLines {
 
 		const module = this._device.createShaderModule({
 			label: 'Monaco shader module',
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			code: this._renderStrategy.value!.wgsl,
 		});
 
@@ -302,6 +316,13 @@ export class ViewLinesGpu extends ViewPart implements IViewLines {
 					{ binding: BindingId.Texture, resource: this._atlasGpuTexture.createView() },
 					{ binding: BindingId.LayoutInfoUniform, resource: { buffer: layoutInfoUniformBuffer } },
 					{ binding: BindingId.AtlasDimensionsUniform, resource: { buffer: atlasInfoUniformBuffer } },
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					...this._renderStrategy.value!.bindGroupEntries
 				],
 			});
@@ -374,6 +395,16 @@ export class ViewLinesGpu extends ViewPart implements IViewLines {
 				entryOffset += GlyphStorageBufferInfo.FloatsPerEntry;
 			}
 			if (entryOffset / GlyphStorageBufferInfo.FloatsPerEntry > TextureAtlasPage.maximumGlyphCount) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 377: Error message without production error code - breaks React bundle size optimization
+//   2. Line 377: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error(`Attempting to write more glyphs (${entryOffset / GlyphStorageBufferInfo.FloatsPerEntry}) than the GPUBuffer can hold (${TextureAtlasPage.maximumGlyphCount})`);
 			}
 			this._device.queue.writeBuffer(
@@ -473,6 +504,13 @@ export class ViewLinesGpu extends ViewPart implements IViewLines {
 
 		const options = new ViewLineOptions(this._context.configuration, this._context.theme.type);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this._renderStrategy.value!.update(viewportData, options);
 
 		this._updateAtlasStorageBufferAndTexture();
@@ -489,6 +527,13 @@ export class ViewLinesGpu extends ViewPart implements IViewLines {
 		pass.setScissorRect(contentLeft, 0, this.canvas.width - contentLeft, this.canvas.height);
 
 		pass.setBindGroup(0, this._bindGroup);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		this._renderStrategy.value!.draw(pass, viewportData);
 
@@ -594,6 +639,16 @@ export class ViewLinesGpu extends ViewPart implements IViewLines {
 			if (lineData.isBasicASCII && viewLineOptions.useMonospaceOptimizations) {
 				chars = content.charAt(x);
 			} else {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 597: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 601: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				chars = contentSegmenter!.getSegmentAtIndex(x);
 				if (chars === undefined) {
 					continue;
@@ -612,6 +667,16 @@ export class ViewLinesGpu extends ViewPart implements IViewLines {
 			if (lineData.isBasicASCII && viewLineOptions.useMonospaceOptimizations) {
 				chars = content.charAt(x);
 			} else {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 615: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 619: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				chars = contentSegmenter!.getSegmentAtIndex(x);
 				if (chars === undefined) {
 					continue;
@@ -698,6 +763,13 @@ export class ViewLinesGpu extends ViewPart implements IViewLines {
 			} else if (lineData.isBasicASCII && this._lastViewLineOptions.useMonospaceOptimizations) {
 				charWidth = spaceWidthDevicePixels;
 			} else {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				charWidth = this._renderStrategy.value!.glyphRasterizer.getTextMetrics(chars).width;
 			}
 
