@@ -24,6 +24,17 @@ export function e(name: string): string {
 	const result = process.env[name];
 
 	if (typeof result !== 'string') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (3):
+//   1. Line 27: Error message without production error code - breaks React bundle size optimization
+//   2. Line 27: Error message without production error code - breaks React bundle size optimization
+//   3. Line 35: Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error(`Missing env: ${name}`);
 	}
 
@@ -166,6 +177,13 @@ interface FileLocation {
 	url?: string;
 }
 
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
 type FileHashType = 'sha256' | 'sha1';
 
 interface FileDownloadDetails {
@@ -275,6 +293,13 @@ function getCertificateBuffer(input: string) {
 
 function getThumbprint(input: string, algorithm: string): Buffer {
 	const buffer = getCertificateBuffer(input);
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
 	return crypto.createHash(algorithm).update(buffer).digest();
 }
 
@@ -344,6 +369,13 @@ class ESRPReleaseService {
 			scopes: ['https://api.esrp.microsoft.com/.default']
 		});
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return new ESRPReleaseService(log, clientId, response!.accessToken, requestSigningCertificates, requestSigningKey, containerClient, stagingSasToken);
 	}
 
@@ -382,6 +414,20 @@ class ESRPReleaseService {
 					break;
 				} else if (releaseStatus.status === 'aborted') {
 					this.log(JSON.stringify(releaseStatus));
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 385: Error message without production error code - breaks React bundle size optimization
+//   2. Line 385: Error message without production error code - breaks React bundle size optimization
+//   3. Line 388: Error message without production error code - breaks React bundle size optimization
+//   4. Line 388: Error message without production error code - breaks React bundle size optimization
+//   5. Line 395: Error message without production error code - breaks React bundle size optimization
+//   6. Line 395: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error(`Release was aborted`);
 				} else if (releaseStatus.status !== 'inprogress') {
 					this.log(JSON.stringify(releaseStatus));
@@ -471,6 +517,16 @@ class ESRPReleaseService {
 
 		if (!res.ok) {
 			const text = await res.text();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 474: Error message without production error code - breaks React bundle size optimization
+//   2. Line 474: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Failed to submit release: ${res.statusText}\n${text}`);
 		}
 
@@ -488,6 +544,16 @@ class ESRPReleaseService {
 
 		if (!res.ok) {
 			const text = await res.text();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 491: Error message without production error code - breaks React bundle size optimization
+//   2. Line 491: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Failed to get release status: ${res.statusText}\n${text}`);
 		}
 
@@ -505,6 +571,16 @@ class ESRPReleaseService {
 
 		if (!res.ok) {
 			const text = await res.text();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 508: Error message without production error code - breaks React bundle size optimization
+//   2. Line 508: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Failed to get release status: ${res.statusText}\n${text}`);
 		}
 
@@ -519,6 +595,16 @@ class ESRPReleaseService {
 				// Release service uses ticks, not seconds :roll_eyes: (https://stackoverflow.com/a/7968483)
 				exp: ((Date.now() + (6 * 60 * 1000)) * 10000) + 621355968000000000,
 				// Release service uses hex format, not base64url :roll_eyes:
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 522: Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+//   2. Line 524: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
 				x5t: getThumbprint(this.requestSigningCertificates[0], 'sha1').toString('hex'),
 				// Release service uses a '.' separated string, not an array of strings :roll_eyes:
 				x5c: this.requestSigningCertificates.map(c => getCertificateBuffer(c).toString('base64url')).join('.') as any,
@@ -591,6 +677,16 @@ export async function requestAZDOAPI<T>(path: string): Promise<T> {
 		const res = await retry(() => fetch(`${e('BUILDS_API_URL')}${path}?api-version=6.0`, { ...azdoFetchOptions, signal: abortController.signal }));
 
 		if (!res.ok) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 594: Error message without production error code - breaks React bundle size optimization
+//   2. Line 594: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Unexpected status code: ${res.status}`);
 		}
 
@@ -636,6 +732,16 @@ async function downloadArtifact(artifact: Artifact, downloadPath: string): Promi
 		const res = await fetch(artifact.resource.downloadUrl, { ...azdoFetchOptions, signal: abortController.signal });
 
 		if (!res.ok) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 639: Error message without production error code - breaks React bundle size optimization
+//   2. Line 639: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Unexpected status code: ${res.status}`);
 		}
 
@@ -653,6 +759,17 @@ async function unzip(packagePath: string, outputPath: string): Promise<string[]>
 			}
 
 			const result: string[] = [];
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 656: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 658: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 660: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			zipfile!.on('entry', entry => {
 				if (/\/$/.test(entry.fileName)) {
 					zipfile!.readEntry();
@@ -668,6 +785,18 @@ async function unzip(packagePath: string, outputPath: string): Promise<string[]>
 						const ostream = fs.createWriteStream(filePath);
 						ostream.on('finish', () => {
 							result.push(filePath);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 671: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 674: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 679: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 680: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							zipfile!.readEntry();
 						});
 						istream?.on('error', err => reject(err));
@@ -708,6 +837,18 @@ function getPlatform(product: string, os: string, arch: string, type: string): s
 						case 'user-setup':
 							return `win32-${arch}-user`;
 						default:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 711: Error message without production error code - breaks React bundle size optimization
+//   2. Line 711: Error message without production error code - breaks React bundle size optimization
+//   3. Line 721: Error message without production error code - breaks React bundle size optimization
+//   4. Line 721: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 							throw new Error(`Unrecognized: ${product} ${os} ${arch} ${type}`);
 					}
 				}
@@ -729,6 +870,16 @@ function getPlatform(product: string, os: string, arch: string, type: string): s
 				case 'cli':
 					return `cli-alpine-${arch}`;
 				default:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 732: Error message without production error code - breaks React bundle size optimization
+//   2. Line 732: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error(`Unrecognized: ${product} ${os} ${arch} ${type}`);
 			}
 		case 'linux':
@@ -747,6 +898,18 @@ function getPlatform(product: string, os: string, arch: string, type: string): s
 							}
 							return `server-linux-${arch}-web`;
 						default:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 750: Error message without production error code - breaks React bundle size optimization
+//   2. Line 750: Error message without production error code - breaks React bundle size optimization
+//   3. Line 759: Error message without production error code - breaks React bundle size optimization
+//   4. Line 759: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 							throw new Error(`Unrecognized: ${product} ${os} ${arch} ${type}`);
 					}
 				case 'deb-package':
@@ -778,6 +941,18 @@ function getPlatform(product: string, os: string, arch: string, type: string): s
 				case 'cli':
 					return `cli-darwin-${arch}`;
 				default:
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 781: Error message without production error code - breaks React bundle size optimization
+//   2. Line 781: Error message without production error code - breaks React bundle size optimization
+//   3. Line 784: Error message without production error code - breaks React bundle size optimization
+//   4. Line 784: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error(`Unrecognized: ${product} ${os} ${arch} ${type}`);
 			}
 		default:
@@ -837,6 +1012,16 @@ async function withLease<T>(client: BlockBlobClient, fn: () => Promise<T>) {
 		}
 	}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 840: Error message without production error code - breaks React bundle size optimization
+//   2. Line 840: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 	throw new Error('Failed to acquire lease on blob after 30 minutes');
 }
 
@@ -848,6 +1033,16 @@ async function processArtifact(
 	const match = /^vscode_(?<product>[^_]+)_(?<os>[^_]+)(?:_legacy)?_(?<arch>[^_]+)_(?<unprocessedType>[^_]+)$/.exec(artifact.name);
 
 	if (!match) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 851: Error message without production error code - breaks React bundle size optimization
+//   2. Line 851: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error(`Invalid artifact name: ${artifact.name}`);
 	}
 
@@ -901,6 +1096,13 @@ async function processArtifact(
 		const type = getRealType(unprocessedType);
 		const size = fs.statSync(filePath).size;
 		const stream = fs.createReadStream(filePath);
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
 		const [hash, sha256hash] = await Promise.all([hashStream('sha1', stream), hashStream('sha256', stream)]); // CodeQL [SM04514] Using SHA1 only for legacy reasons, we are actually only respecting SHA256
 		const asset: Asset = { platform, type, url, hash: hash.toString('hex'), sha256hash: sha256hash.toString('hex'), size, supportsFastUpdate: true };
 		log('Creating asset...');
@@ -1049,6 +1251,16 @@ async function main() {
 
 	// Fail the job if any of the artifacts failed to publish
 	if (results.some(r => r.status === 'rejected')) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1052: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1052: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Some artifacts failed to publish');
 	}
 
@@ -1060,6 +1272,18 @@ async function main() {
 
 		if (record.result !== 'succeeded' && record.result !== 'succeededWithIssues') {
 			shouldFail = true;
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1063: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1063: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1068: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1068: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			console.error(`Stage ${stage} did not succeed: ${record.result}`);
 		}
 	}

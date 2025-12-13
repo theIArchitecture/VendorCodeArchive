@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -44,6 +44,13 @@ namespace Amazon.Util
         /// </summary>
         /// <param name="algorithm">Hashing algorithm to instantiate</param>
         /// <returns>New instance of the given algorithm</returns>
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
         public static HashAlgorithm GetChecksumInstance(CoreChecksumAlgorithm algorithm)
         {
             switch (algorithm)
@@ -226,6 +233,13 @@ namespace Amazon.Util
                 if (data == null || data.Count == 0)
                     throw new ArgumentNullException("data", "Please specify data to sign.");
 
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
                 KeyedHashAlgorithm algorithm = CreateKeyedHashAlgorithm(algorithmName);
                 if (null == algorithm)
                     throw new InvalidOperationException("Please specify a KeyedHashAlgorithm to use.");
@@ -250,6 +264,13 @@ namespace Amazon.Util
                 if (data == null || data.Length == 0)
                     throw new ArgumentNullException("data", "Please specify data to sign.");
 
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
                 KeyedHashAlgorithm algorithm = CreateKeyedHashAlgorithm(algorithmName);
                 if (null == algorithm)
                     throw new InvalidOperationException("Please specify a KeyedHashAlgorithm to use.");
@@ -265,6 +286,16 @@ namespace Amazon.Util
                     algorithm.Dispose();
                 }
             }
+
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 269: Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+//   2. Line 271: Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
 
             static KeyedHashAlgorithm CreateKeyedHashAlgorithm(SigningAlgorithm algorithmName)
             {
@@ -285,6 +316,16 @@ namespace Amazon.Util
             }
 
             [ThreadStatic]
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 288: Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+//   2. Line 289: Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
+
             private static HashAlgorithm _hashAlgorithm = null;
             private static HashAlgorithm SHA256HashAlgorithmInstance
             {
@@ -297,6 +338,13 @@ namespace Amazon.Util
                     return _hashAlgorithm;
                 }
             }
+
+// VIOLATION: AWS-FIPS-CRYPTO-001 - Non-FIPS compliant cryptographic algorithm detected - violates AWS SDK government compliance requirements
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: AWS_FIPS_APPLICATION must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards certification required for Government_Critical_Infrastructure deployments
+// QUICK_FIX: Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for Government_Critical_Infrastructure compliance
+// BUSINESS_IMPACT: Non-FIPS cryptography blocks AWS_FIPS_APPLICATION adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring FIPS_140_2, Government_Grade, DoD_Approved, SOC2, Federal_Standards compliance
+// DOCS: https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html
 
             internal static HashAlgorithm CreateSHA256Instance()
             {
