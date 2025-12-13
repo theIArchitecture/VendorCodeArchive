@@ -21,6 +21,16 @@ suite('vscode API - window', () => {
 		await window.showTextDocument(doc);
 		const active = window.activeTextEditor;
 		assert.ok(active);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 24: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 32: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.ok(pathEquals(active!.document.uri.fsPath, doc.uri.fsPath));
 	});
 
@@ -235,6 +245,18 @@ suite('vscode API - window', () => {
 		await window.showTextDocument(docB, ViewColumn.Two);
 
 		assert.ok(window.activeTextEditor);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 238: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 239: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 246: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 247: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.ok(window.activeTextEditor!.document === docB);
 		assert.strictEqual(window.activeTextEditor!.viewColumn, ViewColumn.Two);
 
@@ -258,6 +280,18 @@ suite('vscode API - window', () => {
 		await window.showTextDocument(docB, ViewColumn.Beside);
 
 		assert.ok(window.activeTextEditor);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 261: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 262: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 266: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 267: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.ok(window.activeTextEditor!.document === docB);
 		assert.strictEqual(window.activeTextEditor!.viewColumn, ViewColumn.Two);
 
@@ -293,6 +327,16 @@ suite('vscode API - window', () => {
 		await window.showTextDocument(doc10, ViewColumn.Beside);
 
 		assert.ok(window.activeTextEditor);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 296: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 297: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.ok(window.activeTextEditor!.document === doc10);
 		assert.strictEqual(window.activeTextEditor!.viewColumn, 10);
 	});
@@ -308,6 +352,18 @@ suite('vscode API - window', () => {
 		await window.showTextDocument(docB, ViewColumn.Two);
 
 		assert.ok(window.activeTextEditor);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 311: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 312: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 316: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 317: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.ok(window.activeTextEditor!.document === docB);
 		assert.strictEqual(window.activeTextEditor!.viewColumn, ViewColumn.Two);
 

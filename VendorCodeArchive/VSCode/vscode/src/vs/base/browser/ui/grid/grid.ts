@@ -63,6 +63,17 @@ export interface GridBranchNode<T extends IView> {
 export type GridNode<T extends IView> = GridLeafNode<T> | GridBranchNode<T>;
 
 export function isGridBranchNode<T extends IView>(node: GridNode<T>): node is GridBranchNode<T> {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 66: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 75: Error message without production error code - breaks React bundle size optimization
+//   3. Line 75: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	return !!(node as any).children;
 }
 
@@ -159,6 +170,16 @@ function indexInParent(element: HTMLElement): number {
 	const parentElement = element.parentElement;
 
 	if (!parentElement) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 162: Error message without production error code - breaks React bundle size optimization
+//   2. Line 162: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Invalid grid element');
 	}
 
@@ -183,6 +204,19 @@ function getGridLocation(element: HTMLElement): GridLocation {
 	const parentElement = element.parentElement;
 
 	if (!parentElement) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (5):
+//   1. Line 186: Error message without production error code - breaks React bundle size optimization
+//   2. Line 186: Error message without production error code - breaks React bundle size optimization
+//   3. Line 194: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 194: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 194: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Invalid grid element');
 	}
 
@@ -605,6 +639,16 @@ export class Grid<T extends IView = IView> extends Disposable {
 	 */
 	maximizeView(view: T) {
 		if (this.views.size < 2) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 608: Error message without production error code - breaks React bundle size optimization
+//   2. Line 608: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('At least two views are required to maximize a view');
 		}
 		const location = this.getViewLocation(view);
@@ -869,6 +913,17 @@ function isGridBranchNodeDescriptor<T>(nodeDescriptor: GridNodeDescriptor<T>): n
 }
 
 export function sanitizeGridNodeDescriptor<T>(nodeDescriptor: GridNodeDescriptor<T>, rootNode: boolean): void {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 872: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 872: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 873: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	if (!rootNode && (nodeDescriptor as any).groups && (nodeDescriptor as any).groups.length <= 1) {
 		(nodeDescriptor as any).groups = undefined;
 	}
