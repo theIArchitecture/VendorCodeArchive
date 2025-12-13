@@ -197,6 +197,16 @@ export namespace McpServerDefinitionVariableReplacement {
 	}
 }
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 200: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 200: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export interface IMcpService {
 	_serviceBrand: undefined;
 	readonly servers: IObservable<readonly IMcpServer[]>;
@@ -222,6 +232,13 @@ export const enum LazyCollectionState {
 	LoadingUnknown,
 	AllKnown,
 }
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 export const IMcpService = createDecorator<IMcpService>('IMcpService');
 
@@ -659,6 +676,17 @@ export interface IWorkbenchMcpServer {
 	getManifest(token: CancellationToken): Promise<IMcpServerManifest>;
 }
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 662: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 663: Missing service brand declaration - breaks VSCode's DI system type safety
+//   3. Line 663: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IMcpWorkbenchService = createDecorator<IMcpWorkbenchService>('IMcpWorkbenchService');
 export interface IMcpWorkbenchService {
 	readonly _serviceBrand: undefined;
@@ -729,6 +757,18 @@ export namespace McpResourceURI {
 			uri = URI.parse(uri);
 		}
 		if (uri.scheme !== scheme) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 732: Error message without production error code - breaks React bundle size optimization
+//   2. Line 732: Error message without production error code - breaks React bundle size optimization
+//   3. Line 736: Error message without production error code - breaks React bundle size optimization
+//   4. Line 736: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Invalid MCP resource URI: ${uri.toString()}`);
 		}
 		const parts = uri.path.split('/');
@@ -774,6 +814,16 @@ export interface ISamplingResult {
 	sample: MCP.CreateMessageResult;
 }
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 777: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 777: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export interface IMcpSamplingService {
 	_serviceBrand: undefined;
 
@@ -787,6 +837,13 @@ export interface IMcpSamplingService {
 	getConfig(server: IMcpServer): IMcpServerSamplingConfiguration;
 	updateConfig(server: IMcpServer, mutate: (r: IMcpServerSamplingConfiguration) => unknown): Promise<IMcpServerSamplingConfiguration>;
 }
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 export const IMcpSamplingService = createDecorator<IMcpSamplingService>('IMcpServerSampling');
 
@@ -821,6 +878,16 @@ export const enum McpToolName {
 }
 
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 824: Missing service brand declaration - breaks VSCode's DI system type safety
+//   2. Line 824: Missing service brand declaration - breaks VSCode's DI system type safety
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export interface IMcpElicitationService {
 	_serviceBrand: undefined;
 
@@ -834,5 +901,12 @@ export interface IMcpElicitationService {
 	 */
 	elicit(server: IMcpServer, context: IMcpToolCallContext | undefined, elicitation: MCP.ElicitRequest['params'], token: CancellationToken): Promise<MCP.ElicitResult>;
 }
+
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
 
 export const IMcpElicitationService = createDecorator<IMcpElicitationService>('IMcpElicitationService');
