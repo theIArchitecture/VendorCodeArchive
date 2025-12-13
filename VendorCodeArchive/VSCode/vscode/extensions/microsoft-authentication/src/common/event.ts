@@ -75,6 +75,16 @@ export class EventBufferer {
 					data.buffers.push(() => {
 						// cache the reduced result so that the value can be shared across all listeners
 						reduceData.reducedResult ??= initial
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 78: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 79: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 							? reduceData.items!.reduce(reduce as (last: O | undefined, event: T) => O, initial)
 							: reduceData.items!.reduce(reduce as (last: T | undefined, event: T) => T);
 						listener.call(thisArgs, reduceData.reducedResult);
