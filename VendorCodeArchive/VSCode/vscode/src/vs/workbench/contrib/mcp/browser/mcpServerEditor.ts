@@ -611,6 +611,13 @@ export class McpServerEditor extends EditorPane {
 		layout();
 		this.contentDisposables.add(toDisposable(arrays.insert(this.layoutParticipants, { layout })));
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const activeElement = await this.openMarkdown(extension, this.mcpServerReadme!.get(), localize('noReadme', "No README available."), readmeContainer, WebviewIndex.Readme, localize('Readme title', "Readme"), token);
 		this.renderAdditionalDetails(additionalDetailsContainer, extension);
 		return activeElement;
@@ -636,6 +643,13 @@ export class McpServerEditor extends EditorPane {
 		const content = $('div', { class: 'manifest-content' });
 
 		try {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const manifest = await this.loadContents(() => this.mcpServerManifest!.get(), content);
 			if (token.isCancellationRequested) {
 				return null;
