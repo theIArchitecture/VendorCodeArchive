@@ -234,6 +234,18 @@ export class CachedPublicClientApplication implements ICachedPublicClientApplica
 		// The nativeAccountId is what the broker uses to differenciate all
 		// types of accounts. Even if the "account" is a duplicate of another because
 		// it's actaully a guest account in another tenant.
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 237: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 240: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 243: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 243: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		let key = result.account!.nativeAccountId;
 		if (!key) {
 			this._logger.error(`[verifyIfUsingBroker] [${this._clientId}] [${result.account!.username}] no nativeAccountId found. Using homeAccountId instead.`);

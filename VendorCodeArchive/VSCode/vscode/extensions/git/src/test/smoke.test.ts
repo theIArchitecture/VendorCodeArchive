@@ -52,6 +52,13 @@ suite('git smoke test', function () {
 		// make sure git is activated
 		const ext = extensions.getExtension<GitExtension>('vscode.git');
 		await ext?.activate();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		git = ext!.exports.getAPI(1);
 
 		if (git.repositories.length === 0) {
@@ -96,6 +103,16 @@ suite('git smoke test', function () {
 		await commands.executeCommand('git.openChange', appjs);
 
 		assert(window.activeTextEditor);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 99: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 102: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(window.activeTextEditor!.document.uri.path, appjs.path);
 
 		assert(window.tabGroups.activeTabGroup.activeTab);
