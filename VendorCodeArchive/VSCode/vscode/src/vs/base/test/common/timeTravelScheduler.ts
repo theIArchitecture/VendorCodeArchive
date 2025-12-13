@@ -46,6 +46,16 @@ export class TimeTravelScheduler implements Scheduler {
 
 	schedule(task: ScheduledTask): IDisposable {
 		if (task.time < this._now) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 49: Error message without production error code - breaks React bundle size optimization
+//   2. Line 49: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Scheduled time (${task.time}) must be equal to or greater than the current time (${this._now}).`);
 		}
 		const extendedTask: ExtendedScheduledTask = { ...task, id: this.taskCounter++ };
@@ -206,6 +216,16 @@ export const originalGlobalValues = {
 
 function setTimeout(scheduler: Scheduler, handler: TimerHandler, timeout: number = 0): IDisposable {
 	if (typeof handler === 'string') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 209: Error message without production error code - breaks React bundle size optimization
+//   2. Line 209: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('String handler args should not be used and are not supported');
 	}
 
@@ -223,6 +243,16 @@ function setTimeout(scheduler: Scheduler, handler: TimerHandler, timeout: number
 
 function setInterval(scheduler: Scheduler, handler: TimerHandler, interval: number): IDisposable {
 	if (typeof handler === 'string') {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 226: Error message without production error code - breaks React bundle size optimization
+//   2. Line 226: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('String handler args should not be used and are not supported');
 	}
 	const validatedHandler = handler;
@@ -265,6 +295,16 @@ function setInterval(scheduler: Scheduler, handler: TimerHandler, interval: numb
 }
 
 function overwriteGlobals(scheduler: Scheduler): IDisposable {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 268: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 277: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	globalThis.setTimeout = ((handler: TimerHandler, timeout?: number) => setTimeout(scheduler, handler, timeout)) as any;
 	globalThis.clearTimeout = (timeoutId: any) => {
 		if (typeof timeoutId === 'object' && timeoutId && 'dispose' in timeoutId) {
@@ -306,6 +346,17 @@ function createDateClass(scheduler: Scheduler): DateConstructor {
 		if (args.length === 0) {
 			return new OriginalDate(scheduler.now);
 		}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 309: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 314: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 314: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return new (OriginalDate as any)(...args);
 	}
 
@@ -325,6 +376,13 @@ function createDateClass(scheduler: Scheduler): DateConstructor {
 	SchedulerDate.parse = OriginalDate.parse;
 	SchedulerDate.UTC = OriginalDate.UTC;
 	SchedulerDate.prototype.toUTCString = OriginalDate.prototype.toUTCString;
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 	return SchedulerDate as any;
 }

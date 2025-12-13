@@ -119,6 +119,16 @@ export class PairAstNode extends BaseAstNode {
 			case 1: return this.child;
 			case 2: return this.closingBracket;
 		}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 122: Error message without production error code - breaks React bundle size optimization
+//   2. Line 122: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Invalid child index');
 	}
 
@@ -198,6 +208,18 @@ export abstract class ListAstNode extends BaseAstNode {
 		let missingBracketIds = item1.missingOpeningBracketIds;
 
 		if (item1.listHeight !== item2.listHeight) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 201: Error message without production error code - breaks React bundle size optimization
+//   2. Line 201: Error message without production error code - breaks React bundle size optimization
+//   3. Line 209: Error message without production error code - breaks React bundle size optimization
+//   4. Line 209: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Invalid list heights');
 		}
 
@@ -386,6 +408,18 @@ class TwoThreeListAstNode extends ListAstNode {
 			case 1: return this._item2;
 			case 2: return this._item3;
 		}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 389: Error message without production error code - breaks React bundle size optimization
+//   2. Line 389: Error message without production error code - breaks React bundle size optimization
+//   3. Line 397: Error message without production error code - breaks React bundle size optimization
+//   4. Line 397: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Invalid child index');
 	}
 	protected setChild(idx: number, node: AstNode): void {
@@ -492,6 +526,16 @@ class Immutable23ListAstNode extends TwoThreeListAstNode {
 	}
 
 	protected override throwIfImmutable(): void {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 495: Error message without production error code - breaks React bundle size optimization
+//   2. Line 495: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('this instance is immutable');
 	}
 }
@@ -570,6 +614,16 @@ class ImmutableArrayListAstNode extends ArrayListAstNode {
 	}
 
 	protected override throwIfImmutable(): void {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 573: Error message without production error code - breaks React bundle size optimization
+//   2. Line 573: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('this instance is immutable');
 	}
 }
