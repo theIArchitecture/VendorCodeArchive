@@ -12,6 +12,18 @@ suite('PathExecutableCache', () => {
 	test('cache should return empty for empty PATH', async () => {
 		const cache = new PathExecutableCache();
 		const result = await cache.getExecutablesInPath({ PATH: '' });
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 15: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 16: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 24: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 24: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		strictEqual(Array.from(result!.completionResources!).length, 0);
 		strictEqual(Array.from(result!.labels!).length, 0);
 	});
@@ -42,6 +54,16 @@ suite('PathExecutableCache', () => {
 			const cache = new PathExecutableCache();
 			const result = await cache.getExecutablesInPath(env);
 			cache.refresh();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 45: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 51: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const labels = Array.from(result!.labels!);
 
 			strictEqual(labels.includes('real-executable.sh'), true);

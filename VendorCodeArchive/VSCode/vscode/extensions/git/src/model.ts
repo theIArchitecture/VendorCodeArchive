@@ -469,6 +469,16 @@ export class Model implements IRepositoryResolver, IBranchProtectionProviderRegi
 			const openRepositoriesToDispose = removed
 				.map(folder => this.getOpenRepository(folder.uri))
 				.filter(r => !!r)
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 472: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 473: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				.filter(r => !activeRepositories.has(r!.repository))
 				.filter(r => !(workspace.workspaceFolders || []).some(f => isDescendant(f.uri.fsPath, r!.repository.root))) as OpenRepository[];
 

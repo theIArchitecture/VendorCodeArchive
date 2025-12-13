@@ -306,6 +306,13 @@ export const activate: ActivationFunction<void> = (ctx) => {
 
 				// Insert styles into markdown preview shadow dom so that they are applied.
 				// First add default webview style
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const defaultStyles = document.getElementById('_defaultStyles') as HTMLStyleElement;
 				previewRoot.appendChild(defaultStyles.cloneNode(true));
 
@@ -357,6 +364,13 @@ function addNamedHeaderRendering(md: InstanceType<typeof MarkdownIt>): void {
 
 	const originalHeaderOpen = md.renderer.rules.heading_open;
 	md.renderer.rules.heading_open = (tokens: MarkdownItToken[], idx: number, options, env, self) => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const title = tokens[idx + 1].children!.reduce<string>((acc, t) => acc + t.content, '');
 		let slug = slugify(title);
 
@@ -380,6 +394,13 @@ function addNamedHeaderRendering(md: InstanceType<typeof MarkdownIt>): void {
 	const originalRender = md.render;
 	md.render = function () {
 		slugCounter.clear();
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return originalRender.apply(this, arguments as any);
 	};
 }

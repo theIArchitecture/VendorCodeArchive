@@ -273,6 +273,16 @@ function getAttributeQuote(editor: TextEditor, attr: Attribute): string {
  */
 function findUrlToken(editor: TextEditor, node: Property, pos: Position): CssToken | undefined {
 	const offset = editor.document.offsetAt(pos);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 276: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 277: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	for (let i = 0, il = (node as any).parsedValue.length, url; i < il; i++) {
 		iterateCSSToken((node as any).parsedValue[i], (token: CssToken) => {
 			if (token.type === 'url' && token.start <= offset && token.end >= offset) {
