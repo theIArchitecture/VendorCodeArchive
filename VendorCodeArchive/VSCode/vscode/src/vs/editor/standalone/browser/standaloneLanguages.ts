@@ -94,6 +94,16 @@ export function onLanguageEncountered(languageId: string, callback: () => void):
 export function setLanguageConfiguration(languageId: string, configuration: LanguageConfiguration): IDisposable {
 	const languageService = StandaloneServices.get(ILanguageService);
 	if (!languageService.isRegisteredLanguageId(languageId)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 97: Error message without production error code - breaks React bundle size optimization
+//   2. Line 97: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error(`Cannot set configuration for unknown language ${languageId}`);
 	}
 	const languageConfigurationService = StandaloneServices.get(ILanguageConfigurationService);
@@ -419,6 +429,16 @@ export function registerTokensProviderFactory(languageId: string, factory: Token
 export function setTokensProvider(languageId: string, provider: TokensProvider | EncodedTokensProvider | Thenable<TokensProvider | EncodedTokensProvider>): IDisposable {
 	const languageService = StandaloneServices.get(ILanguageService);
 	if (!languageService.isRegisteredLanguageId(languageId)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 422: Error message without production error code - breaks React bundle size optimization
+//   2. Line 422: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error(`Cannot set tokens provider for unknown language ${languageId}`);
 	}
 	if (isThenable<TokensProvider | EncodedTokensProvider>(provider)) {
