@@ -538,6 +538,13 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 
 		const cellsSet = new Set<number>();
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		return this.viewModel.getSelections().map(range => this.viewModel!.viewCells.slice(range.start, range.end)).reduce((a, b) => {
 			b.forEach(cell => {
 				if (!cellsSet.has(cell.handle)) {
@@ -1401,6 +1408,18 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 
 		this._webviewResolvePromise = (async () => {
 			if (!this._webview) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1404: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1404: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1409: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1409: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('Notebook output webview object is not created successfully.');
 			}
 
@@ -1508,6 +1527,13 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 
 		this._localStore.add(this._list.onWillScroll(e => {
 			if (this._webview?.isResolved()) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				this._webviewTransparentCover!.style.transform = `translateY(${e.scrollTop})`;
 			}
 		}));
@@ -1669,6 +1695,13 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 		this.logService.debug('NotebookEditorWidget', 'warmup - webview resolved');
 
 		// make sure that the webview is not visible otherwise users will see pre-rendered markdown cells in wrong position as the list view doesn't have a correct `top` offset yet
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this._webview!.element.style.visibility = 'hidden';
 		// warm up can take around 200ms to load markdown libraries, etc.
 		await this._warmupViewportMarkdownCells(viewModel, viewState);
@@ -1690,6 +1723,13 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 		// after setting scroll top, the list view will update `top` of the scrollable element, e.g. `top: -584px`
 		this._list.scrollTop = viewState?.scrollPosition?.top ?? 0;
 		this._debug('finish initial viewport warmup and view state restore.');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this._webview!.element.style.visibility = 'visible';
 		this.logService.debug('NotebookEditorWidget', 'warmup - list view model attached, set to visible');
 		this._onDidAttachViewModel.fire();
@@ -1723,6 +1763,16 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 					break;
 				}
 			}
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 1727: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1734: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 			await this._webview!.initializeMarkup(requests.map(([model, offset]) => this.createMarkupCellInitialization(model, offset)));
 		} else {
@@ -1832,6 +1882,16 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 		if (this._list) {
 			state.scrollPosition = { left: this._list.scrollLeft, top: this._list.scrollTop };
 			const cellHeights: { [key: number]: number } = {};
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 1835: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1836: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			for (let i = 0; i < this.viewModel!.length; i++) {
 				const elm = this.viewModel!.cellAt(i) as CellViewModel;
 				cellHeights[i] = elm.layoutInfo.totalHeight;
@@ -2576,6 +2636,13 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 		const requests = [];
 
 		for (let i = 0; i < cells.length; i++) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			if (cells[i].cellKind === CellKind.Markup && !this._webview!.markupPreviewMapping.has(cells[i].id)) {
 				requests.push(this.createMarkupPreview(cells[i]));
 			}
@@ -2604,6 +2671,13 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 
 		for (const range of selectedCellRanges) {
 			for (let i = range.start; i < range.end; i++) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				if (cells[i].cellKind === CellKind.Markup && !this._webview!.markupPreviewMapping.has(cells[i].id)) {
 					requests.push(this.createMarkupPreview(cells[i]));
 				}
@@ -2678,6 +2752,13 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 
 			// attach webview matches to model find matches
 			webviewMatches.forEach(match => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const cell = this._notebookViewModel!.viewCells.find(cell => cell.id === match.cellId);
 
 				if (!cell) {
@@ -2707,6 +2788,16 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 				} else {
 
 					matchMap[match.cellId] = new CellFindMatchModel(
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 2710: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2711: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						this._notebookViewModel!.viewCells.find(cell => cell.id === match.cellId)!,
 						this._notebookViewModel!.viewCells.findIndex(cell => cell.id === match.cellId)!,
 						[],
@@ -2752,6 +2843,16 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 
 	getLayoutInfo(): NotebookLayoutInfo {
 		if (!this._list) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 2755: Error message without production error code - breaks React bundle size optimization
+//   2. Line 2755: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Editor is not initalized successfully');
 		}
 
@@ -2815,6 +2916,16 @@ export class NotebookEditorWidget extends Disposable implements INotebookEditorD
 	}
 
 	private cellIsHidden(cell: ICellViewModel): boolean {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 2818: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 2819: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const modelIndex = this.viewModel!.getCellIndex(cell);
 		const foldedRanges = this.viewModel!.getHiddenRanges();
 		return foldedRanges.some(range => modelIndex >= range.start && modelIndex <= range.end);
