@@ -21,6 +21,20 @@ suite('vscode API - env', () => {
 	});
 
 	test('env is readonly', function () {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 24: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 25: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 26: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 27: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 28: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 29: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.throws(() => (env as any).language = '234');
 		assert.throws(() => (env as any).appRoot = '234');
 		assert.throws(() => (env as any).appName = '234');
@@ -37,6 +51,16 @@ suite('vscode API - env', () => {
 			// not running in remote, so we expect both extensions
 			assert.ok(knownWorkspaceExtension);
 			assert.ok(knownUiAndWorkspaceExtension);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 40: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 49: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(ExtensionKind.UI, knownUiAndWorkspaceExtension!.extensionKind);
 		} else if (typeof remoteName === 'string') {
 			// running in remote, so we only expect workspace extensions

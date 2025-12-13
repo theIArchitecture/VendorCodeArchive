@@ -61,6 +61,16 @@ export class DataTree<TInput, T, TFilterData = void> extends AbstractTree<T | nu
 		const selection: T[] = [];
 
 		const isCollapsed = (element: T) => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 64: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 69: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const id = this.identityProvider!.getId(element).toString();
 			return !viewState.expanded[id];
 		};
@@ -95,6 +105,13 @@ export class DataTree<TInput, T, TFilterData = void> extends AbstractTree<T | nu
 
 		if (this.identityProvider) {
 			isCollapsed = element => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const id = this.identityProvider!.getId(element).toString();
 				const node = this.nodesByIdentity.get(id);
 
@@ -134,6 +151,16 @@ export class DataTree<TInput, T, TFilterData = void> extends AbstractTree<T | nu
 
 			const outerOnDidCreateNode = onDidCreateNode;
 			onDidCreateNode = (node: ITreeNode<T, TFilterData>) => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 137: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 146: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const id = this.identityProvider!.getId(node.element).toString();
 
 				insertedElements.add(id);
