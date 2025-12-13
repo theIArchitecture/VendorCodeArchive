@@ -135,6 +135,13 @@ export class ChatMarkdownDecorationsRenderer {
 					}
 
 					if (args) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						a.parentElement!.replaceChild(
 							this.renderAgentWidget(args, store),
 							a);
@@ -148,6 +155,16 @@ export class ChatMarkdownDecorationsRenderer {
 					}
 
 					if (args) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 151: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 161: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						a.parentElement!.replaceChild(
 							this.renderSlashCommandWidget(a.textContent!, args, store),
 							a);
@@ -190,6 +207,13 @@ export class ChatMarkdownDecorationsRenderer {
 					return;
 				}
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				this.chatService.sendRequest(widget.viewModel!.sessionId, agent.metadata.sampleRequest ?? '',
 					{
 						location: widget.location,
@@ -227,6 +251,13 @@ export class ChatMarkdownDecorationsRenderer {
 			}
 
 			const command = agent.slashCommands.find(c => c.name === args.command);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this.chatService.sendRequest(widget.viewModel!.sessionId, command?.sampleRequest ?? '', {
 				location: widget.location,
 				agentId: agent.id,

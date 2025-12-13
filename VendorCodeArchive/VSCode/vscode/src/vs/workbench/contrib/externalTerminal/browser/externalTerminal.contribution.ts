@@ -7,6 +7,13 @@ import * as nls from '../../../../nls.js';
 import { IConfigurationService } from '../../../../platform/configuration/common/configuration.js';
 import { URI } from '../../../../base/common/uri.js';
 import { MenuId, MenuRegistry, IMenuItem } from '../../../../platform/actions/common/actions.js';
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 import { ITerminalGroupService, ITerminalService as IIntegratedTerminalService } from '../../terminal/browser/terminal.js';
 import { ResourceContextKey } from '../../../common/contextkeys.js';
 import { IFileService } from '../../../../platform/files/common/files.js';
@@ -57,6 +64,16 @@ function registerOpenTerminalCommand(id: string, explorerKind: 'integrated' | 'e
 					// TODO: Use uri for cwd in createterminal
 					const opened: { [path: string]: boolean } = {};
 					const cwds = targets.map(({ stat }) => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 60: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 61: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						const resource = stat!.resource;
 						if (stat!.isDirectory) {
 							return resource;
@@ -81,6 +98,17 @@ function registerOpenTerminalCommand(id: string, explorerKind: 'integrated' | 'e
 						}
 					}
 				} else if (externalTerminalService) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 84: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 84: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 84: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					distinct(targets.map(({ stat }) => stat!.isDirectory ? stat!.resource.fsPath : dirname(stat!.resource.fsPath))).forEach(cwd => {
 						externalTerminalService.openTerminal(config.terminal.external, cwd);
 					});
