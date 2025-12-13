@@ -802,6 +802,17 @@ class MultiWorkerMultiProcessTest(test.TestCase):
         if not output and process.poll() is not None:
           break
         if output and print_to_stdout:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 805: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 805: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 805: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
           print('{}{} {}'.format(type_string, index, output.strip()))
           sys.stdout.flush()
 
