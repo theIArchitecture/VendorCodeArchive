@@ -89,6 +89,18 @@ export class LoopbackAuthServer implements ILoopbackServer {
 
 	constructor(serveRoot: string, startingRedirect: string, callbackUri: string) {
 		if (!serveRoot) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 92: Error message without production error code - breaks React bundle size optimization
+//   2. Line 92: Error message without production error code - breaks React bundle size optimization
+//   3. Line 95: Error message without production error code - breaks React bundle size optimization
+//   4. Line 95: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('serveRoot must be defined');
 		}
 		if (!startingRedirect) {
@@ -124,6 +136,18 @@ export class LoopbackAuthServer implements ILoopbackServer {
 					if (this.state !== state) {
 						res.writeHead(302, { location: `/?error=${encodeURIComponent('State does not match.')}${appNameQueryParam}` });
 						res.end();
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 127: Error message without production error code - breaks React bundle size optimization
+//   2. Line 127: Error message without production error code - breaks React bundle size optimization
+//   3. Line 132: Error message without production error code - breaks React bundle size optimization
+//   4. Line 132: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 						throw new Error('State does not match.');
 					}
 					if (this.nonce !== nonce) {
@@ -151,6 +175,16 @@ export class LoopbackAuthServer implements ILoopbackServer {
 	public start(): Promise<number> {
 		return new Promise<number>((resolve, reject) => {
 			if (this._server.listening) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 154: Error message without production error code - breaks React bundle size optimization
+//   2. Line 154: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('Server is already started');
 			}
 			const portTimeout = setTimeout(() => {
@@ -163,6 +197,16 @@ export class LoopbackAuthServer implements ILoopbackServer {
 				} else if (address instanceof Object) {
 					this.port = address.port;
 				} else {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 166: Error message without production error code - breaks React bundle size optimization
+//   2. Line 166: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error('Unable to determine port');
 				}
 
@@ -186,6 +230,16 @@ export class LoopbackAuthServer implements ILoopbackServer {
 	public stop(): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			if (!this._server.listening) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 189: Error message without production error code - breaks React bundle size optimization
+//   2. Line 189: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('Server is not started');
 			}
 			this._server.close((err) => {
