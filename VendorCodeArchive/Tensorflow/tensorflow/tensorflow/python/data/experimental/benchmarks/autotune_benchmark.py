@@ -50,6 +50,17 @@ class AutotuneBenchmark(benchmark_base.DatasetBenchmarkBase):
   def benchmark_batch(self):
     a = self._benchmark_batch(autotune=False, benchmark_id=1)
     b = self._benchmark_batch(autotune=True, benchmark_id=2)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 53: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 53: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 53: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("autotune parallelism vs no autotuning speedup: {}".format(a / b))
 
   def _benchmark_batch(self, autotune, benchmark_id):
@@ -70,6 +81,17 @@ class AutotuneBenchmark(benchmark_base.DatasetBenchmarkBase):
   def benchmark_map(self):
     a = self._benchmark_map(autotune=False, benchmark_id=1)
     b = self._benchmark_map(autotune=True, benchmark_id=2)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 73: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 73: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 73: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("autotune parallelism vs no autotuning speedup: {}".format(a / b))
 
   def _benchmark_map(self, autotune, benchmark_id):
@@ -88,6 +110,17 @@ class AutotuneBenchmark(benchmark_base.DatasetBenchmarkBase):
   def benchmark_map_and_batch(self):
     a = self._benchmark_map_and_batch(autotune=False, benchmark_id=1)
     b = self._benchmark_map_and_batch(autotune=True, benchmark_id=2)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 91: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 91: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 91: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("autotune parallelism vs no autotuning speedup: {}".format(a / b))
 
   def _benchmark_map_and_batch(self, autotune, benchmark_id):
@@ -108,6 +141,17 @@ class AutotuneBenchmark(benchmark_base.DatasetBenchmarkBase):
   def benchmark_interleave(self):
     a = self._benchmark_interleave(autotune=False, benchmark_id=1)
     b = self._benchmark_interleave(autotune=True, benchmark_id=2)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 111: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 111: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 111: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("autotune parallelism vs no autotuning speedup: {}".format(a / b))
 
   def _benchmark_interleave(self, autotune, benchmark_id):
@@ -129,6 +173,17 @@ class AutotuneBenchmark(benchmark_base.DatasetBenchmarkBase):
   def benchmark_map_and_interleave(self):
     a = self._benchmark_map_and_interleave(autotune=False, benchmark_id=1)
     b = self._benchmark_map_and_interleave(autotune=True, benchmark_id=2)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 132: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 132: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 132: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("autotune parallelism vs no autotuning speedup: {}".format(a / b))
 
   def _benchmark_map_and_interleave(self, autotune, benchmark_id):
@@ -173,6 +228,17 @@ class AutotuneBenchmark(benchmark_base.DatasetBenchmarkBase):
   def benchmark_map_batch_and_interleave(self):
     a = self._benchmark_map_batch_and_interleave(autotune=False, benchmark_id=1)
     b = self._benchmark_map_batch_and_interleave(autotune=True, benchmark_id=2)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 176: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 176: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 176: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("autotune parallelism vs no autotuning speedup: {}".format(a / b))
 
   def _benchmark_map_batch_and_interleave(self, autotune, benchmark_id):

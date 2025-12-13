@@ -219,6 +219,13 @@ def assert_sequential_execution(order, operations):
   operations = sorted(operations, key=lambda op: order[op])
   for i in range(len(operations) - 1):
     if not _exists_dependency(operations[i], operations[i + 1]):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print(operations[i].graph.as_graph_def())
       raise AssertionError(
           "No dependency between {} and {}. Graph is dumped to stdout.".format(
