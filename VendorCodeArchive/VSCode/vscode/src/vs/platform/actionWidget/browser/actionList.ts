@@ -161,6 +161,21 @@ class ActionItemRenderer<T> implements IListRenderer<IActionListItem<T>, IAction
 
 		// if there is a keybinding, prioritize over description for now
 		if (element.keybinding) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (7):
+//   1. Line 164: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 165: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 166: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 168: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 169: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 171: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 172: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			data.description!.textContent = element.keybinding.getLabel();
 			data.description!.style.display = 'inline';
 			data.description!.style.letterSpacing = '0.5px';

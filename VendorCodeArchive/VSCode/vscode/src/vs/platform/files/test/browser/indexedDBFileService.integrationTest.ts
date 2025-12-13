@@ -102,6 +102,16 @@ flakySuite('IndexedDBFileSystemProvider', function () {
 		assert.ok(event);
 		assert.strictEqual(event.resource.path, newFolderResource.path);
 		assert.strictEqual(event.operation, FileOperation.CREATE);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 105: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 106: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(event.target!.resource.path, newFolderResource.path);
 		assert.strictEqual(event.target!.isDirectory, true);
 	});
@@ -121,6 +131,20 @@ flakySuite('IndexedDBFileSystemProvider', function () {
 		assert.strictEqual((await userdataFileProvider.stat(newFolderResource)).type, FileType.Directory);
 
 		assert.ok(event!);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 124: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 125: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 126: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 126: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 127: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 127: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(event!.resource.path, newFolderResource.path);
 		assert.strictEqual(event!.operation, FileOperation.CREATE);
 		assert.strictEqual(event!.target!.resource.path, newFolderResource.path);
@@ -220,6 +244,18 @@ flakySuite('IndexedDBFileSystemProvider', function () {
 		assert.strictEqual(new TextDecoder().decode(await userdataFileProvider.readFile(fileStat.resource)), contents);
 
 		assert.ok(event!);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 223: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 224: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 225: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 225: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(event!.resource.path, resource.path);
 		assert.strictEqual(event!.operation, FileOperation.CREATE);
 		assert.strictEqual(event!.target!.resource.path, resource.path);
@@ -476,6 +512,16 @@ flakySuite('IndexedDBFileSystemProvider', function () {
 		assert.strictEqual(await service.exists(anotherResource), true);
 
 		assert.ok(event!);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 479: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 480: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(event!.resource.path, resource.path);
 		assert.strictEqual(event!.operation, FileOperation.DELETE);
 
@@ -524,6 +570,16 @@ flakySuite('IndexedDBFileSystemProvider', function () {
 		assert.strictEqual(await service.exists(subResource1), false);
 		assert.strictEqual(await service.exists(subResource2), false);
 		assert.ok(event!);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 527: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 528: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(event!.resource.fsPath, resource.fsPath);
 		assert.strictEqual(event!.operation, FileOperation.DELETE);
 	});

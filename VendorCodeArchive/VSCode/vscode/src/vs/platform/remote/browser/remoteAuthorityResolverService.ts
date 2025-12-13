@@ -54,6 +54,16 @@ export class RemoteAuthorityResolverService extends Disposable implements IRemot
 			result = new DeferredPromise<ResolverResult>();
 			this._resolveAuthorityRequests.set(authority, result);
 			if (this._isWorkbenchOptionsBasedResolution) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 57: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 57: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				this._doResolveAuthority(authority).then(v => result!.complete(v), (err) => result!.error(err));
 			}
 		}
