@@ -48,6 +48,17 @@ suite('TasksSync', () => {
 
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 51: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 52: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 53: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.deepStrictEqual(lastSyncUserData!.ref, remoteUserData.ref);
 			assert.deepStrictEqual(lastSyncUserData!.syncData, remoteUserData.syncData);
 			assert.strictEqual(lastSyncUserData!.syncData, null);
@@ -88,6 +99,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 91: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 91: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 92: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(tasksResource)).value.toString(), content);
@@ -113,6 +135,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 116: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 116: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 117: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 		});
@@ -143,6 +176,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 146: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 146: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 147: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(tasksResource)).value.toString(), content);
@@ -175,6 +219,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 178: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 178: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 179: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 		});
@@ -213,6 +268,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 216: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 216: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 217: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(tasksResource)).value.toString(), content);
@@ -253,6 +319,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 256: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 256: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 257: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(tasksResource)).value.toString(), content);
@@ -308,6 +385,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 311: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 311: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 312: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), previewContent);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), previewContent);
 			assert.strictEqual((await fileService.readFile(tasksResource)).value.toString(), previewContent);
@@ -363,6 +451,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 366: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 366: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 367: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(tasksResource)).value.toString(), content);
@@ -412,6 +511,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 415: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 415: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 416: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(tasksResource)).value.toString(), content);
@@ -461,6 +571,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 464: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 464: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 465: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), content);
 			assert.strictEqual((await fileService.readFile(tasksResource)).value.toString(), content);
@@ -491,6 +612,17 @@ suite('TasksSync', () => {
 			assert.deepStrictEqual(testObject.status, SyncStatus.Idle);
 			const lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 494: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 494: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 495: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), null);
 			assert.strictEqual(getTasksContentFromSyncContent(remoteUserData.syncData!.content, client.instantiationService.get(ILogService)), null);
 			assert.strictEqual(await fileService.exists(tasksResource), false);
@@ -524,6 +656,18 @@ suite('TasksSync', () => {
 
 			lastSyncUserData = await testObject.getLastSyncUserData();
 			const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 527: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 528: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 529: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 529: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.deepStrictEqual(lastSyncUserData!.ref, remoteUserData.ref);
 			assert.deepStrictEqual(lastSyncUserData!.syncData, remoteUserData.syncData);
 			assert.strictEqual(getTasksContentFromSyncContent(lastSyncUserData!.syncData!.content, client.instantiationService.get(ILogService)), content);

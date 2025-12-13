@@ -172,6 +172,16 @@ suite('ExtHostLanguageFeatures', function () {
 	test('DocumentSymbols, evil provider', async () => {
 		disposables.add(extHost.registerDocumentSymbolProvider(defaultExtension, defaultSelector, new class implements vscode.DocumentSymbolProvider {
 			provideDocumentSymbols(): any {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 175: Error message without production error code - breaks React bundle size optimization
+//   2. Line 175: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('evil document symbol provider');
 			}
 		}));
@@ -271,6 +281,18 @@ suite('ExtHostLanguageFeatures', function () {
 			assert.strictEqual(value.lenses.length, 1);
 			const [data] = value.lenses;
 			const symbol = await Promise.resolve(data.provider.resolveCodeLens!(model, data.symbol, CancellationToken.None));
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (4):
+//   1. Line 274: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 274: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 275: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 275: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(symbol!.command!.id, 'id');
 			assert.strictEqual(symbol!.command!.title, 'Title');
 			value.dispose();
@@ -576,6 +598,13 @@ suite('ExtHostLanguageFeatures', function () {
 
 		await rpcProtocol.sync();
 		const value = await getOccurrencesAtPosition(languageFeaturesService.documentHighlightProvider, model, new EditorPosition(1, 2), CancellationToken.None);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(value!.size, 1);
 	});
 
@@ -656,6 +685,16 @@ suite('ExtHostLanguageFeatures', function () {
 			assert.strictEqual(actions.length, 2);
 			const [first, second] = actions;
 			assert.strictEqual(first.action.title, 'Testing1');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 659: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 661: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(first.action.command!.id, 'test1');
 			assert.strictEqual(second.action.title, 'Testing2');
 			assert.strictEqual(second.action.command!.id, 'test2');
@@ -683,6 +722,16 @@ suite('ExtHostLanguageFeatures', function () {
 			assert.strictEqual(actions.length, 1);
 			const [first] = actions;
 			assert.strictEqual(first.action.title, 'Testing1');
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 686: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 687: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.strictEqual(first.action.command!.title, 'Testing1Command');
 			assert.strictEqual(first.action.command!.id, 'test1');
 			assert.strictEqual(first.action.kind, 'test.scope');
