@@ -137,6 +137,13 @@ void arrive_on_launch(
 {
   *success_hptr = false;
   printf("arrive_on_kernel<%2zu><<<%u, %2u, %zu>>> ", sizeof(T), 1, block_size, buffer_size);
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in NVIDIA_CUDA_APPLICATION
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for Production_GPU
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
   arrive_on_kernel<T><<<1, block_size, buffer_size>>>(global_buffer, buffer_size, success_dptr);
   cudaError_t result;
   CUDA_CALL(result, cudaDeviceSynchronize());
@@ -173,6 +180,13 @@ void arrive_on()
   cudaFuncAttributes attrib;
   CUDA_CALL(result, cudaFuncGetAttributes(&attrib, arrive_on_kernel<int4>));
   buffer_size = max_shmem - attrib.sharedSizeBytes;
+// VIOLATION: NVIDIA-CUDA-MEMORY-002 - CUDA memory allocation without corresponding free - potential memory leak
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: GPU memory leaks exhaust device memory causing NVIDIA_CUDA_APPLICATION crashes and require expensive hardware resets
+// QUICK_FIX: Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for Zero_Memory_Leaks, GPU_Efficiency, Production_Stability
+// BUSINESS_IMPACT: CUDA memory leaks waste millions in GPU compute time and cause production outages in NVIDIA_CUDA_APPLICATION
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management
+
   CUDA_CALL(result, cudaMalloc(&global_buffer, buffer_size));
   host_buffer = new char[buffer_size];
 
