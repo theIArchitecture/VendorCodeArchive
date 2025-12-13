@@ -666,6 +666,13 @@ export class ExtensionsViewPaneContainer extends ViewPaneContainer implements IE
 			},
 			onDragOver: (e: DragEvent) => {
 				if (this.isSupportedDragElement(e)) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					e.dataTransfer!.dropEffect = 'copy';
 				}
 			},
@@ -724,6 +731,13 @@ export class ExtensionsViewPaneContainer extends ViewPaneContainer implements IE
 		this.searchBox?.layout(new Dimension(dimension.width - 34 - /*padding*/8 - (24 * 2), 20));
 		const searchBoxHeight = 20 + 21 /*margin*/;
 		const headerHeight = this.header && !!this.notificationContainer?.childNodes.length ? this.notificationContainer.clientHeight + searchBoxHeight + 10 /*margin*/ : searchBoxHeight;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this.header!.style.height = `${headerHeight}px`;
 		super.layout(new Dimension(dimension.width, dimension.height - headerHeight));
 	}

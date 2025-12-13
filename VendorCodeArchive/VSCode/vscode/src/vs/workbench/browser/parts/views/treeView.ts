@@ -755,6 +755,13 @@ abstract class AbstractTreeView extends Disposable implements ITreeView {
 		this.treeDisposables.add(this.tree);
 		treeMenus.setContextKeyService(this.tree.contextKeyService);
 		aligner.tree = this.tree;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const actionRunner = this.treeDisposables.add(new MultipleSelectionActionRunner(this.notificationService, () => this.tree!.getSelection()));
 		renderer.actionRunner = actionRunner;
 
@@ -796,6 +803,13 @@ abstract class AbstractTreeView extends Disposable implements ITreeView {
 			if (e.browserEvent.target && (e.browserEvent.target as HTMLElement).classList.contains(TreeItemCheckbox.checkboxClass)) {
 				return;
 			}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			const selection = this.tree!.getSelection();
 			const command = await this.resolveCommand(selection.length === 1 ? selection[0] : undefined);
 
@@ -845,6 +859,13 @@ abstract class AbstractTreeView extends Disposable implements ITreeView {
 		event.preventDefault();
 		event.stopPropagation();
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this.tree!.setFocus([node]);
 		let selected = this.canSelectMany ? this.getSelection() : [];
 		if (!selected.find(item => item.handle === node.handle)) {
@@ -870,6 +891,13 @@ abstract class AbstractTreeView extends Disposable implements ITreeView {
 
 			onHide: (wasCancelled?: boolean) => {
 				if (wasCancelled) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					this.tree!.domFocus();
 				}
 			},
@@ -926,6 +954,13 @@ abstract class AbstractTreeView extends Disposable implements ITreeView {
 				result.push(buttonContainer);
 			} else {
 				hasFoundButton = false;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				const rendered = this.markdownRenderer!.render(new MarkdownString(line, { isTrusted: message.isTrusted, supportThemeIcons: message.supportThemeIcons, supportHtml: message.supportHtml }));
 				result.push(rendered.element);
 				disposables.add(rendered);
@@ -1459,6 +1494,13 @@ class TreeRenderer extends Disposable implements ITreeRenderer<ITreeItem, FuzzyS
 	}
 
 	private setAlignment(container: HTMLElement, treeItem: ITreeItem) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		container.parentElement!.classList.toggle('align-icon-with-twisty', !this._hasCheckbox && this.aligner.alignIconWithTwisty(treeItem));
 	}
 

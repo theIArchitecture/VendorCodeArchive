@@ -1374,6 +1374,13 @@ export class ChangeLanguageAction extends Action2 {
 
 				// If the association is already being made in the workspace, make sure to target workspace settings
 				let target = ConfigurationTarget.USER;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				if (fileAssociationsConfig.workspaceValue && !!(fileAssociationsConfig.workspaceValue as any)[associationKey]) {
 					target = ConfigurationTarget.WORKSPACE;
 				}

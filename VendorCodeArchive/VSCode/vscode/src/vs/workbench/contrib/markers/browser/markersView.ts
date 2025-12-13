@@ -255,6 +255,13 @@ export class MarkersView extends FilterViewPane implements IMarkersView {
 		}
 
 		if (this.hasNoProblems()) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this.messageBoxContainer!.focus();
 		} else {
 			this.widget.domFocus();
@@ -744,6 +751,13 @@ export class MarkersView extends FilterViewPane implements IMarkersView {
 
 	private setAriaLabel(label: string): void {
 		this.widget.setAriaLabel(label);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		this.ariaLabelElement!.setAttribute('aria-label', label);
 	}
 
