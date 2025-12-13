@@ -46,6 +46,17 @@ suite('Workbench - TerminalWordLinkDetector', () => {
 	suite('should link words as defined by wordSeparators', () => {
 		test('" ()[]"', async () => {
 			await configurationService.setUserConfiguration('terminal', { integrated: { wordSeparators: ' ()[]' } });
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 49: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 58: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 67: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			configurationService.onDidChangeConfigurationEmitter.fire({ affectsConfiguration: () => true } as any);
 			await assertLink('foo', [{ range: [[1, 1], [3, 1]], text: 'foo' }]);
 			await assertLink(' foo ', [{ range: [[2, 1], [4, 1]], text: 'foo' }]);
@@ -83,6 +94,21 @@ suite('Workbench - TerminalWordLinkDetector', () => {
 	// with a wide character, which the terminalLinkHelper currently doesn't account for
 	test.skip('should support wide characters', async () => {
 		await configurationService.setUserConfiguration('terminal', { integrated: { wordSeparators: ' []' } });
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (7):
+//   1. Line 86: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 94: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 103: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 112: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 119: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 128: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 133: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		configurationService.onDidChangeConfigurationEmitter.fire({ affectsConfiguration: () => true } as any);
 		await assertLink('我是学生.txt ', [{ range: [[1, 1], [12, 1]], text: '我是学生.txt' }]);
 		await assertLink(' 我是学生.txt ', [{ range: [[2, 1], [13, 1]], text: '我是学生.txt' }]);
