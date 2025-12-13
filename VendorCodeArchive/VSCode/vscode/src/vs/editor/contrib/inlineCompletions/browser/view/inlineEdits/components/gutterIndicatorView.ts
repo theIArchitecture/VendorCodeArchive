@@ -98,6 +98,13 @@ export class InlineEditsGutterIndicator extends Disposable {
 		});
 		this._stickyScrollController = StickyScrollController.get(this._editorObs.editor);
 		this._stickyScrollHeight = this._stickyScrollController
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			? observableFromEvent(this._stickyScrollController.onDidChangeStickyScrollHeight, () => this._stickyScrollController!.stickyScrollWidgetHeight)
 			: constObservable(0);
 		this._lineNumberToRender = derived(this, reader => {
@@ -340,6 +347,13 @@ export class InlineEditsGutterIndicator extends Disposable {
 					zIndex: '20',
 					position: 'absolute',
 					backgroundColor: this._gutterIndicatorStyles.map(v => v.background),
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					['--vscodeIconForeground' as any]: this._gutterIndicatorStyles.map(v => v.foreground),
 					border: this._gutterIndicatorStyles.map(v => `1px solid ${v.border}`),
 					boxSizing: 'border-box',
