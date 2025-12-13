@@ -47,6 +47,21 @@ class IntelPlatform(object):
     # True only if the gcc version in the tuple is >=
     # min_gcc_major_version_, min_gcc_minor_version_
     if gcc_major_version < self.min_gcc_major_version_:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (7):
+#   1. Line 50: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 50: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 57: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 57: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 62: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 62: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 62: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("Your MAJOR version of GCC is too old: {}; "
             "it must be at least {}.{}".format(gcc_major_version,
                                                self.min_gcc_major_version_,
@@ -246,6 +261,17 @@ class BuildEnvSetter(object):
       gcc_path = subprocess.check_output(gcc_path_cmd, shell=True,
                                          stderr=subprocess.STDOUT).\
         strip()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 249: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 249: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 249: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("gcc located here: {}".format(gcc_path))
       if not os.access(gcc_path, os.F_OK | os.X_OK):
         raise ValueError(
@@ -257,6 +283,20 @@ class BuildEnvSetter(object):
       # handle python2 vs 3 (bytes vs str type)
       if isinstance(gcc_output, bytes):
         gcc_output = gcc_output.decode("utf-8")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 260: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 260: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 260: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 265: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 265: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 265: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("gcc version: {}".format(gcc_output))
       gcc_info = gcc_output.split(".")
       gcc_major_version = int(gcc_info[0])
@@ -329,6 +369,16 @@ class BuildEnvSetter(object):
         self._debug("The file {} exists and will be deleted.".format(
             self.args.bazelrc_file))
       elif os.path.isdir(self.args.bazelrc_file):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 332: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 332: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print("You can't write bazel config to \"{}\" "
               "because it is a directory".format(self.args.bazelrc_file))
         return False
@@ -366,6 +416,17 @@ class BuildEnvSetter(object):
       f.write(self.bazel_flags_ + "\n")
 
   def _debug(self, msg):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 369: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 378: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 378: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(msg)
 
   def go(self):

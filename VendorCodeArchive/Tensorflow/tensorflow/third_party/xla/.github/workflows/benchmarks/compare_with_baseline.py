@@ -26,6 +26,18 @@ def load_results_data(results_json_file):
     with open(results_json_file, "r") as f:
       results_data = json.load(f)
   except json.JSONDecodeError as e:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 29: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 29: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 34: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 34: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(
         f"::error file={results_json_file}::Failed to parse results JSON: {e}"
     )
@@ -42,6 +54,24 @@ def load_baseline_data(baseline_yaml_file):
     with open(baseline_yaml_file, "r") as f:
       baseline_data_full = yaml.safe_load(f)
   except yaml.YAMLError as e:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (10):
+#   1. Line 45: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 45: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 50: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 50: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 60: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 60: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 67: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 67: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 75: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 75: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print(
         f"::error file={baseline_yaml_file}::Failed to parse baseline YAML: {e}"
     )
@@ -115,6 +145,16 @@ def compare_metrics(
     # Depending on your policy, if metrics are always expected,
     # this could be sys.exit(1)
     # For now, it will skip comparisons and pass if no metrics are found.
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 118: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 118: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("\n".join(summary_messages))
     sys.exit(0)  # Exit cleanly if no metrics to compare
 
@@ -251,6 +291,38 @@ def main():
   )
 
   args = parser.parse_args()
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (24):
+#   1. Line 254: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 254: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 256: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 256: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 257: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 257: Print statements detected in TensorFlow code - must use logging module for production code
+#   7. Line 258: Print statements detected in TensorFlow code - must use logging module for production code
+#   8. Line 258: Print statements detected in TensorFlow code - must use logging module for production code
+#   9. Line 261: Print statements detected in TensorFlow code - must use logging module for production code
+#   10. Line 261: Print statements detected in TensorFlow code - must use logging module for production code
+#   11. Line 267: Print statements detected in TensorFlow code - must use logging module for production code
+#   12. Line 267: Print statements detected in TensorFlow code - must use logging module for production code
+#   13. Line 276: Print statements detected in TensorFlow code - must use logging module for production code
+#   14. Line 276: Print statements detected in TensorFlow code - must use logging module for production code
+#   15. Line 277: Print statements detected in TensorFlow code - must use logging module for production code
+#   16. Line 283: Print statements detected in TensorFlow code - must use logging module for production code
+#   17. Line 283: Print statements detected in TensorFlow code - must use logging module for production code
+#   18. Line 284: Print statements detected in TensorFlow code - must use logging module for production code
+#   19. Line 292: Print statements detected in TensorFlow code - must use logging module for production code
+#   20. Line 292: Print statements detected in TensorFlow code - must use logging module for production code
+#   21. Line 296: Print statements detected in TensorFlow code - must use logging module for production code
+#   22. Line 296: Print statements detected in TensorFlow code - must use logging module for production code
+#   23. Line 302: Print statements detected in TensorFlow code - must use logging module for production code
+#   24. Line 302: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   print("--- Benchmark Baseline Comparison ---")
   print(f"Results JSON: {args.results_json_file}")

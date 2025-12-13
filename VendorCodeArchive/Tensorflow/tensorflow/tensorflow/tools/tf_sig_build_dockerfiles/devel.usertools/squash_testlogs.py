@@ -39,6 +39,16 @@ try:
   files = subprocess.check_output(
       ["grep", "-rlE", '(failures|errors)="[1-9]', sys.argv[1]])
 except subprocess.CalledProcessError as e:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 42: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 42: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("No failures found to log!")
   exit(0)
 
@@ -52,6 +62,17 @@ for f in files.strip().splitlines():
   try:
     r = JUnitXml.fromfile(f)
   except Exception as e:  # pylint: disable=broad-except
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (3):
+#   1. Line 55: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 55: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 55: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Ignoring this XML parse failure in {}: ".format(f), str(e))
 
   source_file = re.search(r"/(bazel_pip|tensorflow)/.*",
