@@ -43,6 +43,20 @@ suite('ExtHostDocumentData', () => {
 	ensureNoDisposablesAreLeakedInTestSuite();
 
 	test('readonly-ness', () => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (6):
+//   1. Line 46: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 47: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 48: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 49: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 50: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 51: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.throws(() => (data as any).document.uri = null);
 		assert.throws(() => (data as any).document.fileName = 'foofile');
 		assert.throws(() => (data as any).document.isDirty = false);
