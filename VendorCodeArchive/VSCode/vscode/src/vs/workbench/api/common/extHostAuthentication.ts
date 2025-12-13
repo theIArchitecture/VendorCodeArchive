@@ -136,6 +136,16 @@ export class ExtHostAuthentication implements ExtHostAuthenticationShape {
 				return await providerData.provider.createSession(scopes, options);
 			}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 139: Error message without production error code - breaks React bundle size optimization
+//   2. Line 139: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Unable to find authentication provider with handle: ${providerId}`);
 		});
 	}
@@ -146,6 +156,16 @@ export class ExtHostAuthentication implements ExtHostAuthenticationShape {
 			if (providerData) {
 				return await providerData.provider.removeSession(sessionId);
 			}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 150: Error message without production error code - breaks React bundle size optimization
+//   2. Line 150: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 			throw new Error(`Unable to find authentication provider with handle: ${providerId}`);
 		});
@@ -158,6 +178,16 @@ export class ExtHostAuthentication implements ExtHostAuthenticationShape {
 				options.authorizationServer = URI.revive(options.authorizationServer);
 				return await providerData.provider.getSessions(scopes, options);
 			}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 162: Error message without production error code - breaks React bundle size optimization
+//   2. Line 162: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 			throw new Error(`Unable to find authentication provider with handle: ${providerId}`);
 		});
@@ -205,6 +235,16 @@ export class ExtHostAuthentication implements ExtHostAuthenticationShape {
 				this._logService.info(`Prompting user for client registration details for ${authorizationServer.toString()}`);
 				const clientDetails = await this._proxy.$promptForClientRegistration(authorizationServer.toString());
 				if (!clientDetails) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 208: Error message without production error code - breaks React bundle size optimization
+//   2. Line 208: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error('User did not provide client details');
 				}
 				clientId = clientDetails.clientId;
@@ -448,6 +488,16 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 			}
 		}
 		if (!token) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 451: Error message without production error code - breaks React bundle size optimization
+//   2. Line 451: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Failed to create authentication token');
 		}
 		if (token.scope !== scopes.join(' ')) {
@@ -484,6 +534,18 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 
 	private async _createWithUrlHandler(scopes: string[], progress: vscode.Progress<IProgressStep>, token: vscode.CancellationToken): Promise<IAuthorizationTokenResponse> {
 		if (!this._serverMetadata.authorization_endpoint) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 487: Error message without production error code - breaks React bundle size optimization
+//   2. Line 487: Error message without production error code - breaks React bundle size optimization
+//   3. Line 490: Error message without production error code - breaks React bundle size optimization
+//   4. Line 490: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Authorization Endpoint required');
 		}
 		if (!this._serverMetadata.token_endpoint) {
@@ -501,6 +563,16 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 		try {
 			state = await this._extHostUrls.createAppUri(callbackUri);
 		} catch (error) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 504: Error message without production error code - breaks React bundle size optimization
+//   2. Line 504: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Failed to create external URI: ${error}`);
 		}
 
@@ -549,6 +621,16 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 				throw err;
 			}
 			this._logger.error(`Failed to receive authorization code: ${err}`);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 552: Error message without production error code - breaks React bundle size optimization
+//   2. Line 552: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Failed to receive authorization code: ${err}`);
 		}
 		this._logger.info(`Authorization code received for scopes: ${scopeString}`);
@@ -586,6 +668,18 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 		const codeMatch = /[?&]code=([^&]+)/.exec(result.query || '');
 		if (!codeMatch || codeMatch.length < 2) {
 			// No code parameter found in the query string
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 589: Error message without production error code - breaks React bundle size optimization
+//   2. Line 589: Error message without production error code - breaks React bundle size optimization
+//   3. Line 596: Error message without production error code - breaks React bundle size optimization
+//   4. Line 596: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Authentication failed: No authorization code received');
 		}
 		return { code: codeMatch[1] };
@@ -623,6 +717,18 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 			});
 		} catch (err) {
 			this._logger.error(`Failed to exchange authorization code for token: ${err}`);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 626: Error message without production error code - breaks React bundle size optimization
+//   2. Line 626: Error message without production error code - breaks React bundle size optimization
+//   3. Line 631: Error message without production error code - breaks React bundle size optimization
+//   4. Line 631: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Failed to exchange authorization code for token: ${err}`);
 		}
 
@@ -640,6 +746,18 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 			await this._generateNewClientId();
 			throw new Error(`Client ID was invalid, generated a new one. Please try again.`);
 		}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 643: Error message without production error code - breaks React bundle size optimization
+//   2. Line 643: Error message without production error code - breaks React bundle size optimization
+//   3. Line 648: Error message without production error code - breaks React bundle size optimization
+//   4. Line 648: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error(`Invalid authorization token response: ${JSON.stringify(result)}`);
 	}
 
@@ -678,6 +796,16 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 			await this._generateNewClientId();
 			throw new Error(`Client ID was invalid, generated a new one. Please try again.`);
 		}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 681: Error message without production error code - breaks React bundle size optimization
+//   2. Line 681: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error(`Invalid authorization token response: ${JSON.stringify(result)}`);
 	}
 
@@ -694,6 +822,16 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 			try {
 				const clientDetails = await this._proxy.$promptForClientRegistration(this.authorizationServer.toString());
 				if (!clientDetails) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 697: Error message without production error code - breaks React bundle size optimization
+//   2. Line 697: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error('User did not provide client details');
 				}
 				this._clientId = clientDetails.clientId;
@@ -708,6 +846,16 @@ export class DynamicAuthProvider implements vscode.AuthenticationProvider {
 				this._onDidChangeClientId.fire();
 			} catch (promptErr) {
 				this._logger.error(`Failed to fetch new client ID and user did not provide one: ${err}`);
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 711: Error message without production error code - breaks React bundle size optimization
+//   2. Line 711: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error(`Failed to fetch new client ID and user did not provide one: ${err}`);
 			}
 		}
