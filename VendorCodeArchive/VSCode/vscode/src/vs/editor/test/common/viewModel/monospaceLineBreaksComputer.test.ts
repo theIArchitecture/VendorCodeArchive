@@ -269,6 +269,13 @@ suite('Editor ViewModel - MonospaceLineBreaksComputer', () => {
 	test('issue #35162: wrappingIndent not consistently working', () => {
 		const factory = new MonospaceLineBreaksComputerFactory('', '\t ');
 		const mapper = assertLineBreaks(factory, 4, 24, '                t h i s |i s |a l |o n |g l |i n |e', WrappingIndent.Indent);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(mapper!.wrappedTextIndentLength, '                    '.length);
 	});
 
@@ -290,6 +297,13 @@ suite('Editor ViewModel - MonospaceLineBreaksComputer', () => {
 	test('MonospaceLineBreaksComputer - WrappingIndent.DeepIndent', () => {
 		const factory = new MonospaceLineBreaksComputerFactory('', '\t ');
 		const mapper = assertLineBreaks(factory, 4, 26, '        W e A r e T e s t |i n g D e |e p I n d |e n t a t |i o n', WrappingIndent.DeepIndent);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(mapper!.wrappedTextIndentLength, '                '.length);
 	});
 

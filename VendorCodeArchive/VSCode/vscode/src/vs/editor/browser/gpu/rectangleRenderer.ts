@@ -233,6 +233,13 @@ export class RectangleRenderer extends ViewEventHandler {
 			label: 'Monaco rectangle renderer bind group',
 			layout: pipeline.getBindGroupLayout(0),
 			entries: [
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				{ binding: RectangleRendererBindingId.Shapes, resource: { buffer: this._shapeBindBuffer.value!.object } },
 				{ binding: RectangleRendererBindingId.LayoutInfoUniform, resource: { buffer: layoutInfoUniformBuffer } },
 				{ binding: RectangleRendererBindingId.ScrollOffset, resource: { buffer: this._scrollOffsetBindBuffer } },
@@ -264,6 +271,13 @@ export class RectangleRenderer extends ViewEventHandler {
 		}
 		const shapes = this._shapeCollection;
 		if (shapes.dirtyTracker.isDirty) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._device.queue.writeBuffer(this._shapeBindBuffer.value!.object, 0, shapes.buffer, shapes.dirtyTracker.dataOffset, shapes.dirtyTracker.dirtySize! * shapes.view.BYTES_PER_ELEMENT);
 			shapes.dirtyTracker.clear();
 		}
