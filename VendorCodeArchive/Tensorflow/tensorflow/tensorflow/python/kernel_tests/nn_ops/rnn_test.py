@@ -428,6 +428,16 @@ def graph_creation_static_vs_dynamic_rnn_benchmark(max_time):
 
   delta_static = timeit.timeit(_create_static_rnn, number=5)
   delta_dynamic = timeit.timeit(_create_dynamic_rnn, number=5)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 431: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 431: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   print("%d \t %f \t %f \t %f" %
         (max_time, delta_static, delta_dynamic, delta_dynamic / delta_static))
@@ -480,6 +490,16 @@ def static_vs_dynamic_rnn_benchmark(batch_size, max_time, num_units, use_gpu):
       ops = _static_vs_dynamic_rnn_benchmark_dynamic(inputs_t, sequence_length)
     variables_lib.global_variables_initializer().run()
     delta_dynamic = _timer(sess, ops)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 483: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 483: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   print("%d \t %d \t %d \t %s \t %f \t %f \t %f" %
         (batch_size, max_time, num_units, use_gpu, delta_static, delta_dynamic,
@@ -546,6 +566,16 @@ def half_seq_len_vs_unroll_half_rnn_benchmark(batch_size, max_time, num_units,
           inputs_list_t[:(max_time // 2)], sequence_length / 2)
     variables_lib.global_variables_initializer().run()
     delta_unroll_half = _timer(sess, ops)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 549: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 549: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("%d \t %d \t\t %d \t %s \t %f \t\t %f \t\t %f" %
         (batch_size, max_time, num_units, use_gpu, delta_half_seq_len,
          delta_unroll_half, delta_half_seq_len / delta_unroll_half))
@@ -614,6 +644,16 @@ def concat_state_vs_tuple_state_rnn_benchmark(batch_size, max_time, num_units,
           inputs_list_t, sequence_length, state_is_tuple=True)
     variables_lib.global_variables_initializer().run()
     delta_tuple_state = _timer(sess, ops)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 617: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 617: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
   print("%d \t %d \t %d \t %s \t %f \t\t %f \t\t %f" %
         (batch_size, max_time, num_units, use_gpu, delta_concat_state,
          delta_tuple_state, delta_concat_state / delta_tuple_state))
@@ -672,6 +712,16 @@ def dynamic_rnn_swap_memory_benchmark(batch_size, max_time, num_units):
         inputs_t, sequence_length, swap_memory=True)
     variables_lib.global_variables_initializer().run()
     swap = _timer(sess, ops)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 675: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 675: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
   print("%d \t %d \t %d \t %f \t %f \t %f" %
         (batch_size, max_time, num_units, no_swap, swap, swap / no_swap))
@@ -710,6 +760,20 @@ def rnn_long_sequence_benchmark(batch_size, seqlen, num_units, dynamic,
                                                       sequence_length)
         variables_lib.global_variables_initializer().run()
         elapsed = _timer(sess, ops)
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 713: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 713: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 722: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 722: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 723: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 723: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
 
     print("%d \t %d \t %d \t %s \t %f \t %f" % (batch_size, seqlen, num_units,
                                                 dynamic, elapsed,
@@ -733,6 +797,18 @@ class BenchmarkRNN(test.Benchmark):
           wall_time=d_dt)
 
   def benchmarkStaticUnrollVsDynamicFlowLSTM(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 736: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 736: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 738: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 738: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Calculation: Static Unroll with Dynamic Flow LSTM "
           "vs. Dynamic Unroll LSTM")
     print("batch \t max_t \t units \t gpu \t dt(static) \t dt(dynamic) "
@@ -755,6 +831,18 @@ class BenchmarkRNN(test.Benchmark):
                 wall_time=d_dt)
 
   def benchmarkDynamicLSTMNoMemorySwapVsMemorySwap(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 758: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 758: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 759: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 759: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Calculation: Dynamic LSTM No Memory Swap vs. Memory Swap")
     print("batch \t max_t \t units \t no_swap \t swap \t swap/no_swap")
     for batch_size in (256, 512):
@@ -774,6 +862,18 @@ class BenchmarkRNN(test.Benchmark):
               wall_time=swap)
 
   def benchmarkStaticUnrollHalfSequenceLengthVsHalfUnroll(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 777: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 777: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 779: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 779: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Calculation: Static Unroll with Halved Sequence Length "
           "vs. Half Static Unroll")
     print("batch \t full_t \t units \t gpu \t dt(half_seq_len) "
@@ -798,6 +898,18 @@ class BenchmarkRNN(test.Benchmark):
                 wall_time=d_dt)
 
   def benchmarkStaticUnrollStateConcatVsStateTuple(self):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 801: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 801: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 803: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 803: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Calculation: Static Unroll with Concatenated State "
           "vs. Tuple State")
     print("batch \t time \t units \t gpu \t dt(concat_state) "
@@ -827,6 +939,18 @@ class BenchmarkRNN(test.Benchmark):
 
   def _benchmarkDynamicLSTMMemorySwapLongSeq(self):
     """The memory swapping test for the SOSP submission."""
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 830: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 830: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 831: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 831: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("Calculation: Long LSTM Sequence")
     print("batch \t len \t units \t dynamic \t elapsed_t \t elapsed_t/len")
     batch_size = 512
