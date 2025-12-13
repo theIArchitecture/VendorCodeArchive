@@ -1658,6 +1658,13 @@ class ProfileWorkspacesRenderer extends ProfilePropertyRenderer {
 				profileWorkspacesDescriptionElement.textContent = localize('folders_workspaces_description', "Following folders and workspaces are using this profile");
 				workspacesTableContainer.classList.remove('hide');
 				table.splice(0, table.length, profileElement.root.workspaces
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					.map(workspace => ({ workspace, profileElement: <UserDataProfileElement>profileElement!.root }))
 					.sort((a, b) => this.uriIdentityService.extUri.compare(a.workspace, b.workspace))
 				);
@@ -1737,6 +1744,18 @@ class ExistingProfileResourceTreeRenderer extends AbstractProfileResourceTreeRen
 		templateData.elementDisposables.clear();
 		const { element, root } = profileResourceTreeElement;
 		if (!(root instanceof UserDataProfileElement)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1740: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1740: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1743: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1743: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('ExistingProfileResourceTreeRenderer can only render existing profile element');
 		}
 		if (isString(element) || !isProfileResourceTypeElement(element)) {
@@ -1822,6 +1841,18 @@ class NewProfileResourceTreeRenderer extends AbstractProfileResourceTreeRenderer
 		templateData.elementDisposables.clear();
 		const { element, root } = profileResourceTreeElement;
 		if (!(root instanceof NewProfileElement)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 1825: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1825: Error message without production error code - breaks React bundle size optimization
+//   3. Line 1828: Error message without production error code - breaks React bundle size optimization
+//   4. Line 1828: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('NewProfileResourceTreeRenderer can only render new profile element');
 		}
 		if (isString(element) || !isProfileResourceTypeElement(element)) {
@@ -1931,6 +1962,16 @@ class ProfileResourceChildTreeItemRenderer extends AbstractProfileResourceTreeRe
 		const { element } = profileResourceTreeElement;
 
 		if (isString(element) || !isProfileResourceChildElement(element)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1934: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1934: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Invalid profile resource element');
 		}
 

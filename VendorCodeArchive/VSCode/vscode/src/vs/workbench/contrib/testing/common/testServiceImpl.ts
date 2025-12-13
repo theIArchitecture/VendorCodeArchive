@@ -228,6 +228,13 @@ export class TestService extends Disposable implements ITestService {
 		const requests = byController.map(
 			group => this.getTestController(group[0].controllerId)?.startContinuousRun(
 				group.map(controlReq => ({
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 					excludeExtIds: req.exclude!.filter(t => !controlReq.testIds.includes(t)),
 					profileId: controlReq.profileId,
 					controllerId: controlReq.controllerId,
@@ -272,6 +279,13 @@ export class TestService extends Disposable implements ITestService {
 				group => this.getTestController(group[0].controllerId)?.runTests(
 					group.map(controlReq => ({
 						runId: result.id,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						excludeExtIds: req.exclude!.filter(t => !controlReq.testIds.includes(t)),
 						profileId: controlReq.profileId,
 						controllerId: controlReq.controllerId,

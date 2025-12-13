@@ -43,6 +43,13 @@ export class BrowserKeyboardMapperFactoryBase extends Disposable {
 	protected _keymapInfos: KeymapInfo[];
 	protected _mru: KeymapInfo[];
 	private _activeKeymapInfo: KeymapInfo | null;
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 	private keyboardLayoutMapAllowed: boolean = (navigator as any).keyboard !== undefined;
 
 	get activeKeymap(): KeymapInfo | null {
@@ -398,6 +405,13 @@ export class BrowserKeyboardMapperFactoryBase extends Disposable {
 	private async _getBrowserKeyMapping(keyboardEvent?: IKeyboardEvent): Promise<IRawMixedKeyboardMapping | null> {
 		if (this.keyboardLayoutMapAllowed) {
 			try {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				return await (navigator as any).keyboard.getLayoutMap().then((e: any) => {
 					const ret: IKeyboardMapping = {};
 					for (const key of e) {

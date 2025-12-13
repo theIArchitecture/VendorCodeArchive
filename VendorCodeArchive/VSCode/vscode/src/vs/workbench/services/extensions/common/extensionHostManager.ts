@@ -258,6 +258,19 @@ export class ExtensionHostManager extends Disposable implements IExtensionHostMa
 		const extHostContext: IInternalExtHostContext = {
 			remoteAuthority: this._extensionHost.remoteAuthority,
 			extensionHostKind: this.kind,
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (5):
+//   1. Line 261: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 262: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 263: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 264: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 265: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			getProxy: <T>(identifier: ProxyIdentifier<T>): Proxied<T> => this._rpcProtocol!.getProxy(identifier),
 			set: <T, R extends T>(identifier: ProxyIdentifier<T>, instance: R): R => this._rpcProtocol!.set(identifier, instance),
 			dispose: (): void => this._rpcProtocol!.dispose(),
@@ -303,6 +316,16 @@ export class ExtensionHostManager extends Disposable implements IExtensionHostMa
 		}
 
 		if (!extensionHostProxy) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 306: Error message without production error code - breaks React bundle size optimization
+//   2. Line 306: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Missing IExtensionHostProxy!`);
 		}
 
@@ -345,6 +368,13 @@ export class ExtensionHostManager extends Disposable implements IExtensionHostMa
 			// i.e. the extension host could not be started
 			return;
 		}
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		if (!this._extensionHost.extensions!.containsActivationEvent(activationEvent)) {
 			this._resolvedActivationEvents.add(activationEvent);
@@ -417,6 +447,19 @@ export class ExtensionHostManager extends Disposable implements IExtensionHostMa
 	public async getCanonicalURI(remoteAuthority: string, uri: URI): Promise<URI | null> {
 		const proxy = await this._proxy;
 		if (!proxy) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (5):
+//   1. Line 420: Error message without production error code - breaks React bundle size optimization
+//   2. Line 420: Error message without production error code - breaks React bundle size optimization
+//   3. Line 430: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 437: Error message without production error code - breaks React bundle size optimization
+//   5. Line 437: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Cannot resolve canonical URI`);
 		}
 		return proxy.getCanonicalURI(remoteAuthority, uri);
@@ -448,6 +491,13 @@ export class ExtensionHostManager extends Disposable implements IExtensionHostMa
 		if (!proxy) {
 			return;
 		}
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const outgoingExtensionsDelta = this._extensionHost.extensions!.delta(incomingExtensionsDelta);
 		if (!outgoingExtensionsDelta) {
 			// The extension host already has this version of the extensions.

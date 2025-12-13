@@ -104,6 +104,16 @@ export class TerminalVoiceSession extends Disposable {
 					this._updateInput(e);
 					this._renderGhostText(e);
 					if (voiceTimeout > 0) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 107: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 114: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						this._acceptTranscriptionScheduler!.cancel();
 					}
 					break;
@@ -123,6 +133,13 @@ export class TerminalVoiceSession extends Disposable {
 	stop(send?: boolean): void {
 		this._setInactive();
 		if (send) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._acceptTranscriptionScheduler!.cancel();
 			this._sendText();
 		}
