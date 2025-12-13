@@ -1101,6 +1101,16 @@ class ListOpsTest(test_util.TensorFlowTestCase, parameterized.TestCase):
       splitted_stacked_ret = self.evaluate(                     # go/LEGACY_TYPO
           (list_ops.tensor_list_stack(splitted[0], dtypes.float32),
            list_ops.tensor_list_stack(splitted[1], dtypes.float32)))
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 1104: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 1104: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
       print("Test concat %d: %s, %s, %s, %s"
             % (i, expected[0], splitted_stacked_ret[0],
                expected[1], splitted_stacked_ret[1]))
