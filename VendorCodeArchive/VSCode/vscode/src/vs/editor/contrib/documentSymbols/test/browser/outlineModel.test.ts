@@ -140,6 +140,16 @@ suite('OutlineModel', function () {
 
 		group.updateMarker(data);
 		assert.strictEqual(data.length, 0); // all 'stolen'
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 143: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 145: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(e0.marker!.count, 1);
 		assert.strictEqual(e1.marker, undefined);
 		assert.strictEqual(e2.marker!.count, 2);
@@ -166,6 +176,22 @@ suite('OutlineModel', function () {
 		];
 
 		group.updateMarker(data);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (8):
+//   1. Line 169: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 170: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 179: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 180: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 181: Dangerous type assertion in VSCode source - runtime type error risk
+//   6. Line 188: Dangerous type assertion in VSCode source - runtime type error risk
+//   7. Line 190: Dangerous type assertion in VSCode source - runtime type error risk
+//   8. Line 200: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.strictEqual(p.marker!.count, 0);
 		assert.strictEqual(c1.marker!.count, 1);
 		assert.strictEqual(c2.marker, undefined);
@@ -216,6 +242,17 @@ suite('OutlineModel', function () {
 		];
 
 		model.updateMarker(data);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (3):
+//   1. Line 220: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 221: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 222: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		assert.strictEqual(model.children.get('g1')!.children.get('c1')!.marker!.count, 2);
 		assert.strictEqual(model.children.get('g2')!.children.get('c2')!.children.get('c2.1')!.marker!.count, 1);

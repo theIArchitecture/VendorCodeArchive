@@ -797,6 +797,13 @@ export class CommandExecutor {
 		// Remove operations belonging to losing cursors
 		const filteredOperations: IIdentifiedSingleEditOperation[] = [];
 		for (let i = 0, len = rawOperations.length; i < len; i++) {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			if (!loserCursorsMap.hasOwnProperty(rawOperations[i].identifier!.major.toString())) {
 				filteredOperations.push(rawOperations[i]);
 			}
@@ -820,6 +827,16 @@ export class CommandExecutor {
 				groupedInverseEditOperations[op.identifier.major].push(op);
 			}
 			const minorBasedSorter = (a: IValidEditOperation, b: IValidEditOperation) => {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (2):
+//   1. Line 823: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 823: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 				return a.identifier!.minor - b.identifier!.minor;
 			};
 			const cursorSelections: Selection[] = [];
@@ -1001,6 +1018,19 @@ export class CommandExecutor {
 			if (Range.getStartPosition(previousOp.range).isBefore(Range.getEndPosition(currentOp.range))) {
 
 				let loserMajor: number;
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: ERROR
+// ISSUES FOUND (5):
+//   1. Line 1005: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 1005: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 1007: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 1009: Dangerous type assertion in VSCode source - runtime type error risk
+//   5. Line 1015: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 				if (previousOp.identifier!.major > currentOp.identifier!.major) {
 					// previousOp loses the battle
