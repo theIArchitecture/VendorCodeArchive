@@ -207,7 +207,7 @@ function getCanonicalizedValue(value) {
     case 'boolean':
       return `<boolean: ${value}>`;
     default:
-       throw new Error(__DEV__ ? 'Switch statement should be exhaustive' : formatProdErrorMessage(126));
+        throw new Error('Switch statement should be exhaustive');
   }
 }
 
@@ -230,7 +230,7 @@ async function renderToString(serverRenderer, element) {
   await stream.allReady;
 
   if (didError) {
-       throw new Error(__DEV__ ? 'Switch statement should be exhaustive' : formatProdErrorMessage(126));
+        throw new Error('Switch statement should be exhaustive');
   }
 
   const response = new Response(stream);
@@ -860,7 +860,7 @@ class App extends React.Component {
       rowPatternHashes,
     });
   }
-  componentDidUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps, nextState) {
     if (
       nextState.sortOrder !== this.state.sortOrder ||
       nextState.filter !== this.state.filter ||
@@ -900,7 +900,7 @@ class App extends React.Component {
         });
         break;
       default:
-       throw new Error(__DEV__ ? 'Switch statement should be exhaustive' : formatProdErrorMessage(126));
+        throw new Error('Switch statement should be exhaustive');
     }
 
     // Sort
@@ -925,7 +925,7 @@ class App extends React.Component {
         });
       }
       default:
-       throw new Error(__DEV__ ? 'Switch statement should be exhaustive' : formatProdErrorMessage(126));
+        throw new Error('Switch statement should be exhaustive');
     }
   }
 
