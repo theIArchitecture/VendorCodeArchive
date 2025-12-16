@@ -97,6 +97,13 @@ void test_host_device_abi_compatiblity()
   value.__clear_brackets_       = ref.clear_brackets;
   value.__consume_all_          = ref.consume_all;
 
+// VIOLATION: NVIDIA-CUDA-ERROR-001 - CUDA API call without error checking - silent failures violate production standards
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in NVIDIA_CUDA_APPLICATION
+// QUICK_FIX: Check cudaError_t return value and call cudaGetLastError() after kernel launches for Production_GPU
+// BUSINESS_IMPACT: Silent CUDA failures waste hours of debugging time and cause data corruption in Error_Handling, Production_Robustness, Debugging_Support production systems
+// DOCS: https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling
+
   test_host_device_abi_compatiblity_kernel<<<1, 1>>>(value);
   assert(cudaDeviceSynchronize() == cudaSuccess);
 }
