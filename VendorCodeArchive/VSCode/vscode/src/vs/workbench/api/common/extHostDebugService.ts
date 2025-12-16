@@ -32,6 +32,13 @@ import { Breakpoint, DataBreakpoint, DebugAdapterExecutable, DebugAdapterInlineI
 import { IExtHostVariableResolverProvider } from './extHostVariableResolverService.js';
 import { IExtHostWorkspace } from './extHostWorkspace.js';
 
+// VIOLATION: VSCODE-SERVICE-BRAND-005 - Missing service brand declaration - breaks VSCode's DI system type safety
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Service brands enable compile-time DI validation - missing brands cause runtime injection failures in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Add readonly _serviceBrand: undefined; to service interface for Enterprise_Editor
+// BUSINESS_IMPACT: Service injection failures break VSCode features during startup affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding
+
 export const IExtHostDebugService = createDecorator<IExtHostDebugService>('IExtHostDebugService');
 
 export interface IExtHostDebugService extends ExtHostDebugServiceShape {
@@ -383,6 +390,16 @@ export abstract class ExtHostDebugServiceBase extends DisposableCls implements I
 
 	public registerDebugVisualizationProvider<T extends vscode.DebugVisualization>(manifest: IExtensionDescription, id: string, provider: vscode.DebugVisualizationProvider<T>): vscode.Disposable {
 		if (!manifest.contributes?.debugVisualizers?.some(r => r.id === id)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 386: Error message without production error code - breaks React bundle size optimization
+//   2. Line 386: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`Extensions may only call registerDebugVisualizationProvider() for renderers they contribute (got ${id})`);
 		}
 
@@ -487,6 +504,17 @@ export abstract class ExtHostDebugServiceBase extends DisposableCls implements I
 			},
 
 			// Check debugUI for back-compat, #147264
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 490: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 491: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 492: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			suppressDebugStatusbar: options.suppressDebugStatusbar ?? (options as any).debugUI?.simple,
 			suppressDebugToolbar: options.suppressDebugToolbar ?? (options as any).debugUI?.simple,
 			suppressDebugView: options.suppressDebugView ?? (options as any).debugUI?.simple,
@@ -531,6 +559,16 @@ export abstract class ExtHostDebugServiceBase extends DisposableCls implements I
 
 		// make sure that only one factory for this type is registered
 		if (this.getAdapterDescriptorFactoryByType(type)) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 534: Error message without production error code - breaks React bundle size optimization
+//   2. Line 534: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`a DebugAdapterDescriptorFactory can only be registered once per a type.`);
 		}
 
@@ -574,6 +612,16 @@ export abstract class ExtHostDebugServiceBase extends DisposableCls implements I
 				name: folder.name,
 				index: folder.index,
 				toResource: () => {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 577: Error message without production error code - breaks React bundle size optimization
+//   2. Line 577: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 					throw new Error('Not implemented');
 				}
 			};
@@ -807,6 +855,24 @@ export abstract class ExtHostDebugServiceBase extends DisposableCls implements I
 		return asPromise(async () => {
 			const provider = this.getConfigProviderByHandle(configProviderHandle);
 			if (!provider) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (10):
+//   1. Line 810: Error message without production error code - breaks React bundle size optimization
+//   2. Line 810: Error message without production error code - breaks React bundle size optimization
+//   3. Line 813: Error message without production error code - breaks React bundle size optimization
+//   4. Line 813: Error message without production error code - breaks React bundle size optimization
+//   5. Line 819: Error message without production error code - breaks React bundle size optimization
+//   6. Line 819: Error message without production error code - breaks React bundle size optimization
+//   7. Line 829: Error message without production error code - breaks React bundle size optimization
+//   8. Line 829: Error message without production error code - breaks React bundle size optimization
+//   9. Line 832: Error message without production error code - breaks React bundle size optimization
+//   10. Line 832: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('no DebugConfigurationProvider found');
 			}
 			if (!provider.provideDebugConfigurations) {
@@ -840,6 +906,18 @@ export abstract class ExtHostDebugServiceBase extends DisposableCls implements I
 		return asPromise(async () => {
 			const provider = this.getConfigProviderByHandle(configProviderHandle);
 			if (!provider) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 843: Error message without production error code - breaks React bundle size optimization
+//   2. Line 843: Error message without production error code - breaks React bundle size optimization
+//   3. Line 846: Error message without production error code - breaks React bundle size optimization
+//   4. Line 846: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error('no DebugConfigurationProvider found');
 			}
 			if (!provider.resolveDebugConfigurationWithSubstitutedVariables) {
@@ -909,6 +987,16 @@ export abstract class ExtHostDebugServiceBase extends DisposableCls implements I
 		} else if (x instanceof DebugAdapterInlineImplementation) {
 			return this.convertImplementationToDto(x);
 		} else {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 912: Error message without production error code - breaks React bundle size optimization
+//   2. Line 912: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('convertToDto unexpected type');
 		}
 	}
@@ -1064,6 +1152,16 @@ export abstract class ExtHostDebugServiceBase extends DisposableCls implements I
 				return ds;
 			}
 		}
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1067: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1067: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('cannot find session');
 	}
 
@@ -1091,6 +1189,16 @@ export abstract class ExtHostDebugServiceBase extends DisposableCls implements I
 		if ('treeId' in viz) {
 			return { type: DebugVisualizationType.Tree, id: `${extensionId}\0${viz.treeId}` };
 		}
+
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 1095: Error message without production error code - breaks React bundle size optimization
+//   2. Line 1095: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
 
 		throw new Error('Unsupported debug visualization type');
 	}

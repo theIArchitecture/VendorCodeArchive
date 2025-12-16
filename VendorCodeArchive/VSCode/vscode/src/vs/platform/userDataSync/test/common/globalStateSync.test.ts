@@ -50,6 +50,17 @@ suite('GlobalStateSync', () => {
 
 		const lastSyncUserData = await testObject.getLastSyncUserData();
 		const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 53: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 54: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 55: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(lastSyncUserData!.ref, remoteUserData.ref);
 		assert.deepStrictEqual(lastSyncUserData!.syncData, remoteUserData.syncData);
 		assert.strictEqual(lastSyncUserData!.syncData, null);
@@ -80,6 +91,18 @@ suite('GlobalStateSync', () => {
 
 		lastSyncUserData = await testObject.getLastSyncUserData();
 		const remoteUserData = await testObject.getRemoteUserData(null);
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 83: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 84: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 85: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 85: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		assert.deepStrictEqual(lastSyncUserData!.ref, remoteUserData.ref);
 		assert.deepStrictEqual(lastSyncUserData!.syncData, remoteUserData.syncData);
 		assert.deepStrictEqual(JSON.parse(lastSyncUserData!.syncData!.content).storage, { 'a': { version: 1, value: 'value1' } });
