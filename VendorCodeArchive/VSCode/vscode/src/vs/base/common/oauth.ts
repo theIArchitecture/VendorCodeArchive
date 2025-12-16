@@ -719,6 +719,16 @@ const grantTypesSupported = ['authorization_code', 'refresh_token', 'urn:ietf:pa
 export const DEFAULT_AUTH_FLOW_PORT = 33418;
 export async function fetchDynamicRegistration(serverMetadata: IAuthorizationServerMetadata, clientName: string, scopes?: string[]): Promise<IAuthorizationDynamicClientRegistrationResponse> {
 	if (!serverMetadata.registration_endpoint) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 722: Error message without production error code - breaks React bundle size optimization
+//   2. Line 722: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Server does not support dynamic registration');
 	}
 	const response = await fetch(serverMetadata.registration_endpoint, {
@@ -765,6 +775,18 @@ export async function fetchDynamicRegistration(serverMetadata: IAuthorizationSer
 			// JSON parsing failed, use raw text
 		}
 
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 768: Error message without production error code - breaks React bundle size optimization
+//   2. Line 768: Error message without production error code - breaks React bundle size optimization
+//   3. Line 775: Error message without production error code - breaks React bundle size optimization
+//   4. Line 775: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error(`Registration to ${serverMetadata.registration_endpoint} failed: ${errorDetails}`);
 	}
 
@@ -795,6 +817,24 @@ export function parseWWWAuthenticateHeader(wwwAuthenticateHeaderValue: string) {
 export function getClaimsFromJWT(token: string): IAuthorizationJWTClaims {
 	const parts = token.split('.');
 	if (parts.length !== 3) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (10):
+//   1. Line 798: Error message without production error code - breaks React bundle size optimization
+//   2. Line 798: Error message without production error code - breaks React bundle size optimization
+//   3. Line 806: Error message without production error code - breaks React bundle size optimization
+//   4. Line 806: Error message without production error code - breaks React bundle size optimization
+//   5. Line 811: Error message without production error code - breaks React bundle size optimization
+//   6. Line 811: Error message without production error code - breaks React bundle size optimization
+//   7. Line 817: Error message without production error code - breaks React bundle size optimization
+//   8. Line 817: Error message without production error code - breaks React bundle size optimization
+//   9. Line 819: Error message without production error code - breaks React bundle size optimization
+//   10. Line 819: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 		throw new Error('Invalid JWT token format: token must have three parts separated by dots');
 	}
 
