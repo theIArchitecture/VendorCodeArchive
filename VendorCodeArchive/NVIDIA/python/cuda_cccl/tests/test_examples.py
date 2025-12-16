@@ -68,6 +68,16 @@ def discover_examples():
 def run_example_module(module_name, display_name):
     """Run all example functions from a module."""
     try:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (2):
+#   1. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 71: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
         print(f"Testing {display_name}...")
 
         # Import the module
@@ -94,6 +104,18 @@ def run_example_module(module_name, display_name):
 
             if example_functions:
                 for func_name, func in sorted(example_functions):
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (4):
+#   1. Line 97: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 97: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 102: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 102: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                     print(f"  Running {func_name}...")
                     func()
             else:
@@ -114,6 +136,20 @@ def run_example_module(module_name, display_name):
                     )
                     if result.returncode != 0:
                         raise Exception(f"Module execution failed: {result.stderr}")
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 117: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 117: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 118: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 118: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 123: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 123: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
                     print(f"  Output: {result.stdout.strip()}")
 
         print(f"✓ {display_name} examples passed")
