@@ -33,6 +33,16 @@ export class TerminalLocalFileLinkOpener implements ITerminalLinkOpener {
 
 	async open(link: ITerminalSimpleLink): Promise<void> {
 		if (!link.uri) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 36: Error message without production error code - breaks React bundle size optimization
+//   2. Line 36: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Tried to open file link without a resolved URI');
 		}
 		const linkSuffix = link.parsedLink ? link.parsedLink.suffix : getLinkSuffix(link.text);
@@ -58,6 +68,16 @@ export class TerminalLocalFolderInWorkspaceLinkOpener implements ITerminalLinkOp
 
 	async open(link: ITerminalSimpleLink): Promise<void> {
 		if (!link.uri) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 61: Error message without production error code - breaks React bundle size optimization
+//   2. Line 61: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Tried to open folder in workspace link without a resolved URI');
 		}
 		await this._commandService.executeCommand('revealInExplorer', link.uri);
@@ -70,6 +90,16 @@ export class TerminalLocalFolderOutsideWorkspaceLinkOpener implements ITerminalL
 
 	async open(link: ITerminalSimpleLink): Promise<void> {
 		if (!link.uri) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 73: Error message without production error code - breaks React bundle size optimization
+//   2. Line 73: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Tried to open folder in workspace link without a resolved URI');
 		}
 		this._hostService.openWindow([{ folderUri: link.uri }], { forceNewWindow: true });
@@ -284,6 +314,16 @@ export class TerminalUrlLinkOpener implements ITerminalLinkOpener {
 
 	async open(link: ITerminalSimpleLink): Promise<void> {
 		if (!link.uri) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 287: Error message without production error code - breaks React bundle size optimization
+//   2. Line 287: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('Tried to open a url without a resolved URI');
 		}
 		// It's important to use the raw string value here to avoid converting pre-encoded values
