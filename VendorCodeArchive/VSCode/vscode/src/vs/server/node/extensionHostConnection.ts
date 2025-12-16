@@ -279,6 +279,16 @@ export class ExtensionHostConnection extends Disposable {
 			this._log(`<${pid}> Launched Extension Host Process.`);
 
 			// Catch all output coming from the extension host process
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 282: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 283: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			this._extensionHostProcess.stdout!.setEncoding('utf8');
 			this._extensionHostProcess.stderr!.setEncoding('utf8');
 			const onStdout = Event.fromNodeEventEmitter<string>(this._extensionHostProcess.stdout!, 'data');
@@ -307,6 +317,17 @@ export class ExtensionHostConnection extends Disposable {
 			} else {
 				const messageListener = (msg: IExtHostReadyMessage) => {
 					if (msg.type === 'VSCODE_EXTHOST_IPC_READY') {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 310: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 319: Error message without production error code - breaks React bundle size optimization
+//   3. Line 319: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 						this._extensionHostProcess!.removeListener('message', messageListener);
 						this._sendSocketToExtensionHost(this._extensionHostProcess!, this._connectionData!);
 						this._connectionData = null;
