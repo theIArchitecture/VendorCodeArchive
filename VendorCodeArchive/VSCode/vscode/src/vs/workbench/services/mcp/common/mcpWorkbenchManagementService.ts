@@ -329,6 +329,20 @@ export class WorkbenchMcpManagementService extends AbstractMcpManagementService 
 		if (options.target === ConfigurationTarget.WORKSPACE || isWorkspaceFolder(options.target)) {
 			const mcpResource = options.target === ConfigurationTarget.WORKSPACE ? this.workspaceContextService.getWorkspace().configuration : options.target.toResource(WORKSPACE_STANDALONE_CONFIGURATIONS[MCP_CONFIGURATION_KEY]);
 			if (!mcpResource) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (6):
+//   1. Line 332: Error message without production error code - breaks React bundle size optimization
+//   2. Line 332: Error message without production error code - breaks React bundle size optimization
+//   3. Line 341: Error message without production error code - breaks React bundle size optimization
+//   4. Line 341: Error message without production error code - breaks React bundle size optimization
+//   5. Line 349: Error message without production error code - breaks React bundle size optimization
+//   6. Line 349: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error(`Illegal target: ${options.target}`);
 			}
 			options.mcpResource = mcpResource;
@@ -371,6 +385,16 @@ export class WorkbenchMcpManagementService extends AbstractMcpManagementService 
 
 		if (local.scope === LocalMcpServerScope.RemoteUser) {
 			if (!this.remoteMcpManagementService) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 374: Error message without production error code - breaks React bundle size optimization
+//   2. Line 374: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error(`Illegal target: ${local.scope}`);
 			}
 			const result = await this.remoteMcpManagementService.updateMetadata(local, server, profileLocation);
@@ -388,6 +412,16 @@ export class WorkbenchMcpManagementService extends AbstractMcpManagementService 
 
 		if (server.scope === LocalMcpServerScope.RemoteUser) {
 			if (!this.remoteMcpManagementService) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 391: Error message without production error code - breaks React bundle size optimization
+//   2. Line 391: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 				throw new Error(`Illegal target: ${server.scope}`);
 			}
 			return this.remoteMcpManagementService.uninstall(server);
@@ -589,6 +623,18 @@ class WorkspaceMcpManagementService extends AbstractMcpManagementService impleme
 
 	async install(server: IInstallableMcpServer, options?: InstallOptions): Promise<ILocalMcpServer> {
 		if (!options?.mcpResource) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (4):
+//   1. Line 592: Error message without production error code - breaks React bundle size optimization
+//   2. Line 592: Error message without production error code - breaks React bundle size optimization
+//   3. Line 597: Error message without production error code - breaks React bundle size optimization
+//   4. Line 597: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error('MCP resource is required');
 		}
 
@@ -605,6 +651,16 @@ class WorkspaceMcpManagementService extends AbstractMcpManagementService impleme
 
 		const mcpManagementServiceItem = this.workspaceMcpManagementServices.get(mcpResource);
 		if (!mcpManagementServiceItem) {
+// VIOLATION: REACT-PROD-ERROR-CODES-001 - Error message without production error code - breaks React bundle size optimization
+// SEVERITY: WARNING
+// ISSUES FOUND (2):
+//   1. Line 608: Error message without production error code - breaks React bundle size optimization
+//   2. Line 608: Error message without production error code - breaks React bundle size optimization
+// WHY_IT_MATTERS: REACT_APPLICATION strips error messages in production builds - each error needs a code in codes.json for debugging and Bundle_Size_Optimization, Production_Debugging, Error_Tracking
+// QUICK_FIX: Add error to codes.json and use formatProdErrorMessage() with assigned code for Production_Frontend
+// BUSINESS_IMPACT: Missing error codes prevent REACT_APPLICATION bundle optimization worth millions in performance - production errors become impossible to debug
+// DOCS: https://github.com/facebook/react/blob/main/scripts/error-codes/README.md
+
 			throw new Error(`No MCP management service found for resource: ${mcpResource.toString()}`);
 		}
 
