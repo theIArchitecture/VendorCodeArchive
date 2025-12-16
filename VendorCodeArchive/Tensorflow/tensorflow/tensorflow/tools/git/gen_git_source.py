@@ -131,6 +131,20 @@ def configure(src_base_path, gen_path, debug=False):
 
   json.dump(spec, open(os.path.join(gen_path, "spec.json"), "w"), indent=2)
   if debug:
+# VIOLATION: TENSORFLOW-PRINT-001 - Print statements detected in TensorFlow code - must use logging module for production code
+# SEVERITY: WARNING
+# ISSUES FOUND (6):
+#   1. Line 134: Print statements detected in TensorFlow code - must use logging module for production code
+#   2. Line 134: Print statements detected in TensorFlow code - must use logging module for production code
+#   3. Line 135: Print statements detected in TensorFlow code - must use logging module for production code
+#   4. Line 135: Print statements detected in TensorFlow code - must use logging module for production code
+#   5. Line 136: Print statements detected in TensorFlow code - must use logging module for production code
+#   6. Line 136: Print statements detected in TensorFlow code - must use logging module for production code
+# WHY_IT_MATTERS: Print statements in TENSORFLOW_ML_FRAMEWORK production code cannot be controlled, filtered, or disabled - affects Production_Standards, Code_Quality, Maintainability
+# QUICK_FIX: Replace print() with logging module (logging.info, logging.debug, logging.warning) for Production_Standards, Code_Quality, Maintainability
+# BUSINESS_IMPACT: 1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in TENSORFLOW_ML_FRAMEWORK
+# DOCS: https://www.tensorflow.org/community/contribute/code_style
+
     print("gen_git_source.py: list %s" % gen_path)
     print("gen_git_source.py: %s" + repr(os.listdir(gen_path)))
     print("gen_git_source.py: spec is %r" % spec)
