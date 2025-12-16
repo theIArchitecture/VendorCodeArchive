@@ -391,6 +391,17 @@ suite('TextModelSearch', () => {
 		let actual = TextModelSearch.findNextMatch(model, searchParams, new Position(1, 1), false);
 		assertFindMatch(actual, new Range(1, 1, 1, 5));
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 394: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 400: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 403: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		actual = TextModelSearch.findNextMatch(model, searchParams, actual!.range.getEndPosition(), false);
 		assertFindMatch(actual, new Range(1, 6, 1, 10));
 
@@ -414,6 +425,16 @@ suite('TextModelSearch', () => {
 		let actual = TextModelSearch.findNextMatch(model, searchParams, new Position(1, 1), false);
 		assertFindMatch(actual, new Range(1, 1, 1, 5));
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 417: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 423: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		actual = TextModelSearch.findNextMatch(model, searchParams, actual!.range.getEndPosition(), false);
 		assertFindMatch(actual, new Range(2, 1, 2, 5));
 
@@ -433,6 +454,16 @@ suite('TextModelSearch', () => {
 
 		let actual = TextModelSearch.findNextMatch(model, searchParams, new Position(1, 1), false);
 		assertFindMatch(actual, new Range(1, 1, 1, 5));
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 437: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 443: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		actual = TextModelSearch.findNextMatch(model, searchParams, actual!.range.getEndPosition(), false);
 		assertFindMatch(actual, new Range(2, 1, 2, 5));
@@ -454,6 +485,13 @@ suite('TextModelSearch', () => {
 		let actual = TextModelSearch.findNextMatch(model, searchParams, new Position(1, 1), false);
 		assertFindMatch(actual, new Range(1, 1, 2, 5));
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		actual = TextModelSearch.findNextMatch(model, searchParams, actual!.range.getEndPosition(), false);
 		assertFindMatch(actual, new Range(3, 1, 4, 5));
 
@@ -473,6 +511,16 @@ suite('TextModelSearch', () => {
 
 		actual = TextModelSearch.findNextMatch(model, searchParams, new Position(1, 4), false);
 		assertFindMatch(actual, new Range(1, 10, 1, 14));
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (2):
+//   1. Line 477: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 480: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		actual = TextModelSearch.findNextMatch(model, searchParams, actual!.range.getEndPosition(), false);
 		assertFindMatch(actual, new Range(2, 5, 2, 9));
@@ -599,6 +647,18 @@ suite('TextModelSearch', () => {
 		if (expected === null) {
 			assert.ok(actual === null);
 		} else {
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// ISSUES FOUND (4):
+//   1. Line 602: Dangerous type assertion in VSCode source - runtime type error risk
+//   2. Line 603: Dangerous type assertion in VSCode source - runtime type error risk
+//   3. Line 605: Dangerous type assertion in VSCode source - runtime type error risk
+//   4. Line 607: Dangerous type assertion in VSCode source - runtime type error risk
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 			assert.deepStrictEqual(actual!.regex, expected.regex);
 			assert.deepStrictEqual(actual!.simpleSearch, expected.simpleSearch);
 			if (wordSeparators) {

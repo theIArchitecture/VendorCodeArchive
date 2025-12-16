@@ -54,6 +54,13 @@ suite('TokenStore', () => {
 			{ startOffsetInclusive: 6, length: 2, token: 4 }
 		], TokenQuality.Accurate);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const root = store.root as any;
 		assert.ok(root.children);
 		assert.strictEqual(root.children.length, 2);
@@ -73,6 +80,13 @@ suite('TokenStore', () => {
 			{ startOffsetInclusive: 6, length: 1, token: 7 },
 			{ startOffsetInclusive: 7, length: 1, token: 8 }
 		], TokenQuality.Accurate);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const root = store.root as any;
 		assert.ok(root.children);
@@ -95,6 +109,13 @@ suite('TokenStore', () => {
 			{ startOffsetInclusive: 3, length: 3, token: 4 }
 		], TokenQuality.Accurate);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const tokens = store.root as any;
 		assert.strictEqual(tokens.children[0].token, 1);
 		assert.strictEqual(tokens.children[1].token, 4);
@@ -114,6 +135,13 @@ suite('TokenStore', () => {
 			{ startOffsetInclusive: 6, length: 3, token: 5 }
 		], TokenQuality.Accurate);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const tokens = store.root as any;
 		assert.strictEqual(tokens.children[0].token, 1);
 		assert.strictEqual(tokens.children[1].token, 4);
@@ -131,6 +159,13 @@ suite('TokenStore', () => {
 		store.update(3, [
 			{ startOffsetInclusive: 0, length: 3, token: 4 }
 		], TokenQuality.Accurate);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const tokens = store.root as any;
 		assert.strictEqual(tokens.children[0].token, 4);
@@ -150,6 +185,13 @@ suite('TokenStore', () => {
 			{ startOffsetInclusive: 6, length: 3, token: 4 }
 		], TokenQuality.Accurate);
 
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
+
 		const tokens = store.root as any;
 		assert.strictEqual(tokens.children[0].token, 1);
 		assert.strictEqual(tokens.children[1].token, 2);
@@ -167,6 +209,13 @@ suite('TokenStore', () => {
 		store.update(6, [
 			{ startOffsetInclusive: 3, length: 5, token: 4 }
 		], TokenQuality.Accurate);
+
+// VIOLATION: VSCODE-DANGEROUS-ASSERTIONS-006 - Dangerous type assertion in VSCode source - runtime type error risk
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: Type assertions bypass TypeScript safety - cause runtime crashes in VSCODE_EDITOR_PLATFORM
+// QUICK_FIX: Use type guards, optional chaining, or instanceof checks
+// BUSINESS_IMPACT: Runtime type errors crash editor features affecting millions of developers
+// DOCS: https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions
 
 		const tokens = store.root as any;
 		assert.strictEqual(tokens.children[0].token, 1);
