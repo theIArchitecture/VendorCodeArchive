@@ -55,15 +55,19 @@ jobs:
 
       - name: Trigger DemoRepo scoped scan workflow
         if: steps.changed-iarch.outputs.has_iarch_changes == 'true'
-        uses: peter-evans/repository-dispatch@v3
+        uses: actions/github-script@v7
         with:
-          token: ${{ secrets.DEMOREPO_PAT }}
-          repository: theIArchitecture/DemoRepo
-          event-type: iarch_config_changed
-          client-payload: |
-            {
-              "ref": "${{ github.ref }}",
-              "commit_sha": "${{ github.sha }}",
-              "changed_iarch_path": "${{ steps.changed-iarch.outputs.changed_path }}",
-              "scope_dir": "${{ steps.changed-iarch.outputs.scope_dir }}"
-            }
+          github-token: ${{ secrets.IARCHITECTURE_PAT }}
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: 'theIArchitecture',
+              repo: 'DemoRepo',
+              event_type: 'iarch_config_changed',
+              client_payload: {
+                ref: context.ref,
+                commit_sha: context.sha,
+                changed_iarch_path: `${{ steps.changed-iarch.outputs.changed_path }}`,
+                scope_dir: `${{ steps.changed-iarch.outputs.scope_dir }}`
+              }
+            });
+            console.log('iarch_config_changed event dispatched to DemoRepo');
