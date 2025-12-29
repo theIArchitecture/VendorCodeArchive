@@ -106,12 +106,12 @@ jobs:
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     steps:
-      - name: Detect push type and trigger appropriate workflow
+      - name: Trigger post-merge workflow for PR merges
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.IARCHITECTURE_PAT }}
           script: |
-            // Check if this push is from a PR merge or direct push
+            // Check if this push is from a PR merge
             const commitMessage = context.payload.head_commit.message;
             const isPRMerge = commitMessage.includes('Merge pull request') ||
                              context.payload.head_commit.author.username === 'web-flow';
@@ -131,17 +131,6 @@ jobs:
               });
               console.log(`Triggered pr-merged for ${context.ref} (PR merge detected)`);
             } else {
-              // Direct push - trigger full scan
-              await github.rest.repos.createDispatchEvent({
-                owner: 'theIArchitecture',
-                repo: 'DemoRepo',
-                event_type: 'code-push',
-                client_payload: {
-                  ref: context.ref,
-                  repository: context.payload.repository.full_name,
-                  pusher: context.payload.pusher.name,
-                  commit_sha: context.payload.head_commit.id
-                }
-              });
-              console.log(`Triggered code-push for ${context.ref} (direct push detected)`);
+              // Direct push - handled by bypass-detection-trigger.yml and iarch-change-trigger.yml
+              console.log(`Direct push detected - bypass detection and .iarch change triggers will handle this`);
             }

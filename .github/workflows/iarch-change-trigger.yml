@@ -1,0 +1,69 @@
+name: .iarch Configuration Change Trigger
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - '**/.iarch/**'  # Only trigger on .iarch changes
+
+permissions:
+  contents: read
+
+jobs:
+  trigger-iarch-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get changed .iarch files and determine scope
+        id: changed-iarch
+        run: |
+          # Get changed .iarch files
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep '\.iarch/')
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No .iarch files changed - skipping"
+            echo "has_iarch_changes=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "Changed .iarch files:"
+          echo "$CHANGED_FILES"
+
+          # Take first changed .iarch file to determine scope
+          CHANGED_PATH=$(echo "$CHANGED_FILES" | head -n 1)
+          echo "Using file for scope calculation: $CHANGED_PATH"
+
+          # Determine scope directory (parent of .iarch directory)
+          # Example: VendorCodeArchive/aws-sdk-net/.iarch/rules/SEC-001.iarch
+          # Result: VendorCodeArchive/aws-sdk-net
+
+          # Remove everything after and including /.iarch/
+          SCOPE_DIR=$(echo "$CHANGED_PATH" | sed 's/\/\.iarch\/.*//')
+
+          echo "Scope directory: $SCOPE_DIR"
+
+          echo "has_iarch_changes=true" >> $GITHUB_OUTPUT
+          echo "changed_path=$CHANGED_PATH" >> $GITHUB_OUTPUT
+          echo "scope_dir=$SCOPE_DIR" >> $GITHUB_OUTPUT
+
+      - name: Trigger DemoRepo scoped scan workflow
+        if: steps.changed-iarch.outputs.has_iarch_changes == 'true'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.DEMOREPO_PAT }}
+          repository: theIArchitecture/DemoRepo
+          event-type: iarch_config_changed
+          client-payload: |
+            {
+              "ref": "${{ github.ref }}",
+              "commit_sha": "${{ github.sha }}",
+              "changed_iarch_path": "${{ steps.changed-iarch.outputs.changed_path }}",
+              "scope_dir": "${{ steps.changed-iarch.outputs.scope_dir }}"
+            }
