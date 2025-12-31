@@ -53,13 +53,12 @@ namespace Amazon.Auth.AccessControlPolicy
         }
 
         /// <summary>
-        /// Test method with hardcoded credentials - should trigger validation failure
+        /// Test method with insecure crypto - should trigger validation failure
         /// </summary>
-        public void TestCredentials()
+        public void TestInsecureCrypto()
         {
-            string accessKey = "AKIAIOSFODNN7EXAMPLE";
-            string secretKey = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY";
-            // This hardcoded credential should be detected by AWS-CREDENTIALS-CONFIG-HARDCODED rule
+            var hash = System.Security.Cryptography.MD5.Create();
+            // This insecure MD5 usage should be detected by crypto rule
         }
 
         /// <summary>
