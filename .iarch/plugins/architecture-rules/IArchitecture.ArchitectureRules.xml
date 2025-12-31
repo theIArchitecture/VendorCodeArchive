@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IArchitecture.ArchitectureRules</name>
+    </assembly>
+    <members>
+        <member name="T:IArchitecture.ArchitectureRules.CircularDependencyDetector">
+            <summary>
+            Detects circular dependencies in a dependency graph using depth-first search (DFS)
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.CircularDependencyDetector.DetectCycles(System.Collections.Generic.IReadOnlyList{IArchitecture.Plugin.SDK.Models.FileDependency})">
+            <summary>
+            Detects all circular dependency cycles in the given dependencies
+            </summary>
+            <param name="dependencies">List of file dependencies to analyze</param>
+            <returns>List of detected circular dependencies</returns>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.CircularDependencyDetector.BuildAdjacencyList(System.Collections.Generic.IReadOnlyList{IArchitecture.Plugin.SDK.Models.FileDependency})">
+            <summary>
+            Builds an adjacency list representation of the dependency graph
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.CircularDependencyDetector.DetectCyclesDFS(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.HashSet{System.String},System.Collections.Generic.HashSet{System.String},System.Collections.Generic.List{System.String},System.Collections.Generic.List{IArchitecture.ArchitectureRules.CircularDependency},System.Collections.Generic.HashSet{System.String})">
+            <summary>
+            Performs depth-first search to detect cycles
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.CircularDependencyDetector.NormalizeCycleKey(System.Collections.Generic.List{System.String})">
+            <summary>
+            Creates a normalized key for a cycle to detect duplicates
+            Cycles [A, B, C, A] and [B, C, A, B] are the same cycle
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.CircularDependencyDetector.FindShortestCycle(System.String,System.Collections.Generic.IReadOnlyList{IArchitecture.Plugin.SDK.Models.FileDependency})">
+            <summary>
+            Finds the shortest cycle involving a specific file
+            </summary>
+            <param name="filePath">File to check for cycles</param>
+            <param name="dependencies">List of file dependencies</param>
+            <returns>Shortest cycle involving the file, or null if no cycle exists</returns>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.CircularDependencyDetector.HasCircularDependency(System.String,System.String,System.Collections.Generic.IReadOnlyList{IArchitecture.Plugin.SDK.Models.FileDependency})">
+            <summary>
+            Checks if there is a circular dependency between two files
+            </summary>
+            <param name="file1">First file</param>
+            <param name="file2">Second file</param>
+            <param name="dependencies">List of file dependencies</param>
+            <returns>True if there is a circular dependency between the files</returns>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.CircularDependencyDetector.EnhanceWithLayerInformation(System.Collections.Generic.IReadOnlyList{IArchitecture.ArchitectureRules.CircularDependency},IArchitecture.Plugin.SDK.Models.DependencyGraph)">
+            <summary>
+            Enhances circular dependencies with layer information from the dependency graph
+            </summary>
+            <param name="cycles">Detected circular dependencies</param>
+            <param name="graph">Dependency graph containing layer information</param>
+            <returns>Enhanced circular dependencies with layer and severity information</returns>
+        </member>
+        <member name="T:IArchitecture.ArchitectureRules.CircularDependency">
+            <summary>
+            Circular dependency between files/layers
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.CircularDependency.Cycle">
+            <summary>
+            Ordered list of file paths forming the cycle (first and last are the same)
+            Example: ["A.cs", "B.cs", "C.cs", "A.cs"]
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.CircularDependency.CycleLength">
+            <summary>
+            Number of files involved in the cycle (excluding the repeated first/last)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.CircularDependency.LayersInvolved">
+            <summary>
+            Architectural layers involved in this cycle
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.CircularDependency.Severity">
+            <summary>
+            Severity of this circular dependency
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.CircularDependency.Description">
+            <summary>
+            Human-readable description of the cycle
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.CircularDependency.Validate">
+            <summary>
+            Validates that this circular dependency is properly formed
+            </summary>
+            <returns>Validation errors, empty if valid</returns>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.CircularDependency.Layers">
+            <summary>
+            Layers involved in the circular dependency (legacy property, use LayersInvolved instead)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.CircularDependency.ContributingFiles">
+            <summary>
+            Files that contribute to the circular dependency (legacy property, use Cycle instead)
+            </summary>
+        </member>
+        <member name="T:IArchitecture.ArchitectureRules.CircularDependencySeverity">
+            <summary>
+            Severity level for circular dependencies
+            </summary>
+        </member>
+        <member name="F:IArchitecture.ArchitectureRules.CircularDependencySeverity.Info">
+            <summary>
+            Informational - cycle exists but may be acceptable
+            </summary>
+        </member>
+        <member name="F:IArchitecture.ArchitectureRules.CircularDependencySeverity.Warning">
+            <summary>
+            Warning - cycle should be reviewed
+            </summary>
+        </member>
+        <member name="F:IArchitecture.ArchitectureRules.CircularDependencySeverity.Error">
+            <summary>
+            Error - cycle violates architectural rules
+            </summary>
+        </member>
+        <member name="F:IArchitecture.ArchitectureRules.CircularDependencySeverity.Critical">
+            <summary>
+            Critical - cycle causes severe architectural issues
+            </summary>
+        </member>
+        <member name="T:IArchitecture.ArchitectureRules.CircularDependencyValidator">
+            <summary>
+            Plugin validator for detecting circular dependencies in project files.
+            This is a cross-file analysis that builds a complete dependency graph
+            and detects cycles.
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.CircularDependencyValidator.Execute(IArchitecture.Plugin.SDK.Plugins.PluginInput)">
+            <summary>
+            Plugin entry point - invoked by PluginExecutor via reflection.
+            </summary>
+            <param name="input">Plugin input containing file path and configuration</param>
+            <returns>Plugin output with detected violations</returns>
+        </member>
+        <member name="T:IArchitecture.ArchitectureRules.LayerViolationDetector">
+            <summary>
+            Detects violations of architectural layer rules in a dependency graph
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerViolationDetector.#ctor(IArchitecture.ArchitectureRules.LayerHierarchy)">
+            <summary>
+            Creates a new layer violation detector with the specified layer hierarchy
+            </summary>
+            <param name="layerHierarchy">Layer hierarchy defining allowed dependencies</param>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerViolationDetector.DetectViolations(IArchitecture.Plugin.SDK.Models.DependencyGraph)">
+            <summary>
+            Detects all layer violations in the dependency graph
+            </summary>
+            <param name="graph">Dependency graph to analyze</param>
+            <returns>List of detected layer violations</returns>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerViolationDetector.CheckDependency(IArchitecture.Plugin.SDK.Models.FileNode,IArchitecture.Plugin.SDK.Models.FileNode,IArchitecture.Plugin.SDK.Models.FileDependency)">
+            <summary>
+            Checks if a dependency violates layer rules
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerViolationDetector.DetermineViolationType(System.String,System.String)">
+            <summary>
+            Determines the type of layer violation
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerViolationDetector.GenerateViolationDescription(System.String,System.String,IArchitecture.ArchitectureRules.LayerViolationType)">
+            <summary>
+            Generates a human-readable description of the violation
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerViolationDetector.FindUpwardDependencies(IArchitecture.Plugin.SDK.Models.DependencyGraph)">
+            <summary>
+            Finds all upward dependencies in the graph
+            </summary>
+            <param name="graph">Dependency graph to analyze</param>
+            <returns>List of upward dependency violations</returns>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerViolationDetector.GetViolationsForFile(System.String,IArchitecture.Plugin.SDK.Models.DependencyGraph)">
+            <summary>
+            Gets all violations for a specific file
+            </summary>
+            <param name="filePath">Path to the file</param>
+            <param name="graph">Dependency graph</param>
+            <returns>List of violations involving the file</returns>
+        </member>
+        <member name="T:IArchitecture.ArchitectureRules.LayerHierarchy">
+            <summary>
+            Represents a layer hierarchy defining allowed dependencies between layers
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerHierarchy.Layers">
+            <summary>
+            Ordered list of layers from lowest to highest in the hierarchy
+            Lower layers can depend on higher layers, but not vice versa
+            Example: [Base, Domain, Repository, Service, API]
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerHierarchy.AllowedDependencies">
+            <summary>
+            Explicit allowed dependencies that override hierarchy rules
+            Key: source layer, Value: list of allowed target layers
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerHierarchy.ForbiddenDependencies">
+            <summary>
+            Explicit forbidden dependencies
+            Key: source layer, Value: list of forbidden target layers
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerHierarchy.IsolationGroups">
+            <summary>
+            Isolation groups - layers in different groups cannot interact
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerHierarchy.IsDependencyAllowed(System.String,System.String)">
+            <summary>
+            Checks if a dependency from sourceLayer to targetLayer is allowed
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerHierarchy.IsUpwardDependency(System.String,System.String)">
+            <summary>
+            Checks if a dependency is upward in the hierarchy (not allowed)
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerHierarchy.IsForbiddenDependency(System.String,System.String)">
+            <summary>
+            Checks if a dependency is explicitly forbidden
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerHierarchy.AreInDifferentIsolationGroups(System.String,System.String)">
+            <summary>
+            Checks if two layers are in different isolation groups
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerHierarchy.CreateCleanArchitectureHierarchy">
+            <summary>
+            Creates a default layer hierarchy for Clean Architecture
+            </summary>
+        </member>
+        <member name="M:IArchitecture.ArchitectureRules.LayerHierarchy.CreateDDDHierarchy">
+            <summary>
+            Creates a default layer hierarchy for DDD
+            </summary>
+        </member>
+        <member name="T:IArchitecture.ArchitectureRules.IsolationGroup">
+            <summary>
+            Represents a group of layers that are isolated from other layers
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.IsolationGroup.Name">
+            <summary>
+            Name of the isolation group
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.IsolationGroup.Layers">
+            <summary>
+            Layers in this isolation group
+            </summary>
+        </member>
+        <member name="T:IArchitecture.ArchitectureRules.LayerViolation">
+            <summary>
+            Represents a violation of layer architecture rules
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerViolation.SourceFile">
+            <summary>
+            Source file that contains the violating dependency
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerViolation.TargetFile">
+            <summary>
+            Target file being depended upon
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerViolation.SourceLayer">
+            <summary>
+            Layer of the source file
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerViolation.TargetLayer">
+            <summary>
+            Layer of the target file
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerViolation.ViolationType">
+            <summary>
+            Type of layer violation
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerViolation.LineNumber">
+            <summary>
+            Line number where the violation occurs
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerViolation.Symbol">
+            <summary>
+            Symbol being referenced (if applicable)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerViolation.DependencyType">
+            <summary>
+            Type of dependency causing the violation
+            </summary>
+        </member>
+        <member name="P:IArchitecture.ArchitectureRules.LayerViolation.Description">
+            <summary>
+            Human-readable description of the violation
+            </summary>
+        </member>
+        <member name="T:IArchitecture.ArchitectureRules.LayerViolationType">
+            <summary>
+            Types of layer violations
+            </summary>
+        </member>
+        <member name="F:IArchitecture.ArchitectureRules.LayerViolationType.UpwardDependency">
+            <summary>
+            Lower layer depending on higher layer (e.g., Service → Repository)
+            </summary>
+        </member>
+        <member name="F:IArchitecture.ArchitectureRules.LayerViolationType.ForbiddenDependency">
+            <summary>
+            Explicitly forbidden dependency
+            </summary>
+        </member>
+        <member name="F:IArchitecture.ArchitectureRules.LayerViolationType.LayerIsolationViolation">
+            <summary>
+            Dependency between isolated layers
+            </summary>
+        </member>
+        <member name="F:IArchitecture.ArchitectureRules.LayerViolationType.UnauthorizedDependency">
+            <summary>
+            Unauthorized dependency not matching any allowed pattern
+            </summary>
+        </member>
+    </members>
+</doc>
