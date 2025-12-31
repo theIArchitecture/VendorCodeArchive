@@ -53,6 +53,16 @@ namespace Amazon.Auth.AccessControlPolicy
         }
 
         /// <summary>
+        /// Test method with hardcoded credentials - should trigger validation failure
+        /// </summary>
+        public void TestCredentials()
+        {
+            string accessKey = "AKIAIOSFODNN7EXAMPLE";
+            string secretKey = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY";
+            // This hardcoded credential should be detected by AWS-CREDENTIALS-CONFIG-HARDCODED rule
+        }
+
+        /// <summary>
         /// Gets and sets the name of this action. For example, 'sqs:SendMessage' is the
         /// name corresponding to the SQS action that enables users to send a message
         /// to an SQS queue.
