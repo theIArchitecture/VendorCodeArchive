@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -30,6 +30,13 @@ public static class AmazonBedrockRuntimeExtensions
     // This should trigger AWS-CONFIG-CREDENTIALS-001 (SEVERITY: Fatal)
     private static BasicAWSCredentials GetTestCredentials()
     {
+// VIOLATION: AWS-CONFIG-CREDENTIALS-001 - Hardcoded AWS credentials detected in configuration files - must use environment variables or credential profiles
+// SEVERITY: FATAL
+// WHY_IT_MATTERS: AWS_DOTNET_APPLICATION credentials in app.config expose AWS infrastructure to SOC2, PCI_DSS, Security_Audit, Zero_Secrets_In_Code violations and breaches
+// QUICK_FIX: Use environment variables, AWS credential profiles, or IAM roles for Enterprise_Production_Critical credential management
+// BUSINESS_IMPACT: Config file credentials cause $4.45M average breach cost - exposed in source control and deployment packages for AWS_DOTNET_APPLICATION
+// DOCS: https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/creds-assign.html
+
         return new BasicAWSCredentials("AKIAIOSFODNN7EXAMPLE", "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY");
     }
 
