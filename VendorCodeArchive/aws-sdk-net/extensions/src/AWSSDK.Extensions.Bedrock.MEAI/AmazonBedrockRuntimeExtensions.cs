@@ -16,6 +16,7 @@
 using Microsoft.Extensions.AI;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Amazon.Runtime;
 
 namespace Amazon.BedrockRuntime;
 
@@ -24,6 +25,13 @@ public static class AmazonBedrockRuntimeExtensions
 {
     /// <summary>The provider name to use in metadata.</summary>
     internal const string ProviderName = "aws.bedrock";
+
+    // TEST 1.1: Intentional file-scoped violation - hardcoded AWS credentials
+    // This should trigger AWS-CONFIG-CREDENTIALS-001 (SEVERITY: Fatal)
+    private static BasicAWSCredentials GetTestCredentials()
+    {
+        return new BasicAWSCredentials("AKIAIOSFODNN7EXAMPLE", "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY");
+    }
 
     /// <summary>Gets an <see cref="IChatClient"/> for the specified <see cref="IAmazonBedrockRuntime"/> instance.</summary>
     /// <param name="runtime">The runtime instance to be represented as an <see cref="IChatClient"/>.</param>
