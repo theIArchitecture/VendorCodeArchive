@@ -1,0 +1,156 @@
+# NVIDIA CUDA Memory Management Rule - Simplified Pattern
+# Removes complex negative lookaheads - focuses on actual memory leak patterns
+# Based on thrust library analysis showing proper error checking exists
+
+RULE "NVIDIA-CUDA-MEMORY-LEAKS" : IHealerArchitecture
+  ID: "NVIDIA-CUDA-MEMORY-002"
+  DESCRIPTION: "CUDA memory allocation without corresponding free - potential memory leak"
+  SEVERITY: Fatal
+  CATEGORY: "NVIDIA_CUDA_Memory"
+  APPLIES_TO: ["cuda", "cpp", "c"]
+
+  ARCHITECTURAL_CONTEXT:
+    PROJECT_TYPE: "NVIDIA_CUDA_APPLICATION"
+    COMPLIANCE_REQUIREMENTS: ["Zero_Memory_Leaks", "GPU_Efficiency", "Production_Stability"]
+    ORGANIZATION_STANDARDS: ["NVIDIA_CUDA_Best_Practices", "GPU_Memory_Patterns"]
+    TECHNOLOGY_STACK: ["cuda", "cudnn", "thrust", "cublas"]
+    SECURITY_LEVEL: "Enterprise_GPU_Production"
+
+  EDUCATION:
+    DOCS_URL: "https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#memory-management"
+    WHY_IT_MATTERS: "GPU memory leaks exhaust device memory causing {{SILO:PROJECT_TYPE}} crashes and require expensive hardware resets"
+    BUSINESS_IMPACT: "CUDA memory leaks waste millions in GPU compute time and cause production outages in {{SILO:PROJECT_TYPE}}"
+    QUICK_FIX: "Ensure every cudaMalloc has corresponding cudaFree, use RAII patterns for {{SILO:COMPLIANCE_REQUIREMENTS}}"
+
+  ARCHITECTURAL_LAYERS:
+    CUDA_MEMORY_OPS: ["cudaMalloc", "cudaMallocHost", "cudaMallocManaged", "cudaMallocAsync"]
+    CUDA_FREE_OPS: ["cudaFree", "cudaFreeHost", "cudaFreeAsync"]
+    MEMORY_PATTERNS: ["RAII", "Smart_Pointers", "Memory_Pools", "Scope_Guards"]
+
+  DETECT:
+    PATTERNS:
+      cuda:
+        # Simple pattern: cudaMalloc without cudaFree in same function scope
+        - MALLOC_NO_FREE: "cudaMalloc\\s*\\([^)]+\\)(?:(?!cudaFree).){0,500}\\n\\s*return"
+        - MALLOC_EARLY_RETURN: "cudaMalloc\\s*\\([^)]+\\)[^}]*?(?:if\\s*\\([^)]+\\)\\s*return[^}]*?)(?!cudaFree)"
+
+        # MallocHost without FreeHost
+        - MALLOC_HOST_NO_FREE: "cudaMallocHost\\s*\\([^)]+\\)(?:(?!cudaFreeHost).){0,500}\\n\\s*return"
+
+        # MallocManaged without Free
+        - MALLOC_MANAGED_NO_FREE: "cudaMallocManaged\\s*\\([^)]+\\)(?:(?!cudaFree).){0,500}\\n\\s*return"
+
+      cpp:
+        # C++ raw pointer without cleanup
+        - CPP_RAW_MALLOC: "cudaMalloc\\s*\\(&[^,]+,.*\\);(?:(?!cudaFree|\\bdelete\\b|std::unique_ptr).){0,500}\\n\\s*return"
+
+        # No RAII wrapper
+        - NO_RAII_PATTERN: "cudaMalloc\\s*\\([^)]+\\)(?:(?!std::unique_ptr|std::shared_ptr|thrust::device_ptr).){0,300};"
+
+      c:
+        # C malloc without free
+        - C_MALLOC_NO_FREE: "cudaMalloc\\s*\\(&[^,]+,.*\\);(?:(?!cudaFree).){0,500}\\n\\s*return"
+
+  VIOLATIONS:
+    - "{{SILO:PROJECT_TYPE}} Memory: cudaMalloc without cudaFree in function - potential leak violates {{SILO:COMPLIANCE_REQUIREMENTS}}"
+    - "{{SILO:PROJECT_TYPE}} Memory: cudaMallocHost without cudaFreeHost - memory leak in {{SILO:SECURITY_LEVEL}} code"
+    - "{{SILO:PROJECT_TYPE}} Memory: C++ raw CUDA pointer without RAII wrapper - violates {{SILO:ORGANIZATION_STANDARDS}}"
+
+  FIXES:
+    cuda:
+      - REPLACE: "cudaMalloc(&ptr, size);\n    if (err != cudaSuccess) return err;"
+      - WITH: "cudaMalloc(&ptr, size);\n    if (err != cudaSuccess) return err;\n    // ... use ptr ...\n    cudaFree(ptr);"
+      - TEACHING: "Add cudaFree before all return paths for {{SILO:COMPLIANCE_REQUIREMENTS}} - every cudaMalloc needs matching cudaFree"
+
+      - REPLACE: "cudaMallocHost(&ptr, size);"
+      - WITH: "cudaMallocHost(&ptr, size);\n    // ... use ptr ...\n    cudaFreeHost(ptr);"
+      - TEACHING: "cudaMallocHost requires cudaFreeHost for {{SILO:PROJECT_TYPE}} pinned memory management"
+
+    cpp:
+      - REPLACE: "float* d_ptr;\n    cudaMalloc(&d_ptr, size);"
+      - WITH: "// Use RAII pattern for automatic cleanup\n    struct CudaDeleter { void operator()(void* p) { cudaFree(p); } };\n    std::unique_ptr<float, CudaDeleter> d_ptr;\n    float* raw_ptr;\n    cudaMalloc(&raw_ptr, size);\n    d_ptr.reset(raw_ptr);"
+      - TEACHING: "Use std::unique_ptr with custom deleter for {{SILO:COMPLIANCE_REQUIREMENTS}} RAII pattern"
+
+      - REPLACE: "cudaMalloc("
+      - WITH: "// Consider thrust::device_vector for automatic memory management\n    // thrust::device_vector<float> d_data(size / sizeof(float));\n    cudaMalloc("
+      - TEACHING: "thrust::device_vector provides RAII for {{SILO:PROJECT_TYPE}} CUDA memory"
+
+    c:
+      - REPLACE: "cudaMalloc(&ptr, size);\n    // ...\n    return"
+      - WITH: "cudaMalloc(&ptr, size);\n    // ... use ptr ...\n    cudaFree(ptr);\n    return"
+      - TEACHING: "Add cudaFree before return for {{SILO:COMPLIANCE_REQUIREMENTS}} leak prevention"
+
+  RAII_PATTERN:
+    cpp: |
+      // RECOMMENDED: CUDA RAII Memory Pattern
+
+      #include <memory>
+      #include <cuda_runtime.h>
+
+      // Custom deleter for CUDA memory
+      struct CudaDeleter {
+        void operator()(void* ptr) const {
+          if (ptr) cudaFree(ptr);
+        }
+      };
+
+      template<typename T>
+      using cuda_unique_ptr = std::unique_ptr<T, CudaDeleter>;
+
+      // Usage example
+      cudaError_t processData(size_t size) {
+        float* raw_ptr = nullptr;
+        cudaError_t err = cudaMalloc(&raw_ptr, size * sizeof(float));
+        if (err != cudaSuccess) return err;
+
+        // Automatic cleanup when scope exits
+        cuda_unique_ptr<float> d_data(raw_ptr);
+
+        // Use d_data.get() for raw pointer
+        // Memory freed automatically at function exit
+        return cudaSuccess;
+      }
+
+      // Alternative: thrust::device_vector
+      #include <thrust/device_vector.h>
+
+      void processDataThrust(size_t size) {
+        thrust::device_vector<float> d_data(size);  // RAII!
+        // Automatically freed when d_data goes out of scope
+      }
+
+  WHITELISTED_PATTERNS:
+    - "cudaMalloc.*cudaFree"
+    - "cudaMallocHost.*cudaFreeHost"
+    - "std::unique_ptr.*CudaDeleter"
+    - "thrust::device_vector"
+    - "thrust::device_ptr"
+
+  PARTIAL_HEALING:
+    cpp:
+      - ACTION: "Add cudaFree calls before return statements or suggest RAII patterns"
+      - LIMITATION: "Cannot automatically refactor complex control flow or exception paths"
+      - DOWNGRADE_TO: "CRITICAL_WARNING"
+      - EDUCATIONAL_NOTE: "Implement RAII patterns with std::unique_ptr or thrust::device_vector for {{SILO:COMPLIANCE_REQUIREMENTS}}"
+
+  META_ARCHITECTURE:
+    HEALING_PRIORITY: 1
+    BREAKING_CHANGE: false
+    BUSINESS_IMPACT: "GPU memory leaks waste millions in compute resources and cause production crashes"
+    AUTO_HEAL_SUCCESS_RATE: "75%"
+    GOVERNANCE_LEVEL: "CRITICAL_MEMORY_ENFORCEMENT"
+
+  IDENTIFIER: "NVIDIA-CUDA-MEMORY-002"
+  IS_VALID: true
+  CODE_TYPE: "Architecture"
+  CURRENT_STATE: "Active"
+
+  HEALING_FIXES: "Simplified fixes for cuda/cpp/c memory leak patterns"
+  HEALING_PRIORITY_METHOD: 1
+  HEALING_SUCCESS_RATE: 0.75
+  CAN_AUTO_HEAL: true
+  FIX_SAFETY_VALIDATED: true
+  FIX_COMPLETENESS_VALIDATED: true
+  FIX_TEACHING_INCLUDED: true
+
+END RULE

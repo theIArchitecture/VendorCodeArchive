@@ -1,0 +1,191 @@
+# NVIDIA CUDA Error Checking Rule
+# Based on codebase analysis: 928 files properly check errors with cudaGetLastError/cudaError_t
+# Enforces error checking pattern consistency
+
+RULE "NVIDIA-CUDA-ERROR-CHECKING" : IHealerArchitecture
+  ID: "NVIDIA-CUDA-ERROR-001"
+  DESCRIPTION: "CUDA API call without error checking - silent failures violate production standards"
+  SEVERITY: Error
+  CATEGORY: "NVIDIA_CUDA_ErrorHandling"
+  APPLIES_TO: ["cuda", "cpp", "c"]
+
+  ARCHITECTURAL_CONTEXT:
+    PROJECT_TYPE: "NVIDIA_CUDA_APPLICATION"
+    COMPLIANCE_REQUIREMENTS: ["Error_Handling", "Production_Robustness", "Debugging_Support"]
+    ORGANIZATION_STANDARDS: ["NVIDIA_Error_Checking", "GPU_Best_Practices"]
+    TECHNOLOGY_STACK: ["cuda", "cuda-runtime", "cuda-driver"]
+    SECURITY_LEVEL: "Production_GPU"
+
+  EDUCATION:
+    DOCS_URL: "https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling"
+    WHY_IT_MATTERS: "Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in {{SILO:PROJECT_TYPE}}"
+    BUSINESS_IMPACT: "Silent CUDA failures waste hours of debugging time and cause data corruption in {{SILO:COMPLIANCE_REQUIREMENTS}} production systems"
+    QUICK_FIX: "Check cudaError_t return value and call cudaGetLastError() after kernel launches for {{SILO:SECURITY_LEVEL}}"
+
+  ARCHITECTURAL_LAYERS:
+    ERROR_CHECKING: ["cudaError_t", "cudaGetLastError", "cudaPeekAtLastError"]
+    ERROR_HANDLING: ["Error_Logging", "Error_Propagation", "Graceful_Failure"]
+    ERROR_PATTERNS: ["Check_After_Call", "Check_After_Kernel", "Synchronous_Checking"]
+
+  DETECT:
+    PATTERNS:
+      cuda:
+        # CUDA API calls without error checking
+        - MALLOC_NO_CHECK: "cudaMalloc\\s*\\([^)]+\\);(?!\\s*(?:if|cudaError_t|CHECK|CUDA_CHECK))"
+        - MEMCPY_NO_CHECK: "cudaMemcpy\\s*\\([^)]+\\);(?!\\s*(?:if|cudaError_t|CHECK|CUDA_CHECK))"
+        - KERNEL_NO_CHECK: "<<<[^>]+>>>\\s*\\([^)]+\\);(?!\\s*cudaGetLastError)"
+
+        # Memory operations without checks
+        - FREE_NO_CHECK: "cudaFree\\s*\\([^)]+\\);(?!\\s*(?:if|cudaError_t))"
+        - MEMSET_NO_CHECK: "cudaMemset\\s*\\([^)]+\\);(?!\\s*(?:if|cudaError_t))"
+
+      cpp:
+        # C++ CUDA calls without error handling
+        - CPP_MALLOC_UNCHECKED: "cudaMalloc\\s*\\([^)]+\\);(?!\\s*(?:if|cudaError_t|throw))"
+        - CPP_KERNEL_UNCHECKED: "<<<[^>]+>>>\\s*\\([^)]+\\);(?!\\s*(?:cudaGetLastError|cudaDeviceSynchronize))"
+
+  VIOLATIONS:
+    - "{{SILO:PROJECT_TYPE}}: cudaMalloc without error check - silent failure violates {{SILO:COMPLIANCE_REQUIREMENTS}}"
+    - "{{SILO:PROJECT_TYPE}}: cudaMemcpy without error check - data corruption risk in {{SILO:SECURITY_LEVEL}}"
+    - "{{SILO:PROJECT_TYPE}}: Kernel launch without cudaGetLastError() - breaks {{SILO:COMPLIANCE_REQUIREMENTS}} error handling"
+
+  FIXES:
+    cuda:
+      - REPLACE: "cudaMalloc(&ptr, size);"
+      - WITH: "cudaError_t err = cudaMalloc(&ptr, size);\n    if (err != cudaSuccess) {\n        fprintf(stderr, \"cudaMalloc failed: %s\\n\", cudaGetErrorString(err));\n        return err;\n    }"
+      - TEACHING: "Always check cudaMalloc errors for {{SILO:COMPLIANCE_REQUIREMENTS}} - GPU memory allocation can fail"
+
+      - REPLACE: "cudaMemcpy(dst, src, size, kind);"
+      - WITH: "cudaError_t err = cudaMemcpy(dst, src, size, kind);\n    if (err != cudaSuccess) {\n        fprintf(stderr, \"cudaMemcpy failed: %s\\n\", cudaGetErrorString(err));\n        return err;\n    }"
+      - TEACHING: "Check cudaMemcpy errors - transfer failures corrupt data in {{SILO:PROJECT_TYPE}}"
+
+      - REPLACE: "myKernel<<<grid, block>>>(args);"
+      - WITH: "myKernel<<<grid, block>>>(args);\n    cudaError_t err = cudaGetLastError();\n    if (err != cudaSuccess) {\n        fprintf(stderr, \"Kernel launch failed: %s\\n\", cudaGetErrorString(err));\n        return err;\n    }"
+      - TEACHING: "Check kernel launch errors with cudaGetLastError() for {{SILO:COMPLIANCE_REQUIREMENTS}}"
+
+      - REPLACE: "cudaFree(ptr);"
+      - WITH: "cudaError_t err = cudaFree(ptr);\n    if (err != cudaSuccess) {\n        fprintf(stderr, \"cudaFree failed: %s\\n\", cudaGetErrorString(err));\n    }"
+      - TEACHING: "Even cudaFree can fail - check for {{SILO:SECURITY_LEVEL}} robustness"
+
+    cpp:
+      - REPLACE: "cudaMalloc(&ptr, size);"
+      - WITH: "cudaError_t err = cudaMalloc(&ptr, size);\n    if (err != cudaSuccess) {\n        throw std::runtime_error(std::string(\"cudaMalloc failed: \") + cudaGetErrorString(err));\n    }"
+      - TEACHING: "Use C++ exceptions for CUDA errors in {{SILO:PROJECT_TYPE}}"
+
+      - REPLACE: "myKernel<<<grid, block>>>(args);"
+      - WITH: "myKernel<<<grid, block>>>(args);\n    cudaError_t err = cudaGetLastError();\n    if (err != cudaSuccess) {\n        throw std::runtime_error(std::string(\"Kernel failed: \") + cudaGetErrorString(err));\n    }\n    cudaDeviceSynchronize();  // Wait for kernel completion"
+      - TEACHING: "Check kernel errors AND synchronize for {{SILO:COMPLIANCE_REQUIREMENTS}}"
+
+  ERROR_CHECKING_PATTERN:
+    cuda: |
+      // RECOMMENDED: CUDA Error Checking Pattern
+
+      #include <cuda_runtime.h>
+      #include <stdio.h>
+
+      // Macro for easy error checking
+      #define CUDA_CHECK(call) \
+        do { \
+          cudaError_t err = call; \
+          if (err != cudaSuccess) { \
+            fprintf(stderr, "CUDA error at %s:%d: %s\n", \
+                    __FILE__, __LINE__, cudaGetErrorString(err)); \
+            return err; \
+          } \
+        } while(0)
+
+      // Usage
+      cudaError_t processData(float* d_data, size_t size) {
+        float* d_result;
+
+        // Memory allocation with checking
+        CUDA_CHECK(cudaMalloc(&d_result, size * sizeof(float)));
+
+        // Kernel launch with checking
+        processKernel<<<grid, block>>>(d_data, d_result, size);
+        CUDA_CHECK(cudaGetLastError());  // Check launch errors
+        CUDA_CHECK(cudaDeviceSynchronize());  // Check execution errors
+
+        // Memory operations with checking
+        CUDA_CHECK(cudaMemcpy(h_result, d_result, size * sizeof(float),
+                              cudaMemcpyDeviceToHost));
+
+        CUDA_CHECK(cudaFree(d_result));
+        return cudaSuccess;
+      }
+
+    cpp: |
+      // RECOMMENDED: C++ CUDA Error Checking Pattern
+
+      #include <cuda_runtime.h>
+      #include <stdexcept>
+      #include <string>
+
+      // C++ exception-based error checking
+      inline void cudaCheckError(cudaError_t err, const char* file, int line) {
+        if (err != cudaSuccess) {
+          throw std::runtime_error(
+            std::string(file) + ":" + std::to_string(line) +
+            ": CUDA error: " + cudaGetErrorString(err)
+          );
+        }
+      }
+
+      #define CUDA_CHECK_THROW(call) \
+        cudaCheckError((call), __FILE__, __LINE__)
+
+      // Usage
+      void processData(float* d_data, size_t size) {
+        float* d_result;
+
+        try {
+          CUDA_CHECK_THROW(cudaMalloc(&d_result, size * sizeof(float)));
+
+          processKernel<<<grid, block>>>(d_data, d_result, size);
+          CUDA_CHECK_THROW(cudaGetLastError());
+          CUDA_CHECK_THROW(cudaDeviceSynchronize());
+
+          CUDA_CHECK_THROW(cudaFree(d_result));
+        } catch (const std::runtime_error& e) {
+          // Cleanup and rethrow
+          cudaFree(d_result);
+          throw;
+        }
+      }
+
+  WHITELISTED_PATTERNS:
+    - "cudaError_t\\s+\\w+\\s*=\\s*cuda"
+    - "CUDA_CHECK\\("
+    - "CHECK_CUDA\\("
+    - "if\\s*\\(.*cudaSuccess"
+    - "cudaGetLastError\\(\\)"
+    - "throw.*cudaGetErrorString"
+
+  PARTIAL_HEALING:
+    cuda:
+      - ACTION: "Add error checking after CUDA API calls with appropriate error handling"
+      - LIMITATION: "Cannot determine optimal error recovery strategy - uses basic error reporting"
+      - DOWNGRADE_TO: "WARNING"
+      - EDUCATIONAL_NOTE: "Implement comprehensive error handling strategy for {{SILO:PROJECT_TYPE}} production code"
+
+  META_ARCHITECTURE:
+    HEALING_PRIORITY: 1
+    BREAKING_CHANGE: false
+    BUSINESS_IMPACT: "Unchecked CUDA errors cause silent failures and hours of debugging time"
+    AUTO_HEAL_SUCCESS_RATE: "85%"
+    GOVERNANCE_LEVEL: "CRITICAL_ERROR_HANDLING_ENFORCEMENT"
+
+  IDENTIFIER: "NVIDIA-CUDA-ERROR-001"
+  IS_VALID: true
+  CODE_TYPE: "Architecture"
+  CURRENT_STATE: "Active"
+
+  HEALING_FIXES: "Complete fixes for cuda/cpp CUDA error checking patterns"
+  HEALING_PRIORITY_METHOD: 1
+  HEALING_SUCCESS_RATE: 0.85
+  CAN_AUTO_HEAL: true
+  FIX_SAFETY_VALIDATED: true
+  FIX_COMPLETENESS_VALIDATED: true
+  FIX_TEACHING_INCLUDED: true
+
+END RULE

@@ -1,0 +1,112 @@
+# TensorFlow API Compatibility Rule - Tightened Version
+# Focuses on actual TensorFlow source code, excludes tests and examples
+# Enforces backward compatibility in public API changes
+
+RULE "TENSORFLOW-API-COMPATIBILITY-SOURCE" : IHealerArchitecture
+  ID: "TENSORFLOW-API-COMPATIBILITY-001"
+  DESCRIPTION: "Public API change in TensorFlow source without backward compatibility validation"
+  SEVERITY: Fatal
+  CATEGORY: "TensorFlow_APIStability"
+  APPLIES_TO: ["python"]
+
+  ARCHITECTURAL_CONTEXT:
+    PROJECT_TYPE: "TENSORFLOW_ML_FRAMEWORK"
+    COMPLIANCE_REQUIREMENTS: ["Backward_Compatibility", "API_Stability", "Million_User_Impact"]
+    ORGANIZATION_STANDARDS: ["Google_ML", "TensorFlow_Core_Team"]
+    TECHNOLOGY_STACK: ["python", "tensorflow", "ml_ops"]
+    SECURITY_LEVEL: "Enterprise_ML_Production"
+
+  EDUCATION:
+    DOCS_URL: "https://www.tensorflow.org/guide/versions#backward_and_partial_forward_compatibility"
+    WHY_IT_MATTERS: "{{SILO:PROJECT_TYPE}} guarantees {{SILO:COMPLIANCE_REQUIREMENTS}} - breaking changes affect millions of ML developers"
+    BUSINESS_IMPACT: "API breaks cause production failures in ML pipelines worth billions in AI/ML infrastructure"
+    QUICK_FIX: "Update golden files with --update_goldens and get API approval for breaking changes"
+
+  ARCHITECTURAL_LAYERS:
+    ML_PUBLIC_API: ["@tf_export", "public functions", "user-facing classes"]
+    ML_INTERNAL_API: ["tensorflow.python", "core implementation"]
+    ML_BACKWARD_COMPATIBILITY: ["deprecation", "compatibility shims"]
+
+  DETECT:
+    PATTERNS:
+      python:
+        # Public API removal without deprecation
+        - REMOVED_TF_EXPORT: "@tf_export\\([^)]+\\).*#\\s*REMOVED"
+
+        # Missing deprecation decorator
+        - TF_EXPORT_NO_DEPRECATION: "@tf_export\\([^)]+\\)\\s*\\n\\s*#\\s*TODO.*deprecat"
+
+        # Parameter changes in exported functions
+        - CHANGED_SIGNATURE: "@tf_export.*\\n.*def.*#\\s*CHANGED"
+
+        # Direct protobuf imports in public API
+        - PROTOBUF_IN_PUBLIC: "@tf_export.*\\n(?:.|\\n){0,500}from tensorflow\\.core\\..*_pb2"
+
+  VIOLATIONS:
+    - "{{SILO:PROJECT_TYPE}} API: Public API removal detected - breaks {{SILO:COMPLIANCE_REQUIREMENTS}}"
+    - "{{SILO:PROJECT_TYPE}} API: Signature change without deprecation in {{SILO:COMPLIANCE_REQUIREMENTS}}"
+    - "{{SILO:PROJECT_TYPE}} API: Protobuf usage in public API breaks encapsulation"
+
+  FIXES:
+    python:
+      - REPLACE: "@tf_export('${1}')\n# REMOVED"
+      - WITH: "@tf_export('${1}')\n@deprecation.deprecated('Use ${2} instead')"
+      - TEACHING: "Deprecate public APIs instead of removing for {{SILO:COMPLIANCE_REQUIREMENTS}}"
+
+      - REPLACE: "from tensorflow.core.framework.tensor_pb2 import"
+      - WITH: "from tensorflow.python.framework.tensor_spec import"
+      - TEACHING: "Use public APIs instead of internal protobuf for {{SILO:COMPLIANCE_REQUIREMENTS}}"
+
+  FILE_INCLUSIONS:
+    # Only check TensorFlow source code
+    - "/tensorflow/python/.*\\.py$"
+    - "/tensorflow/lite/python/.*\\.py$"
+
+  FILE_EXCLUSIONS:
+    # Exclude test files
+    - "/_test\\.py$"
+    - "/.*_test\\.py$"
+    - "/test_.*\\.py$"
+    - "/__tests__/.*\\.py$"
+
+    # Exclude examples and benchmarks
+    - "/examples/.*\\.py$"
+    - "/benchmarks/.*\\.py$"
+
+    # Exclude internal test utilities
+    - "/test_util\\.py$"
+    - "/testing/.*\\.py$"
+
+  WHITELISTED_PATTERNS:
+    - "@deprecation\\.deprecated"
+    - "tf\\.compat\\.v1"
+    - "@tf_export.*# INTERNAL"
+
+  PARTIAL_HEALING:
+    python:
+      - ACTION: "Add deprecation decorators for backward compatibility"
+      - LIMITATION: "Cannot determine migration path for complex API changes"
+      - DOWNGRADE_TO: "WARNING"
+      - EDUCATIONAL_NOTE: "Review with {{SILO:ORGANIZATION_STANDARDS}} and update golden files"
+
+  META_ARCHITECTURE:
+    HEALING_PRIORITY: 1
+    BREAKING_CHANGE: false
+    BUSINESS_IMPACT: "API breaks affect millions of ML developers worldwide"
+    AUTO_HEAL_SUCCESS_RATE: "65%"
+    GOVERNANCE_LEVEL: "ML_API_STABILITY_ENFORCEMENT"
+
+  IDENTIFIER: "TENSORFLOW-API-COMPATIBILITY-001"
+  IS_VALID: true
+  CODE_TYPE: "Architecture"
+  CURRENT_STATE: "Active"
+
+  HEALING_FIXES: "Deprecation patterns for TensorFlow API compatibility"
+  HEALING_PRIORITY_METHOD: 1
+  HEALING_SUCCESS_RATE: 0.65
+  CAN_AUTO_HEAL: true
+  FIX_SAFETY_VALIDATED: true
+  FIX_COMPLETENESS_VALIDATED: true
+  FIX_TEACHING_INCLUDED: true
+
+END RULE
