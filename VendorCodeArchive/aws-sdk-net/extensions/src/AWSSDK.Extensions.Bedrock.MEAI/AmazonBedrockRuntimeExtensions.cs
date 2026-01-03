@@ -69,3 +69,11 @@ public static class AmazonBedrockRuntimeExtensions
         runtime is not null ? new BedrockImageGenerator(runtime, defaultModelId) :
         throw new ArgumentNullException(nameof(runtime));
 }
+
+    // TEST 1.1: Intentional file-scoped violation - hardcoded AWS credentials
+    // This should trigger AWS-CONFIG-CREDENTIALS-001 (SEVERITY: Fatal)
+    private static Amazon.Runtime.BasicAWSCredentials GetTestCredentials()
+    {
+        return new Amazon.Runtime.BasicAWSCredentials("AKIAIOSFODNN7EXAMPLE", "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY");
+    }
+}
