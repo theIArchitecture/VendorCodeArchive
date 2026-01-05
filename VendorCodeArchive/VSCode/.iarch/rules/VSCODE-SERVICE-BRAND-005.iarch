@@ -19,7 +19,6 @@ RULE "VSCODE-SERVICE-BRAND-VIOLATION" : IHealerArchitecture
 
   EDUCATION:
     DOCS_URL: "https://github.com/microsoft/vscode/wiki/Dependency-Injection#service-branding"
-    WHY_IT_MATTERS: "Service brands enable compile-time DI validation - missing brands cause runtime injection failures in {{SILO:PROJECT_TYPE}}"
     BUSINESS_IMPACT: "Service injection failures break VSCode features during startup affecting millions of developers"
     QUICK_FIX: "Add readonly _serviceBrand: undefined; to service interface for {{SILO:SECURITY_LEVEL}}"
 
@@ -67,6 +66,13 @@ RULE "VSCODE-SERVICE-BRAND-VIOLATION" : IHealerArchitecture
       - REPLACE: "createDecorator<I${1}Service>('${2}');"
       - WITH: "createDecorator<I${1}Service>('${2}'); // Ensure I${1}Service has _serviceBrand"
       - TEACHING: "Service decorator requires branded interface for {{SILO:SECURITY_LEVEL}}"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 2
+      BREAKING_CHANGE: false
+      BUSINESS_IMPACT: "Missing brands break DI type safety causing runtime failures"
+      AUTO_HEAL_SUCCESS_RATE: "90%"
+      RECURSIVE_DEPTH: 2
+      GOVERNANCE_LEVEL: "VSCODE_SERVICE_BRANDING_ENFORCEMENT"
 
   EXAMPLES:
     VIOLATION:
@@ -119,14 +125,9 @@ RULE "VSCODE-SERVICE-BRAND-VIOLATION" : IHealerArchitecture
       - LIMITATION: "Cannot determine service inheritance hierarchy or decorator usage"
       - DOWNGRADE_TO: "WARNING"
       - EDUCATIONAL_NOTE: "Verify service registration and decorator usage for {{SILO:PROJECT_TYPE}}"
-
-  META_ARCHITECTURE:
-    HEALING_PRIORITY: 2
-    BREAKING_CHANGE: false
-    BUSINESS_IMPACT: "Missing brands break DI type safety causing runtime failures"
-    AUTO_HEAL_SUCCESS_RATE: "90% - Can add _serviceBrand, complex inheritance needs manual review"
-    RECURSIVE_DEPTH: 2
-    GOVERNANCE_LEVEL: "VSCODE_SERVICE_BRANDING_ENFORCEMENT"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 7
+      AUTO_HEAL_SUCCESS_RATE: "100%"
 
   SELF_GOVERNANCE:
     VALIDATES_SELF: true
@@ -139,13 +140,5 @@ RULE "VSCODE-SERVICE-BRAND-VIOLATION" : IHealerArchitecture
   IS_VALID: true
   CODE_TYPE: "Architecture"
   CURRENT_STATE: "Active"
-
-  HEALING_FIXES: "Complete fixes for typescript VSCode service branding patterns with _serviceBrand declarations"
-  HEALING_PRIORITY_METHOD: 2
-  HEALING_SUCCESS_RATE: 0.90
-  CAN_AUTO_HEAL: true
-  FIX_SAFETY_VALIDATED: true
-  FIX_COMPLETENESS_VALIDATED: true
-  FIX_TEACHING_INCLUDED: true
 
 END RULE

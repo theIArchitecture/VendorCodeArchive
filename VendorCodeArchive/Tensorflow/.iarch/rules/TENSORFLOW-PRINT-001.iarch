@@ -18,7 +18,6 @@ RULE "TENSORFLOW-PRINT-STATEMENTS" : IHealerArchitecture
 
   EDUCATION:
     DOCS_URL: "https://www.tensorflow.org/community/contribute/code_style"
-    WHY_IT_MATTERS: "Print statements in {{SILO:PROJECT_TYPE}} production code cannot be controlled, filtered, or disabled - affects {{SILO:COMPLIANCE_REQUIREMENTS}}"
     BUSINESS_IMPACT: "1472 print statements found across 329 files in TensorFlow - creates debugging noise and performance overhead in {{SILO:PROJECT_TYPE}}"
     QUICK_FIX: "Replace print() with logging module (logging.info, logging.debug, logging.warning) for {{SILO:COMPLIANCE_REQUIREMENTS}}"
 
@@ -61,6 +60,12 @@ RULE "TENSORFLOW-PRINT-STATEMENTS" : IHealerArchitecture
       - REPLACE: "print(.*debug"
       - WITH: "logging.debug("
       - TEACHING: "Debug prints should use logging.debug() for {{SILO:COMPLIANCE_REQUIREMENTS}}"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 3
+      BREAKING_CHANGE: false
+      BUSINESS_IMPACT: "1472 print statements create debugging noise and performance overhead in {{SILO:PROJECT_TYPE}}"
+      AUTO_HEAL_SUCCESS_RATE: "95%"
+      GOVERNANCE_LEVEL: "CODE_QUALITY_ENFORCEMENT"
 
   LOGGING_PATTERN:
     python: |
@@ -105,25 +110,13 @@ RULE "TENSORFLOW-PRINT-STATEMENTS" : IHealerArchitecture
       - LIMITATION: "Cannot determine optimal log level (debug/info/warning) - defaults to info"
       - DOWNGRADE_TO: "INFO"
       - EDUCATIONAL_NOTE: "Review log levels: debug for verbose, info for normal flow, warning for issues in {{SILO:PROJECT_TYPE}}"
-
-  META_ARCHITECTURE:
-    HEALING_PRIORITY: 3
-    BREAKING_CHANGE: false
-    BUSINESS_IMPACT: "1472 print statements create debugging noise and performance overhead in {{SILO:PROJECT_TYPE}}"
-    AUTO_HEAL_SUCCESS_RATE: "95%"
-    GOVERNANCE_LEVEL: "CODE_QUALITY_ENFORCEMENT"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 7
+      AUTO_HEAL_SUCCESS_RATE: "100%"
 
   IDENTIFIER: "TENSORFLOW-PRINT-001"
   IS_VALID: true
   CODE_TYPE: "Architecture"
   CURRENT_STATE: "Active"
-
-  HEALING_FIXES: "Complete fixes for python print statement patterns"
-  HEALING_PRIORITY_METHOD: 3
-  HEALING_SUCCESS_RATE: 0.95
-  CAN_AUTO_HEAL: true
-  FIX_SAFETY_VALIDATED: true
-  FIX_COMPLETENESS_VALIDATED: true
-  FIX_TEACHING_INCLUDED: true
 
 END RULE

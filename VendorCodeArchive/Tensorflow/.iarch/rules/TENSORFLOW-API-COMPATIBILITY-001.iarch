@@ -18,7 +18,6 @@ RULE "TENSORFLOW-API-COMPATIBILITY-SOURCE" : IHealerArchitecture
 
   EDUCATION:
     DOCS_URL: "https://www.tensorflow.org/guide/versions#backward_and_partial_forward_compatibility"
-    WHY_IT_MATTERS: "{{SILO:PROJECT_TYPE}} guarantees {{SILO:COMPLIANCE_REQUIREMENTS}} - breaking changes affect millions of ML developers"
     BUSINESS_IMPACT: "API breaks cause production failures in ML pipelines worth billions in AI/ML infrastructure"
     QUICK_FIX: "Update golden files with --update_goldens and get API approval for breaking changes"
 
@@ -56,6 +55,12 @@ RULE "TENSORFLOW-API-COMPATIBILITY-SOURCE" : IHealerArchitecture
       - REPLACE: "from tensorflow.core.framework.tensor_pb2 import"
       - WITH: "from tensorflow.python.framework.tensor_spec import"
       - TEACHING: "Use public APIs instead of internal protobuf for {{SILO:COMPLIANCE_REQUIREMENTS}}"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 1
+      BREAKING_CHANGE: false
+      BUSINESS_IMPACT: "API breaks affect millions of ML developers worldwide"
+      AUTO_HEAL_SUCCESS_RATE: "65%"
+      GOVERNANCE_LEVEL: "ML_API_STABILITY_ENFORCEMENT"
 
   FILE_INCLUSIONS:
     # Only check TensorFlow source code
@@ -88,25 +93,13 @@ RULE "TENSORFLOW-API-COMPATIBILITY-SOURCE" : IHealerArchitecture
       - LIMITATION: "Cannot determine migration path for complex API changes"
       - DOWNGRADE_TO: "WARNING"
       - EDUCATIONAL_NOTE: "Review with {{SILO:ORGANIZATION_STANDARDS}} and update golden files"
-
-  META_ARCHITECTURE:
-    HEALING_PRIORITY: 1
-    BREAKING_CHANGE: false
-    BUSINESS_IMPACT: "API breaks affect millions of ML developers worldwide"
-    AUTO_HEAL_SUCCESS_RATE: "65%"
-    GOVERNANCE_LEVEL: "ML_API_STABILITY_ENFORCEMENT"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 7
+      AUTO_HEAL_SUCCESS_RATE: "100%"
 
   IDENTIFIER: "TENSORFLOW-API-COMPATIBILITY-001"
   IS_VALID: true
   CODE_TYPE: "Architecture"
   CURRENT_STATE: "Active"
-
-  HEALING_FIXES: "Deprecation patterns for TensorFlow API compatibility"
-  HEALING_PRIORITY_METHOD: 1
-  HEALING_SUCCESS_RATE: 0.65
-  CAN_AUTO_HEAL: true
-  FIX_SAFETY_VALIDATED: true
-  FIX_COMPLETENESS_VALIDATED: true
-  FIX_TEACHING_INCLUDED: true
 
 END RULE

@@ -18,7 +18,6 @@ RULE "NVIDIA-CUDA-ERROR-CHECKING" : IHealerArchitecture
 
   EDUCATION:
     DOCS_URL: "https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#error-handling"
-    WHY_IT_MATTERS: "Unchecked CUDA errors cause silent failures, corrupt data, and impossible-to-debug GPU issues in {{SILO:PROJECT_TYPE}}"
     BUSINESS_IMPACT: "Silent CUDA failures waste hours of debugging time and cause data corruption in {{SILO:COMPLIANCE_REQUIREMENTS}} production systems"
     QUICK_FIX: "Check cudaError_t return value and call cudaGetLastError() after kernel launches for {{SILO:SECURITY_LEVEL}}"
 
@@ -75,6 +74,12 @@ RULE "NVIDIA-CUDA-ERROR-CHECKING" : IHealerArchitecture
       - REPLACE: "myKernel<<<grid, block>>>(args);"
       - WITH: "myKernel<<<grid, block>>>(args);\n    cudaError_t err = cudaGetLastError();\n    if (err != cudaSuccess) {\n        throw std::runtime_error(std::string(\"Kernel failed: \") + cudaGetErrorString(err));\n    }\n    cudaDeviceSynchronize();  // Wait for kernel completion"
       - TEACHING: "Check kernel errors AND synchronize for {{SILO:COMPLIANCE_REQUIREMENTS}}"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 1
+      BREAKING_CHANGE: false
+      BUSINESS_IMPACT: "Unchecked CUDA errors cause silent failures and hours of debugging time"
+      AUTO_HEAL_SUCCESS_RATE: "85%"
+      GOVERNANCE_LEVEL: "CRITICAL_ERROR_HANDLING_ENFORCEMENT"
 
   ERROR_CHECKING_PATTERN:
     cuda: |
@@ -167,25 +172,13 @@ RULE "NVIDIA-CUDA-ERROR-CHECKING" : IHealerArchitecture
       - LIMITATION: "Cannot determine optimal error recovery strategy - uses basic error reporting"
       - DOWNGRADE_TO: "WARNING"
       - EDUCATIONAL_NOTE: "Implement comprehensive error handling strategy for {{SILO:PROJECT_TYPE}} production code"
-
-  META_ARCHITECTURE:
-    HEALING_PRIORITY: 1
-    BREAKING_CHANGE: false
-    BUSINESS_IMPACT: "Unchecked CUDA errors cause silent failures and hours of debugging time"
-    AUTO_HEAL_SUCCESS_RATE: "85%"
-    GOVERNANCE_LEVEL: "CRITICAL_ERROR_HANDLING_ENFORCEMENT"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 7
+      AUTO_HEAL_SUCCESS_RATE: "100%"
 
   IDENTIFIER: "NVIDIA-CUDA-ERROR-001"
   IS_VALID: true
   CODE_TYPE: "Architecture"
   CURRENT_STATE: "Active"
-
-  HEALING_FIXES: "Complete fixes for cuda/cpp CUDA error checking patterns"
-  HEALING_PRIORITY_METHOD: 1
-  HEALING_SUCCESS_RATE: 0.85
-  CAN_AUTO_HEAL: true
-  FIX_SAFETY_VALIDATED: true
-  FIX_COMPLETENESS_VALIDATED: true
-  FIX_TEACHING_INCLUDED: true
 
 END RULE

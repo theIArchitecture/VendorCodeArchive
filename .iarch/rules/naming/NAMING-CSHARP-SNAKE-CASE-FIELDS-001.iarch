@@ -15,7 +15,6 @@ SEVERITY: Warning
 LANGUAGES:
   - csharp
 
-WHY_IT_MATTERS: |
   C# naming conventions specify that private fields should use camelCase (e.g., apiKey)
   or _camelCase with underscore prefix (e.g., _apiKey). Using snake_case (e.g., api_key)
   is a convention from other languages like Python or Ruby and is inconsistent with

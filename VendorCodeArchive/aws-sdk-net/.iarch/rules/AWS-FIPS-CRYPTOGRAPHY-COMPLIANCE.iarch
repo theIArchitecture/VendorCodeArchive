@@ -21,7 +21,6 @@ RULE "AWS-FIPS-CRYPTOGRAPHY-VIOLATION" : IHealerArchitecture
   # IEducationArchitecture Interface Implementation
   EDUCATION:
     DOCS_URL: "https://docs.aws.amazon.com/sdkref/latest/guide/feature-fips.html"
-    WHY_IT_MATTERS: "{{SILO:PROJECT_TYPE}} must use FIPS 140-2 validated cryptographic modules - MD5, SHA1, and non-deterministic algorithm selection prevent {{SILO:COMPLIANCE_REQUIREMENTS}} certification required for {{SILO:SECURITY_LEVEL}} deployments"
     BUSINESS_IMPACT: "Non-FIPS cryptography blocks {{SILO:PROJECT_TYPE}} adoption in $125B+ federal and regulated markets - prevents government contracts and enterprise deployments requiring {{SILO:COMPLIANCE_REQUIREMENTS}} compliance"
     QUICK_FIX: "Replace MD5/SHA1 with SHA256 or SHA512, use explicit FIPS-approved algorithms instead of dynamic selection for {{SILO:SECURITY_LEVEL}} compliance"
 
@@ -177,6 +176,12 @@ RULE "AWS-FIPS-CRYPTOGRAPHY-VIOLATION" : IHealerArchitecture
       - WITH: "crypto.createHash('sha256')"
       - TEACHING: "SHA1 is deprecated - use SHA256 for {{SILO:SECURITY_LEVEL}}"
 
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 1
+      BREAKING_CHANGE: true
+      BUSINESS_IMPACT: "FIPS non-compliance blocks $125B+ federal market access"
+      AUTO_HEAL_SUCCESS_RATE: "85% - Can replace algorithm declarations and instantiations, hash size dependencies need manual review"
+
   EXAMPLES:
     VIOLATION:
       csharp: |
@@ -266,21 +271,17 @@ RULE "AWS-FIPS-CRYPTOGRAPHY-VIOLATION" : IHealerArchitecture
       - DOWNGRADE_TO: "WARNING"
       - EDUCATIONAL_NOTE: "Review hash size dependencies - SHA256 produces 32-byte hashes vs MD5's 16-byte. Verify compatibility with {{SILO:PROJECT_TYPE}} integration points."
 
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 7
+      BREAKING_CHANGE: false
+      AUTO_HEAL_SUCCESS_RATE: "50% - Can add comments and downgrade severity but cannot fully replace all hash algorithm usages"
+
   # LAYER BLEEDING - Cross-layer data flow
   LAYER_BLEEDING:
     EDUCATION.BUSINESS_IMPACT -> HEALER.COMPLIANCE_JUSTIFICATION
     EDUCATION.WHY_IT_MATTERS -> HEALER.TEACHING_CONTEXT
     ARCHITECTURAL_LAYERS.FIPS_APPROVED_ALGORITHMS -> HEALER.ALGORITHM_SELECTION
     ARCHITECTURAL_LAYERS.PROHIBITED_ALGORITHMS -> VALIDATION.DETECTION_PATTERNS
-
-  # META-ARCHITECTURE IMPLEMENTATION
-  META_ARCHITECTURE:
-    HEALING_PRIORITY: 1
-    BREAKING_CHANGE: true
-    BUSINESS_IMPACT: "FIPS non-compliance blocks $125B+ federal market access"
-    AUTO_HEAL_SUCCESS_RATE: "85% - Can replace algorithm declarations and instantiations, hash size dependencies need manual review for {{SILO:PROJECT_TYPE}}"
-    RECURSIVE_DEPTH: 2
-    GOVERNANCE_LEVEL: "FEDERAL_CRYPTOGRAPHY_ENFORCEMENT"
 
   # SELF-GOVERNANCE
   SELF_GOVERNANCE:
@@ -290,18 +291,5 @@ RULE "AWS-FIPS-CRYPTOGRAPHY-VIOLATION" : IHealerArchitecture
     PROOF_OF_COMPLIANCE: "Rule implements IHealerArchitecture interface and validates FIPS 140-2 compliance"
     COMPLIANCE_CHECK: "All detection patterns target non-FIPS algorithms, all fixes provide FIPS-approved alternatives"
 
-  # INTERFACE METHOD IMPLEMENTATIONS for IHealerArchitecture
-  IDENTIFIER: "AWS-FIPS-CRYPTO-001"
-  IS_VALID: true
-  CODE_TYPE: "Architecture"
-  CURRENT_STATE: "Active"
-
-  HEALING_FIXES: "Complete fixes for csharp, java, python, typescript non-FIPS cryptography patterns"
-  HEALING_PRIORITY_METHOD: 1
-  HEALING_SUCCESS_RATE: 0.85
-  CAN_AUTO_HEAL: true
-  FIX_SAFETY_VALIDATED: true
-  FIX_COMPLETENESS_VALIDATED: true
-  FIX_TEACHING_INCLUDED: true
 
 END RULE

@@ -16,7 +16,6 @@ APPLIES_TO: ["cloudformation", "terraform", "aws"]
 EDUCATION:
   DOCS_URL: "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html"
 
-  WHY_IT_MATTERS: "Without sticky sessions, user requests can route to different backend instances on each request, causing session data loss, shopping cart clearing, and authentication failures. This leads to poor user experience and potential revenue loss."
 
   BUSINESS_IMPACT: "Session loss causes:\n- Abandoned shopping carts (average $50K/month revenue loss)\n- User frustration and 15-20% churn increase\n- Increased support tickets\n- Poor app store ratings"
 

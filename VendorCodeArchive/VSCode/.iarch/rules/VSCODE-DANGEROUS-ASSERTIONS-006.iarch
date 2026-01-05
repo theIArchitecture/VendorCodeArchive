@@ -18,7 +18,6 @@ RULE "VSCODE-DANGEROUS-ASSERTIONS-SOURCE" : IHealerArchitecture
 
   EDUCATION:
     DOCS_URL: "https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions"
-    WHY_IT_MATTERS: "Type assertions bypass TypeScript safety - cause runtime crashes in {{SILO:PROJECT_TYPE}}"
     BUSINESS_IMPACT: "Runtime type errors crash editor features affecting millions of developers"
     QUICK_FIX: "Use type guards, optional chaining, or instanceof checks"
 
@@ -61,6 +60,12 @@ RULE "VSCODE-DANGEROUS-ASSERTIONS-SOURCE" : IHealerArchitecture
       - REPLACE: "service as IMyService"
       - WITH: "this.isMyService(service) ? service : undefined"
       - TEACHING: "Validate services before casting in {{SILO:PROJECT_TYPE}}"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 1
+      BREAKING_CHANGE: true
+      BUSINESS_IMPACT: "Type assertion errors crash VSCode features"
+      AUTO_HEAL_SUCCESS_RATE: "75%"
+      GOVERNANCE_LEVEL: "VSCODE_TYPE_SAFETY_ENFORCEMENT"
 
   FILE_INCLUSIONS:
     # Only VSCode source code
@@ -93,25 +98,13 @@ RULE "VSCODE-DANGEROUS-ASSERTIONS-SOURCE" : IHealerArchitecture
       - LIMITATION: "Complex validation logic may need manual review"
       - DOWNGRADE_TO: "WARNING"
       - EDUCATIONAL_NOTE: "Implement type guards for domain-specific types in {{SILO:PROJECT_TYPE}}"
-
-  META_ARCHITECTURE:
-    HEALING_PRIORITY: 1
-    BREAKING_CHANGE: true
-    BUSINESS_IMPACT: "Type assertion errors crash VSCode features"
-    AUTO_HEAL_SUCCESS_RATE: "75%"
-    GOVERNANCE_LEVEL: "VSCODE_TYPE_SAFETY_ENFORCEMENT"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 7
+      AUTO_HEAL_SUCCESS_RATE: "100%"
 
   IDENTIFIER: "VSCODE-DANGEROUS-ASSERTIONS-006"
   IS_VALID: true
   CODE_TYPE: "Architecture"
   CURRENT_STATE: "Active"
-
-  HEALING_FIXES: "Type guards and validation for VSCode type safety"
-  HEALING_PRIORITY_METHOD: 1
-  HEALING_SUCCESS_RATE: 0.75
-  CAN_AUTO_HEAL: true
-  FIX_SAFETY_VALIDATED: true
-  FIX_COMPLETENESS_VALIDATED: true
-  FIX_TEACHING_INCLUDED: true
 
 END RULE

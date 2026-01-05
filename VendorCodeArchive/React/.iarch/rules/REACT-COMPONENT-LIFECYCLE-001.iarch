@@ -18,7 +18,6 @@ RULE "REACT-LIFECYCLE-APPLICATION" : IHealerArchitecture
 
   EDUCATION:
     DOCS_URL: "https://react.dev/reference/react/Component#unsafe-lifecycle-methods"
-    WHY_IT_MATTERS: "Unsafe lifecycles cause infinite loops and memory leaks in {{SILO:COMPLIANCE_REQUIREMENTS}}"
     BUSINESS_IMPACT: "Legacy lifecycles break React 18 concurrent rendering in production"
     QUICK_FIX: "Replace componentWillMount with componentDidMount, use useEffect hooks"
 
@@ -69,6 +68,12 @@ RULE "REACT-LIFECYCLE-APPLICATION" : IHealerArchitecture
       - REPLACE: "componentWillMount(): void {"
       - WITH: "componentDidMount(): void {"
       - TEACHING: "Type-safe componentDidMount for {{SILO:PROJECT_TYPE}}"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 1
+      BREAKING_CHANGE: true
+      BUSINESS_IMPACT: "Unsafe lifecycles crash in React 18 concurrent mode"
+      AUTO_HEAL_SUCCESS_RATE: "80%"
+      GOVERNANCE_LEVEL: "REACT_MODERNIZATION_ENFORCEMENT"
 
   FILE_INCLUSIONS:
     # Only application source
@@ -103,25 +108,13 @@ RULE "REACT-LIFECYCLE-APPLICATION" : IHealerArchitecture
       - LIMITATION: "Complex prop logic may need manual review"
       - DOWNGRADE_TO: "WARNING"
       - EDUCATIONAL_NOTE: "Consider migrating to hooks for {{SILO:COMPLIANCE_REQUIREMENTS}}"
-
-  META_ARCHITECTURE:
-    HEALING_PRIORITY: 1
-    BREAKING_CHANGE: true
-    BUSINESS_IMPACT: "Unsafe lifecycles crash in React 18 concurrent mode"
-    AUTO_HEAL_SUCCESS_RATE: "80%"
-    GOVERNANCE_LEVEL: "REACT_MODERNIZATION_ENFORCEMENT"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 7
+      AUTO_HEAL_SUCCESS_RATE: "100%"
 
   IDENTIFIER: "REACT-COMPONENT-LIFECYCLE-001"
   IS_VALID: true
   CODE_TYPE: "Architecture"
   CURRENT_STATE: "Active"
-
-  HEALING_FIXES: "Safe lifecycle methods for React applications"
-  HEALING_PRIORITY_METHOD: 1
-  HEALING_SUCCESS_RATE: 0.80
-  CAN_AUTO_HEAL: true
-  FIX_SAFETY_VALIDATED: true
-  FIX_COMPLETENESS_VALIDATED: true
-  FIX_TEACHING_INCLUDED: true
 
 END RULE

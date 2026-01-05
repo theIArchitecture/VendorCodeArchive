@@ -21,7 +21,6 @@ RULE "TENSORFLOW-CUDA-DEPENDENCY-VIOLATION" : IHealerArchitecture
   # IEducationArchitecture Interface Implementation
   EDUCATION:
     DOCS_URL: "https://www.tensorflow.org/install/pip#package_location"
-    WHY_IT_MATTERS: "{{SILO:PROJECT_TYPE}} pip package must work on systems without CUDA for {{SILO:COMPLIANCE_REQUIREMENTS}} across diverse deployment environments"
     BUSINESS_IMPACT: "CUDA dependencies prevent {{SILO:PROJECT_TYPE}} installation on CPU-only systems and cloud environments worth billions in ML deployment opportunities"
     EXAMPLES_PATH: "./examples/tensorflow-cuda-dependency-violations.md"
     QUICK_FIX: "Use runtime CUDA detection and optional loading instead of compile-time dependencies for {{SILO:SECURITY_LEVEL}}"
@@ -62,8 +61,7 @@ RULE "TENSORFLOW-CUDA-DEPENDENCY-VIOLATION" : IHealerArchitecture
     - "{{SILO:PROJECT_TYPE}} CUDA: Bazel target requires CUDA unconditionally breaking {{SILO:COMPLIANCE_REQUIREMENTS}}"
     - "{{SILO:PROJECT_TYPE}} CUDA: GPU-only functionality not conditionally compiled in {{SILO:ORGANIZATION_STANDARDS}}"
     - "{{SILO:PROJECT_TYPE}} CUDA: Unconditional GPU calls break {{SILO:COMPLIANCE_REQUIREMENTS}} on CPU-only systems"
-    
-  # IHealerArchitecture Interface Implementation
+
   FIXES:
     python:
       - REPLACE: "import cuda"
@@ -106,7 +104,14 @@ RULE "TENSORFLOW-CUDA-DEPENDENCY-VIOLATION" : IHealerArchitecture
       - REPLACE: 'copts = ["-DGOOGLE_CUDA=1"]'
       - WITH: 'copts = select({"//conditions:default": [], ":cuda_configured": ["-DGOOGLE_CUDA=1"]})'
       - TEACHING: "Conditional compilation flags ensure {{SILO:PROJECT_TYPE}} builds on systems without CUDA"
-      
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 1
+      BREAKING_CHANGE: false
+      BUSINESS_IMPACT: "{{LAYER_BLEED:EDUCATION.BUSINESS_IMPACT}}"
+      AUTO_HEAL_SUCCESS_RATE: "75%"
+      RECURSIVE_DEPTH: 3
+      GOVERNANCE_LEVEL: "TENSORFLOW_PLATFORM_PORTABILITY_ENFORCEMENT"
+
   PLATFORM_COMPATIBILITY_PATTERN:
     python: |
       # RECOMMENDED: Platform-agnostic TensorFlow GPU usage pattern
@@ -500,12 +505,17 @@ RULE "TENSORFLOW-CUDA-DEPENDENCY-VIOLATION" : IHealerArchitecture
       - LIMITATION: "Cannot automatically implement optimal CPU algorithms for complex GPU operations like cuDNN convolutions"
       - DOWNGRADE_TO: "WARNING"
       - EDUCATIONAL_NOTE: "Implement CPU fallback algorithms for GPU-only operations, verify performance characteristics match requirements for {{SILO:PROJECT_TYPE}}"
-      
+
     bazel:
       - ACTION: "Convert hardcoded CUDA deps to select() statements with conditional compilation flags"
       - LIMITATION: "Cannot automatically determine which CPU implementations exist for GPU-only build targets"
-      - DOWNGRADE_TO: "WARNING" 
+      - DOWNGRADE_TO: "WARNING"
       - EDUCATIONAL_NOTE: "Create CPU-only implementations for GPU-only build targets and verify build compatibility across platforms"
+
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 7
+      BREAKING_CHANGE: false
+      AUTO_HEAL_SUCCESS_RATE: "50% - Can add try/except and select() but cannot implement optimal CPU algorithms"
 
   # LAYER BLEEDING - Revolutionary cross-layer data flow
   LAYER_BLEEDING:
@@ -514,15 +524,6 @@ RULE "TENSORFLOW-CUDA-DEPENDENCY-VIOLATION" : IHealerArchitecture
     VALIDATION.PATTERN_COUNT -> META.PLATFORM_PORTABILITY_COMPLEXITY_SCORE
     ARCHITECTURAL_LAYERS.TENSORFLOW_CPU_FALLBACK -> HEALER.FALLBACK_STRATEGIES
 
-  # META-ARCHITECTURE IMPLEMENTATION  
-  META_ARCHITECTURE:
-    HEALING_PRIORITY: 1
-    BREAKING_CHANGE: false
-    BUSINESS_IMPACT: "{{LAYER_BLEED:EDUCATION.BUSINESS_IMPACT}}"
-    AUTO_HEAL_SUCCESS_RATE: "75% - Can add conditional imports and select() statements, CPU algorithm implementations need {{SILO:ORGANIZATION_STANDARDS}} expertise"
-    RECURSIVE_DEPTH: 3
-    GOVERNANCE_LEVEL: "TENSORFLOW_PLATFORM_PORTABILITY_ENFORCEMENT"
-    
   # SELF-GOVERNANCE - Rule validates itself using its own mechanisms
   SELF_GOVERNANCE:
     VALIDATES_SELF: true
@@ -533,19 +534,9 @@ RULE "TENSORFLOW-CUDA-DEPENDENCY-VIOLATION" : IHealerArchitecture
     
   # INTERFACE METHOD IMPLEMENTATIONS for IHealerArchitecture
   
-  # ICode methods
   IDENTIFIER: "TENSORFLOW-CUDA-DEPENDENCY-004"
   IS_VALID: true
   CODE_TYPE: "Architecture"
   CURRENT_STATE: "Active"
-  
-  # IHealerMetaArchitecture methods
-  HEALING_FIXES: "Complete fixes for python, bazel TensorFlow CUDA dependency patterns with conditional imports, select statements, and CPU fallbacks"
-  HEALING_PRIORITY_METHOD: 1
-  HEALING_SUCCESS_RATE: 0.75
-  CAN_AUTO_HEAL: true
-  FIX_SAFETY_VALIDATED: true
-  FIX_COMPLETENESS_VALIDATED: true
-  FIX_TEACHING_INCLUDED: true
 
 END RULE

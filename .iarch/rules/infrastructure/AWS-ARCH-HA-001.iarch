@@ -16,7 +16,6 @@ APPLIES_TO: ["cloudformation", "terraform", "aws"]
 EDUCATION:
   DOCS_URL: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"
 
-  WHY_IT_MATTERS: "Single-AZ RDS instances create a single point of failure. If the availability zone experiences an outage, your database becomes unavailable, causing complete application downtime. Multi-AZ provides automatic failover to a standby replica in a different AZ within 1-2 minutes."
 
   BUSINESS_IMPACT: "Database unavailability causes:\n- Complete application outage\n- Revenue loss during downtime ($10K-100K+/hour for e-commerce)\n- SLA violations and customer refunds\n- Damage to brand reputation\n- Potential data loss if backups aren't recent"
 
