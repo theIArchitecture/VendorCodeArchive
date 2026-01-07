@@ -1,0 +1,24 @@
+# Test Rule - Intentionally Malformed for META Validation
+# Missing required sections: DETECT, VIOLATIONS
+
+RULE "Test Security Rule" : IBaseArchitecture
+  ID: "TEST-RULE-001"
+  DESCRIPTION: "Test rule for META validation"
+  SEVERITY: Error
+  CATEGORY: "Security"
+  APPLIES_TO: ["csharp"]
+
+  EDUCATION:
+    DOCS_URL: "https://example.com/security"
+    BUSINESS_IMPACT: "Test impact"
+    QUICK_FIX: "Test fix"
+
+  # Missing DETECT section - should trigger META violation
+  # Missing VIOLATIONS section - should trigger META violation
+
+  IDENTIFIER: "TEST-RULE-001"
+  IS_VALID: true
+  CODE_TYPE: "Architecture"
+  CURRENT_STATE: "Active"
+
+END RULE
