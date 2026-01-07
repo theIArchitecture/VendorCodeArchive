@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IArchitecture.CudaValidator</name>
+    </assembly>
+    <members>
+        <member name="T:IArchitecture.CudaValidator.CudaValidator">
+            <summary>
+            Validates CUDA code for memory leaks and missing error checks
+            Uses O(n) line-by-line parsing instead of complex multi-line regex
+            Performance: Single-pass O(n) vs O(n²) regex catastrophic backtracking
+            </summary>
+        </member>
+        <member name="M:IArchitecture.CudaValidator.CudaValidator.Execute(IArchitecture.Plugin.SDK.Plugins.PluginInput)">
+            <summary>
+            Plugin entry point - invoked by PluginExecutor via reflection
+            Must match signature: Task&lt;PluginOutput&gt; Execute(PluginInput)
+            </summary>
+        </member>
+        <member name="M:IArchitecture.CudaValidator.CudaValidator.ParseCudaCode(System.String)">
+            <summary>
+            Lightweight parser: O(n) line-by-line scanning for CUDA patterns
+            Tracks allocations, frees, API calls, kernels, and error checks
+            </summary>
+        </member>
+        <member name="T:IArchitecture.CudaValidator.Models.CudaCodeAnalysis">
+            <summary>
+            Tracks CUDA API calls for memory and error checking analysis
+            Uses O(n) line-by-line parsing instead of complex regex
+            </summary>
+        </member>
+        <member name="P:IArchitecture.CudaValidator.Models.CudaCodeAnalysis.Allocations">
+            <summary>Memory allocation calls found (cudaMalloc, cudaMallocHost, etc.)</summary>
+        </member>
+        <member name="P:IArchitecture.CudaValidator.Models.CudaCodeAnalysis.Frees">
+            <summary>Memory free calls found (cudaFree, cudaFreeHost, etc.)</summary>
+        </member>
+        <member name="P:IArchitecture.CudaValidator.Models.CudaCodeAnalysis.ApiCalls">
+            <summary>CUDA API calls that should be error-checked</summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:IArchitecture.CudaValidator.Models.CudaCodeAnalysis.KernelLaunches" -->
+        <member name="P:IArchitecture.CudaValidator.Models.CudaCodeAnalysis.ErrorChecks">
+            <summary>Error check patterns found (cudaError_t, cudaGetLastError, etc.)</summary>
+        </member>
+        <member name="T:IArchitecture.CudaValidator.Models.CudaAllocation">
+            <summary>Represents a CUDA memory allocation</summary>
+        </member>
+        <member name="T:IArchitecture.CudaValidator.Models.CudaFree">
+            <summary>Represents a CUDA memory free</summary>
+        </member>
+        <member name="T:IArchitecture.CudaValidator.Models.CudaApiCall">
+            <summary>Represents a CUDA API call that should be error-checked</summary>
+        </member>
+        <member name="T:IArchitecture.CudaValidator.Models.KernelLaunch">
+            <summary>Represents a CUDA kernel launch</summary>
+        </member>
+        <member name="T:IArchitecture.CudaValidator.Models.ErrorCheck">
+            <summary>Represents an error check pattern</summary>
+        </member>
+        <member name="T:IArchitecture.CudaValidator.Validators.CudaErrorCheckValidator">
+            <summary>
+            Validates CUDA API calls have proper error checking
+            Ensures production robustness and debugging support
+            </summary>
+        </member>
+        <member name="T:IArchitecture.CudaValidator.Validators.CudaMemoryValidator">
+            <summary>
+            Validates CUDA memory allocations have corresponding frees
+            Detects potential memory leaks in GPU code
+            </summary>
+        </member>
+    </members>
+</doc>

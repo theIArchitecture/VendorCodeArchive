@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IArchitecture.Plugin.SDK</name>
+    </assembly>
+    <members>
+        <member name="T:IArchitecture.Plugin.SDK.Models.DependencyGraph">
+            <summary>
+            Represents the complete dependency graph for a project
+            Contains all files (nodes) and their dependencies (edges)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.DependencyGraph.Nodes">
+            <summary>
+            All file nodes in the graph
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.DependencyGraph.Edges">
+            <summary>
+            All dependency edges in the graph
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.DependencyGraph.ProjectRoot">
+            <summary>
+            Project root path
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.DependencyGraph.BuildTimestamp">
+            <summary>
+            Timestamp when this graph was built
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.DependencyGraph.TotalFiles">
+            <summary>
+            Total number of files analyzed
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.DependencyGraph.TotalDependencies">
+            <summary>
+            Total number of dependencies
+            </summary>
+        </member>
+        <member name="M:IArchitecture.Plugin.SDK.Models.DependencyGraph.GetDependenciesFor(System.String)">
+            <summary>
+            Gets all dependencies for a specific file (outgoing edges)
+            </summary>
+            <param name="filePath">Path to the source file</param>
+            <returns>List of dependencies from this file</returns>
+        </member>
+        <member name="M:IArchitecture.Plugin.SDK.Models.DependencyGraph.GetDependentsOf(System.String)">
+            <summary>
+            Gets all files that depend on a specific file (incoming edges)
+            </summary>
+            <param name="filePath">Path to the target file</param>
+            <returns>List of files that depend on this file</returns>
+        </member>
+        <member name="M:IArchitecture.Plugin.SDK.Models.DependencyGraph.GetTransitiveDependents(System.String)">
+            <summary>
+            Gets all transitive dependents of a file (files that depend on it directly or indirectly)
+            </summary>
+            <param name="filePath">Path to the target file</param>
+            <returns>Set of all files that transitively depend on this file</returns>
+        </member>
+        <member name="M:IArchitecture.Plugin.SDK.Models.DependencyGraph.GetTransitiveDependents(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets all transitive dependents of multiple files
+            </summary>
+            <param name="filePaths">Paths to the target files</param>
+            <returns>Set of all files that transitively depend on any of the target files</returns>
+        </member>
+        <member name="M:IArchitecture.Plugin.SDK.Models.DependencyGraph.GetNode(System.String)">
+            <summary>
+            Gets a file node by path
+            </summary>
+            <param name="filePath">Path to the file</param>
+            <returns>FileNode if found, null otherwise</returns>
+        </member>
+        <member name="M:IArchitecture.Plugin.SDK.Models.DependencyGraph.GetNodesInLayer(System.String)">
+            <summary>
+            Gets all nodes in a specific architectural layer
+            </summary>
+            <param name="layer">Layer name</param>
+            <returns>List of nodes in the layer</returns>
+        </member>
+        <member name="M:IArchitecture.Plugin.SDK.Models.DependencyGraph.Validate">
+            <summary>
+            Validates that the graph is properly formed
+            </summary>
+            <returns>Validation errors, empty if valid</returns>
+        </member>
+        <member name="T:IArchitecture.Plugin.SDK.Models.FileDependency">
+            <summary>
+            Represents a dependency edge between two files in the dependency graph
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileDependency.SourceFile">
+            <summary>
+            Source file path (the file that depends on another)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileDependency.TargetFile">
+            <summary>
+            Target file path (the file being depended upon)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileDependency.DependencyType">
+            <summary>
+            Type of dependency (e.g., Import, Inheritance, MethodCall, FieldAccess)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileDependency.LineNumber">
+            <summary>
+            Line number in source file where dependency occurs
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileDependency.Symbol">
+            <summary>
+            Specific symbol being referenced (e.g., class name, method name)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileDependency.Context">
+            <summary>
+            Additional context about this dependency
+            </summary>
+        </member>
+        <member name="T:IArchitecture.Plugin.SDK.Models.DependencyType">
+            <summary>
+            Types of dependencies between files
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.Import">
+            <summary>
+            Import/using statement dependency
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.Inheritance">
+            <summary>
+            Class inheritance dependency
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.InterfaceImplementation">
+            <summary>
+            Interface implementation dependency
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.MethodCall">
+            <summary>
+            Method call dependency
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.FieldAccess">
+            <summary>
+            Field or property access dependency
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.TypeReference">
+            <summary>
+            Type reference dependency (e.g., return type, parameter type)
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.Instantiation">
+            <summary>
+            Type instantiation dependency (new expressions in method bodies)
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.Attribute">
+            <summary>
+            Attribute/annotation usage dependency
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.GenericParameter">
+            <summary>
+            Generic type parameter dependency
+            </summary>
+        </member>
+        <member name="F:IArchitecture.Plugin.SDK.Models.DependencyType.Other">
+            <summary>
+            Unknown or other dependency type
+            </summary>
+        </member>
+        <member name="T:IArchitecture.Plugin.SDK.Models.FileNode">
+            <summary>
+            Represents a node in the dependency graph (a source file)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileNode.Path">
+            <summary>
+            Absolute path to the source file
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileNode.Layer">
+            <summary>
+            Detected architectural layer (e.g., Domain, Service, API, Repository)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileNode.Language">
+            <summary>
+            Programming language of this file (e.g., csharp, java, python)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileNode.FileName">
+            <summary>
+            File name (without path)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileNode.Namespace">
+            <summary>
+            Namespace or module path for this file (language-specific)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Models.FileNode.Metadata">
+            <summary>
+            Additional metadata about this file
+            </summary>
+        </member>
+        <member name="T:IArchitecture.Plugin.SDK.Plugins.PluginInput">
+            <summary>
+            Input data passed to plugins for validation or healing
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginInput.FilePath">
+            <summary>
+            Absolute path to the file being analyzed
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginInput.FileContent">
+            <summary>
+            Content of the file to analyze
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginInput.Language">
+            <summary>
+            Programming language of the file (e.g., "csharp", "java", "python")
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginInput.Config">
+            <summary>
+            Configuration values from the PLUGIN CONFIG section of the .iarch file
+            </summary>
+        </member>
+        <member name="T:IArchitecture.Plugin.SDK.Plugins.PluginOutput">
+            <summary>
+            Output returned by plugins after validation or healing
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginOutput.Violations">
+            <summary>
+            List of violations found by the plugin
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginOutput.Fixes">
+            <summary>
+            List of fixes provided by the plugin (for healer plugins)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginOutput.Error">
+            <summary>
+            Optional error message if plugin execution failed
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginOutput.Success">
+            <summary>
+            Plugin execution succeeded
+            </summary>
+        </member>
+        <member name="T:IArchitecture.Plugin.SDK.Plugins.PluginViolation">
+            <summary>
+            A violation detected by a plugin
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginViolation.Id">
+            <summary>
+            Unique identifier for this type of violation
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginViolation.Message">
+            <summary>
+            Human-readable description of the violation
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginViolation.Line">
+            <summary>
+            Line number where violation occurs (1-based, optional)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginViolation.Column">
+            <summary>
+            Column number where violation occurs (1-based, optional)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginViolation.Severity">
+            <summary>
+            Severity level: "Fatal", "Error", "Warning", "Info"
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginViolation.Snippet">
+            <summary>
+            Optional code snippet showing the violation
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginViolation.Files">
+            <summary>
+            Files involved in this violation (e.g., source file and target file for dependencies, all files in a circular dependency)
+            For directory-scoped plugins that detect violations across multiple files.
+            First file is typically the primary source where the violation should be marked.
+            </summary>
+        </member>
+        <member name="T:IArchitecture.Plugin.SDK.Plugins.PluginFix">
+            <summary>
+            A fix suggested or applied by a healer plugin
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginFix.Description">
+            <summary>
+            Description of what this fix does
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginFix.Line">
+            <summary>
+            Line number to apply fix (1-based, optional)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginFix.Column">
+            <summary>
+            Column number to apply fix (1-based, optional)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginFix.FindText">
+            <summary>
+            Text to find and replace (for simple replacements)
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginFix.ReplacementText">
+            <summary>
+            Replacement text
+            </summary>
+        </member>
+        <member name="P:IArchitecture.Plugin.SDK.Plugins.PluginFix.FixedContent">
+            <summary>
+            Complete fixed file content (for complex fixes)
+            </summary>
+        </member>
+    </members>
+</doc>

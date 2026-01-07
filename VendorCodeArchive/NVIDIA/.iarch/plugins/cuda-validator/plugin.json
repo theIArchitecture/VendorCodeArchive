@@ -1,0 +1,10 @@
+{
+  "id": "cuda-validator",
+  "version": "1.0.0",
+  "name": "NVIDIA CUDA Validator",
+  "description": "Validates CUDA code for memory leaks and missing error checks using O(n) code analysis",
+  "type": "Validator",
+  "languages": ["cuda", "cpp", "c"],
+  "entryPoint": "IArchitecture.CudaValidator.dll",
+  "dependencies": []
+}
