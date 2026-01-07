@@ -12,6 +12,7 @@ on:
       - '**.cpp'
       - '**.cu'
       - '**.cuh'
+      - '**.iarch'
   push:
     branches:
       - main
