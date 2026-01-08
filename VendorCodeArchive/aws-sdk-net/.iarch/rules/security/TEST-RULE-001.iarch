@@ -1,0 +1,8 @@
+RULE "Test Rule" : IBaseArchitecture
+
+ID: "TEST-RULE-001"
+LANGUAGES: csharp
+
+# Missing required sections - should fail META validation
+
+END RULE
