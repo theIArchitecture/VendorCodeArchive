@@ -38,17 +38,13 @@ BUSINESS_IMPACT: |
   - Onboarding overhead: 5-10 hours additional training per new developer
   - Refactoring errors: $1K-$5K per incident when automated tools miss non-standard names
 
-// Validator plugin (Python-based for cross-platform AST analysis)
 PLUGIN:
   ID: "csharp-naming-validator"
   CONFIG:
-    // No additional config needed
+    check_snake_case_fields: true
 
-DETECTION:
-  REGEX_PATTERN: "private\\s+(?:readonly\\s+|static\\s+|const\\s+)?[\\w<>,\\[\\]]+\\s+([a-z][a-z0-9]*_[a-z0-9_]+)\\s*[;=]"
-  FLAGS: Multiline
-
-  MESSAGE: "Private field '{match}' uses snake_case instead of camelCase or _camelCase"
+VIOLATIONS:
+  - "Private field uses snake_case instead of camelCase or _camelCase"
 
 EXAMPLES:
   VIOLATION:
@@ -84,7 +80,6 @@ EXAMPLES:
     ```
 
 FIXES:
-  // Healer plugin (TypeScript-based for automated renaming with reference updates)
   PLUGIN:
     ID: "csharp-naming-healer"
     CONFIG:
