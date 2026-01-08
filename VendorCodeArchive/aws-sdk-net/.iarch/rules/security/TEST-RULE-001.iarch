@@ -1,3 +1,14 @@
+// VIOLATION: META-VALIDATOR-001 - DESCRIPTION: section is required
+// SEVERITY: FATAL
+// ISSUES FOUND (3):
+//   1. Line 1: DESCRIPTION: section is required
+//   2. Line 1: Either DETECT: or PLUGIN: section is required - rule must define how to detect violations
+//   3. Line 1: VIOLATIONS: section is required - must define violation messages
+// WHY_IT_MATTERS: Plugin meta-validator detected: DESCRIPTION: section is required
+// QUICK_FIX: Follow .iarch language specification - ensure required sections exist and are nested properly
+// BUSINESS_IMPACT: Invalid .iarch files block validation workflows and prevent architectural enforcement
+// DOCS: https://docs.iarchitecture.com/language-specification
+
 RULE "Test Rule" : IBaseArchitecture
 
 ID: "TEST-RULE-001"
