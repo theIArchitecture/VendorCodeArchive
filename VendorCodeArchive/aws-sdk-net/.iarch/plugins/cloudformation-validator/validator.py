@@ -37,18 +37,20 @@ def validate_cloudformation(input_data: Dict[str, Any]) -> Dict[str, Any]:
         template = parse_template(file_content)
 
         if not template:
+            # Silently skip non-CloudFormation files (same as unsupported file extensions)
             return {
                 'violations': [],
                 'fixes': [],
-                'error': 'Could not parse CloudFormation template'
+                'error': None
             }
 
         # Validate it's a dict (CloudFormation templates are always dicts, not lists/strings)
         if not isinstance(template, dict):
+            # Silently skip non-CloudFormation files (YAML/JSON that aren't CloudFormation)
             return {
                 'violations': [],
                 'fixes': [],
-                'error': 'Not a valid CloudFormation template (expected dict structure)'
+                'error': None
             }
 
         # Extract resources section
