@@ -1,0 +1,13 @@
+RULE "Test Rule" : IBaseArchitecture
+
+ID: "TEST-RULE-001"
+DESCRIPTION: "Test rule for META validation"
+SEVERITY: Fatal
+CATEGORY: "Security"
+APPLIES_TO: ["csharp"]
+
+# Missing required sections - should fail META validation
+# No DETECT section
+# No VIOLATIONS section
+
+END RULE
