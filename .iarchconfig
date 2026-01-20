@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "defaultLayer": "Base",
+  "layerHierarchy": {
+    "META": {
+      "inheritsFrom": []
+    },
+    "Base": {
+      "inheritsFrom": []
+    },
+    "Domain": {
+      "inheritsFrom": ["Base"]
+    },
+    "Repository": {
+      "inheritsFrom": ["Base"]
+    },
+    "Service": {
+      "inheritsFrom": ["Base"]
+    },
+    "API": {
+      "inheritsFrom": ["Base"]
+    }
+  },
+  "engineConfig": {
+    "parallel_threads": 3,
+    "files_per_batch": 50,
+    "progressive_output_threshold": 200
+  }
+}
