@@ -1,0 +1,17 @@
+{
+  "language": "c",
+  "displayName": "C",
+  "fileExtensions": [".c", ".h"],
+  "layerDetection": {
+    "layers": {
+      "Core": {
+        "namespace_patterns": [],
+        "import_patterns": [".*core.*", ".*engine.*"]
+      },
+      "Utils": {
+        "namespace_patterns": [],
+        "import_patterns": [".*util.*", ".*helper.*"]
+      }
+    }
+  }
+}

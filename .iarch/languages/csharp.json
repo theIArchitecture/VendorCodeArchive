@@ -1,0 +1,120 @@
+{
+  "$schema": "../schemas/language-definition.schema.json",
+  "language": "csharp",
+  "displayName": "C#",
+  "fileExtensions": [".cs", ".csx"],
+
+  "layerDetection": {
+    "layers": {
+      "Repository": {
+        "pathPatterns": ["repository", "data", "persistence", "dao"],
+        "baseClassPatterns": ["RepositoryArchitecture", "IRepositoryArchitecture", "RepositoryBase", "BaseRepository"],
+        "interfacePatterns": ["IRepository", "IRepositoryArchitecture"],
+        "namingPatterns": ["Repository$", "Repo$", ".*Repository.*"],
+        "importPatterns": ["using.*\\.Repository", "using.*\\.Data", "using.*\\.Persistence"]
+      },
+
+      "Domain": {
+        "pathPatterns": ["domain", "business", "core", "model"],
+        "baseClassPatterns": ["DomainArchitecture", "IDomainArchitecture", "DomainEntity", "Entity"],
+        "interfacePatterns": ["IDomain", "IDomainArchitecture", "IEntity"],
+        "namingPatterns": ["Entity$", "Model$", ".*Domain.*"],
+        "importPatterns": ["using.*\\.Domain", "using.*\\.Business", "using.*\\.Core"]
+      },
+
+      "Service": {
+        "pathPatterns": ["service", "application", "usecase", "business"],
+        "baseClassPatterns": ["ServiceArchitecture", "IServiceArchitecture", "ServiceBase", "BaseService"],
+        "interfacePatterns": ["IService", "IServiceArchitecture", "IApplicationService"],
+        "namingPatterns": ["Service$", "Manager$", "Handler$", ".*Service.*"],
+        "importPatterns": ["using.*\\.Services", "using.*\\.Application", "using.*\\.UseCases"]
+      },
+
+      "API": {
+        "pathPatterns": ["controller", "api", "endpoint", "web", "presentation"],
+        "baseClassPatterns": ["ControllerArchitecture", "IControllerArchitecture", "ControllerBase", "Controller"],
+        "interfacePatterns": ["IController", "IControllerArchitecture", "IEndpoint"],
+        "namingPatterns": ["Controller$", "Endpoint$", "Api$", ".*Controller.*"],
+        "importPatterns": ["using.*\\.Controllers", "using.*\\.Api", "using.*\\.Web"]
+      },
+
+      "Infrastructure": {
+        "pathPatterns": ["infrastructure", "common", "shared", "utility"],
+        "baseClassPatterns": ["InfrastructureArchitecture"],
+        "interfacePatterns": ["IInfrastructure"],
+        "namingPatterns": [],
+        "importPatterns": ["using.*\\.Infrastructure", "using.*\\.Common", "using.*\\.Shared"]
+      },
+
+      "Configuration": {
+        "pathPatterns": ["config", "configuration", "settings"],
+        "baseClassPatterns": ["ConfigurationArchitecture"],
+        "interfacePatterns": ["IConfiguration"],
+        "namingPatterns": ["Config$", "Settings$", "Options$"],
+        "importPatterns": ["using.*\\.Configuration", "using.*\\.Config"]
+      }
+    }
+  },
+
+  "syntaxPatterns": {
+    "classDeclaration": "class\\s+(\\w+)\\s*(?::\\s*([^{,\\r\\n]+))?",
+    "importStatement": "using\\s+(?:static\\s+)?([^;\\s]+);",
+    "interfaceImplementation": ":\\s*[^{]*\\b(I\\w+Architecture|I\\w+)\\b",
+    "methodDeclaration": "(public|private|protected|internal|static)\\s+(?:async\\s+)?(?:Task<[^>]+>|Task|\\w+)\\s+(\\w+)\\s*\\("
+  },
+
+  "fieldExtractionPatterns": [
+    {
+      "name": "field_declaration",
+      "description": "Matches field declarations like: private Type _field;",
+      "pattern": "(?:public\\s+|private\\s+|protected\\s+|internal\\s+)?(?:static\\s+)?(?:readonly\\s+)?(?:const\\s+)?(\\w+(?:<[\\w\\s,<>]+>)?)\\s+(_?\\w+)\\s*(?:;|=|{)",
+      "typeGroup": 1,
+      "nameGroup": 2,
+      "isProperty": false
+    },
+    {
+      "name": "property_declaration",
+      "description": "Matches property declarations like: public Type Property { get; set; }",
+      "pattern": "(?:public\\s+|private\\s+|protected\\s+|internal\\s+)?(?:static\\s+)?(?:readonly\\s+)?(\\w+(?:<[\\w\\s,<>]+>)?)\\s+(\\w+)\\s*\\{",
+      "typeGroup": 1,
+      "nameGroup": 2,
+      "isProperty": true
+    }
+  ],
+
+  "parsingPatterns": {
+    "namespace": "^\\s*namespace\\s+([\\w\\.]+)",
+    "import": "^\\s*using\\s+(static\\s+)?([\\w\\.]+)\\s*;",
+    "typeDeclaration": "(?:public\\s+|private\\s+|protected\\s+|internal\\s+)?(?:static\\s+)?(?:sealed\\s+)?(?:abstract\\s+)?(class|interface|enum|struct|record)\\s+(\\w+)(?:\\s*<[^>]+>)?(?:\\s*:\\s*([^{]+))?",
+    "typeKeywords": ["class", "interface", "enum", "struct", "record"],
+    "methodDeclaration": "(?:public\\s+|private\\s+|protected\\s+|internal\\s+)?(?:static\\s+)?(?:virtual\\s+)?(?:override\\s+)?(?:async\\s+)?(\\w+(?:<[\\w\\s,<>]+>)?)\\s+(\\w+)\\s*\\(([^)]*)\\)",
+    "instantiation": "new\\s+([\\w\\.]+)(?:<[^>]+>)?\\s*\\(",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "///(.*)$"
+  },
+
+  "transformationRules": {
+    "importTemplate": "using {namespace};",
+    "importInsertLocation": "after_last_import",
+    "importRemovalPattern": "^\\s*using\\s+{namespace}\\s*;\\s*$"
+  },
+
+  "formattingRules": {
+    "indentSize": 4,
+    "increaseIndentTriggers": ["{"],
+    "decreaseIndentTriggers": ["}"],
+    "decreaseBeforeLine": true
+  },
+
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "{", "close": "}" },
+      { "open": "(", "close": ")" },
+      { "open": "[", "close": "]" }
+    ],
+    "invalidPatterns": [";;", "using\\s+[^;]*$"]
+  },
+
+  "commentStyles": ["//", "/*", "*/", "///", "/**"]
+}

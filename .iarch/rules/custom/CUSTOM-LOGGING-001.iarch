@@ -7,8 +7,10 @@ RULE "Console Logging in Production" : IBaseArchitecture
 
   DETECT:
     PATTERNS:
-      - PATTERN: "console\\.log\\("
-        MESSAGE: "Console.log statement found"
+      javascript:
+        - CONSOLE_LOG: "console\\.log\\("
+      typescript:
+        - CONSOLE_LOG: "console\\.log\\("
 
   VIOLATIONS:
     - "Production code should not contain console.log statements"

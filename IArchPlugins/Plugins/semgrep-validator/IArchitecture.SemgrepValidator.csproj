@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Exclude test files and test project from library compilation -->
+  <ItemGroup>
+    <Compile Remove="TestSemgrepFFI.cs" />
+    <Compile Remove="SemgrepFFI.Tests\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Reference the SDK project (development mode - would be PackageReference in production) -->
+    <ProjectReference Include="../../../../IArchitecture-DotNet/IArchitecture.Plugin.SDK/IArchitecture.Plugin.SDK.csproj" />
+    <!-- Reference IArchitecture.Shared for DetectionPattern model -->
+    <ProjectReference Include="../../../../IArchitecture-DotNet/IArchitecture.Shared/IArchitecture.Shared.csproj" />
+  </ItemGroup>
+
+  <!-- Don't copy plugin.json to build output - it stays in plugin root alongside copied DLL -->
+  <ItemGroup>
+    <None Update="plugin.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <!-- Post-build: Deploy plugin to runtime location with all dependencies -->
+  <Target Name="DeployPlugin" AfterTargets="Build">
+    <PropertyGroup>
+      <DeployDir>E:\Protected\VendorCodeArchive\.iarch\plugins\semgrep-validator\</DeployDir>
+    </PropertyGroup>
+
+    <!-- Copy plugin DLL -->
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll" DestinationFolder="$(DeployDir)" />
+
+    <!-- Copy SDK DLL -->
+    <Copy SourceFiles="..\..\Libraries\IArchSDK\IArchitecture.Plugin.SDK.dll" DestinationFolder="$(DeployDir)" />
+
+    <!-- Copy plugin.json manifest -->
+    <Copy SourceFiles="$(ProjectDir)plugin.json" DestinationFolder="$(DeployDir)" />
+
+    <!-- Copy FFI DLLs if they exist in Libraries\Semgrep\ffi -->
+    <ItemGroup>
+      <SemgrepFFI Include="..\..\Libraries\Semgrep\ffi\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SemgrepFFI)" DestinationFolder="$(DeployDir)ffi\%(RecursiveDir)" Condition="Exists('..\..\Libraries\Semgrep\ffi')" />
+
+    <Message Importance="High" Text="Deployed plugin to $(DeployDir)" />
+  </Target>
+
+</Project>

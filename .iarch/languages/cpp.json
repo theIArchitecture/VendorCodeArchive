@@ -1,0 +1,21 @@
+{
+  "language": "cpp",
+  "displayName": "C++",
+  "fileExtensions": [".cpp", ".cc", ".cxx", ".hpp", ".hh", ".hxx", ".h"],
+  "layerDetection": {
+    "layers": {
+      "Core": {
+        "namespace_patterns": [".*::core$", ".*::engine$"],
+        "import_patterns": [".*core.*", ".*engine.*"]
+      },
+      "Utils": {
+        "namespace_patterns": [".*::utils?$", ".*::helpers?$"],
+        "import_patterns": [".*util.*", ".*helper.*"]
+      },
+      "API": {
+        "namespace_patterns": [".*::api$", ".*::interface$"],
+        "import_patterns": [".*api.*", ".*interface.*"]
+      }
+    }
+  }
+}

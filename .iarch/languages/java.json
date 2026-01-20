@@ -1,0 +1,116 @@
+{
+  "language": "java",
+  "displayName": "Java",
+  "fileExtensions": [".java"],
+
+  "layerDetection": {
+    "layers": {
+      "API": {
+        "pathPatterns": ["controller", "web", "rest", "endpoint"],
+        "baseClassPatterns": ["ControllerArchitecture", "IControllerArchitecture"],
+        "interfacePatterns": ["IControllerArchitecture"],
+        "namingPatterns": ["Controller$", "Resource$", "Endpoint$"],
+        "importPatterns": ["controller", "rest", "web"]
+      },
+
+      "Service": {
+        "pathPatterns": ["service", "business"],
+        "baseClassPatterns": ["ServiceArchitecture", "IServiceArchitecture"],
+        "interfacePatterns": ["IServiceArchitecture"],
+        "namingPatterns": ["Service$", "ServiceImpl$"],
+        "importPatterns": ["service", "business"]
+      },
+
+      "Repository": {
+        "pathPatterns": ["repository", "dao", "persistence"],
+        "baseClassPatterns": ["RepositoryArchitecture", "IRepositoryArchitecture"],
+        "interfacePatterns": ["IRepositoryArchitecture"],
+        "namingPatterns": ["Repository$", "RepositoryImpl$", "DAO$"],
+        "importPatterns": ["repository", "dao", "persistence"]
+      },
+
+      "Domain": {
+        "pathPatterns": ["model", "domain", "entity"],
+        "baseClassPatterns": ["DomainArchitecture", "IDomainArchitecture"],
+        "interfacePatterns": ["IDomainArchitecture"],
+        "namingPatterns": ["Domain$", "Model$", "Entity$"],
+        "importPatterns": ["domain", "entity", "model"]
+      },
+
+      "DTO": {
+        "pathPatterns": ["dto", "request", "response"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["DTO$", "Request$", "Response$"],
+        "importPatterns": ["dto", "request", "response"]
+      },
+
+      "Configuration": {
+        "pathPatterns": ["config", "configuration"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": [],
+        "importPatterns": []
+      },
+
+      "Utility": {
+        "pathPatterns": ["util", "helper", "common"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": [],
+        "importPatterns": []
+      },
+
+      "Lambda": {
+        "pathPatterns": ["lambda", "handler"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": [],
+        "importPatterns": []
+      },
+
+      "Integration": {
+        "pathPatterns": ["client", "adapter"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": [],
+        "importPatterns": []
+      }
+    }
+  },
+
+  "parsingPatterns": {
+    "namespace": "^\\s*package\\s+([\\w\\.]+)\\s*;",
+    "import": "^\\s*import\\s+(static\\s+)?([\\w\\.\\*]+)\\s*;",
+    "typeDeclaration": "(?:public\\s+|private\\s+|protected\\s+)?(?:static\\s+)?(?:final\\s+)?(class|interface|enum)\\s+(\\w+)(?:\\s+extends\\s+(\\w+))?(?:\\s+implements\\s+([\\w\\s,]+))?",
+    "typeKeywords": ["class", "interface", "enum"],
+    "methodDeclaration": "(?:public\\s+|private\\s+|protected\\s+)?(?:static\\s+)?(?:final\\s+)?(?:synchronized\\s+)?(\\w+|\\w+<[\\w\\s,<>]+>)\\s+(\\w+)\\s*\\(([^)]*)\\)(?:\\s+throws\\s+[\\w\\s,]+)?",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "/\\*\\*(.*?)\\*/"
+  },
+
+  "transformationRules": {
+    "importTemplate": "import {namespace};",
+    "importInsertLocation": "after_last_import",
+    "importRemovalPattern": "^\\s*import\\s+{namespace}\\s*;\\s*$"
+  },
+
+  "formattingRules": {
+    "indentSize": 4,
+    "increaseIndentTriggers": ["{"],
+    "decreaseIndentTriggers": ["}"],
+    "decreaseBeforeLine": true
+  },
+
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "{", "close": "}" },
+      { "open": "(", "close": ")" },
+      { "open": "[", "close": "]" }
+    ],
+    "invalidPatterns": [";;", "import\\s+[^;]*$"]
+  },
+
+  "commentStyles": ["//", "/*", "*/", "/**"]
+}

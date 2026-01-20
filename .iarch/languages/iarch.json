@@ -1,0 +1,42 @@
+{
+  "language": "iarch",
+  "displayName": "IArchitecture Rule Language",
+  "description": "IArchitecture's own rule definition language - enables self-governance and meta-architecture validation",
+  "fileExtensions": [".iarch"],
+  "commentStyles": ["#"],
+
+  "layerDetection": {
+    "layers": {
+      "Base": {
+        "pathPatterns": [".*"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": [".*\\.iarch$"],
+        "importPatterns": []
+      },
+      "Meta": {
+        "pathPatterns": ["meta", "META"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["META-.*\\.iarch$"],
+        "importPatterns": []
+      }
+    }
+  },
+
+  "parsingPatterns": {
+    "namespace": "",
+    "import": "",
+    "typeDeclaration": "RULE\\s+\"([^\"]+)\"",
+    "typeKeywords": ["RULE"],
+    "methodDeclaration": "",
+    "commentSingleLine": "#(.*)$",
+    "commentMultiLine": "",
+    "commentDocumentation": "#(.*)$"
+  },
+
+  "syntaxValidation": {
+    "balancedPairs": [],
+    "invalidPatterns": []
+  }
+}

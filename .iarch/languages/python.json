@@ -1,0 +1,100 @@
+{
+  "language": "python",
+  "displayName": "Python",
+  "fileExtensions": [".py", ".pyw", ".pyi"],
+
+  "layerDetection": {
+    "layers": {
+      "API": {
+        "pathPatterns": ["views", "api", "endpoints", "routes", "handlers"],
+        "baseClassPatterns": ["ViewArchitecture", "IViewArchitecture"],
+        "interfacePatterns": ["IViewArchitecture"],
+        "namingPatterns": ["_view$", "_endpoint$", "_handler$", "_controller$", "^views$", "^routes$"],
+        "importPatterns": ["views", "api", "endpoints", "routes"]
+      },
+
+      "Service": {
+        "pathPatterns": ["services", "business", "logic"],
+        "baseClassPatterns": ["ServiceArchitecture", "IServiceArchitecture"],
+        "interfacePatterns": ["IServiceArchitecture"],
+        "namingPatterns": ["_service$", "_handler$"],
+        "importPatterns": ["service", "application"]
+      },
+
+      "Repository": {
+        "pathPatterns": ["repository", "dao", "data"],
+        "baseClassPatterns": ["RepositoryArchitecture", "IRepositoryArchitecture"],
+        "interfacePatterns": ["IRepositoryArchitecture"],
+        "namingPatterns": ["_repository$", "_dao$", "_store$"],
+        "importPatterns": ["repository", "dao", "data"]
+      },
+
+      "Domain": {
+        "pathPatterns": ["models", "domain", "business", "logic"],
+        "baseClassPatterns": ["DomainArchitecture", "IDomainArchitecture"],
+        "interfacePatterns": ["IDomainArchitecture"],
+        "namingPatterns": ["^models$", "_model$", "_entity$", "_domain$"],
+        "importPatterns": ["domain", "models", "business"]
+      },
+
+      "DTO": {
+        "pathPatterns": ["serializers", "schemas", "dto"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": [],
+        "importPatterns": []
+      },
+
+      "Configuration": {
+        "pathPatterns": ["config", "settings"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["^settings$"],
+        "importPatterns": []
+      },
+
+      "Utility": {
+        "pathPatterns": ["utils", "helpers", "common"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": [],
+        "importPatterns": []
+      }
+    }
+  },
+
+  "parsingPatterns": {
+    "namespace": "",
+    "import": "^(?:import\\s+([\\w\\.]+)(?:\\s+as\\s+(\\w+))?|from\\s+([\\w\\.]+)\\s+import\\s+([\\w\\*,\\s]+))",
+    "typeDeclaration": "^class\\s+(\\w+)(?:\\(([^)]*)\\))?:",
+    "typeKeywords": ["class"],
+    "methodDeclaration": "^(\\s*)def\\s+(\\w+)\\s*\\(([^)]*)\\)(?:\\s*->\\s*([\\w\\[\\],\\s]+))?:",
+    "commentSingleLine": "#(.*)$",
+    "commentMultiLine": "",
+    "commentDocumentation": "\"\"\"(.*?)\"\"\""
+  },
+
+  "transformationRules": {
+    "importTemplate": "import {namespace}",
+    "importInsertLocation": "after_last_import",
+    "importRemovalPattern": "^\\s*(?:import\\s+{namespace}|from\\s+{namespace}\\s+import).*$"
+  },
+
+  "formattingRules": {
+    "indentSize": 4,
+    "increaseIndentTriggers": [":"],
+    "decreaseIndentTriggers": [],
+    "decreaseBeforeLine": false
+  },
+
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "(", "close": ")" },
+      { "open": "[", "close": "]" },
+      { "open": "{", "close": "}" }
+    ],
+    "invalidPatterns": ["^\\s*\\t\\s+"]
+  },
+
+  "commentStyles": ["#", "\"\"\""]
+}

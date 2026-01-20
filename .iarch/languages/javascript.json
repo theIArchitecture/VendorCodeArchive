@@ -1,0 +1,25 @@
+{
+  "language": "javascript",
+  "displayName": "JavaScript",
+  "fileExtensions": [".js", ".mjs", ".cjs"],
+  "layerDetection": {
+    "layers": {
+      "Repository": {
+        "namespace_patterns": [".*\\.repositories?$", ".*\\.data$"],
+        "import_patterns": [".*repository.*", ".*dal.*", ".*data.*"]
+      },
+      "Domain": {
+        "namespace_patterns": [".*\\.domain$", ".*\\.models?$", ".*\\.entities$"],
+        "import_patterns": [".*domain.*", ".*model.*", ".*entity.*"]
+      },
+      "Service": {
+        "namespace_patterns": [".*\\.services?$", ".*\\.application$"],
+        "import_patterns": [".*service.*", ".*application.*"]
+      },
+      "Controller": {
+        "namespace_patterns": [".*\\.controllers?$", ".*\\.api$"],
+        "import_patterns": [".*controller.*", ".*api.*", ".*routes.*"]
+      }
+    }
+  }
+}

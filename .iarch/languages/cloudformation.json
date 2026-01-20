@@ -1,0 +1,106 @@
+{
+  "$schema": "../schemas/language-definition.schema.json",
+  "language": "cloudformation",
+  "displayName": "AWS CloudFormation",
+  "fileExtensions": [".yaml", ".yml", ".template", ".json"],
+
+  "layerDetection": {
+    "layers": {
+      "Compute": {
+        "pathPatterns": ["compute", "ec2", "lambda", "ecs", "fargate"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["EC2", "Lambda", "ECS", "Fargate", "Instance"],
+        "importPatterns": ["AWS::EC2::", "AWS::Lambda::", "AWS::ECS::"]
+      },
+
+      "Storage": {
+        "pathPatterns": ["storage", "s3", "ebs", "efs"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["S3", "EBS", "EFS", "Bucket", "Volume"],
+        "importPatterns": ["AWS::S3::", "AWS::EBS::", "AWS::EFS::"]
+      },
+
+      "Database": {
+        "pathPatterns": ["database", "rds", "dynamodb", "aurora"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["RDS", "DynamoDB", "Aurora", "Database", "DBInstance"],
+        "importPatterns": ["AWS::RDS::", "AWS::DynamoDB::"]
+      },
+
+      "Networking": {
+        "pathPatterns": ["network", "vpc", "subnet", "gateway"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["VPC", "Subnet", "Gateway", "Route", "NatGateway"],
+        "importPatterns": ["AWS::EC2::VPC", "AWS::EC2::Subnet", "AWS::EC2::InternetGateway"]
+      },
+
+      "LoadBalancing": {
+        "pathPatterns": ["loadbalancer", "lb", "elb", "alb"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["LoadBalancer", "ELB", "ALB", "NLB", "TargetGroup"],
+        "importPatterns": ["AWS::ElasticLoadBalancing::", "AWS::ElasticLoadBalancingV2::"]
+      },
+
+      "Security": {
+        "pathPatterns": ["security", "iam", "kms", "secretsmanager"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["SecurityGroup", "IAM", "KMS", "Secret", "Policy"],
+        "importPatterns": ["AWS::IAM::", "AWS::KMS::", "AWS::SecretsManager::"]
+      },
+
+      "Monitoring": {
+        "pathPatterns": ["monitoring", "cloudwatch", "logs"],
+        "baseClassPatterns": [],
+        "interfacePatterns": [],
+        "namingPatterns": ["CloudWatch", "Alarm", "LogGroup", "Dashboard"],
+        "importPatterns": ["AWS::CloudWatch::", "AWS::Logs::"]
+      }
+    }
+  },
+
+  "syntaxPatterns": {
+    "resourceDeclaration": "^\\s*([A-Za-z0-9]+):\\s*$",
+    "resourceType": "Type:\\s*([A-Z]+::[A-Z]+::[A-Z]+)",
+    "propertyDeclaration": "^\\s*([A-Za-z]+):\\s*(.+)$"
+  },
+
+  "parsingPatterns": {
+    "namespace": "",
+    "import": "",
+    "typeDeclaration": "^\\s*([A-Za-z0-9]+):\\s*$",
+    "typeKeywords": ["Resources", "Parameters", "Outputs", "Conditions", "Mappings"],
+    "methodDeclaration": "",
+    "commentSingleLine": "#(.*)$",
+    "commentMultiLine": "",
+    "commentDocumentation": ""
+  },
+
+  "transformationRules": {
+    "importTemplate": "",
+    "importInsertLocation": "top_of_file",
+    "importRemovalPattern": ""
+  },
+
+  "formattingRules": {
+    "indentSize": 2,
+    "increaseIndentTriggers": [":"],
+    "decreaseIndentTriggers": [],
+    "decreaseBeforeLine": false
+  },
+
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "{", "close": "}" },
+      { "open": "[", "close": "]" }
+    ],
+    "invalidPatterns": []
+  },
+
+  "commentStyles": ["#"]
+}
