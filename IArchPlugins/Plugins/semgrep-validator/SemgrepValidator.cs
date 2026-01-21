@@ -175,13 +175,11 @@ public sealed class SemgrepValidator
         {
             var task = Task.Run(() =>
             {
-                // CRITICAL: Lock around FFI call to serialize access to OCaml runtime
-                // OCaml 5.x requires proper domain locking from multi-threaded C# code
-                lock (_semgrepLock)
-                {
-                    var resultPtr = semgrep_scan_batch(yamlContent, targetsJson, numWorkers);
-                    return Marshal.PtrToStringAnsi(resultPtr);
-                }
+                // NOTE: Removed C# lock - relying on OCaml's internal thread safety
+                // The C code handles thread registration and locking via:
+                //   caml_c_thread_register() + caml_acquire_runtime_system()
+                var resultPtr = semgrep_scan_batch(yamlContent, targetsJson, numWorkers);
+                return Marshal.PtrToStringAnsi(resultPtr);
             }, cts.Token);
 
             return await task;
@@ -428,6 +426,8 @@ public sealed class SemgrepValidator
                     numWorkers = parsed;
                 }
             }
+
+            Console.WriteLine($"[SEMGREP-FFI] Batch execution config: numWorkers={numWorkers} (Semgrep internal parallelism)");
 
             // Write all files to temp directory
             var tempDir = Path.Combine(Path.GetTempPath(), $"semgrep_batch_{Guid.NewGuid()}");
