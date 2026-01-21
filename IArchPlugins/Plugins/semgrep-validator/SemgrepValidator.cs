@@ -175,8 +175,13 @@ public sealed class SemgrepValidator
         {
             var task = Task.Run(() =>
             {
-                var resultPtr = semgrep_scan_batch(yamlContent, targetsJson, numWorkers);
-                return Marshal.PtrToStringAnsi(resultPtr);
+                // CRITICAL: Lock around FFI call to serialize access to OCaml runtime
+                // OCaml 5.x requires proper domain locking from multi-threaded C# code
+                lock (_semgrepLock)
+                {
+                    var resultPtr = semgrep_scan_batch(yamlContent, targetsJson, numWorkers);
+                    return Marshal.PtrToStringAnsi(resultPtr);
+                }
             }, cts.Token);
 
             return await task;
