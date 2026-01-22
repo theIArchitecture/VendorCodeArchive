@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "defaultLayer": "Base",
+
+  "layerHierarchy": {
+    "META": {
+      "inheritsFrom": [],
+      "description": "Meta-layer for architecture rules themselves"
+    },
+    "Base": {
+      "inheritsFrom": [],
+      "description": "Base layer - universal rules that apply to all code"
+    },
+    "Domain": {
+      "inheritsFrom": ["Base"],
+      "description": "Domain/business logic layer"
+    },
+    "Repository": {
+      "inheritsFrom": ["Base"],
+      "description": "Data access layer"
+    },
+    "Service": {
+      "inheritsFrom": ["Base"],
+      "description": "Application services layer"
+    },
+    "API": {
+      "inheritsFrom": ["Base"],
+      "description": "API/presentation layer"
+    }
+  },
+
+  "pluginConfig": {
+    "semgrep": {
+      "semgrep_num_workers": 9
+    }
+  },
+
+  "engineConfig": {
+    "parallel_threads": 3,
+    "files_per_batch": 20,
+    "progressive_output_threshold": 200
+  }
+}
