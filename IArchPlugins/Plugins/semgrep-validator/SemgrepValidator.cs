@@ -383,29 +383,54 @@ public sealed class SemgrepValidator
         {
             Console.WriteLine($"[SEMGREP-FFI] Processing batch of {input.Files.Count} {input.Language} files");
 
-            // Get patterns and validate
-            if (!input.Config.TryGetValue("semgrep_patterns", out var patternsJson))
+            // Get rules list (new format) - contains multiple rules with IDs and patterns
+            if (!input.Config.TryGetValue("semgrep_rules", out var rulesJson))
             {
                 return new BatchPluginOutput
                 {
                     Results = Array.Empty<FilePluginOutput>(),
-                    Error = "Plugin requires 'semgrep_patterns' in CONFIG."
+                    Error = "Plugin requires 'semgrep_rules' in CONFIG (new format)."
                 };
             }
 
-            var patterns = DeserializePatterns(patternsJson);
-            if (patterns == null || patterns.Count == 0)
+            var rulesWithPatterns = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(rulesJson);
+            if (rulesWithPatterns == null || rulesWithPatterns.Count == 0)
             {
+                Console.WriteLine($"[SEMGREP-FFI] ERROR: Failed to deserialize semgrep_rules. RulesJson length: {rulesJson?.Length ?? 0}");
                 return new BatchPluginOutput
                 {
                     Results = Array.Empty<FilePluginOutput>(),
-                    Error = "Failed to deserialize semgrep_patterns or patterns are empty."
+                    Error = "Failed to deserialize semgrep_rules or rules are empty."
                 };
             }
+
+            Console.WriteLine($"[SEMGREP-FFI] Received {rulesWithPatterns.Count} rules from engine");
 
             var language = input.Language;
-            if (!patterns.TryGetValue(language, out var languagePatterns))
+
+            // Extract and validate patterns for each rule
+            var validRules = new List<(string RuleId, Dictionary<string, List<DetectionPattern>> Patterns)>();
+
+            foreach (var ruleEntry in rulesWithPatterns)
             {
+                if (!ruleEntry.TryGetValue("ruleId", out var ruleId) ||
+                    !ruleEntry.TryGetValue("patterns", out var patternsJson))
+                {
+                    continue;
+                }
+
+                var patterns = DeserializePatterns(patternsJson);
+                if (patterns != null && patterns.TryGetValue(language, out var languagePatterns))
+                {
+                    validRules.Add((ruleId, patterns));
+                }
+            }
+
+            Console.WriteLine($"[SEMGREP-FFI] After filtering for {language}: {validRules.Count} valid rules");
+
+            if (validRules.Count == 0)
+            {
+                Console.WriteLine($"[SEMGREP-FFI] No patterns for language {language} - returning empty results");
                 // No patterns for this language - return empty results for all files
                 return new BatchPluginOutput
                 {
@@ -448,11 +473,20 @@ public sealed class SemgrepValidator
 
                 // === TIMING: YAML Cache Lookup/Generation ===
                 timingStopwatch.Restart();
-                var cacheKey = $"{language}:{ComputePatternsHash(patternsJson)}";
+                // Cache key based on all rules' patterns
+                var cacheKey = $"{language}:{ComputePatternsHash(rulesJson)}";
                 var lazyYaml = _yamlCache.GetOrAdd(cacheKey, _ => new Lazy<string>(() =>
                 {
                     if (_verbose) Console.WriteLine($"[SEMGREP-FFI] Cache miss - generating YAML for batch (key: {cacheKey})");
-                    return GenerateSemgrepYaml(language, languagePatterns, "batch");
+                    var yaml = GenerateSemgrepYamlMultiRule(language, validRules);
+                    Console.WriteLine($"[SEMGREP-FFI] Generated YAML with {yaml.Split("- id:").Length - 1} rules");
+
+                    // DEBUG: Write YAML to temp file for inspection
+                    var yamlDebugPath = Path.Combine(Path.GetTempPath(), "semgrep_debug_batch.yaml");
+                    File.WriteAllText(yamlDebugPath, yaml);
+                    Console.WriteLine($"[SEMGREP-FFI] YAML written to: {yamlDebugPath}");
+
+                    return yaml;
                 }));
                 var yamlContent = lazyYaml.Value;
                 var yamlCacheTime = timingStopwatch.ElapsedMilliseconds;
@@ -787,6 +821,70 @@ public sealed class SemgrepValidator
         }
 
         return violations;
+    }
+
+    /// <summary>
+    /// Generate YAML with multiple semgrep rules (one per .iarch rule) for batch processing.
+    /// Each semgrep rule uses the .iarch rule ID so CheckId matches.
+    /// </summary>
+    private string GenerateSemgrepYamlMultiRule(string language, List<(string RuleId, Dictionary<string, List<DetectionPattern>> Patterns)> rules)
+    {
+        var yaml = "rules:\n";
+
+        foreach (var (ruleId, patterns) in rules)
+        {
+            if (!patterns.TryGetValue(language, out var languagePatterns) || languagePatterns.Count == 0)
+            {
+                continue;
+            }
+
+            // Generate one semgrep rule per .iarch rule, using the .iarch rule ID
+            yaml += $"  - id: {ruleId}\n";
+            yaml += $"    languages: [{language}]\n";
+            yaml += $"    message: Detected violation\n";
+            yaml += "    severity: WARNING\n";
+
+            // Check if we have taint mode patterns
+            var hasTaintSource = languagePatterns.Any(p => p.Type == PatternType.TaintSource);
+            var hasTaintSink = languagePatterns.Any(p => p.Type == PatternType.TaintSink);
+
+            if (hasTaintSource && hasTaintSink)
+            {
+                // Generate taint mode YAML
+                yaml += "    mode: taint\n";
+                yaml += "    pattern-sources:\n";
+
+                foreach (var pattern in languagePatterns.Where(p => p.Type == PatternType.TaintSource))
+                {
+                    yaml += GeneratePatternYaml(pattern, indent: 6, isTaintMode: true);
+                }
+
+                yaml += "    pattern-sinks:\n";
+
+                foreach (var pattern in languagePatterns.Where(p => p.Type == PatternType.TaintSink))
+                {
+                    yaml += GeneratePatternYaml(pattern, indent: 6, isTaintMode: true);
+                }
+            }
+            else
+            {
+                // Generate standard pattern YAML
+                if (languagePatterns.Count == 1)
+                {
+                    yaml += GeneratePatternYaml(languagePatterns[0], indent: 4, isTaintMode: false, isListItem: false);
+                }
+                else if (languagePatterns.Count > 1)
+                {
+                    yaml += "    pattern-either:\n";
+                    foreach (var pattern in languagePatterns)
+                    {
+                        yaml += GeneratePatternYaml(pattern, indent: 6, isTaintMode: false);
+                    }
+                }
+            }
+        }
+
+        return yaml;
     }
 
     private string GenerateSemgrepYaml(string language, List<DetectionPattern> patterns, string fileName)
