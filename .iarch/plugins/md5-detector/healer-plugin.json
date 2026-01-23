@@ -1,0 +1,16 @@
+{
+  "id": "md5-healer",
+  "version": "1.0.0",
+  "name": "MD5 Cryptographic Hash Healer",
+  "description": "Auto-fixes MD5 usage by replacing with FIPS-approved SHA256",
+  "type": "Healer",
+  "languages": ["python", "java", "csharp"],
+  "entryPoint": "md5_healer.py",
+  "dependencies": [],
+  "author": "IArchitecture Team",
+  "license": "MIT",
+  "healingStrategy": "Regex-based replacement with language-specific patterns",
+  "successRate": "85% - Can replace algorithm calls, hash size dependencies need manual review",
+  "breakingChange": true,
+  "notes": "SHA256 produces 32-byte hashes vs MD5's 16-byte - verify hash size dependencies"
+}

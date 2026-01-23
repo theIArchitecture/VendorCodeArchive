@@ -1,0 +1,15 @@
+{
+  "id": "md5-detector",
+  "version": "1.0.0",
+  "name": "MD5 Cryptographic Hash Detector",
+  "description": "Detects usage of MD5 hash function which is not FIPS-approved for cryptographic use",
+  "type": "Validator",
+  "languages": ["python", "java", "csharp"],
+  "entryPoint": "md5_detector.py",
+  "dependencies": [],
+  "author": "IArchitecture Team",
+  "license": "MIT",
+  "semgrepEquivalent": "hashlib.md5(...)",
+  "complexity": "EASY",
+  "estimatedConversionTime": "4 hours"
+}

@@ -1,0 +1,141 @@
+RULE "MD5 Cryptographic Hash Usage" : IHealerArchitecture
+  ID: "CUSTOM-SEC-MD5"
+  DESCRIPTION: "Detects and heals MD5 cryptographic hash usage - not FIPS-approved"
+  SEVERITY: Fatal
+  CATEGORY: "Security_Compliance"
+  APPLIES_TO: ["python", "java", "csharp"]
+
+  ARCHITECTURAL_CONTEXT:
+    PROJECT_TYPE: "ENTERPRISE_APPLICATION"
+    COMPLIANCE_REQUIREMENTS: ["FIPS_140_2", "SOC2", "PCI_DSS"]
+    SECURITY_LEVEL: "Government_Enterprise"
+
+  # DETECTION: Uses Python plugin for all languages
+  PLUGIN:
+    ID: "md5-detector"
+    SCOPE: "file"
+    CONFIG:
+      severity: "Fatal"
+      rule_id: "CUSTOM-SEC-MD5"
+
+  VIOLATIONS:
+    - "FIPS Violation: MD5 is not approved for cryptographic use"
+    - "MD5 has known collision vulnerabilities - use SHA256 or SHA512"
+
+  EDUCATION:
+    WHY_IT_MATTERS: "MD5 is cryptographically broken with proven collision attacks and is not suitable for security applications"
+    BUSINESS_IMPACT: "Using MD5 violates FIPS 140-2 compliance required for government and enterprise deployments - blocks $125B+ federal market access"
+    QUICK_FIX: "Replace with SHA256 or SHA512"
+    DOCS_URL: "https://csrc.nist.gov/projects/hash-functions"
+
+  # HEALING STRATEGY 1: Simple regex replacement (fastest, 85% success)
+  FIXES:
+    python:
+      - REPLACE: "hashlib\\.md5\\("
+      - WITH: "hashlib.sha256("
+      - TEACHING: "Replace MD5 with FIPS-approved SHA256. MD5 is cryptographically broken."
+
+      - REPLACE: "from hashlib import md5"
+      - WITH: "from hashlib import sha256"
+      - TEACHING: "Import SHA256 instead of MD5 for FIPS compliance"
+
+    java:
+      - REPLACE: "MessageDigest\\.getInstance\\(\"MD5\"\\)"
+      - WITH: "MessageDigest.getInstance(\"SHA-256\")"
+      - TEACHING: "Replace MD5 with SHA-256 for Java MessageDigest FIPS compliance"
+
+    csharp:
+      - REPLACE: "MD5\\.Create\\(\\)"
+      - WITH: "SHA256.Create()"
+      - TEACHING: "Replace MD5 with SHA256 for FIPS 140-2 compliance"
+
+      - REPLACE: "using \\(var md5 = MD5\\.Create\\(\\)\\)"
+      - WITH: "using (var sha256 = SHA256.Create())"
+      - TEACHING: "Use SHA256 in using statements for FIPS compliance"
+
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 1
+      BREAKING_CHANGE: true
+      AUTO_HEAL_SUCCESS_RATE: "85% - Can replace calls, hash size dependencies need review"
+
+  # HEALING STRATEGY 2: Plugin-based healing (more thorough, handles edge cases)
+  FIXES:
+    python:
+      - PLUGIN: "md5-healer"
+      - TEACHING: "Plugin-based healing handles imports, variable names, and edge cases"
+    java:
+      - PLUGIN: "md5-healer"
+      - TEACHING: "Plugin-based healing for comprehensive MD5 → SHA-256 replacement"
+    csharp:
+      - PLUGIN: "md5-healer"
+      - TEACHING: "Plugin adds necessary using statements and handles type declarations"
+
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 5
+      BREAKING_CHANGE: true
+      AUTO_HEAL_SUCCESS_RATE: "85% - Plugin handles more edge cases than regex"
+
+  EXAMPLES:
+    VIOLATION:
+      python: |
+        import hashlib
+
+        # Violation: MD5 usage
+        hasher = hashlib.md5()
+        hasher.update(b"data")
+        result = hasher.hexdigest()
+
+      java: |
+        import java.security.MessageDigest;
+
+        // Violation: MD5 usage
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        byte[] hash = md.digest(data);
+
+      csharp: |
+        using System.Security.Cryptography;
+
+        // Violation: MD5 usage
+        using (var md5 = MD5.Create())
+        {
+            byte[] hash = md5.ComputeHash(data);
+        }
+
+    CORRECT:
+      python: |
+        import hashlib
+
+        # Correct: SHA256 usage
+        hasher = hashlib.sha256()
+        hasher.update(b"data")
+        result = hasher.hexdigest()
+
+      java: |
+        import java.security.MessageDigest;
+
+        // Correct: SHA-256 usage
+        MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+        byte[] hash = sha256.digest(data);
+
+      csharp: |
+        using System.Security.Cryptography;
+
+        // Correct: SHA256 usage
+        using (var sha256 = SHA256.Create())
+        {
+            byte[] hash = sha256.ComputeHash(data);
+        }
+
+  PARTIAL_HEALING:
+    python:
+      - ACTION: "Replace MD5 with SHA256 and add compliance comments"
+      - LIMITATION: "Cannot automatically update code expecting 16-byte hashes"
+      - DOWNGRADE_TO: "WARNING"
+      - EDUCATIONAL_NOTE: "SHA256 produces 32-byte hashes vs MD5's 16-byte. Verify compatibility."
+
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 10
+      BREAKING_CHANGE: false
+      AUTO_HEAL_SUCCESS_RATE: "50% - Adds comments, cannot fully replace"
+
+END RULE
