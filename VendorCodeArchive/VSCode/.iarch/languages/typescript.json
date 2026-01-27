@@ -1,0 +1,127 @@
+{
+  "language": "typescript",
+  "displayName": "TypeScript (VSCode Configuration)",
+  "fileExtensions": [".ts", ".tsx", ".mts", ".cts"],
+  "plainImportBehavior": "skip",
+
+  "layerDetection": {
+    "layers": {
+      "Base": {
+        "pathPatterns": ["base", "common", "node", "browser"],
+        "namingPatterns": [".*base.*", ".*common.*", ".*util.*"],
+        "importPatterns": [".*/base/.*"]
+      },
+      "Platform": {
+        "pathPatterns": ["platform"],
+        "namingPatterns": [".*platform.*", ".*service.*"],
+        "importPatterns": [".*/platform/.*"]
+      },
+      "Editor": {
+        "pathPatterns": ["editor"],
+        "namingPatterns": [".*editor.*", ".*monaco.*"],
+        "importPatterns": [".*/editor/.*"]
+      },
+      "Workbench": {
+        "pathPatterns": ["workbench", "contrib"],
+        "namingPatterns": [".*workbench.*", ".*contrib.*"],
+        "importPatterns": [".*/workbench/.*"]
+      }
+    }
+  },
+
+  "parsingPatterns": {
+    "namespace": "^(?:export\\s+)?(?:declare\\s+)?namespace\\s+([\\w.]+)\\s*\\{",
+    "import": "^(?:export\\s+)?import\\s+(?:type\\s+)?(?:(?<symbols>[\\w{},*\\s]+)\\s+from\\s+['\"](?<module>[^'\"]+)['\"]|(?<symbols>[\\w]+)\\s*=\\s*require\\(['\"](?<module>[^'\"]+)['\"]\\))|^import\\s+['\"](?<module>[^'\"]+)['\"]",
+    "typeDeclaration": "(?:export\\s+)?(?:declare\\s+)?(?:default\\s+)?(?:abstract\\s+)?(interface|type|class|enum)\\s+(\\w+)(?:<[^>]+>)?(?:\\s+(?:extends|implements)\\s+[\\w\\s,<>.]+)?\\s*[{=]",
+    "typeKeywords": ["class", "interface", "type", "enum"],
+    "methodDeclaration": "(?:public\\s+|private\\s+|protected\\s+)?(?:static\\s+)?(?:readonly\\s+)?(?:abstract\\s+)?(?:async\\s+)?(?:get\\s+|set\\s+)?(\\w+)\\s*(?:<[^>]+>)?\\s*\\(([^)]*)\\)(?:\\s*:\\s*[^{;]+)?\\s*[{;]",
+    "fieldDeclaration": "(?:public\\s+|private\\s+|protected\\s+)?(?:static\\s+)?(?:readonly\\s+)?(\\w+)(?:\\?)?\\s*:\\s*([^;=\\n]+)",
+    "instantiation": "new\\s+(\\w+)(?:<[^>]+>)?\\s*\\(",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "/\\*\\*(.*?)\\*/"
+  },
+
+  "fieldExtractionPatterns": [
+    {
+      "name": "class_field",
+      "description": "Matches class field declarations with type annotations",
+      "pattern": "^\\s*(?:public\\s+|private\\s+|protected\\s+)?(?:static\\s+)?(?:readonly\\s+)?(\\w+)(?:\\?)?\\s*:\\s*([^;=\\n]+)(?:\\s*[;=]|$)",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": false
+    },
+    {
+      "name": "interface_property",
+      "description": "Matches interface property declarations",
+      "pattern": "^\\s+(\\w+)(?:\\?)?\\s*:\\s*([^;\\n]+)",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": true
+    },
+    {
+      "name": "type_alias",
+      "description": "Matches type alias declarations",
+      "pattern": "type\\s+(\\w+)(?:<[^>]+>)?\\s*=\\s*([^;\\n]+)",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": false
+    },
+    {
+      "name": "enum_member",
+      "description": "Matches enum member declarations",
+      "pattern": "^\\s+(\\w+)\\s*(?:=\\s*[^,\\n]+)?",
+      "typeGroup": 0,
+      "nameGroup": 1,
+      "isProperty": false
+    },
+    {
+      "name": "parameter_property",
+      "description": "Matches constructor parameter properties",
+      "pattern": "constructor\\s*\\([^)]*(?:public|private|protected|readonly)\\s+(\\w+)\\s*:\\s*([^),]+)",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": false
+    }
+  ],
+
+  "transformationRules": {
+    "importTemplate": "import { {symbol} } from '{namespace}';",
+    "importInsertLocation": "after_last_import",
+    "importRemovalPattern": "^\\s*import\\s+.*from\\s+['\"]?{namespace}['\"]?;?\\s*$"
+  },
+
+  "formattingRules": {
+    "indentSize": 4,
+    "increaseIndentTriggers": ["{"],
+    "decreaseIndentTriggers": ["}"],
+    "decreaseBeforeLine": true
+  },
+
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "{", "close": "}" },
+      { "open": "(", "close": ")" },
+      { "open": "[", "close": "]" },
+      { "open": "<", "close": ">" }
+    ],
+    "invalidPatterns": [";;", "import\\s+[^'\"]"]
+  },
+
+  "commentStyles": ["//", "/*", "*/", "/**"],
+
+  "additionalPatterns": {
+    "decorator": "@(\\w+)(?:\\([^)]*\\))?",
+    "genericType": "(\\w+)<([^>]+)>",
+    "arrowFunction": "(?:const|let|var)?\\s*(\\w+)\\s*=\\s*\\([^)]*\\)\\s*=>",
+    "asyncFunction": "async\\s+(?:function\\s+)?(\\w+)",
+    "exportDefault": "export\\s+default\\s+(?:class|interface|function|const)\\s+(\\w+)",
+    "exportNamed": "export\\s+(?:class|interface|function|const|type|enum)\\s+(\\w+)",
+    "unionType": "([\\w.]+)\\s*\\|\\s*([\\w.]+)",
+    "intersectionType": "([\\w.]+)\\s*&\\s*([\\w.]+)",
+    "mappedType": "\\[\\s*(\\w+)\\s+in\\s+([^\\]]+)\\]\\s*:",
+    "conditionalType": "(\\w+)\\s+extends\\s+([^?]+)\\s*\\?\\s*([^:]+)\\s*:\\s*(.+)",
+    "typeAssertion": "(?:<([^>]+)>|as\\s+(\\w+))",
+    "namespaceDeclaration": "(?:export\\s+)?(?:declare\\s+)?namespace\\s+(\\w+)"
+  }
+}

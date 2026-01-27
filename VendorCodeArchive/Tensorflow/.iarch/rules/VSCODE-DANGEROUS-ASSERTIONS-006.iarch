@@ -1,0 +1,110 @@
+# VSCode Dangerous Type Assertions Rule - Tightened Version
+# Focuses on VSCode source code, excludes type definition files and tests
+# Prevents unsafe type casts that cause runtime errors
+
+RULE "VSCODE-DANGEROUS-ASSERTIONS-SOURCE" : IHealerArchitecture
+  ID: "VSCODE-DANGEROUS-ASSERTIONS-006"
+  DESCRIPTION: "Dangerous type assertion in VSCode source - runtime type error risk"
+  SEVERITY: Error
+  CATEGORY: "VSCode_TypeSafety"
+  APPLIES_TO: ["typescript"]
+
+  ARCHITECTURAL_CONTEXT:
+    PROJECT_TYPE: "VSCODE_EDITOR_PLATFORM"
+    COMPLIANCE_REQUIREMENTS: ["Type_Safety", "Runtime_Stability", "Error_Prevention"]
+    ORGANIZATION_STANDARDS: ["Microsoft_TypeScript_Guidelines", "VSCode_Type_Safety"]
+    TECHNOLOGY_STACK: ["typescript", "vscode", "electron"]
+    SECURITY_LEVEL: "Enterprise_Editor"
+
+  EDUCATION:
+    DOCS_URL: "https://github.com/microsoft/vscode/wiki/Coding-Guidelines#type-assertions"
+    BUSINESS_IMPACT: "Runtime type errors crash editor features affecting millions of developers"
+    QUICK_FIX: "Use type guards, optional chaining, or instanceof checks"
+
+  ARCHITECTURAL_LAYERS:
+    VSCODE_WORKBENCH: ["src/vs/workbench", "UI components"]
+    VSCODE_EDITOR: ["src/vs/editor", "Text editor core"]
+    VSCODE_TYPE_SYSTEM: ["Type guards", "Runtime validation"]
+
+  DETECT:
+    PATTERNS:
+      typescript:
+        # Dangerous assertions in source code
+        - AS_ANY_ASSERTION: "\\sas\\s+any(?!;\\s*//)(?!.*//.*type)"
+
+        # DOM assertions without instanceof
+        - DOM_NO_CHECK: "as\\s+HTML\\w+Element(?!.*instanceof)"
+
+        # Service assertions without validation
+        - SERVICE_NO_CHECK: "as\\s+I\\w+Service(?!.*\\?)"
+
+        # Non-null assertion on property access
+        - PROPERTY_BANG: "\\w+!\\."
+
+  VIOLATIONS:
+    - "{{SILO:PROJECT_TYPE}}: 'as any' bypasses type checking - runtime error risk"
+    - "{{SILO:PROJECT_TYPE}}: DOM assertion without instanceof check"
+    - "{{SILO:PROJECT_TYPE}}: Service assertion without validation"
+    - "{{SILO:PROJECT_TYPE}}: Non-null assertion on property - null pointer risk"
+
+  FIXES:
+    typescript:
+      - REPLACE: "const element = target as HTMLInputElement;"
+      - WITH: "const element = target instanceof HTMLInputElement ? target : undefined;"
+      - TEACHING: "Use instanceof for DOM type checking in {{SILO:COMPLIANCE_REQUIREMENTS}}"
+
+      - REPLACE: "obj.prop!.value"
+      - WITH: "obj.prop?.value"
+      - TEACHING: "Use optional chaining instead of non-null assertion"
+
+      - REPLACE: "service as IMyService"
+      - WITH: "this.isMyService(service) ? service : undefined"
+      - TEACHING: "Validate services before casting in {{SILO:PROJECT_TYPE}}"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 1
+      BREAKING_CHANGE: true
+      BUSINESS_IMPACT: "Type assertion errors crash VSCode features"
+      AUTO_HEAL_SUCCESS_RATE: "75%"
+      GOVERNANCE_LEVEL: "VSCODE_TYPE_SAFETY_ENFORCEMENT"
+
+  FILE_INCLUSIONS:
+    # Only VSCode source code
+    - "/src/vs/.*\\.ts$"
+    - "/extensions/.*/src/.*\\.ts$"
+
+  FILE_EXCLUSIONS:
+    # Exclude type definitions
+    - "\\.d\\.ts$"
+
+    # Exclude tests
+    - "/\\.test\\.ts$"
+    - "/\\.spec\\.ts$"
+    - "/__tests__/"
+    - "/test/.*fixtures/"
+
+    # Exclude build scripts
+    - "/build/.*\\.ts$"
+    - "/scripts/.*\\.ts$"
+
+  WHITELISTED_PATTERNS:
+    - "instanceof\\s+"
+    - "typeof.*==="
+    - "\\?\\.\\w+"
+    - "Array\\.isArray"
+
+  PARTIAL_HEALING:
+    typescript:
+      - ACTION: "Replace assertions with runtime checks"
+      - LIMITATION: "Complex validation logic may need manual review"
+      - DOWNGRADE_TO: "WARNING"
+      - EDUCATIONAL_NOTE: "Implement type guards for domain-specific types in {{SILO:PROJECT_TYPE}}"
+    META_ARCHITECTURE:
+      HEALING_PRIORITY: 7
+      AUTO_HEAL_SUCCESS_RATE: "100%"
+
+  IDENTIFIER: "VSCODE-DANGEROUS-ASSERTIONS-006"
+  IS_VALID: true
+  CODE_TYPE: "Architecture"
+  CURRENT_STATE: "Active"
+
+END RULE

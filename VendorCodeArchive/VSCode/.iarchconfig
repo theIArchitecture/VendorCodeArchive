@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "defaultLayer": "Base",
+  "layerHierarchy": {
+    "Base": {
+      "inheritsFrom": []
+    },
+    "Platform": {
+      "inheritsFrom": ["Base"]
+    },
+    "Editor": {
+      "inheritsFrom": ["Base", "Platform"]
+    },
+    "Workbench": {
+      "inheritsFrom": ["Base", "Platform", "Editor"]
+    }
+  },
+  "engineConfig": {
+    "parallel_threads": 9,
+    "files_per_batch": 50,
+    "progressive_output_threshold": 200,
+    "ignorePatterns": [
+      "node_modules",
+      "out/",
+      ".build",
+      ".git",
+      "extensions/node_modules",
+      "\\test\\",
+      "/test/",
+      "tests/",
+      "test-fixtures",
+      "fixtures"
+    ]
+  }
+}

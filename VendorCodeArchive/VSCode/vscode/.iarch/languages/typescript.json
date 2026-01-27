@@ -1,0 +1,50 @@
+{
+  "language": "typescript",
+  "displayName": "TypeScript (VSCode Configuration)",
+  "fileExtensions": [".ts", ".mts", ".cts"],
+  "layerDetection": {
+    "layers": {
+      "Base": {
+        "pathPatterns": ["base", "common", "node", "browser"],
+        "namingPatterns": [".*base.*", ".*common.*", ".*util.*"],
+        "importPatterns": [".*/base/.*"]
+      },
+      "Platform": {
+        "pathPatterns": ["platform"],
+        "namingPatterns": [".*platform.*", ".*service.*"],
+        "importPatterns": [".*/platform/.*"]
+      },
+      "Editor": {
+        "pathPatterns": ["editor"],
+        "namingPatterns": [".*editor.*", ".*monaco.*"],
+        "importPatterns": [".*/editor/.*"]
+      },
+      "Workbench": {
+        "pathPatterns": ["workbench", "contrib"],
+        "namingPatterns": [".*workbench.*", ".*contrib.*"],
+        "importPatterns": [".*/workbench/.*"]
+      }
+    }
+  },
+  "parsingPatterns": {
+    "namespace": "^\\s*(?:export\\s+)?namespace\\s+([\\w\\.]+)",
+    "import": "^\\s*import\\s+()(?:\\{[^}]+\\}|\\*\\s+as\\s+\\w+|\\w+)\\s+from\\s+['\"]([^'\"]+)['\"]",
+    "typeDeclaration": "(?:export\\s+)?(?:default\\s+)?(?:abstract\\s+)?(class|interface|type|enum)\\s+(\\w+)(?:\\s*<[^>]+>)?(?:\\s+extends\\s+([\\w\\.,\\s<>]+))?(?:\\s+implements\\s+([\\w\\.,\\s<>]+))?",
+    "typeKeywords": ["class", "interface", "type", "enum"],
+    "methodDeclaration": "(?:public\\s+|private\\s+|protected\\s+)?(?:static\\s+)?(?:async\\s+)?(\\w+)\\s*\\(([^)]*)\\)\\s*(?::\\s*([^{]+))?\\s*\\{",
+    "instantiation": "new\\s+([\\w\\.]+)(?:<[^>]+>)?\\s*\\(",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "/\\*\\*(.*)\\*/"
+  },
+  "fieldExtractionPatterns": [
+    {
+      "name": "property_declaration",
+      "description": "Matches class property declarations",
+      "pattern": "(?:public\\s+|private\\s+|protected\\s+)?(?:readonly\\s+)?(?:static\\s+)?(\\w+(?:<[\\w\\s,<>]+>)?)(?:\\s*[?!])?\\s*(?::\\s*(\\w+(?:<[\\w\\s,<>]+>)?))?\\s*(?:=|;)",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": true
+    }
+  ]
+}

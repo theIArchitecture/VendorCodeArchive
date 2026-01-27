@@ -1,0 +1,166 @@
+{
+  "language": "cuda",
+  "displayName": "CUDA C++",
+  "fileExtensions": [".cu", ".cuh"],
+
+  "parsingPatterns": {
+    "namespace": "^\\s*namespace\\s+([\\w:]+)\\s*(?:\\{|$)",
+    "import": "^\\s*#include\\s+[\"<](?<module>[\\w/.]+)[\">]",
+    "typeDeclaration": "(?:template\\s*<[^>]+>\\s*)?(class|struct|enum|union)\\s+(\\w+)(?:\\s*:\\s*(?:public|protected|private)\\s+([\\w:]+))?\\s*\\{",
+    "typeKeywords": ["class", "struct", "enum", "union"],
+    "methodDeclaration": "(?:__global__|__device__|__host__)?\\s*(?:virtual\\s+|static\\s+|inline\\s+|explicit\\s+|constexpr\\s+)*(?:[\\w:<>,\\s*&]+)\\s+(\\w+)\\s*\\(([^)]*)\\)(?:\\s*const)?(?:\\s*override)?",
+    "fieldDeclaration": "^\\s*(?:__device__|__constant__|__shared__)?\\s*(?:static\\s+|mutable\\s+|const\\s+)*([\\w:<>,\\s*&]+)\\s+(\\w+)\\s*(?:;|=|\\{)",
+    "instantiation": "(?:new\\s+|std::make_\\w+<|std::unique_ptr<|std::shared_ptr<)\\s*([\\w:]+)",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "/\\*\\*(.*?)\\*/"
+  },
+
+  "plainImportBehavior": "skip",
+
+  "layerDetection": {
+    "layers": {
+      "Internal": {
+        "pathPatterns": [
+          "\\\\detail\\\\",
+          "\\\\internal\\\\",
+          "\\\\agent\\\\",
+          "\\\\dispatch\\\\",
+          "cub\\\\util_",
+          "thrust\\\\system\\\\detail\\\\"
+        ],
+        "namingPatterns": [
+          ".*detail::.*",
+          ".*internal::.*",
+          "Agent.*",
+          "Dispatch.*"
+        ],
+        "importPatterns": [
+          ".*/detail/.*",
+          ".*/internal/.*"
+        ]
+      },
+
+      "Utility": {
+        "pathPatterns": [
+          "cub\\\\config",
+          "thrust\\\\detail\\\\config",
+          "cub\\\\util_type",
+          "cub\\\\util_ptx",
+          "\\\\type_traits\\\\",
+          "\\\\functional\\\\"
+        ],
+        "namingPatterns": [
+          ".*Traits$",
+          ".*Config$",
+          ".*Util$"
+        ],
+        "importPatterns": [
+          ".*/config\\..*",
+          ".*/type_traits/.*"
+        ]
+      },
+
+      "PublicAPI": {
+        "pathPatterns": [
+          "thrust\\\\thrust\\\\[^d\\\\]",
+          "cub\\\\cub\\\\device\\\\",
+          "cub\\\\cub\\\\block\\\\",
+          "cub\\\\cub\\\\warp\\\\",
+          "cub\\\\cub\\\\thread\\\\",
+          "cub\\\\cub\\\\grid\\\\",
+          "cub\\\\cub\\\\iterator\\\\",
+          "libcudacxx\\\\include\\\\",
+          "cudax\\\\include\\\\"
+        ],
+        "namingPatterns": [
+          "^thrust::.*",
+          "^cub::DeviceReduce",
+          "^cub::DeviceScan",
+          "^cub::BlockReduce",
+          "^cub::WarpReduce"
+        ],
+        "importPatterns": [
+          "thrust/.*",
+          "cub/device/.*",
+          "cub/block/.*"
+        ]
+      }
+    }
+  },
+
+  "fieldExtractionPatterns": [
+    {
+      "name": "field_declaration",
+      "description": "Matches CUDA field declarations with qualifiers",
+      "pattern": "(?:__device__|__constant__|__shared__)?\\s*(?:public|private|protected)?\\s*(?:static\\s+|mutable\\s+|const\\s+|constexpr\\s+)*([\\w:<>,\\s*&]+)\\s+(\\w+)\\s*(?:;|=|\\{)",
+      "typeGroup": 1,
+      "nameGroup": 2,
+      "isProperty": false
+    },
+    {
+      "name": "member_variable",
+      "description": "Matches member variables without explicit access modifier",
+      "pattern": "^\\s+(?:static\\s+|mutable\\s+|const\\s+|constexpr\\s+)*([\\w:<>,\\s*&]+)\\s+(\\w+_)\\s*(?:;|=|\\{)",
+      "typeGroup": 1,
+      "nameGroup": 2,
+      "isProperty": false
+    },
+    {
+      "name": "using_declaration",
+      "description": "Matches using type aliases",
+      "pattern": "using\\s+(\\w+)\\s*=\\s*([\\w:<>,\\s*&]+)\\s*;",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": false
+    },
+    {
+      "name": "typedef_declaration",
+      "description": "Matches typedef declarations",
+      "pattern": "typedef\\s+([\\w:<>,\\s*&]+)\\s+(\\w+)\\s*;",
+      "typeGroup": 1,
+      "nameGroup": 2,
+      "isProperty": false
+    }
+  ],
+
+  "transformationRules": {
+    "importTemplate": "#include \"{namespace}\"",
+    "importInsertLocation": "after_last_import",
+    "importRemovalPattern": "^\\s*#include\\s+[\"<]{namespace}[\">]\\s*$"
+  },
+
+  "formattingRules": {
+    "indentSize": 2,
+    "increaseIndentTriggers": ["{"],
+    "decreaseIndentTriggers": ["}"],
+    "decreaseBeforeLine": true
+  },
+
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "{", "close": "}" },
+      { "open": "(", "close": ")" },
+      { "open": "[", "close": "]" },
+      { "open": "<", "close": ">" }
+    ],
+    "invalidPatterns": [";;", "#include\\s+[^\"<]"]
+  },
+
+  "commentStyles": ["//", "/*", "*/", "/**"],
+
+  "additionalPatterns": {
+    "templateDeclaration": "template\\s*<([^>]+)>",
+    "cuda_kernel": "__global__\\s+void\\s+(\\w+)\\s*\\(",
+    "cuda_device_function": "__device__\\s+(?:inline\\s+)?([\\w<>]+)\\s+(\\w+)\\s*\\(",
+    "cuda_host_device": "__host__\\s+__device__\\s+([\\w<>]+)\\s+(\\w+)\\s*\\(",
+    "cuda_constant": "__constant__\\s+([\\w<>]+)\\s+(\\w+)",
+    "cuda_shared": "__shared__\\s+([\\w<>]+)\\s+(\\w+)",
+    "namespaceAlias": "namespace\\s+(\\w+)\\s*=\\s*([\\w:]+)\\s*;",
+    "forwardDeclaration": "(?:class|struct)\\s+(\\w+)\\s*;",
+    "friendDeclaration": "friend\\s+(?:class|struct)\\s+(\\w+)\\s*;",
+    "operatorOverload": "(?:operator)\\s*([+\\-*/=%<>!&|\\[\\]\\(\\)]+)\\s*\\(",
+    "constructor": "(?:explicit\\s+)?(\\w+)\\s*\\([^)]*\\)(?:\\s*:\\s*[\\w,\\s()]+)?\\s*\\{",
+    "destructor": "(?:virtual\\s+)?~(\\w+)\\s*\\(\\)\\s*(?:override)?\\s*(?:=\\s*(?:default|delete))?"
+  }
+}

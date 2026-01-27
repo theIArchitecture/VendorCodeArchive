@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "defaultLayer": "Base",
+  "layerHierarchy": {
+    "Base": {
+      "inheritsFrom": []
+    },
+    "Utility": {
+      "inheritsFrom": ["Base"]
+    },
+    "Internal": {
+      "inheritsFrom": ["Base", "Utility"]
+    },
+    "PublicAPI": {
+      "inheritsFrom": ["Base", "Utility", "Internal"]
+    }
+  },
+  "engineConfig": {
+    "parallel_threads": 9,
+    "files_per_batch": 50,
+    "progressive_output_threshold": 200,
+    "ignorePatterns": [
+      ".git",
+      ".iarch",
+      "build/",
+      "out/",
+      "docs/",
+      "third_party/",
+      "__pycache__",
+      "*.pyc",
+      "*.pyo"
+    ]
+  }
+}

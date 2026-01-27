@@ -1,0 +1,58 @@
+{
+  "version": "1.0",
+  "defaultLayer": "Core",
+  "layerHierarchy": {
+    "Core": {
+      "inheritsFrom": []
+    },
+    "CppFramework": {
+      "inheritsFrom": ["Core"]
+    },
+    "PythonFramework": {
+      "inheritsFrom": ["Core", "CppFramework"]
+    },
+    "Operations": {
+      "inheritsFrom": ["Core", "CppFramework", "PythonFramework"]
+    },
+    "HighLevel": {
+      "inheritsFrom": ["Core", "CppFramework", "PythonFramework", "Operations"]
+    },
+    "Utilities": {
+      "inheritsFrom": []
+    }
+  },
+  "engineConfig": {
+    "parallel_threads": 9,
+    "files_per_batch": 50,
+    "progressive_output_threshold": 200,
+    "ignorePatterns": [
+      ".git",
+      ".iarch",
+      "bazel-",
+      "build/",
+      "out/",
+      "_test.py",
+      "_test.cc",
+      "_test.c",
+      "test_",
+      "tests/",
+      "testing/",
+      "test.py",
+      "test.cc",
+      "benchmark",
+      "examples/",
+      "tools/",
+      "go/",
+      "java/",
+      "js/",
+      "lite/",
+      "dtensor/",
+      "docs_src/",
+      "security/",
+      "third_party/",
+      "__pycache__",
+      "*.pyc",
+      "*.pyo"
+    ]
+  }
+}

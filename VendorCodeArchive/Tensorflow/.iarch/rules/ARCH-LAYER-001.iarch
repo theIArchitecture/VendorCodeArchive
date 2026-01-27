@@ -1,0 +1,35 @@
+# Layer Violation Detection Rule
+# Detects violations of architectural layer boundaries (e.g., Repository depending on Service)
+# Enforces clean architecture principles
+
+RULE "LAYER-VIOLATION-DETECTION" : IMetaArchitecture
+  ID: "ARCH-LAYER-001"
+  DESCRIPTION: "Layer violation detected - dependencies flow in the wrong direction, violating architectural boundaries"
+  SEVERITY: Fatal
+  CATEGORY: "Architecture_Quality"
+  APPLIES_TO: ["cpp", "python", "c"]
+
+  PLUGIN:
+    ID: "architecture-validator"
+    SCOPE: "tree"
+    CONFIG:
+      validator: "LayerViolation"
+      hierarchy: "TensorFlowArchitecture"
+
+  EDUCATION:
+    DOCS_URL: "https://www.tensorflow.org/guide/architecture"
+    WHY_IT_MATTERS: "TensorFlow's layered architecture separates low-level computation (C++ core) from high-level APIs (Python/Keras). Layer violations create tight coupling between abstraction levels, making the framework rigid and hard to optimize."
+    BUSINESS_IMPACT: "Cross-language layer violations prevent independent evolution of computation kernels and user-facing APIs. Performance optimizations in Core can't be deployed without breaking Python code that directly accesses internals."
+    QUICK_FIX: "Use proper API boundaries - Python code should use public ops/framework APIs, not directly access C++ core internals. Create proper wrappers in intermediate layers."
+
+  ARCHITECTURAL_CONTEXT:
+    PROJECT_TYPE: "ML_Framework"
+    ARCHITECTURE_PATTERN: "Layered_Cross_Language"
+    DESIGN_PRINCIPLES: ["Language_Isolation", "Abstraction_Layers", "Upward_Dependencies"]
+
+  VIOLATIONS:
+    - "Layer violation: {{SOURCE_LAYER}} should not depend on {{TARGET_LAYER}}"
+    - "Dependency inversion required: {{SOURCE_LAYER}} → {{TARGET_LAYER}} violates the dependency rule"
+    - "Architectural boundary breach: Inner layer depends on outer layer"
+
+END_RULE

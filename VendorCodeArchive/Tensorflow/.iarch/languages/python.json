@@ -1,0 +1,192 @@
+{
+  "language": "python",
+  "displayName": "Python (TensorFlow Configuration)",
+  "fileExtensions": [".py", ".pyw", ".pyi"],
+  "plainImportBehavior": "importModule",
+
+  "layerDetection": {
+    "layers": {
+      "PythonFramework": {
+        "pathPatterns": [
+          "python/framework",
+          "python/lib",
+          "python/platform",
+          "python/client",
+          "python/types"
+        ],
+        "namingPatterns": [
+          "^framework",
+          "^dtypes",
+          "^ops$",
+          "^tensor",
+          "^constant_op",
+          "^config",
+          "^errors",
+          "^pywrap"
+        ],
+        "importPatterns": [
+          "tensorflow\\.python\\.framework",
+          "tensorflow\\.python\\.platform",
+          "tensorflow\\.python\\.types"
+        ]
+      },
+
+      "Operations": {
+        "pathPatterns": [
+          "python/ops",
+          "python/eager",
+          "python/training",
+          "python/data",
+          "python/distribute",
+          "python/compiler",
+          "python/autograph",
+          "python/profiler",
+          "python/checkpoint",
+          "python/saved_model"
+        ],
+        "namingPatterns": [
+          "_ops$",
+          "_grad$",
+          "^gen_",
+          "_operations$",
+          "^optimizer",
+          "^training"
+        ],
+        "importPatterns": [
+          "tensorflow\\.python\\.ops",
+          "tensorflow\\.python\\.eager",
+          "tensorflow\\.python\\.training",
+          "tensorflow\\.python\\.data"
+        ]
+      },
+
+      "HighLevel": {
+        "pathPatterns": [
+          "python/keras"
+        ],
+        "namingPatterns": [
+          "^keras",
+          "^layers",
+          "^models",
+          "^callbacks",
+          "^losses",
+          "^metrics"
+        ],
+        "importPatterns": [
+          "tensorflow\\.python\\.keras",
+          "tensorflow\\.keras"
+        ]
+      },
+
+      "Utilities": {
+        "pathPatterns": [
+          "python/util"
+        ],
+        "namingPatterns": [
+          "^util",
+          "^helper",
+          "_utils$",
+          "^deprecation",
+          "^dispatch"
+        ],
+        "importPatterns": [
+          "tensorflow\\.python\\.util"
+        ]
+      }
+    }
+  },
+
+  "parsingPatterns": {
+    "namespace": "",
+    "import": "^(?:from\\s+(?<module>[\\w.]+)\\s+import\\s+(?<symbols>[\\w\\s,*]+)|import\\s+(?<module>[\\w.]+)(?:\\s+as\\s+(?<alias>\\w+))?)",
+    "typeDeclaration": "^(?:@[\\w.]+\\s*(?:\\([^)]*\\))?\\s*)*class\\s+(\\w+)(?:\\s*\\(([^)]*)\\))?\\s*:",
+    "typeKeywords": ["class", "def"],
+    "methodDeclaration": "^\\s*(?:@[\\w.]+\\s*(?:\\([^)]*\\))?\\s*)*def\\s+(\\w+)\\s*\\(([^)]*)\\)(?:\\s*->\\s*[^:]+)?\\s*:",
+    "fieldDeclaration": "^\\s+(\\w+)\\s*:\\s*([^=\\n]+)(?:\\s*=|$)",
+    "instantiation": "(\\w+)\\s*\\(",
+    "commentSingleLine": "#(.*)$",
+    "commentMultiLine": "\"\"\"(.*?)\"\"\"",
+    "commentDocumentation": "\"\"\"(.*?)\"\"\""
+  },
+
+  "fieldExtractionPatterns": [
+    {
+      "name": "class_variable",
+      "description": "Matches class variables with type annotations",
+      "pattern": "^\\s+(\\w+)\\s*:\\s*([^=\\n]+)(?:\\s*=\\s*[^\\n]+)?",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": false
+    },
+    {
+      "name": "instance_variable_init",
+      "description": "Matches self.variable assignments in __init__",
+      "pattern": "^\\s+self\\.(\\w+)\\s*(?::\\s*([^=\\n]+))?\\s*=",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": false
+    },
+    {
+      "name": "property_decorator",
+      "description": "Matches @property decorated methods",
+      "pattern": "@property\\s+def\\s+(\\w+)\\s*\\(self\\)",
+      "typeGroup": 0,
+      "nameGroup": 1,
+      "isProperty": true
+    },
+    {
+      "name": "dataclass_field",
+      "description": "Matches dataclass field declarations",
+      "pattern": "^\\s+(\\w+)\\s*:\\s*([^=\\n]+)\\s*=\\s*(?:field|Field)\\s*\\(",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": false
+    },
+    {
+      "name": "typed_dict_field",
+      "description": "Matches TypedDict field declarations",
+      "pattern": "^\\s+(\\w+)\\s*:\\s*([^\\n]+)",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": false
+    }
+  ],
+
+  "transformationRules": {
+    "importTemplate": "import {namespace}",
+    "importInsertLocation": "after_last_import",
+    "importRemovalPattern": "^\\s*(?:import\\s+{namespace}|from\\s+{namespace}\\s+import).*$"
+  },
+
+  "formattingRules": {
+    "indentSize": 4,
+    "increaseIndentTriggers": [":"],
+    "decreaseIndentTriggers": [],
+    "decreaseBeforeLine": false
+  },
+
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "(", "close": ")" },
+      { "open": "[", "close": "]" },
+      { "open": "{", "close": "}" }
+    ],
+    "invalidPatterns": ["^\\s*\\t\\s+", "import\\s+[^\\w]"]
+  },
+
+  "commentStyles": ["#", "\"\"\""],
+
+  "additionalPatterns": {
+    "decorator": "^\\s*@([\\w.]+)(?:\\s*\\(([^)]*)\\))?",
+    "asyncDef": "^\\s*async\\s+def\\s+(\\w+)",
+    "lambdaFunction": "lambda\\s+([^:]+)\\s*:",
+    "comprehension": "\\[([^\\]]+)\\s+for\\s+([^\\]]+)\\s+in\\s+([^\\]]+)\\]",
+    "typeAlias": "^([A-Z]\\w*)\\s*=\\s*([^\\n]+)",
+    "namedTuple": "^(\\w+)\\s*=\\s*(?:collections\\.)?namedtuple\\s*\\(",
+    "enumMember": "^\\s+(\\w+)\\s*=\\s*(?:auto\\(\\)|[^\\n]+)",
+    "protocolMethod": "@(?:abstractmethod|abc\\.abstractmethod)\\s+def\\s+(\\w+)",
+    "contextManager": "^\\s*with\\s+([\\w.]+)\\s*\\(",
+    "exceptionClass": "class\\s+(\\w+)\\s*\\(.*(?:Exception|Error)",
+    "testMethod": "def\\s+(test_\\w+)\\s*\\(self"
+  }
+}

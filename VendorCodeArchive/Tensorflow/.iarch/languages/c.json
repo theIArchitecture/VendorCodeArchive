@@ -1,0 +1,112 @@
+{
+  "language": "c",
+  "displayName": "C (TensorFlow Configuration)",
+  "fileExtensions": [".c"],
+  "plainImportBehavior": "skip",
+
+  "layerDetection": {
+    "layers": {
+      "Core": {
+        "pathPatterns": [
+          "c/",
+          "core/"
+        ],
+        "namingPatterns": [],
+        "importPatterns": [
+          "tensorflow/c",
+          "tensorflow/core"
+        ]
+      },
+
+      "Utilities": {
+        "pathPatterns": [
+          "core/util"
+        ],
+        "namingPatterns": [],
+        "importPatterns": [
+          "util"
+        ]
+      }
+    }
+  },
+
+  "parsingPatterns": {
+    "namespace": "",
+    "import": "^\\s*#include\\s+[\"<](?<module>[\\w/.]+)[\">]",
+    "typeDeclaration": "(?:typedef\\s+)?(?:struct|enum|union)\\s+(\\w+)\\s*(?:\\{|;)",
+    "typeKeywords": ["struct", "enum", "union", "typedef"],
+    "methodDeclaration": "^\\s*(?:static\\s+|inline\\s+|extern\\s+)?(?:[\\w*\\s]+)\\s+(\\w+)\\s*\\(([^)]*)\\)",
+    "fieldDeclaration": "^\\s*(?:const\\s+|static\\s+|volatile\\s+)*([\\w*\\s]+)\\s+(\\w+)\\s*(?:;|\\[|=)",
+    "instantiation": "(?:malloc|calloc|realloc)\\s*\\(",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "///(.*)$"
+  },
+
+  "fieldExtractionPatterns": [
+    {
+      "name": "struct_member",
+      "description": "Matches struct member declarations",
+      "pattern": "^\\s+(?:const\\s+|static\\s+|volatile\\s+)*([\\w*\\s]+)\\s+(\\w+)\\s*(?:;|\\[)",
+      "typeGroup": 1,
+      "nameGroup": 2,
+      "isProperty": false
+    },
+    {
+      "name": "global_variable",
+      "description": "Matches global variable declarations",
+      "pattern": "^(?:static\\s+|extern\\s+|const\\s+|volatile\\s+)*([\\w*\\s]+)\\s+(\\w+)\\s*(?:;|=|\\[)",
+      "typeGroup": 1,
+      "nameGroup": 2,
+      "isProperty": false
+    },
+    {
+      "name": "typedef_struct",
+      "description": "Matches typedef struct declarations",
+      "pattern": "typedef\\s+struct\\s+\\w*\\s*\\{[^}]+\\}\\s*(\\w+)\\s*;",
+      "typeGroup": 0,
+      "nameGroup": 1,
+      "isProperty": false
+    },
+    {
+      "name": "typedef_alias",
+      "description": "Matches typedef type aliases",
+      "pattern": "typedef\\s+([\\w*\\s]+)\\s+(\\w+)\\s*;",
+      "typeGroup": 1,
+      "nameGroup": 2,
+      "isProperty": false
+    },
+    {
+      "name": "enum_constant",
+      "description": "Matches enum constants",
+      "pattern": "^\\s+(\\w+)\\s*(?:=\\s*[^,]+)?\\s*,?",
+      "typeGroup": 0,
+      "nameGroup": 1,
+      "isProperty": false
+    }
+  ],
+
+  "transformationRules": {
+    "importTemplate": "#include \"{namespace}\"",
+    "importInsertLocation": "after_last_import",
+    "importRemovalPattern": "^\\s*#include\\s+[\"<]{namespace}[\">]\\s*$"
+  },
+
+  "formattingRules": {
+    "indentSize": 2,
+    "increaseIndentTriggers": ["{"],
+    "decreaseIndentTriggers": ["}"],
+    "decreaseBeforeLine": true
+  },
+
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "{", "close": "}" },
+      { "open": "(", "close": ")" },
+      { "open": "[", "close": "]" }
+    ],
+    "invalidPatterns": [";;", "#include\\s+[^\"<]"]
+  },
+
+  "commentStyles": ["//", "/*", "///"]
+}
