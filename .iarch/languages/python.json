@@ -65,7 +65,7 @@
 
   "parsingPatterns": {
     "namespace": "",
-    "import": "^(?:import\\s+([\\w\\.]+)(?:\\s+as\\s+(\\w+))?|from\\s+([\\w\\.]+)\\s+import\\s+([\\w\\*,\\s]+))",
+    "import": "^(?:import\\s+(?<module>[\\w\\.]+)(?:\\s+as\\s+(?<alias>\\w+))?|from\\s+(?<module>[\\w\\.]+)\\s+import\\s+(?<symbols>[\\w\\*, ]+)(?:\\s+as\\s+(?<alias>\\w+))?)",
     "typeDeclaration": "^class\\s+(\\w+)(?:\\(([^)]*)\\))?:",
     "typeKeywords": ["class"],
     "methodDeclaration": "^(\\s*)def\\s+(\\w+)\\s*\\(([^)]*)\\)(?:\\s*->\\s*([\\w\\[\\],\\s]+))?:",
@@ -73,6 +73,8 @@
     "commentMultiLine": "",
     "commentDocumentation": "\"\"\"(.*?)\"\"\""
   },
+
+  "plainImportBehavior": "importModule",
 
   "transformationRules": {
     "importTemplate": "import {namespace}",

@@ -14,7 +14,7 @@ RULE "CROSS-BOUNDARY-TYPE-ENFORCEMENT" : IMetaArchitecture
     SCOPE: "tree"
     CONFIG:
       validator: "CrossBoundaryType"
-      boundary_patterns: "[{\"from\":\"Amazon.S3\",\"to\":\"Amazon.Runtime.*\",\"required_type_namespace\":\"*.Model\",\"message\":\"S3 client should use Model types when calling Runtime (not internal types)\"},{\"from\":\"Amazon.*\",\"to\":\"Amazon.Runtime.Internal.*\",\"required_type_namespace\":\"Amazon.Runtime.Model\",\"message\":\"Services should not directly use Runtime.Internal - use public Runtime API\"},{\"from\":\"Amazon.S3.*\",\"to\":\"Amazon.DynamoDBv2.*\",\"required_type_namespace\":\"*.Model\",\"message\":\"Cross-service dependencies should use Model types (DTOs)\"}]"
+      boundary_patterns: "[{\"from\":\"React\",\"to\":\"ReactReconciler.*\",\"required_type_namespace\":\"*Props\",\"message\":\"React should use Props types when accessing Reconciler\"},{\"from\":\"ReactDOM\",\"to\":\"ReactReconciler.*\",\"required_type_namespace\":\"*Props\",\"message\":\"ReactDOM should use Props types when accessing Reconciler\"},{\"from\":\"*\",\"to\":\"*.internal.*\",\"required_type_namespace\":\"React.*\",\"message\":\"Cross-boundary access to internal should use public React API\"}]"
 
   EDUCATION:
     DOCS_URL: "https://martinfowler.com/bliki/BoundedContext.html"
@@ -23,9 +23,9 @@ RULE "CROSS-BOUNDARY-TYPE-ENFORCEMENT" : IMetaArchitecture
     QUICK_FIX: "Create contract types (DTOs or interfaces) in the required namespace (e.g., *.Contracts or *.DTOs). Update the code to use these contract types instead of directly referencing implementation types across boundaries. Apply the Dependency Inversion Principle to depend on abstractions, not concrete implementations."
 
   ARCHITECTURAL_CONTEXT:
-    PROJECT_TYPE: "SDK"
-    ARCHITECTURE_PATTERN: "Service_Oriented"
-    DESIGN_PRINCIPLES: ["Service_Contracts", "Model_Abstraction", "Service_Independence"]
+    PROJECT_TYPE: "UI_LIBRARY"
+    ARCHITECTURE_PATTERN: "Component_Based"
+    DESIGN_PRINCIPLES: ["Component_Contracts", "Props_Abstraction", "Renderer_Independence"]
 
   VIOLATIONS:
     - "Cross-boundary type violation: {{SOURCE_NAMESPACE}} → {{TARGET_NAMESPACE}} (required: {{REQUIRED_TYPE_NAMESPACE}})"

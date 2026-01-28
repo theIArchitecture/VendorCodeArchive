@@ -81,7 +81,7 @@
 
   "parsingPatterns": {
     "namespace": "^\\s*package\\s+([\\w\\.]+)\\s*;",
-    "import": "^\\s*import\\s+(static\\s+)?([\\w\\.\\*]+)\\s*;",
+    "import": "^\\s*import\\s+(?<modifier>static\\s+)?(?<module>[\\w\\.\\*]+)\\s*;",
     "typeDeclaration": "(?:public\\s+|private\\s+|protected\\s+)?(?:static\\s+)?(?:final\\s+)?(class|interface|enum)\\s+(\\w+)(?:\\s+extends\\s+(\\w+))?(?:\\s+implements\\s+([\\w\\s,]+))?",
     "typeKeywords": ["class", "interface", "enum"],
     "methodDeclaration": "(?:public\\s+|private\\s+|protected\\s+)?(?:static\\s+)?(?:final\\s+)?(?:synchronized\\s+)?(\\w+|\\w+<[\\w\\s,<>]+>)\\s+(\\w+)\\s*\\(([^)]*)\\)(?:\\s+throws\\s+[\\w\\s,]+)?",

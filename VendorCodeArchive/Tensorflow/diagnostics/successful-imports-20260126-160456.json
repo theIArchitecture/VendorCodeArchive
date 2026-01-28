@@ -1,0 +1,602 @@
+[
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections.abc",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "collections.abc",
+    "ResolvedName": "Mapping",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\framework\\immutable_dict.py"
+  },
+  {
+    "ImportPath": "collections.abc",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.client",
+    "ResolvedName": "session",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\cc\\saved_model\\loader.cc"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "ResolvedName": "context",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\third_party\\xla\\xla\\stream_executor\\cuda\\cuda_context.h"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.client",
+    "ResolvedName": "session",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\cc\\saved_model\\loader.cc"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "ResolvedName": "context",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\third_party\\xla\\xla\\stream_executor\\cuda\\cuda_context.h"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.client",
+    "ResolvedName": "session",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\cc\\saved_model\\loader.cc"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "ResolvedName": "context",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\third_party\\xla\\xla\\stream_executor\\cuda\\cuda_context.h"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.client",
+    "ResolvedName": "session",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\cc\\saved_model\\loader.cc"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "ResolvedName": "context",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\third_party\\xla\\xla\\stream_executor\\cuda\\cuda_context.h"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.client",
+    "ResolvedName": "session",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\cc\\saved_model\\loader.cc"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "ResolvedName": "context",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\third_party\\xla\\xla\\stream_executor\\cuda\\cuda_context.h"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "NamedTuple",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\training\\training.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "NamedTuple",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\training\\training.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Iterator",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "google.protobuf",
+    "ResolvedName": "message",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\lite\\testing\\parse_testdata.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "ResolvedName": "tensor",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Sequence",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\keras\\utils\\data_utils.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "ResolvedName": "context",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\third_party\\xla\\xla\\stream_executor\\cuda\\cuda_context.h"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "ResolvedName": "core",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\tf2tensorrt\\kernels\\trt_engine_op.cc"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "ResolvedName": "context",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\third_party\\xla\\xla\\stream_executor\\cuda\\cuda_context.h"
+  },
+  {
+    "ImportPath": "tensorflow.python.trackable",
+    "ResolvedName": "base",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\core\\tfrt\\mlrt\\bytecode\\bytecode.h"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "ResolvedName": "context",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\third_party\\xla\\xla\\stream_executor\\cuda\\cuda_context.h"
+  }
+]

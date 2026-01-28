@@ -4,22 +4,52 @@
   "fileExtensions": [".ts", ".mts", ".cts"],
   "layerDetection": {
     "layers": {
-      "Repository": {
-        "namespace_patterns": [".*\\.repositories?$", ".*\\.data$"],
-        "import_patterns": [".*repository.*", ".*dal.*", ".*data.*"]
-      },
-      "Domain": {
-        "namespace_patterns": [".*\\.domain$", ".*\\.models?$", ".*\\.entities$"],
-        "import_patterns": [".*domain.*", ".*model.*", ".*entity.*"]
+      "Controller": {
+        "pathPatterns": ["controllers", "routes", "api"],
+        "namingPatterns": [".*controller.*", ".*route.*"],
+        "importPatterns": [".*controllers.*", ".*routes.*", ".*api.*"]
       },
       "Service": {
-        "namespace_patterns": [".*\\.services?$", ".*\\.application$"],
-        "import_patterns": [".*service.*", ".*application.*"]
+        "pathPatterns": ["services", "business"],
+        "namingPatterns": [".*service.*", ".*handler.*"],
+        "importPatterns": [".*services.*", ".*business.*"]
       },
-      "Controller": {
-        "namespace_patterns": [".*\\.controllers?$", ".*\\.api$"],
-        "import_patterns": [".*controller.*", ".*api.*", ".*routes.*"]
+      "Repository": {
+        "pathPatterns": ["repositories", "data", "dao"],
+        "namingPatterns": [".*repository.*", ".*dao.*"],
+        "importPatterns": [".*repositories.*", ".*data.*"]
+      },
+      "Model": {
+        "pathPatterns": ["models", "entities", "domain"],
+        "namingPatterns": [".*model.*", ".*entity.*"],
+        "importPatterns": [".*models.*", ".*entities.*"]
+      },
+      "Utility": {
+        "pathPatterns": ["utils", "helpers", "common"],
+        "namingPatterns": [".*util.*", ".*helper.*"],
+        "importPatterns": [".*utils.*", ".*helpers.*"]
       }
     }
-  }
+  },
+  "parsingPatterns": {
+    "namespace": "^\\s*(?:export\\s+)?namespace\\s+([\\w\\.]+)",
+    "import": "^\\s*import\\s+(?:\\{(?<symbols>[^}]+)\\}|\\*\\s+as\\s+(?<alias>\\w+)|(?<alias>\\w+))\\s+from\\s+['\"](?<module>[^'\"]+)['\"]",
+    "typeDeclaration": "(?:export\\s+)?(?:default\\s+)?(?:abstract\\s+)?(class|interface|type|enum)\\s+(\\w+)(?:\\s*<[^>]+>)?(?:\\s+extends\\s+([\\w\\.,\\s<>]+))?(?:\\s+implements\\s+([\\w\\.,\\s<>]+))?",
+    "typeKeywords": ["class", "interface", "type", "enum"],
+    "methodDeclaration": "(?:public\\s+|private\\s+|protected\\s+)?(?:static\\s+)?(?:async\\s+)?(\\w+)\\s*\\(([^)]*)\\)\\s*(?::\\s*([^{]+))?\\s*\\{",
+    "instantiation": "new\\s+([\\w\\.]+)(?:<[^>]+>)?\\s*\\(",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "/\\*\\*(.*)\\*/"
+  },
+  "fieldExtractionPatterns": [
+    {
+      "name": "property_declaration",
+      "description": "Matches class property declarations",
+      "pattern": "(?:public\\s+|private\\s+|protected\\s+)?(?:readonly\\s+)?(?:static\\s+)?(\\w+(?:<[\\w\\s,<>]+>)?)(?:\\s*[?!])?\\s*(?::\\s*(\\w+(?:<[\\w\\s,<>]+>)?))?\\s*(?:=|;)",
+      "typeGroup": 2,
+      "nameGroup": 1,
+      "isProperty": true
+    }
+  ]
 }

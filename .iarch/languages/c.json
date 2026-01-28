@@ -5,13 +5,37 @@
   "layerDetection": {
     "layers": {
       "Core": {
-        "namespace_patterns": [],
-        "import_patterns": [".*core.*", ".*engine.*"]
+        "namespacePatterns": [],
+        "importPatterns": [".*core.*", ".*engine.*"]
       },
       "Utils": {
-        "namespace_patterns": [],
-        "import_patterns": [".*util.*", ".*helper.*"]
+        "namespacePatterns": [],
+        "importPatterns": [".*util.*", ".*helper.*"]
       }
     }
-  }
+  },
+  "parsingPatterns": {
+    "namespace": "",
+    "import": "^\\s*#include\\s*[<\"](?<module>[^>\"]+)[>\"]",
+    "typeDeclaration": "^\\s*(?:struct|enum|typedef)\\s+(\\w+)",
+    "typeKeywords": ["struct", "enum", "typedef"],
+    "methodDeclaration": "^\\s*([\\w\\*]+)\\s+([\\w]+)\\s*\\(([^)]*)\\)",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "///(.*)$"
+  },
+  "formattingRules": {
+    "indentSize": 2,
+    "increaseIndentTriggers": ["{"],
+    "decreaseIndentTriggers": ["}"],
+    "decreaseBeforeLine": true
+  },
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "(", "close": ")" },
+      { "open": "[", "close": "]" },
+      { "open": "{", "close": "}" }
+    ]
+  },
+  "commentStyles": ["//", "/*", "///"]
 }

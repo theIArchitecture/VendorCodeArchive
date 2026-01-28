@@ -1,0 +1,602 @@
+[
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "functools",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "collections",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "itertools",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "itertools",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "itertools",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "itertools",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "functools",
+    "ResolvedName": "Iterable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\distribute.py"
+  },
+  {
+    "ImportPath": "multiprocessing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "multiprocessing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "multiprocessing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "multiprocessing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "multiprocessing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "multiprocessing",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "copy",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "copy",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "enum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\autograph\\pyct\\static_analysis\\annos.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "dataclasses",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "functools",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "contextlib",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "contextlib",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "contextlib",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "contextlib",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\types\\core.py"
+  },
+  {
+    "ImportPath": "contextlib",
+    "ResolvedName": "Dict",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\compiler\\tensorrt\\utils.py"
+  },
+  {
+    "ImportPath": "contextlib",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "functools",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "functools",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "functools",
+    "ResolvedName": "Type",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\compiler\\mlir\\python\\mlir_wrapper\\mlir_wrapper.pyi"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  },
+  {
+    "ImportPath": "abc",
+    "ResolvedName": "Optional",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\Tensorflow\\tensorflow\\tensorflow\\python\\data\\ops\\optional_ops.py"
+  }
+]

@@ -7,14 +7,14 @@ RULE "IMMUTABILITY-AT-BOUNDARIES" : IMetaArchitecture
   DESCRIPTION: "Public API type has mutable properties - types crossing boundaries should be immutable"
   SEVERITY: Error
   CATEGORY: "Architecture_Quality"
-  APPLIES_TO: ["csharp", "java", "python", "typescript", "javascript"]
+  APPLIES_TO: ["csharp"]
 
   PLUGIN:
     ID: "architecture-validator"
     SCOPE: "tree"
     CONFIG:
       validator: "Immutability"
-      target_namespaces: "[\"Amazon.*.Model\",\"Amazon.Runtime.Model\",\"Amazon.*.Transfer\",\"*.PublicAPI.*\",\"*.SDK.*\",\"*.Contracts.*\",\"*.DTOs.*\"]"
+      target_namespaces: "[\"*Config\",\"*Properties\",\"*Descriptor\",\"*Parameters\",\"*.PublicAPI.*\"]"
       message: "Public API types must be immutable (readonly properties, no public setters)"
 
   EDUCATION:
@@ -24,9 +24,9 @@ RULE "IMMUTABILITY-AT-BOUNDARIES" : IMetaArchitecture
     QUICK_FIX: "Make properties readonly or use 'init' accessors (C# 9+). Remove public setters and use constructor initialization or object initializers. For complex types, consider using records (C# 9+) or value objects. If mutation is truly needed, use a builder pattern or separate mutable/internal types from immutable/public types."
 
   ARCHITECTURAL_CONTEXT:
-    PROJECT_TYPE: "SDK"
-    ARCHITECTURE_PATTERN: "Service_Oriented"
-    DESIGN_PRINCIPLES: ["Model_Immutability", "Thread_Safety", "API_Contract_Stability"]
+    PROJECT_TYPE: "GPU_LIBRARY"
+    ARCHITECTURE_PATTERN: "Layered"
+    DESIGN_PRINCIPLES: ["Config_Immutability", "Thread_Safety", "API_Contract_Stability"]
 
   VIOLATIONS:
     - "Public type '{{TYPE_NAME}}' in namespace '{{NAMESPACE}}' has mutable properties: {{MUTABLE_PROPERTIES}}"

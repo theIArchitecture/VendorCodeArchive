@@ -1,0 +1,42 @@
+'.' was not matched. Did you mean one of the following?
+-h
+'--rule' was not matched. Did you mean one of the following?
+--repo
+--mode
+--help
+Unrecognized command or argument 'analyze'.
+Unrecognized command or argument '--source'.
+Unrecognized command or argument '.'.
+Unrecognized command or argument '--config'.
+Unrecognized command or argument '.iarchconfig'.
+Unrecognized command or argument '--rule'.
+Unrecognized command or argument 'E:\Protected\IArchitecture-DotNet\.iarch\rules\architecture\ARCH-LAYER-001.iarch'.
+
+Description:
+  IArchitecture Engine - Unified architectural validation and healing
+
+Usage:
+  IArchEngine [options]
+
+Options:
+  --source-path <source-path>                                  Path to source directory or file
+  --file-list-path <file-list-path>                            Path to text file containing list of files to process (one per line)
+  --rules-path <rules-path>                                    Path to .iarch rules directory (optional - auto-discovers from source if omitted)
+  --mode <All|Heal|Validate>                                   Analysis mode: Validate, Heal, or All [default: Validate]
+  --dry-run                                                    Dry run mode - don't write changes [default: False]
+  --verbose                                                    Verbose output [default: False]
+  --report                                                     Generate markdown report [default: False]
+  --report-path <report-path>                                  Path to output report [default: architecture-report.md]
+  --company <company>                                          Company name for reporting [default: Unknown]
+  --repo <repo>                                                Repository name for reporting [default: Repository]
+  --severity-threshold <Educational|Error|Fatal|Info|Warning>  Minimum severity to fail the build [default: Fatal]
+  --output-format <output-format>                              Output format: console, json, github, metadata [default: console]
+  --output-file <output-file>                                  Output file path (for json/github formats) []
+  --bundled-defaults-path <bundled-defaults-path>              Path to bundled .iarch defaults (e.g., DemoRepo/.iarch). Overrides IARCH_BUNDLED_DEFAULTS env variable.
+  --discovery-root <discovery-root>                            Path to root directory for .iarch discovery. If not specified, --source-path uses its own subtree, --file-list-path uses Git repository root.
+  --tree-rule <tree-rule>                                      Tree-scoped rule ID(s) to execute (e.g., ARCH-CIRCULAR-001). Can specify multiple. Requires --source-path. Builds dependency graph and executes specified tree rules only.
+  --export-violations <export-violations>                      Path to export violations as JSON (structured format for CI/CD integration, PR comments, etc.)
+  --version                                                    Show version information
+  -?, -h, --help                                               Show help and usage information
+
+

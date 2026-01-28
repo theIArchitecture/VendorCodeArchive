@@ -1,0 +1,11 @@
+{
+  "TotalImports": 16487,
+  "SuccessfulResolutions": 367,
+  "FailedResolutions": 16120,
+  "SuccessRate": 2.2259962394613937,
+  "ResolutionStrategies": {
+    "DirectTypeMatch": 367
+  },
+  "FailureReasons": {},
+  "Timestamp": "20260126-161226"
+}

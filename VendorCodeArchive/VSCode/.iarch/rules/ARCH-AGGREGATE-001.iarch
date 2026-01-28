@@ -1,4 +1,4 @@
-# Aggregate Boundary Enforcement Rule
+# Aggregate Boundary Enforcement Rule (VSCode Configuration)
 # Detects violations of DDD aggregate boundaries
 # Aggregate members can only be accessed through the aggregate root
 
@@ -14,23 +14,22 @@ RULE "AGGREGATE-BOUNDARY-ENFORCEMENT" : IMetaArchitecture
     SCOPE: "tree"
     CONFIG:
       validator: "AggregateBoundary"
-      aggregate_roots: "[\"Amazon.S3.AmazonS3Client\",\"Amazon.DynamoDBv2.AmazonDynamoDBClient\",\"Amazon.EC2.AmazonEC2Client\"]"
-      aggregate_members: "[\"Amazon.S3.Internal.*\",\"Amazon.DynamoDBv2.Internal.*\",\"Amazon.EC2.Internal.*\",\"Amazon.Runtime.Internal.*\"]"
+      aggregate_roots: "[\"EditorService\",\"TextEditor\",\"WorkbenchContribution\"]"
+      aggregate_members: "[\"*Impl\",\"*.internal.*\",\"*Internal*\"]"
 
   EDUCATION:
     DOCS_URL: "https://martinfowler.com/bliki/DDD_Aggregate.html"
-    WHY_IT_MATTERS: "This rule ensures that aggregate members are only accessed within their respective aggregates. When a member is accessed from outside its aggregate, it can cause unexpected behavior and conflicts with other parts of the system. This rule helps prevent errors and maintain consistency in the codebase, leading to better performance, scalability, and maintainability"
-    BUSINESS_IMPACT: "Violating this rule can result in significant financial and reputational losses for the company, as it can lead to data inconsistencies, loss of customer trust, and negative publicity. The cost of rectifying the issue can be high, and the risk of further violations can increase over time, leading to a decline in productivity and reputation for the organization"
-    QUICK_FIX: "Access aggregate members only through the aggregate root. Instead of directly instantiating or calling aggregate members (e.g., `new OrderLine()`), use methods on the aggregate root that manage the members internally (e.g., `order.AddOrderLine(...)`). This maintains transactional boundaries and encapsulation."
+    WHY_IT_MATTERS: "Aggregate boundaries enforce encapsulation in Domain-Driven Design. All external access to an aggregate must go through the aggregate root, ensuring consistency and invariant enforcement."
+    BUSINESS_IMPACT: "Violated aggregate boundaries lead to tight coupling, making the codebase fragile and difficult to evolve. Changes cascade unpredictably across aggregates."
+    QUICK_FIX: "Route all access through the aggregate root. If you need to access internal members, expose them through the root's public API or reconsider the aggregate boundary design."
 
   ARCHITECTURAL_CONTEXT:
-    PROJECT_TYPE: "SDK"
-    ARCHITECTURE_PATTERN: "Service_Oriented"
-    DESIGN_PRINCIPLES: ["Service_Encapsulation", "Internal_Boundaries", "Client_Independence"]
+    PROJECT_TYPE: "IDE"
+    ARCHITECTURE_PATTERN: "Layered"
+    DESIGN_PRINCIPLES: ["Encapsulation", "Aggregate_Consistency", "Single_Entry_Point"]
 
   VIOLATIONS:
-    - "Aggregate boundary violation: {{SOURCE_NAMESPACE}} directly accesses {{TARGET_NAMESPACE}} (aggregate member)"
-    - "Aggregate member {{TARGET_NAMESPACE}} should only be accessed through aggregate root {{AGGREGATE_ROOT}}"
-    - "DDD violation: Direct access to aggregate member from outside aggregate boundary"
+    - "Aggregate member '{{MEMBER}}' accessed from outside aggregate '{{ROOT}}'"
+    - "Direct access to internal implementation - use aggregate root instead"
 
 END_RULE

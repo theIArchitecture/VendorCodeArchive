@@ -1,0 +1,17 @@
+{
+  "TotalImports": 13154,
+  "SuccessfulResolutions": 205,
+  "FailedResolutions": 12949,
+  "SuccessRate": 1.5584613045461457,
+  "ResolutionStrategies": {
+    "DirectTypeMatch": 205
+  },
+  "FailureReasons": {
+    "PlainModuleImportNoResolution": 12134,
+    "FileNotFoundBySuffixMatch": 1119,
+    "FileFoundButNoTypesIndexed": 142,
+    "WildcardFileNotFoundBySuffixMatch": 28,
+    "WildcardFileFoundButNoTypesIndexed": 8
+  },
+  "Timestamp": "20260125-184116"
+}

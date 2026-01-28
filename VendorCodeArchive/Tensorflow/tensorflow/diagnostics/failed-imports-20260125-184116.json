@@ -1,0 +1,1202 @@
+[
+  {
+    "ImportPath": "argparse",
+    "TargetName": "datetime\r\nimport os\r\nimport re\r\nfrom typing import Dict",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: argparse"
+  },
+  {
+    "ImportPath": "argparse",
+    "TargetName": "Union\r\nimport xml",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: argparse"
+  },
+  {
+    "ImportPath": "argparse",
+    "TargetName": "errno\r\nimport json\r\nimport os\r\nimport platform\r\nimport re\r\nimport shutil\r\nimport subprocess\r\nimport sys\r\n\r\n\r\n_DEFAULT_CUDA_COMPUTE_CAPABILITIES",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: argparse"
+  },
+  {
+    "ImportPath": "os",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "absl",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.compat",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.trackable",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "os",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "absl",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.compat",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.trackable",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "os",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "absl",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.compat",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.trackable",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "os",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "absl",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.compat",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.trackable",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "os",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "absl",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.compat",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.trackable",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "sys",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "absl",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "sys",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "absl",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "sys",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "absl",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "abc",
+    "TargetName": "itertools\r\nimport logging\r\n\r\nimport numpy as np\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: abc"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.calibrator",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "abc",
+    "TargetName": "itertools\r\nimport logging\r\n\r\nimport numpy as np\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: abc"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.calibrator",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "abc",
+    "TargetName": "itertools\r\nimport logging\r\n\r\nimport numpy as np\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: abc"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.calibrator",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "abc",
+    "TargetName": "itertools\r\nimport logging\r\n\r\nimport numpy as np\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: abc"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.calibrator",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "abc",
+    "TargetName": "itertools\r\nimport logging\r\n\r\nimport numpy as np\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: abc"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.calibrator",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "abc",
+    "TargetName": "itertools\r\nimport logging\r\n\r\nimport numpy as np\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: abc"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.calibrator",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "abc",
+    "TargetName": "itertools\r\nimport logging\r\n\r\nimport numpy as np\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: abc"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.calibrator",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "abc",
+    "TargetName": "itertools\r\nimport logging\r\n\r\nimport numpy as np\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: abc"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.calibrator",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "typing",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "collections.abc",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.calibrator",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.python",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.quantization.tensorflow.python",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.core.protobuf",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.eager",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.lib.io",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.types",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "collections.abc",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.core.protobuf",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.data.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.platform",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.util",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "collections.abc",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.core.protobuf",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.data.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.platform",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.util",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "collections.abc",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.core.protobuf",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.data.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.platform",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.util",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "collections.abc",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.core.protobuf",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.data.ops",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.platform",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.util",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compat.v2",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.compiler.mlir.tensorflow.tests.tf_saved_model",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "gast",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "gast",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "enum",
+    "TargetName": "os\r\nimport re\r\nimport types\r\nimport gast as ast\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: enum"
+  },
+  {
+    "ImportPath": "tensorflow.core.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.converters",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct.static_analysis",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct.static_analysis",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.platform",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "enum",
+    "TargetName": "os\r\nimport re\r\nimport types\r\nimport gast as ast\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: enum"
+  },
+  {
+    "ImportPath": "tensorflow.core.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.converters",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct.static_analysis",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct.static_analysis",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.platform",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "enum",
+    "TargetName": "os\r\nimport re\r\nimport types\r\nimport gast as ast\r\n\r\nfrom tensorflow",
+    "Reason": "FileNotFoundBySuffixMatch",
+    "Details": "Module path: enum"
+  },
+  {
+    "ImportPath": "tensorflow.core.framework",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.converters",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  },
+  {
+    "ImportPath": "tensorflow.python.autograph.pyct",
+    "TargetName": null,
+    "Reason": "PlainModuleImportNoResolution",
+    "Details": "No wildcard, no specific names - skipped"
+  }
+]

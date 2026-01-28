@@ -1,0 +1,62 @@
+[
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "IntEnum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\python\\cuda_cccl\\cuda\\cccl\\cooperative\\experimental\\block\\_block_exchange.py"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\libcudacxx\\test\\libcudacxx\\std\\algorithms\\alg.nonmodifying\\alg.for_each\\ranges.for_each.pass.cpp"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\libcudacxx\\test\\libcudacxx\\std\\algorithms\\alg.nonmodifying\\alg.for_each\\ranges.for_each.pass.cpp"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\libcudacxx\\test\\libcudacxx\\std\\algorithms\\alg.nonmodifying\\alg.for_each\\ranges.for_each.pass.cpp"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\libcudacxx\\test\\libcudacxx\\std\\algorithms\\alg.nonmodifying\\alg.for_each\\ranges.for_each.pass.cpp"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\libcudacxx\\test\\libcudacxx\\std\\algorithms\\alg.nonmodifying\\alg.for_each\\ranges.for_each.pass.cpp"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\libcudacxx\\test\\libcudacxx\\std\\algorithms\\alg.nonmodifying\\alg.for_each\\ranges.for_each.pass.cpp"
+  },
+  {
+    "ImportPath": "typing",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\libcudacxx\\test\\libcudacxx\\std\\algorithms\\alg.nonmodifying\\alg.for_each\\ranges.for_each.pass.cpp"
+  },
+  {
+    "ImportPath": "numba",
+    "ResolvedName": "types",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\libcudacxx\\test\\libcudacxx\\cuda\\type_list.pass.cpp"
+  },
+  {
+    "ImportPath": "__future__",
+    "ResolvedName": "Callable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\libcudacxx\\test\\libcudacxx\\std\\algorithms\\alg.nonmodifying\\alg.for_each\\ranges.for_each.pass.cpp"
+  }
+]

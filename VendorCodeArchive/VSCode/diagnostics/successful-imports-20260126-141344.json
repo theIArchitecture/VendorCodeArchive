@@ -1,0 +1,602 @@
+[
+  {
+    "ImportPath": "./testOutputScanner",
+    "ResolvedName": "SourceLocationMapper",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testOutputScanner.ts"
+  },
+  {
+    "ImportPath": "./v8CoverageWrangling",
+    "ResolvedName": "OffsetToPosition",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\v8CoverageWrangling.ts"
+  },
+  {
+    "ImportPath": "./testOutputScanner",
+    "ResolvedName": "SourceLocationMapper",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testOutputScanner.ts"
+  },
+  {
+    "ImportPath": "./v8CoverageWrangling",
+    "ResolvedName": "OffsetToPosition",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\v8CoverageWrangling.ts"
+  },
+  {
+    "ImportPath": "./testOutputScanner",
+    "ResolvedName": "SourceLocationMapper",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testOutputScanner.ts"
+  },
+  {
+    "ImportPath": "./v8CoverageWrangling",
+    "ResolvedName": "OffsetToPosition",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\v8CoverageWrangling.ts"
+  },
+  {
+    "ImportPath": "./testOutputScanner",
+    "ResolvedName": "SourceLocationMapper",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testOutputScanner.ts"
+  },
+  {
+    "ImportPath": "./v8CoverageWrangling",
+    "ResolvedName": "OffsetToPosition",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\v8CoverageWrangling.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestFile",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Disposable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\markdown-language-features\\src\\util\\dispose.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Position",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\editor\\common\\core\\position.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Range",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\base\\common\\jsonFormatter.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "TestResultSnapshot",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vscode-dts\\vscode.proposed.testObserver.d.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "TestRunResult",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vscode-dts\\vscode.proposed.testObserver.d.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Uri",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\base\\common\\uri.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "workspace",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\html-language-features\\server\\src\\modes\\languageModes.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "WorkspaceEdit",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\editor\\common\\languages.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Disposable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\markdown-language-features\\src\\util\\dispose.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Position",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\editor\\common\\core\\position.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Range",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\base\\common\\jsonFormatter.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "TestResultSnapshot",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vscode-dts\\vscode.proposed.testObserver.d.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "TestRunResult",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vscode-dts\\vscode.proposed.testObserver.d.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Uri",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\base\\common\\uri.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "workspace",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\html-language-features\\server\\src\\modes\\languageModes.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "WorkspaceEdit",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\editor\\common\\languages.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Disposable",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\markdown-language-features\\src\\util\\dispose.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Position",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\editor\\common\\core\\position.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Range",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\base\\common\\jsonFormatter.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "TestResultSnapshot",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vscode-dts\\vscode.proposed.testObserver.d.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "TestRunResult",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vscode-dts\\vscode.proposed.testObserver.d.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "Uri",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\base\\common\\uri.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "workspace",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\html-language-features\\server\\src\\modes\\languageModes.ts"
+  },
+  {
+    "ImportPath": "vscode",
+    "ResolvedName": "WorkspaceEdit",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\editor\\common\\languages.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestConstruct",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestSuite",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestConstruct",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestSuite",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestFile",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestSuite",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestFile",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestSuite",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestFile",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestSuite",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestFile",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestSuite",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestFile",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "./testTree",
+    "ResolvedName": "TestSuite",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\.vscode\\extensions\\vscode-selfhost-test-provider\\src\\testTree.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "typescript",
+    "ResolvedName": "ts",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\build\\lib\\mangle\\index.ts"
+  },
+  {
+    "ImportPath": "vinyl",
+    "ResolvedName": "File",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\terminal-suggest\\src\\shell\\fishBuiltinsCache.ts"
+  },
+  {
+    "ImportPath": "vinyl",
+    "ResolvedName": "File",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\terminal-suggest\\src\\shell\\fishBuiltinsCache.ts"
+  },
+  {
+    "ImportPath": "vinyl",
+    "ResolvedName": "File",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\terminal-suggest\\src\\shell\\fishBuiltinsCache.ts"
+  },
+  {
+    "ImportPath": "vinyl",
+    "ResolvedName": "File",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\terminal-suggest\\src\\shell\\fishBuiltinsCache.ts"
+  },
+  {
+    "ImportPath": "vinyl",
+    "ResolvedName": "File",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\terminal-suggest\\src\\shell\\fishBuiltinsCache.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "vinyl",
+    "ResolvedName": "File",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\terminal-suggest\\src\\shell\\fishBuiltinsCache.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  },
+  {
+    "ImportPath": "crypto",
+    "ResolvedName": "crypto",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\typings\\crypto.d.ts"
+  },
+  {
+    "ImportPath": "vinyl",
+    "ResolvedName": "File",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\extensions\\terminal-suggest\\src\\shell\\fishBuiltinsCache.ts"
+  },
+  {
+    "ImportPath": "gulp-filter",
+    "ResolvedName": "filter",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\vscode\\vscode\\src\\vs\\platform\\theme\\common\\colors\\listColors.ts"
+  }
+]

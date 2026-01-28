@@ -5,21 +5,31 @@
   "layerDetection": {
     "layers": {
       "Repository": {
-        "namespace_patterns": [".*\\.repositories?$", ".*\\.data$"],
-        "import_patterns": [".*repository.*", ".*dal.*", ".*data.*"]
+        "namespacePatterns": [".*\\.repositories?$", ".*\\.data$"],
+        "importPatterns": [".*repository.*", ".*dal.*", ".*data.*"]
       },
       "Domain": {
-        "namespace_patterns": [".*\\.domain$", ".*\\.models?$", ".*\\.entities$"],
-        "import_patterns": [".*domain.*", ".*model.*", ".*entity.*"]
+        "namespacePatterns": [".*\\.domain$", ".*\\.models?$", ".*\\.entities$"],
+        "importPatterns": [".*domain.*", ".*model.*", ".*entity.*"]
       },
       "Service": {
-        "namespace_patterns": [".*\\.services?$", ".*\\.application$"],
-        "import_patterns": [".*service.*", ".*application.*"]
+        "namespacePatterns": [".*\\.services?$", ".*\\.application$"],
+        "importPatterns": [".*service.*", ".*application.*"]
       },
       "Controller": {
-        "namespace_patterns": [".*\\.controllers?$", ".*\\.api$"],
-        "import_patterns": [".*controller.*", ".*api.*", ".*routes.*"]
+        "namespacePatterns": [".*\\.controllers?$", ".*\\.api$"],
+        "importPatterns": [".*controller.*", ".*api.*", ".*routes.*"]
       }
     }
+  },
+  "parsingPatterns": {
+    "import": "^\\s*import\\s+(?:\\{(?<symbols>[^}]+)\\}|\\*\\s+as\\s+(?<alias>\\w+)|(?<alias>\\w+))\\s+from\\s+['\"](?<module>[^'\"]+)['\"]",
+    "typeDeclaration": "(?:export\\s+)?(?:default\\s+)?(class)\\s+(\\w+)(?:\\s+extends\\s+([\\w\\.]+))?",
+    "typeKeywords": ["class"],
+    "methodDeclaration": "(?:async\\s+)?(\\w+)\\s*\\(([^)]*)\\)\\s*\\{",
+    "instantiation": "new\\s+([\\w\\.]+)\\s*\\(",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "/\\*\\*(.*)\\*/"
   }
 }

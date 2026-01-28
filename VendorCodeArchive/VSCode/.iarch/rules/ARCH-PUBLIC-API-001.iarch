@@ -1,4 +1,4 @@
-# Public API Surface Control Rule
+# Public API Surface Control Rule (VSCode Configuration)
 # Ensures only intentional types are exposed publicly (prevents accidental API surface expansion)
 
 RULE "PUBLIC-API-SURFACE-CONTROL" : IMetaArchitecture
@@ -13,24 +13,23 @@ RULE "PUBLIC-API-SURFACE-CONTROL" : IMetaArchitecture
     SCOPE: "tree"
     CONFIG:
       validator: "PublicApiSurface"
-      allowed_public_namespaces: "[\"Amazon.*\"]"
-      forbidden_public_namespaces: "[\"*.Internal\",\"*.Internal.*\"]"
-      message: "Public types should not be exposed in Internal namespaces - these are implementation details"
+      allowed_public_namespaces: "[\"vs.editor.*\",\"vs.platform.*\",\"vscode.*\"]"
+      forbidden_public_namespaces: "[\"*.internal.*\",\"*.test.*\",\"*Impl\"]"
+      message: "Public types should not be exposed in internal/impl namespaces"
 
   EDUCATION:
-    DOCS_URL: "https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers"
-    WHY_IT_MATTERS: "This rule ensures that public types are only exposed within allowed namespaces, which helps prevent naming conflicts and improves code readability. When a public type is exposed outside of its namespace, it can cause confusion for consumers of the API and make it difficult to maintain compatibility between versions. Additionally, exposing public types outside of their namespace can lead to security vulnerabilities if they are not properly secured. By following this rule, developers can ensure that their code is more reliable, maintainable, and secure"
-    BUSINESS_IMPACT: "Violating this rule can result in significant financial losses for the company due to increased costs associated with fixing and maintaining the violation, as well as loss of reputation and customer trust"
-    QUICK_FIX: "Move the public type to an allowed namespace (e.g., SDK, PublicAPI, or Contracts), or change the type's accessibility to internal/private if it should not be part of the public API. For example: change 'public class Utility' to 'internal class Utility' or move it to 'MyApp.SDK.Utility'"
+    DOCS_URL: "https://code.visualstudio.com/api/references/vscode-api"
+    WHY_IT_MATTERS: "Controlling the public API surface prevents accidental exposure of internal implementation details. This maintains backward compatibility and allows internal refactoring without breaking extensions."
+    BUSINESS_IMPACT: "Uncontrolled API surface expansion creates maintenance burden and prevents breaking changes. Every exposed type becomes a compatibility contract."
+    QUICK_FIX: "Mark internal types as non-exported or move them to internal namespaces. Use 'internal' visibility for implementation details. Only export types that are part of the stable public API."
 
   ARCHITECTURAL_CONTEXT:
-    PROJECT_TYPE: "LIBRARY_SDK"
-    ARCHITECTURE_PATTERN: "API_DESIGN"
-    DESIGN_PRINCIPLES: ["Minimal_API_Surface", "Encapsulation", "Backward_Compatibility"]
+    PROJECT_TYPE: "IDE"
+    ARCHITECTURE_PATTERN: "Layered"
+    DESIGN_PRINCIPLES: ["API_Stability", "Information_Hiding", "Backward_Compatibility"]
 
   VIOLATIONS:
-    - "Public type {{TYPE_NAME}} in namespace {{NAMESPACE}} is outside allowed public API namespaces"
-    - "Accidental API surface expansion: {{TYPE_NAME}} should not be public in {{NAMESPACE}}"
-    - "Public API violation: {{TYPE_NAME}} exposed from unauthorized namespace {{NAMESPACE}}"
+    - "Public type '{{TYPE}}' should not be in internal namespace"
+    - "Implementation detail leaked through public API"
 
 END_RULE

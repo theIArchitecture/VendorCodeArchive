@@ -7,15 +7,15 @@ RULE "AGGREGATE-BOUNDARY-ENFORCEMENT" : IMetaArchitecture
   DESCRIPTION: "Aggregate boundary violation - aggregate member accessed from outside its aggregate"
   SEVERITY: Error
   CATEGORY: "Architecture_Quality"
-  APPLIES_TO: ["csharp", "java", "python", "typescript", "javascript"]
+  APPLIES_TO: ["cpp", "python", "java", "c"]
 
   PLUGIN:
     ID: "architecture-validator"
     SCOPE: "tree"
     CONFIG:
       validator: "AggregateBoundary"
-      aggregate_roots: "[\"Amazon.S3.AmazonS3Client\",\"Amazon.DynamoDBv2.AmazonDynamoDBClient\",\"Amazon.EC2.AmazonEC2Client\"]"
-      aggregate_members: "[\"Amazon.S3.Internal.*\",\"Amazon.DynamoDBv2.Internal.*\",\"Amazon.EC2.Internal.*\",\"Amazon.Runtime.Internal.*\"]"
+      aggregate_roots: "[\"Session\",\"Graph\",\"Executor\",\"OpKernel\"]"
+      aggregate_members: "[\"*Internal\",\"*Impl\",\"*.internal.*\",\"*_internal*\"]"
 
   EDUCATION:
     DOCS_URL: "https://martinfowler.com/bliki/DDD_Aggregate.html"
@@ -24,9 +24,9 @@ RULE "AGGREGATE-BOUNDARY-ENFORCEMENT" : IMetaArchitecture
     QUICK_FIX: "Access aggregate members only through the aggregate root. Instead of directly instantiating or calling aggregate members (e.g., `new OrderLine()`), use methods on the aggregate root that manage the members internally (e.g., `order.AddOrderLine(...)`). This maintains transactional boundaries and encapsulation."
 
   ARCHITECTURAL_CONTEXT:
-    PROJECT_TYPE: "SDK"
-    ARCHITECTURE_PATTERN: "Service_Oriented"
-    DESIGN_PRINCIPLES: ["Service_Encapsulation", "Internal_Boundaries", "Client_Independence"]
+    PROJECT_TYPE: "ML_FRAMEWORK"
+    ARCHITECTURE_PATTERN: "Layered"
+    DESIGN_PRINCIPLES: ["Op_Encapsulation", "Internal_Boundaries", "Language_Independence"]
 
   VIOLATIONS:
     - "Aggregate boundary violation: {{SOURCE_NAMESPACE}} directly accesses {{TARGET_NAMESPACE}} (aggregate member)"

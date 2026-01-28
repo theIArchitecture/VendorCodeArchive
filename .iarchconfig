@@ -22,7 +22,7 @@
     }
   },
   "engineConfig": {
-    "parallel_threads": 3,
+    "parallel_threads": 9,
     "files_per_batch": 50,
     "progressive_output_threshold": 200
   }

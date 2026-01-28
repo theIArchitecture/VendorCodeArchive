@@ -1,0 +1,8 @@
+[
+  {
+    "ImportPath": "enum",
+    "ResolvedName": "IntEnum",
+    "Strategy": "DirectTypeMatch",
+    "TargetFile": "E:\\Protected\\VendorCodeArchive\\VendorCodeArchive\\NVIDIA\\python\\cuda_cccl\\cuda\\cccl\\cooperative\\experimental\\block\\_block_exchange.py"
+  }
+]

@@ -13,8 +13,8 @@ RULE "PUBLIC-API-SURFACE-CONTROL" : IMetaArchitecture
     SCOPE: "tree"
     CONFIG:
       validator: "PublicApiSurface"
-      allowed_public_namespaces: "[\"Amazon.*\"]"
-      forbidden_public_namespaces: "[\"*.Internal\",\"*.Internal.*\"]"
+      allowed_public_namespaces: "[\"React\",\"React.*\",\"ReactDOM\",\"ReactDOM.*\"]"
+      forbidden_public_namespaces: "[\"*.internal.*\",\"*Internal*\",\"*_internal*\",\"*Impl\"]"
       message: "Public types should not be exposed in Internal namespaces - these are implementation details"
 
   EDUCATION:
@@ -24,8 +24,8 @@ RULE "PUBLIC-API-SURFACE-CONTROL" : IMetaArchitecture
     QUICK_FIX: "Move the public type to an allowed namespace (e.g., SDK, PublicAPI, or Contracts), or change the type's accessibility to internal/private if it should not be part of the public API. For example: change 'public class Utility' to 'internal class Utility' or move it to 'MyApp.SDK.Utility'"
 
   ARCHITECTURAL_CONTEXT:
-    PROJECT_TYPE: "LIBRARY_SDK"
-    ARCHITECTURE_PATTERN: "API_DESIGN"
+    PROJECT_TYPE: "UI_LIBRARY"
+    ARCHITECTURE_PATTERN: "Component_Based"
     DESIGN_PRINCIPLES: ["Minimal_API_Surface", "Encapsulation", "Backward_Compatibility"]
 
   VIOLATIONS:

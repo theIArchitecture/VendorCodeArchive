@@ -7,14 +7,14 @@ RULE "DEPENDENCY-DIRECTION-ENFORCEMENT" : IMetaArchitecture
   DESCRIPTION: "Forbidden dependency detected - namespace pattern violates explicit dependency direction rules"
   SEVERITY: Fatal
   CATEGORY: "Architecture_Quality"
-  APPLIES_TO: ["csharp", "java", "python", "typescript", "javascript"]
+  APPLIES_TO: ["cpp", "python", "java", "c"]
 
   PLUGIN:
     ID: "architecture-validator"
     SCOPE: "tree"
     CONFIG:
       validator: "DependencyDirection"
-      forbidden_dependencies: "[{\"from\":\"Amazon.S3.*\",\"to\":\"Amazon.DynamoDBv2.*\",\"message\":\"S3 service should not depend on DynamoDB service - services must be independent\"},{\"from\":\"Amazon.S3.*\",\"to\":\"Amazon.EC2.*\",\"message\":\"S3 service should not depend on EC2 service - services must be independent\"},{\"from\":\"Amazon.DynamoDBv2.*\",\"to\":\"Amazon.S3.*\",\"message\":\"DynamoDB service should not depend on S3 service - services must be independent\"},{\"from\":\"Amazon.*.Model.*\",\"to\":\"Amazon.*.Internal.*\",\"message\":\"Public Model types should not depend on Internal implementation details\"},{\"from\":\"Amazon.S3.Model.*\",\"to\":\"Amazon.S3.AmazonS3Client\",\"message\":\"Model types should not depend on client (dependency inversion violation)\"},{\"from\":\"Amazon.DynamoDBv2.Model.*\",\"to\":\"Amazon.DynamoDBv2.AmazonDynamoDBClient\",\"message\":\"Model types should not depend on client (dependency inversion violation)\"}]"
+      forbidden_dependencies: "[{\"from\":\"tensorflow.core.*\",\"to\":\"tensorflow.python.*\",\"message\":\"Core should not depend on Python bindings\"},{\"from\":\"tensorflow.core.*\",\"to\":\"tensorflow.java.*\",\"message\":\"Core should not depend on Java bindings\"},{\"from\":\"tensorflow::ops::*\",\"to\":\"tensorflow::python::*\",\"message\":\"Ops should not depend on language bindings\"},{\"from\":\"*Proto\",\"to\":\"*Internal*\",\"message\":\"Proto types should not depend on internal implementation\"},{\"from\":\"*\",\"to\":\"*.internal.*\",\"message\":\"Public types should not depend on internal implementation details\"}]"
 
   EDUCATION:
     DOCS_URL: "https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html"
@@ -23,9 +23,9 @@ RULE "DEPENDENCY-DIRECTION-ENFORCEMENT" : IMetaArchitecture
     QUICK_FIX: "Reverse the dependency using dependency inversion principle - create an interface in the target namespace and implement it in the source namespace, or refactor to use an intermediate layer"
 
   ARCHITECTURAL_CONTEXT:
-    PROJECT_TYPE: "SDK"
-    ARCHITECTURE_PATTERN: "Service_Oriented"
-    DESIGN_PRINCIPLES: ["Service_Independence", "Dependency_Inversion", "Service_Boundaries"]
+    PROJECT_TYPE: "ML_FRAMEWORK"
+    ARCHITECTURE_PATTERN: "Layered"
+    DESIGN_PRINCIPLES: ["Language_Independence", "Dependency_Inversion", "Core_Bindings_Separation"]
 
   VIOLATIONS:
     - "Forbidden dependency: {{SOURCE_NAMESPACE}} should not depend on {{TARGET_NAMESPACE}}"

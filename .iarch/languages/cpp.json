@@ -5,17 +5,43 @@
   "layerDetection": {
     "layers": {
       "Core": {
-        "namespace_patterns": [".*::core$", ".*::engine$"],
-        "import_patterns": [".*core.*", ".*engine.*"]
+        "namespacePatterns": [".*::core$", ".*::engine$"],
+        "importPatterns": [".*core.*", ".*engine.*"]
       },
       "Utils": {
-        "namespace_patterns": [".*::utils?$", ".*::helpers?$"],
-        "import_patterns": [".*util.*", ".*helper.*"]
+        "namespacePatterns": [".*::utils?$", ".*::helpers?$"],
+        "importPatterns": [".*util.*", ".*helper.*"]
       },
       "API": {
-        "namespace_patterns": [".*::api$", ".*::interface$"],
-        "import_patterns": [".*api.*", ".*interface.*"]
+        "namespacePatterns": [".*::api$", ".*::interface$"],
+        "importPatterns": [".*api.*", ".*interface.*"]
       }
     }
-  }
+  },
+  "parsingPatterns": {
+    "namespace": "^\\s*namespace\\s+([\\w:]+)\\s*\\{",
+    "import": "^\\s*#include\\s*[<\"](?<module>[^>\"]+)[>\"]",
+    "typeDeclaration": "^\\s*(?:template\\s*<[^>]*>\\s*)?(?:class|struct|enum(?:\\s+class)?)\\s+(\\w+)(?:\\s*(?:[:{]|:\\s*(?:public|protected|private)))",
+    "typeKeywords": ["class", "struct", "enum"],
+    "methodDeclaration": "^\\s*(?:virtual\\s+)?(?:static\\s+)?(?:inline\\s+)?([\\w:]+(?:<[^>]+>)?)\\s+([\\w:]+)\\s*\\(([^)]*)\\)",
+    "instantiation": "\\bnew\\s+([\\w:]+)(?:<[^>]*>)?\\s*\\(",
+    "commentSingleLine": "//(.*)$",
+    "commentMultiLine": "/\\*(.*?)\\*/",
+    "commentDocumentation": "///(.*)$"
+  },
+  "formattingRules": {
+    "indentSize": 2,
+    "increaseIndentTriggers": ["{"],
+    "decreaseIndentTriggers": ["}"],
+    "decreaseBeforeLine": true
+  },
+  "syntaxValidation": {
+    "balancedPairs": [
+      { "open": "(", "close": ")" },
+      { "open": "[", "close": "]" },
+      { "open": "{", "close": "}" },
+      { "open": "<", "close": ">" }
+    ]
+  },
+  "commentStyles": ["//", "/*", "///"]
 }

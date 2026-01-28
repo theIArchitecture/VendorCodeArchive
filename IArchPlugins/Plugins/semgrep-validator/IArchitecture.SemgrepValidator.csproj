@@ -7,17 +7,21 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
-  <!-- Exclude test files and test project from library compilation -->
-  <ItemGroup>
-    <Compile Remove="TestSemgrepFFI.cs" />
-    <Compile Remove="SemgrepFFI.Tests\**\*.cs" />
-  </ItemGroup>
-
   <ItemGroup>
     <!-- Reference the SDK project (development mode - would be PackageReference in production) -->
     <ProjectReference Include="../../../../IArchitecture-DotNet/IArchitecture.Plugin.SDK/IArchitecture.Plugin.SDK.csproj" />
     <!-- Reference IArchitecture.Shared for DetectionPattern model -->
     <ProjectReference Include="../../../../IArchitecture-DotNet/IArchitecture.Shared/IArchitecture.Shared.csproj" />
+  </ItemGroup>
+
+  <!-- xUnit test packages -->
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
   </ItemGroup>
 
   <!-- Don't copy plugin.json to build output - it stays in plugin root alongside copied DLL -->
@@ -49,6 +53,15 @@
     <Copy SourceFiles="@(SemgrepFFI)" DestinationFolder="$(DeployDir)ffi\%(RecursiveDir)" Condition="Exists('..\..\Libraries\Semgrep\ffi')" />
 
     <Message Importance="High" Text="Deployed plugin to $(DeployDir)" />
+  </Target>
+
+  <!-- Copy FFI DLLs to test output directory for xUnit tests -->
+  <Target Name="CopyFFIForTests" AfterTargets="Build">
+    <ItemGroup>
+      <FFIFiles Include="..\..\Libraries\Semgrep\ffi\*.dll" />
+      <FFIFiles Include="..\..\Libraries\Semgrep\ffi\*.so" />
+    </ItemGroup>
+    <Copy SourceFiles="@(FFIFiles)" DestinationFolder="$(OutputPath)" Condition="Exists('..\..\Libraries\Semgrep\ffi')" />
   </Target>
 
 </Project>
